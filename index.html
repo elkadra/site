@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EL'KADRA - Karol Drabik</title>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://unpkg.com/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
         
@@ -286,10 +286,10 @@
         <div class="divider"></div>
         
         <div class="disclaimer">
-            Nie robię sztuki dla sztuki - gniazłka dla gniazłka - <strong>stawiam na funkcjonalność i zrozumienie</strong>.<br><br>
-            Uwaga: To każdy element i każda instalacja elektryczna <strong>powinna ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania.<br>
-            Bez znaczenia, czy mowa o oprawie, gniażdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.<br><br>
-            PS. Nowa strona w budowie, więc stąd taki jej aktualny wygląd 😊
+            Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na funkcjonalność i zrozumienie</strong>.<br>
+            Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania.<br>
+            Bez znaczenia, czy mowa o oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.<br><br>
+            PS. Nowa strona w budowie, więc stąd taki jej aktualny wygląd 😉
         </div>
         
         <div class="divider"></div>
@@ -326,27 +326,24 @@
     </div>
     
     <script>
-        // Initialize EmailJS with the correct method
-        (function() {
-            console.log('Attempting to initialize EmailJS...');
+        // Wait for EmailJS to load
+        window.addEventListener('load', function() {
+            console.log('Window loaded, checking EmailJS...');
+            console.log('emailjs type:', typeof emailjs);
             
-            function tryInit() {
-                if (typeof emailjs !== 'undefined') {
+            if (typeof emailjs !== 'undefined') {
+                try {
+                    emailjs.init("gYdMWhfUtR6ETuseK");
+                    console.log('EmailJS initialized with old method');
+                } catch(e) {
+                    console.log('Old init failed, trying new method');
                     emailjs.init({
-                        publicKey: "hqcga8SqOH3C2OKygUg3x",
+                        publicKey: "gYdMWhfUtR6ETuseK",
                     });
-                    console.log('EmailJS initialized successfully');
-                    return true;
+                    console.log('EmailJS initialized with new method');
                 }
-                return false;
             }
-            
-            // Try immediate initialization
-            if (!tryInit()) {
-                // If not available, wait a bit and try again
-                setTimeout(tryInit, 500);
-            }
-        })();
+        });
         
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
@@ -355,66 +352,55 @@
                 const submitBtn = document.getElementById('submit-btn');
                 const messageDiv = document.getElementById('form-message');
                 
-                // Check if EmailJS is available
-                if (typeof emailjs === 'undefined') {
-                    console.error('EmailJS still not available');
-                    messageDiv.className = 'form-message error';
-                    messageDiv.textContent = 'System e-mail nie został załadowany. Skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
-                    messageDiv.style.display = 'block';
-                    return;
-                }
-                
-                // Disable button and show loading
-                submitBtn.textContent = 'Wysyłanie...';
-                submitBtn.disabled = true;
-                messageDiv.style.display = 'none';
-                
-                // Get form data
-                const formData = new FormData(this);
-                const templateParams = {
-                    from_name: formData.get('from_name'),
-                    from_email: formData.get('from_email'),
-                    phone: formData.get('phone') || 'Nie podano',
-                    message: formData.get('message')
-                };
-                
-                console.log('Sending emails with params:', templateParams);
-                
-                // Send email to you (lead notification)
-                emailjs.send('service_ad01fca', 'template_6q6utwh', templateParams)
-                    .then(function(response) {
-                        console.log('Lead email sent successfully:', response);
-                        // Send confirmation email to client
-                        return emailjs.send('service_ad01fca', 'template_3r7kpns', templateParams);
-                    })
-                    .then(function(response) {
-                        console.log('Confirmation email sent successfully:', response);
-                        // Success - both emails sent
-                        messageDiv.className = 'form-message success';
-                        messageDiv.textContent = 'Dziękuję! Wiadomość została wysłana. Skontaktuję się z Tobą wkrótce.';
-                        messageDiv.style.display = 'block';
-                        
-                        // Reset form
-                        document.getElementById('contact-form').reset();
-                    })
-                    .catch(function(error) {
-                        // Error
-                        console.error('EmailJS error details:', error);
+                // Wait a bit more for EmailJS to be ready
+                setTimeout(function() {
+                    if (typeof emailjs === 'undefined') {
+                        console.error('EmailJS still not available after timeout');
                         messageDiv.className = 'form-message error';
-                        
-                        // More specific error messages
-                        if (error.text && error.text.includes('Invalid')) {
-                            messageDiv.textContent = 'Błąd konfiguracji e-mail. Skontaktuj się bezpośrednio: karol@elkadra.com';
-                        } else {
-                            messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie lub skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
-                        }
+                        messageDiv.textContent = 'System e-mail nie został załadowany. Odśwież stronę i spróbuj ponownie.';
                         messageDiv.style.display = 'block';
-                    })
-                    .finally(function() {
-                        // Re-enable button
-                        submitBtn.textContent = 'Wyślij';
-                        submitBtn.disabled = false;
-                    });
+                        return;
+                    }
+                    
+                    // Disable button and show loading
+                    submitBtn.textContent = 'Wysyłanie...';
+                    submitBtn.disabled = true;
+                    messageDiv.style.display = 'none';
+                    
+                    // Get form data
+                    const templateParams = {
+                        from_name: document.querySelector('[name="from_name"]').value,
+                        from_email: document.querySelector('[name="from_email"]').value,
+                        phone: document.querySelector('[name="phone"]').value || 'Nie podano',
+                        message: document.querySelector('[name="message"]').value
+                    };
+                    
+                    console.log('Attempting to send with params:', templateParams);
+                    
+                    // Send email to you (lead notification)
+                    emailjs.send('service_ad01fca', 'template_6q6utwh', templateParams)
+                        .then(function(response) {
+                            console.log('Lead email sent:', response);
+                            return emailjs.send('service_ad01fca', 'template_3r7kpns', templateParams);
+                        })
+                        .then(function(response) {
+                            console.log('Confirmation email sent:', response);
+                            messageDiv.className = 'form-message success';
+                            messageDiv.textContent = 'Dziękuję! Wiadomość została wysłana. Skontaktuję się z Tobą wkrótce.';
+                            messageDiv.style.display = 'block';
+                            document.getElementById('contact-form').reset();
+                        })
+                        .catch(function(error) {
+                            console.error('EmailJS detailed error:', error);
+                            messageDiv.className = 'form-message error';
+                            messageDiv.textContent = 'Błąd: ' + (error.text || error.message || 'Nieznany błąd');
+                            messageDiv.style.display = 'block';
+                        })
+                        .finally(function() {
+                            submitBtn.textContent = 'Wyślij';
+                            submitBtn.disabled = false;
+                        });
+                }, 1000); // Wait 1 second for EmailJS to be ready
             });
         });
     </script>
