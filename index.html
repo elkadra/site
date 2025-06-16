@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EL'KADRA - Karol Drabik</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs/4.0.2/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
         
@@ -326,35 +326,27 @@
     </div>
     
     <script>
-        // Test multiple initialization methods
-        function initEmailJS() {
-            try {
-                // Try different EmailJS object names
+        // Initialize EmailJS with the correct method
+        (function() {
+            console.log('Attempting to initialize EmailJS...');
+            
+            function tryInit() {
                 if (typeof emailjs !== 'undefined') {
-                    emailjs.init("hqcga8SqOH3C2OKygUg3x");
-                    console.log('EmailJS initialized successfully with emailjs');
+                    emailjs.init({
+                        publicKey: "hqcga8SqOH3C2OKygUg3x",
+                    });
+                    console.log('EmailJS initialized successfully');
                     return true;
-                } else if (typeof window.emailjs !== 'undefined') {
-                    window.emailjs.init("hqcga8SqOH3C2OKygUg3x");
-                    console.log('EmailJS initialized successfully with window.emailjs');
-                    return true;
-                } else if (typeof Email !== 'undefined') {
-                    Email.init("hqcga8SqOH3C2OKygUg3x");
-                    console.log('EmailJS initialized successfully with Email');
-                    return true;
-                } else {
-                    console.error('EmailJS library not found');
-                    return false;
                 }
-            } catch (error) {
-                console.error('Error initializing EmailJS:', error);
                 return false;
             }
-        }
-        
-        // Try to initialize immediately and on load
-        setTimeout(initEmailJS, 100);
-        window.addEventListener('load', initEmailJS);
+            
+            // Try immediate initialization
+            if (!tryInit()) {
+                // If not available, wait a bit and try again
+                setTimeout(tryInit, 500);
+            }
+        })();
         
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
@@ -363,17 +355,9 @@
                 const submitBtn = document.getElementById('submit-btn');
                 const messageDiv = document.getElementById('form-message');
                 
-                // Try to find EmailJS
-                let emailjsObj = null;
-                if (typeof emailjs !== 'undefined') {
-                    emailjsObj = emailjs;
-                } else if (typeof window.emailjs !== 'undefined') {
-                    emailjsObj = window.emailjs;
-                } else if (typeof Email !== 'undefined') {
-                    emailjsObj = Email;
-                }
-                
-                if (!emailjsObj) {
+                // Check if EmailJS is available
+                if (typeof emailjs === 'undefined') {
+                    console.error('EmailJS still not available');
                     messageDiv.className = 'form-message error';
                     messageDiv.textContent = 'System e-mail nie został załadowany. Skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
                     messageDiv.style.display = 'block';
@@ -394,17 +378,17 @@
                     message: formData.get('message')
                 };
                 
-                console.log('Attempting to send email with params:', templateParams);
+                console.log('Sending emails with params:', templateParams);
                 
                 // Send email to you (lead notification)
-                emailjsObj.send('service_ad01fca', 'template_6q6utwh', templateParams)
+                emailjs.send('service_ad01fca', 'template_6q6utwh', templateParams)
                     .then(function(response) {
-                        console.log('First email sent successfully:', response);
+                        console.log('Lead email sent successfully:', response);
                         // Send confirmation email to client
-                        return emailjsObj.send('service_ad01fca', 'template_3r7kpns', templateParams);
+                        return emailjs.send('service_ad01fca', 'template_3r7kpns', templateParams);
                     })
                     .then(function(response) {
-                        console.log('Second email sent successfully:', response);
+                        console.log('Confirmation email sent successfully:', response);
                         // Success - both emails sent
                         messageDiv.className = 'form-message success';
                         messageDiv.textContent = 'Dziękuję! Wiadomość została wysłana. Skontaktuję się z Tobą wkrótce.';
@@ -415,9 +399,15 @@
                     })
                     .catch(function(error) {
                         // Error
-                        console.error('EmailJS error:', error);
+                        console.error('EmailJS error details:', error);
                         messageDiv.className = 'form-message error';
-                        messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
+                        
+                        // More specific error messages
+                        if (error.text && error.text.includes('Invalid')) {
+                            messageDiv.textContent = 'Błąd konfiguracji e-mail. Skontaktuj się bezpośrednio: karol@elkadra.com';
+                        } else {
+                            messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie lub skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
+                        }
                         messageDiv.style.display = 'block';
                     })
                     .finally(function() {
