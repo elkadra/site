@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL'KADRA - Karol Drabik</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs/4.0.2/email.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .header {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: calc(100vh - 160px);
+            padding: 40px;
+            position: relative;
+        }
+        
+        .logo-section {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: block;
+            width: 50%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .intro-text {
+            color: #333;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+        
+        .contact-btn {
+            padding: 15px 40px;
+            color: white;
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 250px;
+            text-align: center;
+            flex: 1;
+            max-width: 300px;
+        }
+        
+        .phone-btn {
+            background-color: #003761;
+        }
+        
+        .email-btn {
+            background-color: #003761;
+        }
+        
+        .form-title {
+            color: #333;
+            font-size: 16px;
+            margin: 40px 0 20px 0;
+        }
+        
+        .contact-form {
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .form-input {
+            
+        }
+        
+        .form-textarea {
+            height: 180px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #003761;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 0;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #002244;
+        }
+        
+        .disclaimer {
+            font-size: 16px;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.4;
+            text-align: justify;
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+            margin: 30px 0;
+        }
+        
+        .services-section {
+            margin-top: 40px;
+        }
+        
+        .service-category {
+            margin-bottom: 25px;
+        }
+        
+        .service-title {
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-title::before {
+            content: '⚡';
+            margin-right: 8px;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .service-list li {
+            color: #333;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        
+        .service-list li::before {
+            content: '–';
+            position: absolute;
+            left: -15px;
+            color: #f39c12;
+        }
+        
+        .footer {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .footer img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding: 20px 0;
+            background-color: #f5f5f5;
+            margin-top: 20px;
+        }
+        
+        .form-message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.ibb.co/zt5jzvt/nag-wek-vertical.png" alt="Nagłówek">
+    </div>
+    
+    <div class="container">
+        <div class="logo-section">
+            <img src="https://i.ibb.co/Z6JKFh0C/logo-napis-granat-2.png" alt="EL'KADRA - Karol Drabik" class="logo">
+        </div>
+        
+        <div class="intro-text">
+            tl;dr<br>
+            Jestem inż. elektrykiem.<br>
+            Jeśli myślisz, że mogę pomóc, skontaktuj się tutaj:
+        </div>
+        
+        <div class="contact-buttons">
+            <a href="tel:784972873" class="contact-btn phone-btn">
+                📞 784 972 873
+            </a>
+            <a href="mailto:karol@elkadra.com" class="contact-btn email-btn">
+                ✉️ karol@elkadra.com
+            </a>
+        </div>
+        
+        <div class="form-title">lub napisz do mnie w tym miejscu:</div>
+        
+        <div id="form-message" class="form-message"></div>
+        
+        <form class="contact-form" id="contact-form">
+            <div class="form-group">
+                <input type="text" class="form-input" name="from_name" placeholder="Imię" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" name="from_email" placeholder="Twój adres e-mail" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-input" name="phone" placeholder="Twój numer telefonu (opcjonalny)">
+            </div>
+            <div class="form-group">
+                <textarea class="form-textarea" name="message" placeholder="Napisz proszę, w czym Ci mogę pomóc" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">Wyślij</button>
+        </form>
+        
+        <div class="divider"></div>
+        
+        <div class="disclaimer">
+            Nie robię sztuki dla sztuki - gniazłka dla gniazłka - <strong>stawiam na funkcjonalność i zrozumienie</strong>.<br><br>
+            Uwaga: To każdy element i każda instalacja elektryczna <strong>powinna ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania.<br>
+            Bez znaczenia, czy mowa o oprawie, gniażdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.<br><br>
+            PS. Nowa strona w budowie, więc stąd taki jej aktualny wygląd 😊
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="services-section">
+            <div class="service-category">
+                <div class="service-title">Remonty</div>
+                <ul class="service-list">
+                    <li>Wymiany istniejących instalacji</li>
+                    <li>Przeróbki po-deweloperskie</li>
+                    <li>Modernizacje</li>
+                </ul>
+            </div>
+            
+            <div class="service-category">
+                <div class="service-title">Nowe instalacje</div>
+                <ul class="service-list">
+                    <li>Projekty</li>
+                    <li>Koncepcje</li>
+                    <li>Kompleksowe wykonanie</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <img src="https://i.ibb.co/pvkNsfkn/stopka-horizontal.png" alt="Stopka">
+    </div>
+    
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+    
+    <script>
+        // Test multiple initialization methods
+        function initEmailJS() {
+            try {
+                // Try different EmailJS object names
+                if (typeof emailjs !== 'undefined') {
+                    emailjs.init("hqcga8SqOH3C2OKygUg3x");
+                    console.log('EmailJS initialized successfully with emailjs');
+                    return true;
+                } else if (typeof window.emailjs !== 'undefined') {
+                    window.emailjs.init("hqcga8SqOH3C2OKygUg3x");
+                    console.log('EmailJS initialized successfully with window.emailjs');
+                    return true;
+                } else if (typeof Email !== 'undefined') {
+                    Email.init("hqcga8SqOH3C2OKygUg3x");
+                    console.log('EmailJS initialized successfully with Email');
+                    return true;
+                } else {
+                    console.error('EmailJS library not found');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error initializing EmailJS:', error);
+                return false;
+            }
+        }
+        
+        // Try to initialize immediately and on load
+        setTimeout(initEmailJS, 100);
+        window.addEventListener('load', initEmailJS);
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const submitBtn = document.getElementById('submit-btn');
+                const messageDiv = document.getElementById('form-message');
+                
+                // Try to find EmailJS
+                let emailjsObj = null;
+                if (typeof emailjs !== 'undefined') {
+                    emailjsObj = emailjs;
+                } else if (typeof window.emailjs !== 'undefined') {
+                    emailjsObj = window.emailjs;
+                } else if (typeof Email !== 'undefined') {
+                    emailjsObj = Email;
+                }
+                
+                if (!emailjsObj) {
+                    messageDiv.className = 'form-message error';
+                    messageDiv.textContent = 'System e-mail nie został załadowany. Skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
+                    messageDiv.style.display = 'block';
+                    return;
+                }
+                
+                // Disable button and show loading
+                submitBtn.textContent = 'Wysyłanie...';
+                submitBtn.disabled = true;
+                messageDiv.style.display = 'none';
+                
+                // Get form data
+                const formData = new FormData(this);
+                const templateParams = {
+                    from_name: formData.get('from_name'),
+                    from_email: formData.get('from_email'),
+                    phone: formData.get('phone') || 'Nie podano',
+                    message: formData.get('message')
+                };
+                
+                console.log('Attempting to send email with params:', templateParams);
+                
+                // Send email to you (lead notification)
+                emailjsObj.send('service_ad01fca', 'template_6q6utwh', templateParams)
+                    .then(function(response) {
+                        console.log('First email sent successfully:', response);
+                        // Send confirmation email to client
+                        return emailjsObj.send('service_ad01fca', 'template_3r7kpns', templateParams);
+                    })
+                    .then(function(response) {
+                        console.log('Second email sent successfully:', response);
+                        // Success - both emails sent
+                        messageDiv.className = 'form-message success';
+                        messageDiv.textContent = 'Dziękuję! Wiadomość została wysłana. Skontaktuję się z Tobą wkrótce.';
+                        messageDiv.style.display = 'block';
+                        
+                        // Reset form
+                        document.getElementById('contact-form').reset();
+                    })
+                    .catch(function(error) {
+                        // Error
+                        console.error('EmailJS error:', error);
+                        messageDiv.className = 'form-message error';
+                        messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Skontaktuj się bezpośrednio: karol@elkadra.com lub 784 972 873';
+                        messageDiv.style.display = 'block';
+                    })
+                    .finally(function() {
+                        // Re-enable button
+                        submitBtn.textContent = 'Wyślij';
+                        submitBtn.disabled = false;
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
