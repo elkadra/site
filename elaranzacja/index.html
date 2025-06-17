@@ -6,6 +6,7 @@
     <title>EL'Aranżacja - Funkcjonalne instalacje elektryczne</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
     <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <script src="https://unpkg.com/@emailjs/browser@4/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,0,1;wght@100;200;300;400;500;600;700&family=Roboto:ital,0,1;wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         @font-face {
@@ -702,15 +703,15 @@
             </div>
 
             <div class="contact-form">
-                <form id="contactForm">
+                <form id="contact-form">
                     <div class="form-group">
-                        <label for="name">Imię i nazwisko *</label>
-                        <input type="text" id="name" name="name" required placeholder="Wpisz swoje imię i nazwisko">
+                        <label for="name">Twoje imię *</label>
+                        <input type="text" id="name" name="from_name" required placeholder="Wpisz swoje imię">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Adres e-mail *</label>
-                        <input type="email" id="email" name="email" required placeholder="twoj@email.com">
+                        <input type="email" id="email" name="from_email" required placeholder="twoj@email.com">
                     </div>
 
                     <div class="form-group">
@@ -719,11 +720,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Opisz swój projekt *</label>
+                        <label for="message">Napisz proszę, w czym mogę Ci pomóc *</label>
                         <textarea id="message" name="message" required placeholder="Opowiedz nam o swoim mieszkaniu i oczekiwaniach..."></textarea>
                     </div>
 
-                    <button type="submit" class="submit-button">Wyślij wiadomość</button>
+                    <button type="submit" class="submit-button" id="submit-btn">Wyślij wiadomość</button>
                 </form>
             </div>
         </div>
@@ -759,6 +760,11 @@
     </footer>
 
     <script>
+        // Inicjalizacja EmailJS
+        window.addEventListener('load', function() {
+            emailjs.init("gYdMWhfUtR6ETuseK");
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -773,37 +779,68 @@
             });
         });
 
-        // Form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Funkcja do pobrania skróconego źródła strony
+        function getPageSource() {
+            const path = window.location.pathname;
+            // Wyciąga ostatni segment z ścieżki (np. "elaranzacja" z "/elaranzacja" lub "/elaranzacja/")
+            const segments = path.split('/').filter(segment => segment.length > 0);
+            return segments.length > 0 ? segments[segments.length - 1] : 'strona-glowna';
+        }
+
+        // EmailJS form handling
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.textContent;
             
-            // Simple validation
-            if (!data.name || !data.email || !data.message) {
-                alert('Proszę wypełnić wszystkie wymagane pola.');
-                return;
-            }
+            // Pobierz dane z formularza
+            const templateParams = {
+                from_name: this.from_name.value,
+                from_email: this.from_email.value,
+                phone: this.phone.value || 'Nie podano',
+                message: this.message.value,
+                source_url: getPageSource()  // Skrócone źródło strony
+            };
             
-            // Simulate form submission
-            const submitButton = this.querySelector('.submit-button');
-            const originalText = submitButton.textContent;
+            // Zmień przycisk na "Wysyłanie..."
+            submitBtn.textContent = 'Wysyłanie...';
+            submitBtn.disabled = true;
             
-            submitButton.textContent = 'Wysyłanie...';
-            submitButton.disabled = true;
+            // Wysyłanie 2 e-maili sekwencyjnie
+            const SERVICE_ID = 'service_ad01fca';
+            const TEMPLATE_ID_1 = 'template_6q6utwh'; // dla Ciebie (powiadomienie)
+            const TEMPLATE_ID_2 = 'template_3r7kpns'; // dla klienta (potwierdzenie)
             
-            setTimeout(() => {
-                alert('Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.');
-                this.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 1000);
+            emailjs.send(SERVICE_ID, TEMPLATE_ID_1, templateParams)
+                .then(() => {
+                    // Wysyłanie drugiego e-maila (potwierdzenie dla klienta)
+                    return emailjs.send(SERVICE_ID, TEMPLATE_ID_2, templateParams);
+                })
+                .then(() => {
+                    // Sukces - oba e-maile wysłane
+                    pokazKomunikatSukcesu();
+                    this.reset(); // Resetuj formularz
+                })
+                .catch((error) => {
+                    // Błąd
+                    console.error('EmailJS error:', error);
+                    pokazKomunikatBledu();
+                })
+                .finally(() => {
+                    // Przywróć przycisk
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
         });
+
+        function pokazKomunikatSukcesu() {
+            alert('Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce. Sprawdź swoją skrzynkę e-mail - otrzymasz potwierdzenie.');
+        }
+
+        function pokazKomunikatBledu() {
+            alert('Przepraszamy, wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.');
+        }
 
         // Animation on scroll
         const observerOptions = {
