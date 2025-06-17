@@ -33,7 +33,7 @@
         /* Header */
         .header {
             background: linear-gradient(135deg, #14213D 0%, #000000 100%);
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -67,6 +67,14 @@
             opacity: 0.8;
         }
 
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
         .contact-info a {
             color: white;
             text-decoration: none;
@@ -77,14 +85,6 @@
             color: #FCA311;
         }
 
-        .contact-info {
-            display: flex;
-            gap: 2rem;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #14213D 0%, #000000 100%);
@@ -93,6 +93,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding-top: 80px;
         }
 
         .hero::before {
@@ -188,6 +189,10 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
         }
 
         .hero-image::before {
@@ -519,30 +524,195 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-container,
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .contact-info {
-                display: none;
+            .header {
+                padding: 0.5rem 0;
             }
 
             .nav-container {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                height: 35px;
+            }
+
+            .contact-info {
+                display: flex;
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 3rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                order: 1;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: 2;
+                height: 250px;
+                margin: 0 auto;
+                max-width: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-brand {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                line-height: 1.6;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .content-grid.reverse {
+                direction: ltr;
+            }
+
+            .content-text {
+                order: 1;
+                text-align: center;
+            }
+
+            .content-image {
+                order: 2;
+                height: 250px;
+                margin: 0 auto;
+                max-width: 400px;
+            }
+
+            .content-text h3 {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+
+            .content-text p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
                 padding: 0 1rem;
             }
 
             .container {
                 padding: 0 1rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Zapobiega zoom na iOS */
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .hero::before {
+                width: 200px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0 0.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-brand {
+                font-size: 0.9rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+            }
+
+            .content-text h3 {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+                margin: 0 0.5rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
             }
         }
     </style>
@@ -569,12 +739,12 @@
                 <h2 class="hero-brand">by EL'KADRA Karol Drabik</h2>
                 <p class="hero-subtitle">Instalacja elektryczna skrojona pod Twoje nowe mieszkanie</p>
                 <p class="hero-description">
-                    Dopasuj swoją sztampową instalację w swoim nowym mieszkaniu na skrojoną pod Ciebie i Twoje indywidualne potrzeby, w pełni dla Ciebie funkcjonalną i ułatwiającą Ci życie w Twoich nowych czterech ścianach, w 100% zindywidualizowaną instalację.
+                    Dopasuj swoją sztampową instalację w swoim nowym mieszkaniu na skrojoną pod Ciebie, Twoje indywidualne potrzeby, w pełni dla Ciebie funkcjonalną i ułatwiającą Ci życie w Twoich nowych czterech ścianach oraz w 100% spersonalizowaną -  instalację.
                 </p>
                 <a href="#kontakt" class="cta-button">Skontaktuj się z nami</a>
             </div>
             <div class="hero-image">
-               <img src="https://i.ibb.co/60D8RHJd/kolacja2.png" alt="Nowoczesne oświetlenie jadalni" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                <img src="https://i.ibb.co/60D8RHJd/kolacja2.png" alt="Nowoczesne oświetlenie jadalni" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
             </div>
         </div>
     </section>
@@ -763,6 +933,14 @@
     </footer>
 
     <script>
+        // Funkcja do pobrania skróconego źródła strony
+        function getPageSource() {
+            const path = window.location.pathname;
+            // Wyciąga ostatni segment z ścieżki (np. "elaranzacja" z "/elaranzacja" lub "/elaranzacja/")
+            const segments = path.split('/').filter(segment => segment.length > 0);
+            return segments.length > 0 ? segments[segments.length - 1] : 'strona-glowna';
+        }
+
         // Inicjalizacja EmailJS
         window.addEventListener('load', function() {
             emailjs.init("gYdMWhfUtR6ETuseK");
@@ -781,14 +959,6 @@
                 }
             });
         });
-
-        // Funkcja do pobrania skróconego źródła strony
-        function getPageSource() {
-            const path = window.location.pathname;
-            // Wyciąga ostatni segment z ścieżki (np. "elaranzacja" z "/elaranzacja" lub "/elaranzacja/")
-            const segments = path.split('/').filter(segment => segment.length > 0);
-            return segments.length > 0 ? segments[segments.length - 1] : 'strona-glowna';
-        }
 
         // EmailJS form handling
         document.getElementById('contact-form').addEventListener('submit', function(event) {
@@ -869,4 +1039,5 @@
         });
     </script>
 </body>
-</html>
+</html>"
+            submitBtn.textContent = 'Wysyłanie...
