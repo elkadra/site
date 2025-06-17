@@ -101,11 +101,22 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 300px;
+            width: 200px;
             height: 200px;
             background: linear-gradient(45deg, #FCA311 0%, #ffb84d 100%);
-            clip-path: polygon(100% 0, 100% 70%, 70% 100%, 0 0);
+            border-radius: 0 0 0 100%;
             opacity: 0.9;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 60px;
+            height: 60px;
+            background: rgba(252, 163, 17, 0.3);
+            border-radius: 50%;
         }
 
         .hero-container {
@@ -456,6 +467,7 @@
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
+            font-family: 'Roboto Mono', monospace;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
@@ -660,7 +672,7 @@
 
             .form-group input,
             .form-group textarea {
-                font-size: 16px; /* Zapobiega zoom na iOS */
+                font-size: 16px;
             }
 
             .footer-content {
@@ -749,13 +761,13 @@
         </div>
     </section>
 
-    <!-- Dlaczego my Section -->
+    <!-- Co nas wyróżnia Section -->
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Dlaczego EL'Aranżacja?</h2>
+                <h2 class="section-title">Co nas wyróżnia?</h2>
                 <p class="section-subtitle">
-                    Każda przestrzeń ma swój potencjał. My pomagamy go odkryć i wykorzystać.
+                    Każdy ma inne potrzeby i oczekiwania wobec swojego mieszkania. My pomagamy je zidentyfikować i w pełni zaspokoić.
                 </p>
             </div>
 
@@ -763,13 +775,12 @@
                 <div class="content-text">
                     <h3>Funkcjonalność przede wszystkim</h3>
                     <p>
-                        [TEKST O FUNKCJONALNOŚCI]
                         Nie robimy instalacji "na sztywno". Każdy projekt rozpoczynamy od dokładnego poznania Twoich potrzeb i stylu życia. 
                         Dzięki temu tworzymy rozwiązania, które będą służyć Ci przez lata.
                     </p>
                     <p>
                         Nasze instalacje to przemyślane połączenie estetyki z praktycznością - od inteligentnego oświetlenia 
-                        po funkcjonalne rozmieszczenie gniazdek i włączników.
+                        po funkcjonalne rozmieszczenie gniazdek i włączników. Zero przedłużaczy, tylko przemyślane rozwiązania dostosowane do Twoich codziennych potrzeb.
                     </p>
                 </div>
                 <div class="content-image">
@@ -781,9 +792,8 @@
                 <div class="content-text">
                     <h3>Dopasowane do Ciebie</h3>
                     <p>
-                        [TEKST O DOPASOWANIU]
                         Rozumiemy, że każdy ma inne oczekiwania. Młoda para potrzebuje innych rozwiązań niż rodzina z dziećmi, 
-                        a home office wymaga zupełnie innego podejścia niż strefa relaksu.
+                        a home office wymaga zupełnie innego podejścia niż strefa relaksu. Koniec ze wstawaniem wieczorem, żeby zgasić światło w sypialni!
                     </p>
                     <p>
                         Dlatego każdy nasz projekt jest unikalny - stworzony z myślą o Twoim konkretnym stylu życia i potrzebach.
@@ -798,9 +808,8 @@
                 <div class="content-text">
                     <h3>Nowoczesne rozwiązania</h3>
                     <p>
-                        [TEKST O NOWOCZESNOŚCI]
                         Wykorzystujemy najnowsze technologie i trendy w branży elektrycznej. Inteligentne systemy oświetlenia, 
-                        ładowarki bezprzewodowe, gniazdka USB - wszystko to może być częścią Twojej instalacji.
+                        systemy kontroli i sterowania temperaturą oraz zaawansowane systemy audio - wszystko to może być częścią Twojej instalacji.
                     </p>
                     <p>
                         Nasze rozwiązania nie tylko pięknie wyglądają, ale także oszczędzają energię i zwiększają komfort użytkowania.
@@ -826,18 +835,18 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">💡</div>
-                    <h4>Projekt oświetlenia</h4>
-                    <p>Tworzymy koncepcje oświetlenia, które podkreślają charakter każdego pomieszczenia i zapewniają optymalny komfort wizualny.</p>
+                    <h4>Light-consulting</h4>
+                    <p>Doradzamy w zakresie oświetlenia, które podkreśla charakter każdego pomieszczenia i zapewnia optymalny komfort wizualny.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">🔌</div>
-                    <h4>Rozmieszczenie gniazdek</h4>
+                    <h4>Socket-placement</h4>
                     <p>Strategicznie planujemy lokalizację gniazdek, aby były zawsze tam, gdzie ich potrzebujesz - bez przedłużaczy i kabli.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
+                    <div class="feature-icon">🤖</div>
                     <h4>Systemy inteligentne</h4>
                     <p>Integrujemy nowoczesne systemy smart home, które zwiększają komfort i pozwalają oszczędzać energię.</p>
                 </div>
@@ -849,9 +858,9 @@
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h4>Dobór osprzętu</h4>
-                    <p>Pomagamy wybrać osprzęt, który idealnie komponuje się z wystrojem wnętrza - od klasyki po nowoczesny design.</p>
+                    <div class="feature-icon">🔧</div>
+                    <h4>Konsultacje techniczne</h4>
+                    <p>Doradzamy w kwestiach technicznych i pomagamy wybrać rozwiązania, które idealnie pasują do Twojego budżetu i potrzeb.</p>
                 </div>
 
                 <div class="feature-card">
@@ -869,7 +878,7 @@
             <div class="section-header">
                 <h2 class="section-title">Skontaktuj się z nami</h2>
                 <p class="section-subtitle">
-                    Porozmawiajmy o Twoim projekcie. Pierwsza konsultacja jest bezpłatna!
+                    Powiedz coś więcej o sobie i o swoim nowym mieszkaniu
                 </p>
             </div>
 
@@ -903,12 +912,18 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <!-- Ozdobnik przed footerem -->
+        <div class="footer-decoration">
+            <div class="decoration-element decoration-square"></div>
+            <div class="decoration-element decoration-circle"></div>
+            <div class="decoration-element decoration-triangle"></div>
+        </div>
+        
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>EL'Aranżacja</h4>
-                    <p>Funkcjonalne instalacje elektryczne</p>
-                    <p>dla nowoczesnych przestrzeni</p>
+                    <img src="https://i.ibb.co/0pjyX8bb/ca-o-bia-e-bez-t-a.png" alt="EL'Aranżacja" style="height: 50px; width: auto; margin-bottom: 1rem;">
+                    <p>Instalacja elektryczna w Twoim nowym mieszkaniu skrojona pod Ciebie</p>
                 </div>
                 
                 <div class="footer-section">
@@ -919,8 +934,7 @@
                 
                 <div class="footer-section">
                     <h4>Obszar działania</h4>
-                    <p>Katowice i okolice</p>
-                    <p>Śląsk</p>
+                    <p>woj. śląskie i opolskie</p>
                 </div>
             </div>
             
@@ -936,7 +950,6 @@
         // Funkcja do pobrania skróconego źródła strony
         function getPageSource() {
             const path = window.location.pathname;
-            // Wyciąga ostatni segment z ścieżki (np. "elaranzacja" z "/elaranzacja" lub "/elaranzacja/")
             const segments = path.split('/').filter(segment => segment.length > 0);
             return segments.length > 0 ? segments[segments.length - 1] : 'strona-glowna';
         }
@@ -967,41 +980,34 @@
             const submitBtn = document.getElementById('submit-btn');
             const originalText = submitBtn.textContent;
             
-            // Pobierz dane z formularza
             const templateParams = {
                 from_name: this.from_name.value,
                 from_email: this.from_email.value,
                 phone: this.phone.value || 'Nie podano',
                 message: this.message.value,
-                source_url: getPageSource()  // Skrócone źródło strony
+                source_url: getPageSource()
             };
             
-            // Zmień przycisk na "Wysyłanie..."
             submitBtn.textContent = 'Wysyłanie...';
             submitBtn.disabled = true;
             
-            // Wysyłanie 2 e-maili sekwencyjnie
             const SERVICE_ID = 'service_ad01fca';
-            const TEMPLATE_ID_1 = 'template_6q6utwh'; // dla Ciebie (powiadomienie)
-            const TEMPLATE_ID_2 = 'template_3r7kpns'; // dla klienta (potwierdzenie)
+            const TEMPLATE_ID_1 = 'template_6q6utwh';
+            const TEMPLATE_ID_2 = 'template_3r7kpns';
             
             emailjs.send(SERVICE_ID, TEMPLATE_ID_1, templateParams)
                 .then(() => {
-                    // Wysyłanie drugiego e-maila (potwierdzenie dla klienta)
                     return emailjs.send(SERVICE_ID, TEMPLATE_ID_2, templateParams);
                 })
                 .then(() => {
-                    // Sukces - oba e-maile wysłane
                     pokazKomunikatSukcesu();
-                    this.reset(); // Resetuj formularz
+                    this.reset();
                 })
                 .catch((error) => {
-                    // Błąd
                     console.error('EmailJS error:', error);
                     pokazKomunikatBledu();
                 })
                 .finally(() => {
-                    // Przywróć przycisk
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                 });
@@ -1030,7 +1036,6 @@
             });
         }, observerOptions);
 
-        // Observe elements for animation
         document.querySelectorAll('.feature-card, .content-grid').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -1039,5 +1044,4 @@
         });
     </script>
 </body>
-</html>"
-            submitBtn.textContent = 'Wysyłanie...
+</html>
