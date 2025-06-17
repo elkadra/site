@@ -428,7 +428,8 @@
                         from_name: document.querySelector('[name="from_name"]').value,
                         from_email: document.querySelector('[name="from_email"]').value,
                         phone: document.querySelector('[name="phone"]').value || 'Nie podano',
-                        message: document.querySelector('[name="message"]').value
+                        message: document.querySelector('[name="message"]').value,
+                        source_url: window.location.hostname || window.location.href
                     };
                     
                     console.log('Attempting to send with params:', templateParams);
