@@ -15,6 +15,7 @@
             font-weight: bold;
             font-style: normal;
             font-display: swap;
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD, U+0100-017F, U+0104, U+0106, U+0118, U+0141, U+0143, U+015A, U+0179, U+017B;
         }
 
         * {
@@ -96,6 +97,97 @@
             padding-top: 80px;
         }
 
+        /* Particle Effects */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(252, 163, 17, 0.6);
+            border-radius: 50%;
+            animation: float-particle 8s infinite linear;
+        }
+
+        .particle:nth-child(1) {
+            width: 4px;
+            height: 4px;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 6s;
+        }
+
+        .particle:nth-child(2) {
+            width: 6px;
+            height: 6px;
+            left: 20%;
+            animation-delay: 1s;
+            animation-duration: 8s;
+        }
+
+        .particle:nth-child(3) {
+            width: 3px;
+            height: 3px;
+            left: 30%;
+            animation-delay: 2s;
+            animation-duration: 7s;
+        }
+
+        .particle:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            left: 50%;
+            animation-delay: 3s;
+            animation-duration: 9s;
+        }
+
+        .particle:nth-child(5) {
+            width: 4px;
+            height: 4px;
+            left: 70%;
+            animation-delay: 4s;
+            animation-duration: 6s;
+        }
+
+        .particle:nth-child(6) {
+            width: 7px;
+            height: 7px;
+            left: 80%;
+            animation-delay: 5s;
+            animation-duration: 8s;
+        }
+
+        .particle:nth-child(7) {
+            width: 3px;
+            height: 3px;
+            left: 90%;
+            animation-delay: 6s;
+            animation-duration: 7s;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -116,10 +208,12 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content h1 {
-            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
+            font-family: 'Eurostile', 'Impact', 'Arial Black', 'Trebuchet MS', Arial, sans-serif;
             font-size: 3.5rem;
             font-weight: bold;
             color: white;
@@ -128,16 +222,24 @@
             animation: slideInLeft 1s ease-out;
             letter-spacing: 2px;
             text-transform: uppercase;
+            font-feature-settings: "kern" 1;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .hero-brand {
-            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
+            font-family: 'Eurostile', 'Impact', 'Arial Black', 'Trebuchet MS', Arial, sans-serif;
             font-size: 1.2rem;
             font-weight: bold;
             color: white;
             margin-bottom: 1.5rem;
             letter-spacing: 1px;
             animation: slideInLeft 1s ease-out 0.2s both;
+            font-feature-settings: "kern" 1;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .hero-subtitle {
@@ -331,9 +433,11 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transform-style: preserve-3d;
         }
 
         .feature-card::before {
@@ -342,18 +446,49 @@
             top: 0;
             left: -100%;
             width: 100%;
-            height: 4px;
+            height: 2px;
             background: linear-gradient(45deg, #FCA311, #ffb84d);
             transition: left 0.5s ease;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(252, 163, 17, 0.05), rgba(255, 184, 77, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
         .feature-card:hover::before {
             left: 0;
         }
 
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2), 0 0 0 1px rgba(252, 163, 17, 0.1);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(180deg) scale(1.1);
+            background: linear-gradient(45deg, #ffb84d, #FCA311);
+        }
+
+        .feature-card:hover h4 {
+            color: #FCA311;
+            transform: translateY(-2px);
+        }
+
+        .feature-card:hover p {
+            transform: translateY(2px);
         }
 
         .feature-icon {
@@ -367,6 +502,27 @@
             margin: 0 auto 1.5rem;
             font-size: 2rem;
             color: white;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .feature-card:hover .feature-icon::before {
+            width: 100%;
+            height: 100%;
         }
 
         .feature-card h4 {
@@ -374,12 +530,14 @@
             font-weight: 700;
             color: #14213D;
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
 
         .feature-card p {
             color: #000000;
             font-weight: 400;
             line-height: 1.7;
+            transition: all 0.3s ease;
         }
 
         /* Contact Form */
@@ -482,20 +640,50 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Sekcja z logo */
+        .footer-section:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-section:first-child img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        /* Sekcje z nagłówkami */
+        .footer-section:not(:first-child) {
+            padding-top: 25px; /* Połowa wysokości logo, żeby wycentrować nagłówki */
         }
 
         .footer-section h4 {
             color: white;
-            margin-bottom: 1rem;
+            margin: 0 0 26px 0; /* 26px = 25px + 1px żeby wyrównać teksty */
             font-size: 1.2rem;
             font-weight: 700;
             font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
+            line-height: 1;
+        }
+
+        .footer-section:first-child h4 {
+            display: none;
         }
 
         .footer-section p {
             margin-bottom: 0.5rem;
             color: #E5E5E5;
             font-weight: 400;
+            line-height: 1.5;
         }
 
         /* Animations */
@@ -657,6 +845,11 @@
 
             .feature-card {
                 padding: 2rem;
+                transform: none !important;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px) !important;
             }
 
             .contact-form {
@@ -746,6 +939,15 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
         <div class="hero-container">
             <div class="hero-content">
                 <h1>EL'Aranżacja</h1>
@@ -1039,4 +1241,3 @@
     </script>
 </body>
 </html>
-        
