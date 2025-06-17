@@ -189,6 +189,8 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
+            opacity: 0;
+            animation: slideInRight 1s ease-out 0.8s both;
         }
 
         .hero-image:hover {
@@ -483,10 +485,11 @@
         }
 
         .footer-section h4 {
-            color: #FCA311;
+            color: white;
             margin-bottom: 1rem;
             font-size: 1.2rem;
             font-weight: 700;
+            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
         }
 
         .footer-section p {
@@ -560,6 +563,8 @@
             .hero-content {
                 order: 1;
                 text-align: center;
+                position: relative;
+                z-index: 2;
             }
 
             .hero-image {
@@ -673,6 +678,7 @@
             .hero::before {
                 width: 200px;
                 height: 150px;
+                z-index: 1;
             }
         }
 
@@ -681,6 +687,12 @@
                 flex-direction: column;
                 gap: 0.5rem;
                 padding: 0 0.5rem;
+            }
+
+            .hero::before {
+                width: 150px;
+                height: 100px;
+                opacity: 0.6;
             }
 
             .hero-content h1 {
@@ -723,7 +735,7 @@
     <header class="header">
         <div class="nav-container">
             <a href="https://elkadra.com" class="logo-link">
-                <img src="https://i.ibb.co/0pjyX8bb/ca-o-bia-e-bez-t-a.png" alt="EL'Aranżacja" class="logo" />
+                <img src="https://i.ibb.co/0pjyX8bb/ca-o-bia-e-bez-t-a.png" alt="EL'KADRA" class="logo" />
             </a>
             <div class="contact-info">
                 <a href="tel:+48784972873">📞 784 972 873</a>
@@ -745,7 +757,7 @@
                 <a href="#kontakt" class="cta-button">Skontaktuj się z nami</a>
             </div>
             <div class="hero-image">
-                <img src="https://i.ibb.co/60D8RHJd/kolacja2.png" alt="Nowoczesne oświetlenie jadalni" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                <img src="https://i.ibb.co/60D8RHJd/kolacja2.png" alt="Klimatyczne oświetlenie w jadalni" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
             </div>
         </div>
     </section>
@@ -773,7 +785,7 @@
                     </p>
                 </div>
                 <div class="content-image">
-                    <img src="https://i.ibb.co/Kp9sj4K2/sypialnia2.png" alt="Nowoczesne oświetlenie sypialni" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                    <img src="https://i.ibb.co/Kp9sj4K2/sypialnia2.png" alt="Funkcjonalna instalacja koło łóżka" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
                 </div>
             </div>
 
@@ -904,7 +916,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <img src="https://i.ibb.co/0pjyX8bb/ca-o-bia-e-bez-t-a.png" alt="EL'Aranżacja" style="height: 50px; width: auto; margin-bottom: 1rem;">
+                    <img src="https://i.ibb.co/0pjyX8bb/ca-o-bia-e-bez-t-a.png" alt="EL'KADRA" style="height: 50px; width: auto; margin-bottom: 1rem;">
                     <p>Instalacja elektryczna w Twoim nowym mieszkaniu skrojona pod Ciebie</p>
                 </div>
                 
@@ -1027,3 +1039,4 @@
     </script>
 </body>
 </html>
+        
