@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[TYTUŁ ARTYKUŁU] - EL'Kadra Blog</title>
-    <meta name="description" content="[OPIS ARTYKUŁU]">
+    <title>✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu? - EL'Kadra Blog</title>
+    <meta name="description" content="Nowe mieszkanie w stanie deweloperskim to idealny moment, by dopasować instalację elektryczną do swoich potrzeb. Przemyślana elektryka = wygoda, oszczędność i estetyka na lata.">
     <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
@@ -108,12 +108,36 @@
 
         .article-meta {
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            gap: 8px;
             font-size: 14px;
             color: #666;
             border-left: 3px solid #3498db;
             padding-left: 15px;
             margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .article-meta {
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+
+        .article-tags {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #003761;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
         }
 
         .article-excerpt {
@@ -214,21 +238,58 @@
             color: #666;
         }
 
-        .navigation {
-            display: flex;
-            justify-content: space-between;
+        .related-articles {
             margin: 40px 0 0 0;
-            padding: 20px 0 0 0;
-            border-top: 1px solid #e0e0e0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #003761;
         }
 
-        .nav-link {
-            color: #3498db;
+        .related-articles h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .related-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .related-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .related-column h4 {
+            font-size: 1em;
+            color: #003761;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .related-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-column li {
+            margin-bottom: 8px;
+        }
+
+        .related-column a {
+            color: #666;
             text-decoration: none;
-            font-weight: 500;
+            font-size: 14px;
         }
 
-        .nav-link:hover {
+        .related-column a:hover {
+            color: #003761;
             text-decoration: underline;
         }
 
@@ -269,11 +330,6 @@
             .article-title {
                 font-size: 1.8em;
             }
-
-            .article-meta {
-                flex-direction: column;
-                gap: 5px;
-            }
         }
     </style>
 </head>
@@ -294,15 +350,18 @@
             </div>
             
             <div class="breadcrumb">
-                <a href="https://elkadra.com">Start</a> → <a href="#">Blog</a> → [Tytuł artykułu]
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/blog">Blog</a> → ✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?
             </div>
 
             <div class="article-header">
-                <h1 class="article-title">Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?</h1>
+                <h1 class="article-title">✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?</h1>
                 <div class="article-meta">
                     <span>📅 30 czerwca 2025</span>
-                    <span>⏱️ Czas czytania: 8 min</span>
-                    <span>🏷️ Kategoria: Remonty</span>
+                    <span>⏱️ Czas czytania: 4 min</span>
+                </div>
+                <div class="article-tags">
+                    <span class="tag">#⚡EL'Aranżacja</span>
+                    <span class="tag">#💡Oświetlenie</span>
                 </div>
                 <div class="article-excerpt">
                     Nowe mieszkanie w stanie deweloperskim to idealny moment, by dopasować instalację elektryczną do swoich potrzeb. Przemyślana elektryka = wygoda, oszczędność i estetyka na lata.
@@ -395,19 +454,34 @@
                 <div class="author-name">inż. Karol Drabik</div>
                 <div class="author-bio">
                     Inżynier elektryk z wieloletnim doświadczeniem w projektowaniu i wykonawstwie instalacji elektrycznych. 
-                    Specjalizuję się w modernizacjach instalacji oraz systemach automatyki domowej.
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na funkcjonalność i zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.
                     <br><br>
                     Potrzebujesz pomocy z instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze mną</a>.
                 </div>
             </div>
 
-            <div class="navigation">
-                <a href="#" class="nav-link">← Poprzedni artykuł</a>
-                <a href="#" class="nav-link">Następny artykuł →</a>
+            <div class="related-articles">
+                <h3>Przeczytaj więcej w temacie:</h3>
+                <div class="related-columns">
+                    <div class="related-column">
+                        <h4>#⚡EL'Aranżacja</h4>
+                        <ul>
+                            <li><a href="#">tutaj będzie lista artykułów</a></li>
+                            <li><a href="#">tutaj też</a></li>
+                        </ul>
+                    </div>
+                    <div class="related-column">
+                        <h4>#💡Oświetlenie</h4>
+                        <ul>
+                            <li><a href="#">tutaj będzie lista artykułów</a></li>
+                            <li><a href="#">tutaj też</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Stopka rozciągnięta na całą szerokość - bezpośrednio po treści -->
+        <!-- Stopka rozciągnięta na całą szerokość -->
         <div class="footer-graphic">
             <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
         </div>
