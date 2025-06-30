@@ -1,4 +1,4 @@
-    <script>
+<script>
         // Dodaj interaktywność do kart artykułów
         document.querySelectorAll('.article-card').forEach(card => {
             card.addEventListener('click', function() {
@@ -33,7 +33,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
             min-height: 100vh;
@@ -52,7 +52,7 @@
         }
 
         .content-area {
-            padding: 40px;
+            padding: 40px 60px;
         }
 
         .logo-section {
@@ -182,11 +182,31 @@
 
         @media (min-width: 768px) {
             .content-area {
-                padding: 40px;
+                padding: 40px 60px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .content-area {
+                padding: 60px 80px;
+            }
+            
+            .category-sections {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1199px) {
+            .category-sections {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+            }
+
             .content-area {
                 padding: 20px;
             }
@@ -201,6 +221,14 @@
 
             body {
                 font-size: 14px;
+            }
+
+            .all-articles .article-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-sections {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -326,11 +354,12 @@
                 </div>
                             </section>
 
-                <!-- Sekcje tematyczne -->
-                <!-- Oświetlenie -->
-                <section class="section lighting">
-                    <h2 class="section-title">💡 Oświetlenie</h2>
-                    <div class="article-grid">
+                <!-- Sekcje tematyczne w siatce 2x2 -->
+                <div class="category-sections">
+                    <!-- Oświetlenie -->
+                    <section class="section lighting">
+                        <h2 class="section-title">💡 Oświetlenie</h2>
+                        <div class="article-grid">
                         <article class="article-card">
                             <h3 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h3>
                             <p class="article-preview">Jak zaplanować oświetlenie, które będzie praktyczne i stworzy niepowtarzalny klimat w każdym pomieszczeniu.</p>
@@ -340,51 +369,52 @@
                             <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
                             <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej dla maksymalnego komfortu i oszczędności energii.</p>
                         </article>
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                <!-- HVAC -->
-                <section class="section hvac">
-                    <h2 class="section-title">🍃 HVAC</h2>
-                    <div class="article-grid">
-                        <article class="article-card">
-                            <h3 class="article-title">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</h3>
-                            <p class="article-preview">Inteligentne systemy HVAC, które automatycznie dbają o idealną temperaturę w domu.</p>
-                        </article>
-                    </div>
-                </section>
+                    <!-- HVAC -->
+                    <section class="section hvac">
+                        <h2 class="section-title">🍃 HVAC</h2>
+                        <div class="article-grid">
+                            <article class="article-card">
+                                <h3 class="article-title">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</h3>
+                                <p class="article-preview">Inteligentne systemy HVAC, które automatycznie dbają o idealną temperaturę w domu.</p>
+                            </article>
+                        </div>
+                    </section>
 
-                <!-- Instalacja gniazd -->
-                <section class="section outlets">
-                    <h2 class="section-title">🔌 Instalacja gniazd</h2>
-                    <div class="article-grid">
-                        <article class="article-card">
-                            <h3 class="article-title">🔌 Koniec z przedłużaczami – jak dobrze zaplanować lokalizację gniazd?</h3>
-                            <p class="article-preview">Praktyczne wskazówki dotyczące optymalnego rozmieszczenia gniazd elektrycznych w każdym pomieszczeniu.</p>
-                        </article>
-                        
-                        <article class="article-card">
-                            <h3 class="article-title">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</h3>
-                            <p class="article-preview">Sposoby na eleganckie ukrycie instalacji elektrycznej bez uszczerbku dla funkcjonalności.</p>
-                        </article>
-                    </div>
-                </section>
+                    <!-- Instalacja gniazd -->
+                    <section class="section outlets">
+                        <h2 class="section-title">🔌 Instalacja gniazd</h2>
+                        <div class="article-grid">
+                            <article class="article-card">
+                                <h3 class="article-title">🔌 Koniec z przedłużaczami – jak dobrze zaplanować lokalizację gniazd?</h3>
+                                <p class="article-preview">Praktyczne wskazówki dotyczące optymalnego rozmieszczenia gniazd elektrycznych w każdym pomieszczeniu.</p>
+                            </article>
+                            
+                            <article class="article-card">
+                                <h3 class="article-title">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</h3>
+                                <p class="article-preview">Sposoby na eleganckie ukrycie instalacji elektrycznej bez uszczerbku dla funkcjonalności.</p>
+                            </article>
+                        </div>
+                    </section>
 
-                <!-- Smarthome -->
-                <section class="section smarthome">
-                    <h2 class="section-title">🤖 Smarthome</h2>
-                    <div class="article-grid">
-                        <article class="article-card">
-                            <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
-                            <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej dla maksymalnego komfortu i oszczędności energii.</p>
-                        </article>
-                        
-                        <article class="article-card">
-                            <h3 class="article-title">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</h3>
-                            <p class="article-preview">Często pomijane elementy, które mogą znacząco wpłynąć na komfort użytkowania mieszkania.</p>
-                        </article>
-                    </div>
-                </section>
+                    <!-- Smarthome -->
+                    <section class="section smarthome">
+                        <h2 class="section-title">🤖 Smarthome</h2>
+                        <div class="article-grid">
+                            <article class="article-card">
+                                <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
+                                <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej dla maksymalnego komfortu i oszczędności energii.</p>
+                            </article>
+                            
+                            <article class="article-card">
+                                <h3 class="article-title">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</h3>
+                                <p class="article-preview">Często pomijane elementy, które mogą znacząco wpłynąć na komfort użytkowania mieszkania.</p>
+                            </article>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
 
