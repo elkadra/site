@@ -61,21 +61,64 @@
         }
 
         .logo-section {
-            text-align: left;
+            display: flex;
+            align-items: center;
             margin-bottom: 30px;
         }
 
-        .logo-section img {
-            width: 70%;
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
             height: auto;
             display: block;
             max-width: 400px;
         }
 
-        @media (min-width: 768px) {
-            .logo-section img {
-                width: 50%;
-                max-width: 400px;
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            width: 40px;
+            height: 40px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .logo-container {
+                max-width: 70%;
+            }
+
+            .contact-icons {
+                align-self: flex-end;
+                justify-content: flex-end;
+                gap: 15px;
+            }
+
+            .contact-icons img {
+                width: 35px;
+                height: 35px;
             }
         }
 
@@ -342,11 +385,21 @@
 
         <!-- Obszar z treścią -->
         <div class="content-area">
-            <!-- Logo i breadcrumb -->
+            <!-- Logo i ikony kontaktu -->
             <div class="logo-section">
-                <a href="https://elkadra.com">
-                    <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
-                </a>
+                <div class="logo-container">
+                    <a href="https://elkadra.com">
+                        <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/1t8QWXyn/phone-icon.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/BVWM7YZW/mail-icon.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
             </div>
             
             <div class="breadcrumb">
