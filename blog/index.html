@@ -188,23 +188,39 @@
 
         @media (min-width: 1200px) {
             .content-area {
-                padding: 60px 80px;
+                padding: 45px 60px;
             }
             
             .blog-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr 0.75fr 0.75fr;
+                grid-template-rows: repeat(2, 1fr);
+                height: 80vh;
             }
         }
 
         @media (min-width: 900px) and (max-width: 1199px) {
             .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                height: auto;
+            }
+            
+            .all-articles, .lighting, .hvac, .outlets, .smarthome {
+                grid-column: 1;
+                grid-row: auto;
             }
         }
 
         @media (max-width: 899px) {
             .blog-grid {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                height: auto;
+            }
+            
+            .all-articles, .lighting, .hvac, .outlets, .smarthome {
+                grid-column: 1;
+                grid-row: auto;
             }
         }
 
@@ -229,11 +245,16 @@
                 font-size: 14px;
             }
 
-            .all-articles .article-grid {
+            .blog-grid {
                 grid-template-columns: 1fr;
             }
-
-            .blog-grid {
+            
+            .all-articles {
+                grid-row: auto;
+            }
+            
+            .category-sections {
+                grid-column: 1;
                 grid-template-columns: 1fr;
             }
         }
