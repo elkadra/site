@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[TYTUŁ ARTYKUŁU] - EL'Kadra Blog</title>
+    <meta name="description" content="[OPIS ARTYKUŁU]">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px;
+            }
+        }
+
+        .logo-section {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .logo-section img {
+            width: 70%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .logo-section img {
+                width: 50%;
+                max-width: 400px;
+            }
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .article-excerpt {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        .article-content h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .highlight-box.tip {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin: 50px 0 30px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0 0 0;
+            padding: 20px 0 0 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            padding: 15px 10px;
+            background-color: #f5f5f5;
+            margin: 20px 0 0 0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .copyright {
+                font-size: 12px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo i breadcrumb -->
+            <div class="logo-section">
+                <a href="https://elkadra.com">
+                    <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                </a>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="https://elkadra.com">Start</a> → <a href="#">Blog</a> → [Tytuł artykułu]
+            </div>
+
+            <div class="article-header">
+                <h1 class="article-title">[WSTAW TUTAJ TYTUŁ ARTYKUŁU]</h1>
+                <div class="article-meta">
+                    <span>📅 [DATA PUBLIKACJI]</span>
+                    <span>⏱️ Czas czytania: [X] min</span>
+                    <span>🏷️ Kategoria: [KATEGORIA]</span>
+                </div>
+                <div class="article-excerpt">
+                    [KRÓTKI OPIS/WPROWADZENIE DO ARTYKUŁU - 1-2 zdania podsumowujące główną treść]
+                </div>
+            </div>
+
+            <div class="article-content">
+                <h2>Wprowadzenie</h2>
+                <p>[Tutaj wprowadzenie do tematu - kontekst, dlaczego temat jest ważny, co czytelnik się dowie]</p>
+
+                <h2>Główna treść artykułu</h2>
+                <p>[Główna zawartość artykułu - opisz szczegółowo temat, podaj praktyczne porady, przykłady]</p>
+
+                <div class="highlight-box tip">
+                    <strong>💡 Porada eksperta:</strong> [Praktyczna wskazówka związana z tematem artykułu]
+                </div>
+
+                <h3>Podsekcja</h3>
+                <p>[Dodatkowe informacje, szczegóły techniczne, przypadki użycia]</p>
+
+                <div class="image-container">
+                    <img src="[ŚCIEŻKA_DO_OBRAZKA]" alt="[OPIS OBRAZKA]">
+                    <div class="image-caption">[Podpis pod obrazkiem]</div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Uwaga:</strong> [Ważne ostrzeżenie lub informacja dotycząca bezpieczeństwa]
+                </div>
+
+                <h2>Podsumowanie</h2>
+                <p>[Podsumowanie najważniejszych punktów, wnioski, następne kroki dla czytelnika]</p>
+
+                <div class="highlight-box">
+                    <strong>📋 Kluczowe punkty:</strong>
+                    <ul>
+                        <li>[Pierwszy kluczowy punkt]</li>
+                        <li>[Drugi kluczowy punkt]</li>
+                        <li>[Trzeci kluczowy punkt]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-name">inż. [TWOJE IMIĘ I NAZWISKO]</div>
+                <div class="author-bio">
+                    Inżynier elektryk z wieloletnim doświadczeniem w projektowaniu i wykonawstwie instalacji elektrycznych. 
+                    Specjalizuję się w modernizacjach instalacji oraz systemach automatyki domowej.
+                    <br><br>
+                    Potrzebujesz pomocy z instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze mną</a>.
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="#" class="nav-link">← Poprzedni artykuł</a>
+                <a href="#" class="nav-link">Następny artykuł →</a>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość - bezpośrednio po treści -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+</body>
+</html>
