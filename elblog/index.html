@@ -1,0 +1,481 @@
+<script>
+        // Dodaj interaktywność do kart artykułów
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.article-title').textContent;
+                alert('Przekierowanie do artykułu: ' + title);
+                // Tutaj można dodać rzeczywiste przekierowanie
+            });
+        });
+    </script><!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL'Aranżacja Blog - Instalacje elektryczne w nowym mieszkaniu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 40px 60px;
+        }
+
+        .logo-section {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .logo-section img {
+            width: 50%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            color: #555;
+            font-weight: 300;
+        }
+
+        .blog-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .article-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .article-card {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            border-left: 3px solid #3498db;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .article-card:hover::before {
+            left: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+            border-left-color: #2980b9;
+        }
+
+        .article-title {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #2c3e50;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .article-preview {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .all-articles {
+            margin-bottom: 40px;
+        }
+
+        .category-sections {
+            display: grid;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px 60px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .content-area {
+                padding: 45px 60px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                min-height: 70vh;
+            }
+        }
+
+        @media (min-width: 900px) and (max-width: 1199px) {
+            .blog-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto;
+                min-height: auto;
+            }
+            
+            .all-articles {
+                grid-column: 1 / 3;
+                grid-row: 1;
+            }
+            
+            .lighting {
+                grid-column: 1;
+                grid-row: 2;
+            }
+            
+            .hvac {
+                grid-column: 2;
+                grid-row: 2;
+            }
+            
+            .outlets {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            
+            .smarthome {
+                grid-column: 2;
+                grid-row: 3;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                min-height: auto;
+            }
+            
+            .all-articles, .lighting, .hvac, .outlets, .smarthome {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .content-area {
+                padding: 20px;
+            }
+
+            .logo-section img {
+                width: 70%;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            body {
+                font-size: 14px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .all-articles {
+                grid-row: auto;
+            }
+            
+            .category-sections {
+                grid-column: 1;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .intro-text {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #2c3e50;
+        }
+
+        .intro-text p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Specific section styling */
+        .section.lighting { border-left: 4px solid #f39c12; }
+        .section.hvac { border-left: 4px solid #27ae60; }
+        .section.outlets { border-left: 4px solid #e74c3c; }
+        .section.smarthome { border-left: 4px solid #9b59b6; }
+
+        .lighting .section-title { color: #d68910; }
+        .hvac .section-title { color: #229954; }
+        .outlets .section-title { color: #cb4335; }
+        .smarthome .section-title { color: #8e44ad; }
+
+        .lighting .article-card { border-left-color: #f39c12; }
+        .hvac .article-card { border-left-color: #27ae60; }
+        .outlets .article-card { border-left-color: #e74c3c; }
+        .smarthome .article-card { border-left-color: #9b59b6; }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding: 20px 0;
+            background-color: #f5f5f5;
+            margin: 0;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo -->
+            <div class="logo-section">
+                <a href="https://elkadra.com">
+                    <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                </a>
+            </div>
+
+            <header class="header">
+                <h1>⚡ EL'Aranżacja Blog</h1>
+                <p class="subtitle">Profesjonalne instalacje elektryczne w nowym mieszkaniu</p>
+            </header>
+
+            <div class="intro-text">
+                <p>Witaj w miejscu, gdzie znajdziesz praktyczne porady dotyczące instalacji elektrycznych w nowym mieszkaniu. Odkryj, jak połączyć funkcjonalność z estetyką i stwórz przestrzeń, która będzie służyć Ci przez lata.</p>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Wszystkie artykuły -->
+                <section class="section all-articles">
+                    <h2 class="section-title">⚡ EL'Aranżacja - Wszystkie Artykuły</h2>
+                    <div class="article-grid">
+                    <article class="article-card">
+                        <h3 class="article-title">✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?</h3>
+                        <p class="article-preview">Kompletny przewodnik po najważniejszych elementach, które należy sprawdzić i zaplanować przed rozpoczęciem prac elektrycznych.</p>
+                    </article>
+                    
+                    <article class="article-card">
+                        <h3 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h3>
+                        <p class="article-preview">Jak zaplanować oświetlenie, które będzie praktyczne i stworzy niepowtarzalny klimat w każdym pomieszczeniu.</p>
+                    </article>
+                    
+                    <article class="article-card">
+                        <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
+                        <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej dla maksymalnego komfortu i oszczędności energii.</p>
+                    </article>
+                    
+                    <article class="article-card">
+                        <h3 class="article-title">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</h3>
+                        <p class="article-preview">Inteligentne systemy HVAC, które automatycznie dbają o idealną temperaturę w domu.</p>
+                    </article>
+                    
+                    <article class="article-card">
+                        <h3 class="article-title">🔌 Koniec z przedłużaczami – jak dobrze zaplanować lokalizację gniazd?</h3>
+                        <p class="article-preview">Praktyczne wskazówki dotyczące optymalnego rozmieszczenia gniazd elektrycznych w każdym pomieszczeniu.</p>
+                    </article>
+                    
+                    <article class="article-card">
+                        <h3 class="article-title">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</h3>
+                        <p class="article-preview">Sposoby na eleganckie ukrycie instalacji elektrycznej bez uszczerbku dla funkcjonalności.</p>
+                    </article>
+                    
+                    <article class="article-card">
+                        <h3 class="article-title">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</h3>
+                        <p class="article-preview">Często pomijane elementy, które mogą znacząco wpłynąć na komfort użytkowania mieszkania.</p>
+                    </article>
+                </div>
+                            </section>
+
+                <!-- Sekcje tematyczne w siatce 2x2 -->
+                <div class="category-sections">
+                    <!-- Oświetlenie -->
+                    <section class="section lighting">
+                        <h2 class="section-title">💡 Oświetlenie</h2>
+                        <div class="article-grid">
+                        <article class="article-card">
+                            <h3 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h3>
+                            <p class="article-preview">Jak zaplanować oświetlenie, które będzie praktyczne i stworzy niepowtarzalny klimat w każdym pomieszczeniu.</p>
+                        </article>
+                        
+                        <article class="article-card">
+                            <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
+                            <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej dla maksymalnego komfortu i oszczędności energii.</p>
+                        </article>
+                        </div>
+                    </section>
+
+                    <!-- HVAC -->
+                    <section class="section hvac">
+                        <h2 class="section-title">🍃 HVAC</h2>
+                        <div class="article-grid">
+                            <article class="article-card">
+                                <h3 class="article-title">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</h3>
+                                <p class="article-preview">Inteligentne systemy HVAC, które automatycznie dbają o idealną temperaturę w domu.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Instalacja gniazd -->
+                    <section class="section outlets">
+                        <h2 class="section-title">🔌 Instalacja gniazd</h2>
+                        <div class="article-grid">
+                            <article class="article-card">
+                                <h3 class="article-title">🔌 Koniec z przedłużaczami – jak dobrze zaplanować lokalizację gniazd?</h3>
+                                <p class="article-preview">Praktyczne wskazówki dotyczące optymalnego rozmieszczenia gniazd elektrycznych w każdym pomieszczeniu.</p>
+                            </article>
+                            
+                            <article class="article-card">
+                                <h3 class="article-title">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</h3>
+                                <p class="article-preview">Sposoby na eleganckie ukrycie instalacji elektrycznej bez uszczerbku dla funkcjonalności.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Smarthome -->
+                    <section class="section smarthome">
+                        <h2 class="section-title">🤖 Smarthome</h2>
+                        <div class="article-grid">
+                            <article class="article-card">
+                                <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
+                                <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej dla maksymalnego komfortu i oszczędności energii.</p>
+                            </article>
+                            
+                            <article class="article-card">
+                                <h3 class="article-title">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</h3>
+                                <p class="article-preview">Często pomijane elementy, które mogą znacząco wpłynąć na komfort użytkowania mieszkania.</p>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+</body>
+</html>
