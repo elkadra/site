@@ -61,21 +61,67 @@
         }
 
         .logo-section {
-            text-align: left;
+            display: flex;
+            align-items: center;
             margin-bottom: 30px;
         }
 
-        .logo-section img {
-            width: 70%;
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
             height: auto;
             display: block;
             max-width: 400px;
         }
 
-        @media (min-width: 768px) {
-            .logo-section img {
-                width: 50%;
-                max-width: 400px;
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translateY(5px);
+            padding-right: 0;
+            margin-right: -20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            height: 52px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .logo-container {
+                max-width: 70%;
+            }
+
+            .contact-icons {
+                align-self: flex-end;
+                justify-content: flex-end;
+                gap: 15px;
+            }
+
+            .contact-icons img {
+                height: 45px;
+                width: auto;
             }
         }
 
@@ -126,6 +172,7 @@
 
         .article-tags {
             margin-top: 10px;
+            margin-bottom: 20px;
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
@@ -153,6 +200,7 @@
         .article-content {
             font-size: 16px;
             line-height: 1.8;
+            text-align: justify;
         }
 
         .article-content h2 {
@@ -236,6 +284,7 @@
         .author-bio {
             font-size: 14px;
             color: #666;
+            text-align: justify;
         }
 
         .related-articles {
@@ -342,110 +391,119 @@
 
         <!-- Obszar z treścią -->
         <div class="content-area">
-            <!-- Logo i breadcrumb -->
+            <!-- Logo i ikony kontaktu -->
             <div class="logo-section">
-                <a href="https://elkadra.com">
-                    <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
-                </a>
+                <div class="logo-container">
+                    <a href="https://elkadra.com">
+                        <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/1t8QWXyn/phone-icon.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/BVWM7YZW/mail-icon.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
             </div>
             
             <div class="breadcrumb">
-                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/blog">Blog</a> → ✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/blog">Blog</a> → ✅ Checklista: Na&nbsp;co&nbsp;zwrócić uwagę przy modyfikacji instalacji elektrycznej w&nbsp;nowym mieszkaniu?
             </div>
 
             <div class="article-header">
-                <h1 class="article-title">✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?</h1>
+                <h1 class="article-title">✅ Checklista: Na&nbsp;co&nbsp;zwrócić uwagę przy modyfikacji instalacji elektrycznej w&nbsp;nowym mieszkaniu?</h1>
                 <div class="article-meta">
                     <span>📅 30 czerwca 2025</span>
                     <span>⏱️ Czas czytania: 4 min</span>
                 </div>
                 <div class="article-tags">
                     <span class="tag">#⚡EL'Aranżacja</span>
-                    <span class="tag">#💡Oświetlenie</span>
                 </div>
                 <div class="article-excerpt">
-                    Nowe mieszkanie w stanie deweloperskim to idealny moment, by dopasować instalację elektryczną do swoich potrzeb. Przemyślana elektryka = wygoda, oszczędność i estetyka na lata.
+                    Nowe mieszkanie w&nbsp;stanie deweloperskim to&nbsp;idealny moment, by&nbsp;dopasować instalację elektryczną do&nbsp;swoich potrzeb. Przemyślana elektryka = wygoda, oszczędność i&nbsp;estetyka na&nbsp;lata.
                 </div>
             </div>
 
             <div class="article-content">
-                <h2>💡 1. Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h2>
-                <p>Zaplanuj <strong>doświetlenie miejsc kluczowych</strong>: blat kuchenny, stół jadalniany, toaletka, miejsce do pracy.</p>
+                <h2>💡 1. Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</h2>
+                <p>Zaplanuj <strong>doświetlenie miejsc kluczowych</strong>: blat kuchenny, stół jadalniany, toaletka, miejsce do&nbsp;pracy.</p>
                 
                 <p>Dobierz odpowiednią <strong>barwę światła</strong>:</p>
                 <ul>
-                    <li>Ciepła (2700–3000 K) do sypialni i salonu – sprzyja relaksowi</li>
-                    <li>Chłodna (4000–6000 K) do gabinetu – pobudza i wspiera koncentrację</li>
+                    <li>Ciepła (2700–3000 K) do&nbsp;sypialni i&nbsp;salonu – sprzyja relaksowi</li>
+                    <li>Chłodna (4000–6000 K) do&nbsp;gabinetu – pobudza i&nbsp;wspiera koncentrację</li>
                 </ul>
 
-                <p>Pamiętaj o funkcji <strong>dekoracyjnej</strong>: LED-y w listwach, kinkiety, oświetlenie mebli – tworzą klimat po zmroku.</p>
+                <p>Pamiętaj o&nbsp;funkcji <strong>dekoracyjnej</strong>: LED-y w&nbsp;listwach, kinkiety, oświetlenie mebli – tworzą klimat po&nbsp;zmroku.</p>
 
                 <div class="highlight-box tip">
-                    <strong>💡 Przykład:</strong> Porównaj wygląd elewacji budynku nocą z podświetleniem i bez – podobnie działa światło we wnętrzu.
+                    <strong>💡 Przykład:</strong> Porównaj wygląd elewacji budynku nocą z&nbsp;podświetleniem i&nbsp;bez – podobnie działa światło we&nbsp;wnętrzu.
                 </div>
 
-                <h2>🎬 2. Sceny i scenariusze świetlne</h2>
-                <p>Zróżnicuj <strong>sceny oświetleniowe</strong>: inne światło do filmu, inne do kolacji, inne na nocne wyjście do toalety.</p>
+                <h2>🎬 2. Sceny i&nbsp;scenariusze świetlne</h2>
+                <p>Zróżnicuj <strong>sceny oświetleniowe</strong>: inne światło do&nbsp;filmu, inne do&nbsp;kolacji, inne na&nbsp;nocne wyjście do&nbsp;toalety.</p>
                 
-                <p>Rozważ <strong>system centralnego sterowania</strong> – wygoda bez biegania po mieszkaniu. Dodatkowo: możliwość zdalnego sterowania przez telefon lub automatyka czasowa/czujnikowa.</p>
+                <p>Rozważ <strong>system centralnego sterowania</strong> – wygoda bez biegania po&nbsp;mieszkaniu. Dodatkowo: możliwość zdalnego sterowania przez telefon lub automatyka czasowa/czujnikowa.</p>
 
-                <p>Zadbaj o <strong>łatwość obsługi</strong>:</p>
+                <p>Zadbaj o&nbsp;<strong>łatwość obsługi</strong>:</p>
                 <ul>
-                    <li>Zamontuj <strong>wyłączniki światła przy łóżku</strong> – nie musisz wstawać, by zgasić światło</li>
-                    <li>Wyłączniki schodowe przydają się w korytarzach i sypialniach</li>
+                    <li>Zamontuj <strong>wyłączniki światła przy łóżku</strong> – nie musisz wstawać, by&nbsp;zgasić światło</li>
+                    <li>Wyłączniki schodowe przydają się w&nbsp;korytarzach i&nbsp;sypialniach</li>
                 </ul>
 
-                <h2>🌡️ 3. Sterowanie temperaturą – automatyka ogrzewania i klimatyzacji</h2>
-                <p>Programuj temperaturę według scenariuszy (np. obniżona temperatura, gdy nikogo nie ma).</p>
+                <h2>🌡️ 3. Sterowanie temperaturą – automatyka ogrzewania i&nbsp;klimatyzacji</h2>
+                <p>Programuj temperaturę według scenariuszy (np. obniżona temperatura, gdy nikogo nie&nbsp;ma).</p>
                 
-                <p>Zyskaj komfort: wracasz do <strong>ciepłego zimą lub schłodzonego latem mieszkania</strong>. Dzięki czujnikom i sterownikom <strong>nie myślisz o ustawianiu temperatury</strong> – robi się to samo.</p>
+                <p>Zyskaj komfort: wracasz do&nbsp;<strong>ciepłego zimą lub schłodzonego latem mieszkania</strong>. Dzięki czujnikom i&nbsp;sterownikom <strong>nie myślisz o&nbsp;ustawianiu temperatury</strong> – robi się to&nbsp;samo.</p>
 
                 <div class="highlight-box tip">
-                    <strong>💰 Oszczędności:</strong> Automatyczne sterowanie temperaturą pozwala realnie oszczędzać na rachunkach za energię.
+                    <strong>💰 Oszczędności:</strong> Automatyczne sterowanie temperaturą pozwala realnie oszczędzać na&nbsp;rachunkach za&nbsp;energię.
                 </div>
 
-                <h2>🔌 4. Lokalizacja gniazd – koniec z przedłużaczami</h2>
+                <h2>🔌 4. Lokalizacja gniazd – koniec z&nbsp;przedłużaczami</h2>
                 <p>Zaplanuj dokładnie, <strong>gdzie będą urządzenia</strong> (TV, ekspres, ładowarki, odkurzacz, suszarka itd.).</p>
                 
-                <p>Pomyśl o <strong>gniazdach w blatach, w szafkach, w podłodze</strong> (np. przy wyspie kuchennej). Dzięki dobremu planowi <strong>unikniesz nieestetycznych przedłużaczy</strong> i plątaniny kabli.</p>
+                <p>Pomyśl o&nbsp;<strong>gniazdach w&nbsp;blatach, w&nbsp;szafkach, w&nbsp;podłodze</strong> (np. przy wyspie kuchennej). Dzięki dobremu planowi <strong>unikniesz nieestetycznych przedłużaczy</strong> i&nbsp;plątaniny kabli.</p>
 
-                <h2>📺 5. Estetyka: ukryte przewody i porządek</h2>
-                <p><strong>Kanał kablowy za telewizorem</strong> – zero zwisających kabli.</p>
+                <h2>📺 5. Estetyka: ukryte przewody i&nbsp;porządek</h2>
+                <p><strong>Kanał kablowy za&nbsp;telewizorem</strong> – zero zwisających kabli.</p>
                 
-                <p>Z góry zaplanuj lokalizację <strong>kolumn, subwoofera, głośników sufitowych</strong> – unikniesz późniejszego kucia czy prowadzenia kabli po listwach przypodłogowych.</p>
+                <p>Z&nbsp;góry zaplanuj lokalizację <strong>kolumn, subwoofera, głośników sufitowych</strong> – unikniesz późniejszego kucia czy prowadzenia kabli po&nbsp;listwach przypodłogowych.</p>
 
-                <p>Rozważ zabudowę RTV i punkty zasilania wewnątrz szafek.</p>
+                <p>Rozważ zabudowę RTV i&nbsp;punkty zasilania wewnątrz szafek.</p>
 
-                <h3>Gniazda USB i USB-C</h3>
-                <p>Montując je przy łóżku lub biurku <strong>unikasz wystających ładowarek</strong> i konieczności odsuwania mebli od ścian. Pozwalają ograniczyć bałagan i plątaninę kabli na blatach i pod biurkiem.</p>
+                <h3>Gniazda USB i&nbsp;USB-C</h3>
+                <p>Montując je przy łóżku lub biurku <strong>unikasz wystających ładowarek</strong> i&nbsp;konieczności odsuwania mebli od&nbsp;ścian. Pozwalają ograniczyć bałagan i&nbsp;plątaninę kabli na&nbsp;blatach i&nbsp;pod biurkiem.</p>
 
                 <h2>🧠 6. Dodatkowe tematy warte rozważenia</h2>
 
-                <h3>📶 Smart Home – gotowość na przyszłość</h3>
-                <p>Jeśli nie chcesz od razu inwestować w automatykę, <strong>doprowadź przewody pod ewentualne przyszłe sterowniki</strong> (np. Grenton, KNX, Zigbee, WiFi).</p>
+                <h3>📶 Smart Home – gotowość na&nbsp;przyszłość</h3>
+                <p>Jeśli nie chcesz od&nbsp;razu inwestować w&nbsp;automatykę, <strong>doprowadź przewody pod ewentualne przyszłe sterowniki</strong> (np. Grenton, KNX, Zigbee, WiFi).</p>
                 
-                <p>Zrób minimum: <strong>puszki podtynkowe, zasilanie, magistrale</strong> – instalator zautomatyzuje to później bez demolki.</p>
+                <p>Zrób minimum: <strong>puszki podtynkowe, zasilanie, magistrale</strong> – instalator zautomatyzuje to&nbsp;później bez demolki.</p>
 
-                <h3>🔋 Zabezpieczenia i przyszłościowe rozwiązania</h3>
-                <p>Przemyśl miejsce na <strong>szafkę teletechniczną</strong>, <strong>UPS</strong>, <strong>gniazda do podłączenia monitoringu</strong>.</p>
+                <h3>🔋 Zabezpieczenia i&nbsp;przyszłościowe rozwiązania</h3>
+                <p>Przemyśl miejsce na&nbsp;<strong>szafkę teletechniczną</strong>, <strong>UPS</strong>, <strong>gniazda do&nbsp;podłączenia monitoringu</strong>.</p>
                 
-                <p>Rozważ <strong>gniazda z zabezpieczeniem przepięciowym</strong> dla sprzętu RTV i komputerowego.</p>
+                <p>Rozważ <strong>gniazda z&nbsp;zabezpieczeniem przepięciowym</strong> dla sprzętu RTV i&nbsp;komputerowego.</p>
 
                 <div class="highlight-box warning">
-                    <strong>⚠️ Pamiętaj:</strong> Modyfikacje instalacji elektrycznej powinny być wykonywane przez uprawnionego elektryka zgodnie z obowiązującymi normami.
+                    <strong>⚠️ Pamiętaj:</strong> Modyfikacje instalacji elektrycznej powinny być wykonywane przez uprawnionego elektryka zgodnie z&nbsp;obowiązującymi normami.
                 </div>
 
                 <h2>Podsumowanie</h2>
-                <p>Przemyślana modyfikacja instalacji elektrycznej w nowym mieszkaniu to inwestycja w wygodę na lata. Dobrze zaplanowane oświetlenie, rozmieszczenie gniazd i przygotowanie pod automatykę domową sprawią, że Twoje mieszkanie będzie nie tylko funkcjonalne, ale i nowoczesne.</p>
+                <p>Przemyślana modyfikacja instalacji elektrycznej w&nbsp;nowym mieszkaniu to&nbsp;inwestycja w&nbsp;wygodę na&nbsp;lata. Dobrze zaplanowane oświetlenie, rozmieszczenie gniazd i&nbsp;przygotowanie pod automatykę domową sprawią, że Twoje mieszkanie będzie nie tylko funkcjonalne, ale i&nbsp;nowoczesne.</p>
 
                 <div class="highlight-box">
-                    <strong>📋 Kluczowe punkty do zapamiętania:</strong>
+                    <strong>📋 Kluczowe punkty do&nbsp;zapamiętania:</strong>
                     <ul>
                         <li>Zaplanuj różne scenariusze oświetleniowe</li>
                         <li>Przemyśl dokładne rozmieszczenie gniazd</li>
-                        <li>Ukryj przewody i zadbaj o estetykę</li>
+                        <li>Ukryj przewody i&nbsp;zadbaj o&nbsp;estetykę</li>
                         <li>Przygotuj instalację pod przyszłą automatykę</li>
-                        <li>Zawsze korzystaj z usług uprawnionego elektryka</li>
+                        <li>Zawsze korzystaj z&nbsp;usług uprawnionego elektryka</li>
                     </ul>
                 </div>
             </div>
@@ -453,15 +511,15 @@
             <div class="author-box">
                 <div class="author-name">inż. Karol Drabik</div>
                 <div class="author-bio">
-                    Inżynier elektryk z wieloletnim doświadczeniem w projektowaniu i wykonawstwie instalacji elektrycznych. 
-                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na funkcjonalność i zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.
+                    Inżynier elektryk z&nbsp;wieloletnim doświadczeniem w&nbsp;projektowaniu i&nbsp;wykonawstwie instalacji elektrycznych. 
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na&nbsp;funkcjonalność i&nbsp;zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z&nbsp;lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o&nbsp;oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i&nbsp;system CO.
                     <br><br>
-                    Potrzebujesz pomocy z instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze mną</a>.
+                    Potrzebujesz pomocy z&nbsp;instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze&nbsp;mną</a>.
                 </div>
             </div>
 
             <div class="related-articles">
-                <h3>Przeczytaj więcej w temacie:</h3>
+                <h3>Przeczytaj więcej w&nbsp;temacie:</h3>
                 <div class="related-columns">
                     <div class="related-column">
                         <h4>#⚡EL'Aranżacja</h4>
