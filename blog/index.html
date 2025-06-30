@@ -191,13 +191,19 @@
                 padding: 60px 80px;
             }
             
-            .category-sections {
+            .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) and (max-width: 1199px) {
+            .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 1199px) {
-            .category-sections {
+        @media (max-width: 899px) {
+            .blog-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -227,7 +233,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .category-sections {
+            .blog-grid {
                 grid-template-columns: 1fr;
             }
         }
