@@ -188,6 +188,15 @@
             border-radius: 12px;
             font-size: 12px;
             font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
         }
 
         .article-excerpt {
@@ -311,11 +320,17 @@
             display: block;
         }
 
-        .related-column h4 {
+        .related-column h4 a {
             font-size: 1em;
             color: #003761;
             margin-bottom: 10px;
             font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
         }
 
         .related-column ul {
@@ -449,7 +464,7 @@
             </div>
             
             <div class="breadcrumb">
-                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/blog">Blog</a> → ✅ Checklista: Na&nbsp;co&nbsp;zwrócić uwagę przy modyfikacji instalacji elektrycznej w&nbsp;nowym mieszkaniu?
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → ✅ Checklista: Na&nbsp;co&nbsp;zwrócić uwagę przy modyfikacji instalacji elektrycznej w&nbsp;nowym mieszkaniu?
             </div>
 
             <div class="article-header">
@@ -459,7 +474,7 @@
                     <span>⏱️ Czas czytania: 4 min</span>
                 </div>
                 <div class="article-tags">
-                    <span class="tag">#⚡EL'Aranżacja</span>
+                    <a href="https://elkadra.com/elblog?category=el-aranzacja" class="tag">#⚡EL'Aranżacja</a>
                 </div>
                 <div class="article-excerpt">
                     Nowe mieszkanie w&nbsp;stanie deweloperskim to&nbsp;idealny moment, by&nbsp;dopasować instalację elektryczną do&nbsp;swoich potrzeb. Przemyślana elektryka = wygoda, oszczędność i&nbsp;estetyka na&nbsp;lata.
@@ -562,7 +577,7 @@
                 <h3>Przeczytaj więcej w&nbsp;temacie:</h3>
                 <div class="related-columns">
                     <div class="related-column">
-                        <h4>#⚡EL'Aranżacja</h4>
+                        <h4><a href="https://elkadra.com/elblog?category=el-aranzacja" style="color: #003761; text-decoration: none;">#⚡EL'Aranżacja</a></h4>
                         <ul>
                             <li><a href="#">tutaj będzie lista artykułów</a></li>
                             <li><a href="#">tutaj też</a></li>
