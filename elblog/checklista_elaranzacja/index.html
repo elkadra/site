@@ -105,18 +105,21 @@
         @media (max-width: 768px) {
             .logo-section {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                align-items: center;
+                gap: 20px;
             }
 
             .logo-container {
-                max-width: 70%;
+                max-width: 80%;
+                text-align: center;
             }
 
             .contact-icons {
-                align-self: flex-end;
-                justify-content: flex-end;
-                gap: 15px;
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
             }
 
             .contact-icons img {
@@ -209,12 +212,14 @@
             margin: 40px 0 20px 0;
             border-bottom: 2px solid #ecf0f1;
             padding-bottom: 10px;
+            text-align: left;
         }
 
         .article-content h3 {
             font-size: 1.3em;
             color: #34495e;
             margin: 30px 0 15px 0;
+            text-align: left;
         }
 
         .article-content p {
@@ -303,16 +308,7 @@
         }
 
         .related-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .related-columns {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+            display: block;
         }
 
         .related-column h4 {
@@ -523,13 +519,6 @@
                 <div class="related-columns">
                     <div class="related-column">
                         <h4>#⚡EL'Aranżacja</h4>
-                        <ul>
-                            <li><a href="#">tutaj będzie lista artykułów</a></li>
-                            <li><a href="#">tutaj też</a></li>
-                        </ul>
-                    </div>
-                    <div class="related-column">
-                        <h4>#💡Oświetlenie</h4>
                         <ul>
                             <li><a href="#">tutaj będzie lista artykułów</a></li>
                             <li><a href="#">tutaj też</a></li>
