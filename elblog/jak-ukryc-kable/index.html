@@ -1,1 +1,639 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania? - EL'Kadra Blog</title>
+    <meta name="description" content="Oświetlenie, sprzęty, głośniki, ładowarki – wszystko może być funkcjonalne i niewidoczne. Praktyczne wskazówki dotyczące estetyki instalacji elektrycznej.">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translateY(5px);
+            padding-right: 0;
+            margin-right: -20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            height: 52px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo-container {
+                max-width: 80%;
+                text-align: center;
+            }
+
+            .contact-icons {
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
+            }
+
+            .contact-icons img {
+                height: 45px;
+                width: auto;
+            }
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .article-meta {
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+
+        .article-tags {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #003761;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
+        }
+
+        .article-excerpt {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .article-content h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+            text-align: left;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .examples-section {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #27ae60;
+        }
+
+        .examples-section h4 {
+            color: #27ae60;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .examples-section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .highlight-box.tip {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin: 50px 0 30px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+            text-align: justify;
+        }
+
+        .related-articles {
+            margin: 40px 0 0 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #003761;
+        }
+
+        .related-articles h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .related-columns {
+            display: flex;
+            gap: 30px;
+        }
+
+        .related-column {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .related-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .related-column h4 a {
+            font-size: 1em;
+            color: #003761;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
+        }
+
+        .related-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-column li {
+            margin-bottom: 8px;
+        }
+
+        .related-column a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .related-column a:hover {
+            color: #003761;
+            text-decoration: underline;
+        }
+
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #003761;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            padding: 15px 10px;
+            background-color: #f5f5f5;
+            margin: 20px 0 0 0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .copyright {
+                font-size: 12px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo i ikony kontaktu -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <a href="https://elkadra.com">
+                        <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/1t8QWXyn/phone-icon.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/BVWM7YZW/mail-icon.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → 🎨 Estetyka instalacji – jak&nbsp;ukryć kable i&nbsp;zadbać o&nbsp;czystość wizualną mieszkania?
+            </div>
+
+            <div class="article-header">
+                <h1 class="article-title">🎨 Estetyka instalacji – jak&nbsp;ukryć kable i&nbsp;zadbać o&nbsp;czystość wizualną mieszkania?</h1>
+                <div class="article-meta">
+                    <span>📅 28 lipca 2025</span>
+                    <span>⏱️ Czas czytania: 3 min</span>
+                </div>
+                <div class="article-tags">
+                    <a href="https://elkadra.com/elblog?category=el-aranzacja" class="tag">#⚡EL'Aranżacja</a>
+                    <a href="https://elkadra.com/elblog?category=instalacja-gniazd" class="tag">#🔌Instalacja gniazd</a>
+                </div>
+                <div class="article-excerpt">
+                    Oświetlenie, sprzęty, głośniki, ładowarki – wszystko może być funkcjonalne i&nbsp;niewidoczne. Praktyczne wskazówki dotyczące estetyki instalacji elektrycznej.
+                </div>
+            </div>
+
+            <div class="article-content">
+                <p><strong>Oświetlenie, sprzęty, głośniki, ładowarki – wszystko może być funkcjonalne i… niewidoczne.</strong></p>
+                
+                <p>Nowoczesne wnętrze to&nbsp;nie&nbsp;tylko modne kolory i&nbsp;meble, ale&nbsp;też <strong>czystość linii, brak chaosu wizualnego i&nbsp;uporządkowana przestrzeń</strong>. A&nbsp;nic tak nie&nbsp;psuje efektu, jak plątanina kabli za&nbsp;telewizorem, wystające ładowarki przy łóżku czy głośniki podłączone prowizorycznie. Kluczem jest dobre zaplanowanie instalacji – zanim pojawią się tynki i&nbsp;meble.</p>
+
+                <h2>📺 1. Kable za&nbsp;telewizorem? Tylko w&nbsp;kanale!</h2>
+                
+                <ul>
+                    <li>Zrób <strong>kanał kablowy w&nbsp;ścianie</strong> – od&nbsp;gniazda do&nbsp;miejsca montażu TV.</li>
+                    <li>Doprowadź nie&nbsp;tylko zasilanie, ale&nbsp;też:
+                        <ul>
+                            <li>przewód antenowy,</li>
+                            <li>HDMI (np. do&nbsp;soundbara czy dekodera),</li>
+                            <li>kabel internetowy (jeśli TV nie&nbsp;ma Wi-Fi lub chcesz stabilniejsze łącze).</li>
+                        </ul>
+                    </li>
+                    <li>Jeśli planujesz szafkę RTV, <strong>zapewnij ukryty dostęp do&nbsp;gniazd w&nbsp;jej wnętrzu</strong> – zero widocznych kabli z&nbsp;przodu.</li>
+                </ul>
+
+                <h2>🔊 2. Sprzęt audio? Tylko z&nbsp;odpowiednim zasilaniem i&nbsp;przewodami</h2>
+                
+                <ul>
+                    <li>Jeśli planujesz kolumny lub subwoofery:
+                        <ul>
+                            <li>Zaplanuj <strong>gniazda głośnikowe</strong> w&nbsp;ścianie – bez prowadzenia kabli po&nbsp;podłodze.</li>
+                            <li>Doprowadź zasilanie do&nbsp;każdego z&nbsp;urządzeń – najlepiej ukryte.</li>
+                            <li>Jeśli używasz systemu surround – rozmieść gniazda w&nbsp;narożnikach pomieszczenia.</li>
+                        </ul>
+                    </li>
+                    <li>Z&nbsp;głośnikami Bluetooth też warto – <strong>zasilanie musi być gdzieś w&nbsp;pobliżu</strong> (np. za&nbsp;regałem lub w&nbsp;szafce).</li>
+                </ul>
+
+                <h2>🛏️ 3. Gniazda USB = czysto przy łóżku i&nbsp;biurku</h2>
+                
+                <ul>
+                    <li>Zamontuj <strong>gniazdo z&nbsp;USB (lub USB-C)</strong> przy łóżku zamiast klasycznego kontaktu.
+                        <ul>
+                            <li>Dzięki temu nie&nbsp;musisz mieć wystającej ładowarki.</li>
+                            <li>Szafka nocna może przylegać do&nbsp;ściany – nic nie&nbsp;odstaje.</li>
+                        </ul>
+                    </li>
+                    <li>Przy biurku to&nbsp;samo – <strong>mniej kabli</strong>, łatwiej o&nbsp;porządek i&nbsp;więcej przestrzeni roboczej.</li>
+                </ul>
+
+                <h2>🧠 4. Pomyśl o&nbsp;przyszłości: zostaw rezerwy i&nbsp;zasilanie zapasowe</h2>
+                
+                <ul>
+                    <li>Nawet jeśli dziś nie&nbsp;montujesz głośników, LED-ów, systemu „smart" – <strong>warto puścić kabel i&nbsp;zostawić puszkę</strong>.</li>
+                    <li>Dzięki temu za&nbsp;rok nie&nbsp;będziesz musieć kuć ścian tylko po&nbsp;to, by&nbsp;zamontować pasek LED nad szafką albo lampkę nocną sterowaną z&nbsp;aplikacji.</li>
+                </ul>
+
+                <h2>🔋 5. Zasilanie ukryte w&nbsp;meblach i&nbsp;szafkach</h2>
+                
+                <p>Coraz więcej sprzętów może działać „w&nbsp;tle": routery, stacje ładowania, ekspresy – warto je&nbsp;zasilać z&nbsp;gniazd <strong>umieszczonych wewnątrz zabudowy</strong>.</p>
+                
+                <div class="examples-section">
+                    <h4>Przykłady:</h4>
+                    <ul>
+                        <li><strong>Gniazdo w&nbsp;szafce nocnej</strong> – ładowarka lub lampka podłączona na&nbsp;stałe.</li>
+                        <li><strong>Zasilanie w&nbsp;szafce kuchennej</strong> – ekspres do&nbsp;kawy bez kabli na&nbsp;wierzchu.</li>
+                        <li><strong>Punkt zasilania w&nbsp;szafie</strong> – idealne miejsce na&nbsp;odkurzacz automatyczny lub ukryty access point.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Podsumowując:</strong> Estetyka instalacji to&nbsp;nie&nbsp;detal – to&nbsp;inwestycja w&nbsp;spokój wizualny i&nbsp;codzienny komfort. Mieszkanie bez plątaniny kabli, bez wystających ładowarek i&nbsp;bez kombinowania z&nbsp;rozgałęźnikami po&nbsp;prostu <strong>lepiej wygląda i&nbsp;lepiej się w&nbsp;nim żyje</strong>. Wystarczy zaplanować to&nbsp;raz – na&nbsp;etapie zmian instalacji.
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-name">inż. Karol Drabik</div>
+                <div class="author-bio">
+                    Inżynier elektryk z&nbsp;wieloletnim doświadczeniem w&nbsp;projektowaniu i&nbsp;wykonawstwie instalacji elektrycznych. 
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na&nbsp;funkcjonalność i&nbsp;zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z&nbsp;lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o&nbsp;oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i&nbsp;system CO.
+                    <br><br>
+                    Potrzebujesz pomocy z&nbsp;instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze&nbsp;mną</a>.
+                </div>
+            </div>
+
+            <div class="related-articles">
+                <h3>Przeczytaj więcej w&nbsp;temacie:</h3>
+                <div class="related-columns">
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=el-aranzacja" style="color: #003761; text-decoration: none;">#⚡EL'Aranżacja</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj">💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</a></li>
+                            <li><a href="https://elkadra.com/elblog/sceny-swietlne">🎬 Sceny świetlne w&nbsp;inteligentnym domu</a></li>
+                            <li><a href="https://elkadra.com/elblog/automatyka-temperatury">🌡️ Automatyka temperatury – komfort na&nbsp;co&nbsp;dzień</a></li>
+                            <li><a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy">🔌 Gniazda bez przedłużaczy – przemyślane rozmieszczenie</a></li>
+                            <li><a href="https://elkadra.com/elblog/jak-ukryc-kable">📺 Jak ukryć kable? Estetyka instalacji elektrycznej</a></li>
+                            <li><a href="https://elkadra.com/elblog/instalacja-z-przyszloscia">🧠 Instalacja z&nbsp;myślą o&nbsp;przyszłości</a></li>
+                        </ul>
+                    </div>
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=instalacja-gniazd" style="color: #003761; text-decoration: none;">#🔌Instalacja gniazd</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy">🔌 Koniec z&nbsp;przedłużaczami – jak&nbsp;dobrze zaplanować lokalizację gniazd?</a></li>
+                            <li><a href="https://elkadra.com/elblog/jak-ukryc-kable">🎨 Estetyka instalacji – jak ukryć kable i&nbsp;zadbać o&nbsp;czystość wizualną mieszkania?</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+
+    <!-- Floating contact button -->
+    <a href="https://elkadra.com" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
+</body>
+</html>
