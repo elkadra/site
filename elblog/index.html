@@ -7,6 +7,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
         
+        @font-face {
+            font-family: 'Eurostile';
+            src: url('https://github.com/elkadra/site/raw/main/fonts/eurostile.wolf2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -72,16 +79,28 @@
         }
 
         .header h1 {
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
+            font-size: 3.5em;
+            font-weight: normal;
+            margin-bottom: 5px;
             color: #2c3e50;
+            letter-spacing: 2px;
         }
 
         .header .subtitle {
-            font-size: 1.1em;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.2em;
             color: #555;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .header .description {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1em;
+            color: #666;
             font-weight: 300;
+            font-style: italic;
         }
 
         .intro-text {
@@ -439,7 +458,15 @@
             }
 
             .header h1 {
-                font-size: 0.7em;
+                font-size: 2.5em;
+            }
+
+            .header .subtitle {
+                font-size: 0.9em;
+            }
+
+            .header .description {
+                font-size: 0.8em;
             }
 
             body {
@@ -487,8 +514,9 @@
             </div>
 
             <header class="header">
-                <h1>⚡ EL'Aranżacja Blog</h1>
-                <p class="subtitle">Profesjonalne instalacje elektryczne w nowym mieszkaniu</p>
+                <h1>EL'BLOG</h1>
+                <p class="subtitle">by EL'Kadra Karol Drabik</p>
+                <p class="description">Praktycznie o instalacjach elektrycznych.</p>
             </header>
 
             <div class="intro-text">
