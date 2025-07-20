@@ -1,1 +1,669 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania - EL'Kadra Blog</title>
+    <meta name="description" content="Dlaczego warto zaplanować scenariusze świetlne już na etapie instalacji elektrycznej? Praktyczny poradnik o scenach świetlnych, które podnoszą komfort i wygodę codziennego życia.">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translateY(5px);
+            padding-right: 0;
+            margin-right: -20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            height: 52px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo-container {
+                max-width: 80%;
+                text-align: center;
+            }
+
+            .contact-icons {
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
+            }
+
+            .contact-icons img {
+                height: 45px;
+                width: auto;
+            }
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .article-meta {
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+
+        .article-tags {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #003761;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
+        }
+
+        .article-excerpt {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .article-content h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+            text-align: left;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .scenarios-table {
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        .scenarios-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .scenarios-table th,
+        .scenarios-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .scenarios-table th {
+            background: #003761;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .scenarios-table td {
+            font-size: 14px;
+        }
+
+        .scenarios-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scenarios-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .highlight-box.tip {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin: 50px 0 30px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+            text-align: justify;
+        }
+
+        .related-articles {
+            margin: 40px 0 0 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #003761;
+        }
+
+        .related-articles h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .related-columns {
+            display: flex;
+            gap: 30px;
+        }
+
+        .related-column {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .related-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .related-column h4 a {
+            font-size: 1em;
+            color: #003761;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
+        }
+
+        .related-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-column li {
+            margin-bottom: 8px;
+        }
+
+        .related-column a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .related-column a:hover {
+            color: #003761;
+            text-decoration: underline;
+        }
+
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #003761;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            padding: 15px 10px;
+            background-color: #f5f5f5;
+            margin: 20px 0 0 0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .copyright {
+                font-size: 12px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+
+            .scenarios-table {
+                font-size: 12px;
+            }
+
+            .scenarios-table th,
+            .scenarios-table td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo i ikony kontaktu -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <a href="https://elkadra.com">
+                        <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/1t8QWXyn/phone-icon.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/BVWM7YZW/mail-icon.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → 🎬 Sceny i&nbsp;scenariusze świetlne – komfort, klimat i&nbsp;wygoda sterowania
+            </div>
+
+            <div class="article-header">
+                <h1 class="article-title">🎬 Sceny i&nbsp;scenariusze świetlne – komfort, klimat i&nbsp;wygoda sterowania</h1>
+                <div class="article-meta">
+                    <span>📅 14 lipca 2025</span>
+                    <span>⏱️ Czas czytania: 3 min</span>
+                </div>
+                <div class="article-tags">
+                    <a href="https://elkadra.com/elblog?category=el-aranzacja" class="tag">#⚡EL'Aranżacja</a>
+                    <a href="https://elkadra.com/elblog?category=oswietlenie" class="tag">#💡Oświetlenie</a>
+                </div>
+                <div class="article-excerpt">
+                    Dlaczego warto zaplanować scenariusze świetlne już na&nbsp;etapie instalacji elektrycznej? Praktyczny poradnik o&nbsp;scenach świetlnych, które podnoszą komfort i&nbsp;wygodę codziennego życia.
+                </div>
+            </div>
+
+            <div class="article-content">
+                <p><strong>Dlaczego warto zaplanować scenariusze świetlne już na&nbsp;etapie instalacji elektrycznej?</strong></p>
+                
+                <p>Światło to&nbsp;coś więcej niż „włącznik i&nbsp;żarówka". To&nbsp;narzędzie, którym możemy zbudować klimat, zwiększyć wygodę codziennego życia, a&nbsp;nawet… poprawić samopoczucie. Dzięki odpowiedniemu podziałowi oświetlenia i&nbsp;zastosowaniu prostych rozwiązań możesz uzyskać efekt, który na&nbsp;co&nbsp;dzień ułatwia funkcjonowanie i&nbsp;czyni mieszkanie bardziej „Twoim".</p>
+
+                <h2>🧠 1. Czym są sceny świetlne?</h2>
+                
+                <p>To&nbsp;zdefiniowane wcześniej <strong>zestawy świateł</strong>, które uruchamiasz jednym kliknięciem. Przykłady:</p>
+                
+                <ul>
+                    <li>„Wieczór filmowy" – przygaszone światło sufitowe, tylko delikatne kinkiety i&nbsp;taśma LED za&nbsp;telewizorem.</li>
+                    <li>„Sprzątanie" – wszystko świeci się na&nbsp;100%.</li>
+                    <li>„Kolacja" – ciepłe światło nad stołem, reszta wyłączona.</li>
+                    <li>„Nocne przejście do&nbsp;toalety" – delikatne, niskie oświetlenie, które nie&nbsp;rozbudza.</li>
+                </ul>
+
+                <h2>🚶‍♂️ 2. Przemyślane sterowanie = mniej chodzenia po&nbsp;mieszkaniu</h2>
+                
+                <p>Kiedyś, żeby wyłączyć światła w&nbsp;całym mieszkaniu, trzeba było krążyć między pomieszczeniami. Teraz – <strong>jeden przycisk przy drzwiach wyjściowych</strong>, i&nbsp;gotowe.</p>
+                
+                <p>A&nbsp;co&nbsp;z&nbsp;sypialnią? Wygodne <strong>wyłączniki przy łóżku</strong> pozwalają zgasić światło bez wstawania – komfort, który naprawdę docenia się codziennie.</p>
+
+                <h2>📲 3. Jak to&nbsp;wdrożyć?</h2>
+                
+                <p>Nie&nbsp;musisz mieć całego systemu „smart home", by&nbsp;cieszyć się scenami świetlnymi. Możliwości:</p>
+                
+                <ul>
+                    <li><strong>Tradycyjne łączniki podwójne lub krzyżowe</strong> (np. jeden do&nbsp;lampy sufitowej, drugi do&nbsp;LED-ów).</li>
+                    <li><strong>Ściemniacze</strong> – regulujesz nastrój światła pokrętłem lub dotykiem.</li>
+                    <li><strong>Automatyka</strong> – systemy (np. Grenton, Fibaro, Sonoff) pozwalają sterować światłem przez telefon, głos, harmonogramy, a&nbsp;nawet czujniki ruchu.</li>
+                </ul>
+
+                <h2>💡 4. Przykładowe scenariusze, które warto mieć:</h2>
+                
+                <div class="scenarios-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sytuacja</th>
+                                <th>Scena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Wchodzisz do&nbsp;domu</td>
+                                <td>Światła w&nbsp;korytarzu i&nbsp;kuchni</td>
+                            </tr>
+                            <tr>
+                                <td>Film w&nbsp;salonie</td>
+                                <td>LED za&nbsp;TV, ściemnione kinkiety</td>
+                            </tr>
+                            <tr>
+                                <td>Kolacja przy stole</td>
+                                <td>Tylko lampa nad stołem</td>
+                            </tr>
+                            <tr>
+                                <td>Nocne przejście do&nbsp;łazienki</td>
+                                <td>Ledowe, niskie oświetlenie przy podłodze</td>
+                            </tr>
+                            <tr>
+                                <td>Poranne wstawanie</td>
+                                <td>Światło stopniowo zwiększające jasność</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Podsumowując:</strong> Sceny świetlne to&nbsp;coś, co&nbsp;podnosi codzienny komfort użytkowania mieszkania. Można je&nbsp;zaplanować nawet przy klasycznej instalacji, ale&nbsp;największy potencjał uwalniają we&nbsp;współpracy z&nbsp;prostą automatyką. Jeśli zrobisz to&nbsp;od&nbsp;razu na&nbsp;etapie projektowania instalacji – oszczędzasz sobie nerwów i&nbsp;kosztów późniejszych przeróbek.
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-name">inż. Karol Drabik</div>
+                <div class="author-bio">
+                    Inżynier elektryk z&nbsp;wieloletnim doświadczeniem w&nbsp;projektowaniu i&nbsp;wykonawstwie instalacji elektrycznych. 
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na&nbsp;funkcjonalność i&nbsp;zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z&nbsp;lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o&nbsp;oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i&nbsp;system CO.
+                    <br><br>
+                    Potrzebujesz pomocy z&nbsp;instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze&nbsp;mną</a>.
+                </div>
+            </div>
+
+            <div class="related-articles">
+                <h3>Przeczytaj więcej w&nbsp;temacie:</h3>
+                <div class="related-columns">
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=el-aranzacja" style="color: #003761; text-decoration: none;">#⚡EL'Aranżacja</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj">💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</a></li>
+                            <li><a href="https://elkadra.com/elblog/automatyka-temperatury">🌡️ Automatyka temperatury – komfort na&nbsp;co&nbsp;dzień</a></li>
+                            <li><a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy">🔌 Gniazda bez przedłużaczy – przemyślane rozmieszczenie</a></li>
+                            <li><a href="https://elkadra.com/elblog/jak-ukryc-kable">📺 Jak ukryć kable? Estetyka instalacji elektrycznej</a></li>
+                            <li><a href="https://elkadra.com/elblog/instalacja-z-przyszloscia">🧠 Instalacja z&nbsp;myślą o&nbsp;przyszłości</a></li>
+                        </ul>
+                    </div>
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=oswietlenie" style="color: #003761; text-decoration: none;">#💡Oświetlenie</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj">💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+
+    <!-- Floating contact button -->
+    <a href="https://elkadra.com" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
+</body>
+</html>
