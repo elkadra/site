@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój - EL'Kadra Blog</title>
-    <meta name="description" content="Oświetlenie to jeden z tych elementów wnętrza, który wpływa nie tylko na nasz komfort, ale również na atmosferę całego mieszkania. Sprawdź, jak dobrze je zaplanować.">
+    <meta name="description" content="Dlaczego warto dobrze zaplanować oświetlenie na etapie modyfikacji instalacji elektrycznej? Praktyczne wskazówki dotyczące barwy światła, doświetlenia kluczowych miejsc i funkcji dekoracyjnej.">
     <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
@@ -105,18 +105,21 @@
         @media (max-width: 768px) {
             .logo-section {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                align-items: center;
+                gap: 20px;
             }
 
             .logo-container {
-                max-width: 70%;
+                max-width: 80%;
+                text-align: center;
             }
 
             .contact-icons {
-                align-self: flex-end;
-                justify-content: flex-end;
-                gap: 15px;
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
             }
 
             .contact-icons img {
@@ -172,6 +175,7 @@
 
         .article-tags {
             margin-top: 10px;
+            margin-bottom: 20px;
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
@@ -184,6 +188,15 @@
             border-radius: 12px;
             font-size: 12px;
             font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
         }
 
         .article-excerpt {
@@ -199,6 +212,7 @@
         .article-content {
             font-size: 16px;
             line-height: 1.8;
+            text-align: justify;
         }
 
         .article-content h2 {
@@ -207,12 +221,14 @@
             margin: 40px 0 20px 0;
             border-bottom: 2px solid #ecf0f1;
             padding-bottom: 10px;
+            text-align: left;
         }
 
         .article-content h3 {
             font-size: 1.3em;
             color: #34495e;
             margin: 30px 0 15px 0;
+            text-align: left;
         }
 
         .article-content p {
@@ -282,6 +298,7 @@
         .author-bio {
             font-size: 14px;
             color: #666;
+            text-align: justify;
         }
 
         .related-articles {
@@ -300,23 +317,32 @@
         }
 
         .related-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 30px;
+        }
+
+        .related-column {
+            flex: 1;
         }
 
         @media (max-width: 768px) {
             .related-columns {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 gap: 20px;
             }
         }
 
-        .related-column h4 {
+        .related-column h4 a {
             font-size: 1em;
             color: #003761;
             margin-bottom: 10px;
             font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
         }
 
         .related-column ul {
@@ -337,6 +363,50 @@
         .related-column a:hover {
             color: #003761;
             text-decoration: underline;
+        }
+
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #003761;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
         }
 
         .footer-graphic {
@@ -406,79 +476,74 @@
             </div>
             
             <div class="breadcrumb">
-                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/blog">Blog</a> → 💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → 💡 Oświetlenie – nie&nbsp;tylko funkcjonalność, ale&nbsp;i&nbsp;nastrój
             </div>
 
             <div class="article-header">
-                <h1 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</h1>
+                <h1 class="article-title">💡 Oświetlenie – nie&nbsp;tylko funkcjonalność, ale&nbsp;i&nbsp;nastrój</h1>
                 <div class="article-meta">
-                    <span>📅 21 czerwca 2025</span>
-                    <span>⏱️ Czas czytania: 4 min</span>
+                    <span>📅 7 lipca 2025</span>
+                    <span>⏱️ Czas czytania: 3 min</span>
                 </div>
                 <div class="article-tags">
-                    <span class="tag">#⚡EL'Aranżacja</span>
-                    <span class="tag">#💡Oświetlenie</span>
+                    <a href="https://elkadra.com/elblog?category=el-aranzacja" class="tag">#⚡EL'Aranżacja</a>
+                    <a href="https://elkadra.com/elblog?category=oswietlenie" class="tag">#💡Oświetlenie</a>
                 </div>
                 <div class="article-excerpt">
-                    Oświetlenie to&nbsp;jeden z&nbsp;tych elementów wnętrza, który wpływa nie tylko na&nbsp;nasz komfort, ale również na&nbsp;atmosferę całego mieszkania. Często myślimy o&nbsp;nim wyłącznie w&nbsp;kontekście „czy będzie jasno?", a&nbsp;to&nbsp;ogromne uproszczenie.
+                    Dlaczego warto dobrze zaplanować oświetlenie na&nbsp;etapie modyfikacji instalacji elektrycznej? Praktyczne wskazówki dotyczące barwy światła, doświetlenia kluczowych miejsc i&nbsp;funkcji dekoracyjnej.
                 </div>
             </div>
 
             <div class="article-content">
-                <h2>🎯 1. Zadbaj o&nbsp;doświetlenie kluczowych miejsc</h2>
-                <p><strong>Blat roboczy w&nbsp;kuchni</strong> – nie wystarczy światło sufitowe. Tu&nbsp;liczy się precyzja i&nbsp;brak cieni, dlatego warto zaplanować oświetlenie podszafkowe lub wpuszczane w&nbsp;dolną część górnych szafek.</p>
+                <p><strong>Dlaczego warto dobrze zaplanować oświetlenie na&nbsp;etapie modyfikacji instalacji elektrycznej?</strong></p>
                 
-                <p><strong>Stół w&nbsp;jadalni</strong> – centralne, miękkie światło wiszące na&nbsp;odpowiedniej wysokości tworzy klimat i&nbsp;sprzyja rozmowom.</p>
+                <p>Oświetlenie to&nbsp;jeden z&nbsp;tych elementów wnętrza, który wpływa nie&nbsp;tylko na&nbsp;nasz komfort, ale&nbsp;również na&nbsp;atmosferę całego mieszkania. Często myślimy o&nbsp;nim wyłącznie w&nbsp;kontekście „czy będzie jasno?", a&nbsp;to&nbsp;ogromne uproszczenie. Poniżej kilka wskazówek, które pomogą Ci zaplanować przemyślany i&nbsp;funkcjonalny system oświetlenia:</p>
 
-                <p><strong>Toaletka czy lustro w&nbsp;łazience</strong> – kluczowe jest równomierne podświetlenie twarzy z&nbsp;obu stron, najlepiej neutralne (ok. 4000 K).</p>
-
-                <p><strong>Miejsce do&nbsp;pracy / gabinet</strong> – tu&nbsp;światło ma&nbsp;pobudzać do&nbsp;działania, więc lepiej sprawdzą się barwy chłodne (5000–6000 K).</p>
+                <h2>🎯 1. Zadbaj o&nbsp;doświetlenie kluczowych miejsc</h2>
+                
+                <ul>
+                    <li><strong>Blat roboczy w&nbsp;kuchni</strong> – nie&nbsp;wystarczy światło sufitowe. Tu&nbsp;liczy się precyzja i&nbsp;brak cieni, dlatego warto zaplanować oświetlenie podszafkowe lub wpuszczane w&nbsp;dolną część górnych szafek.</li>
+                    
+                    <li><strong>Stół w&nbsp;jadalni</strong> – centralne, miękkie światło wiszące na&nbsp;odpowiedniej wysokości tworzy klimat i&nbsp;sprzyja rozmowom.</li>
+                    
+                    <li><strong>Toaletka czy lustro w&nbsp;łazience</strong> – kluczowe jest równomierne podświetlenie twarzy z&nbsp;obu stron, najlepiej neutralne (ok. 4000 K).</li>
+                    
+                    <li><strong>Miejsce do&nbsp;pracy / gabinet</strong> – tu&nbsp;światło ma&nbsp;pobudzać do&nbsp;działania, więc lepiej sprawdzą się barwy chłodne (5000–6000 K).</li>
+                </ul>
 
                 <h2>🌈 2. Dobierz odpowiednią barwę światła</h2>
+                
                 <p>Barwa światła ma&nbsp;ogromny wpływ na&nbsp;samopoczucie i&nbsp;funkcjonalność przestrzeni:</p>
                 
                 <ul>
-                    <li><strong>Ciepłe światło (2700–3000 K)</strong> – sprzyja relaksowi, idealne do&nbsp;sypialni i&nbsp;salonu</li>
-                    <li><strong>Neutralne światło (4000 K)</strong> – dobrze sprawdza się w&nbsp;łazienkach, kuchniach, garderobach</li>
-                    <li><strong>Zimne światło (5000–6000 K)</strong> – poprawia koncentrację, polecane do&nbsp;biur i&nbsp;miejsc pracy</li>
+                    <li><strong>Ciepłe światło (2700–3000 K)</strong> – sprzyja relaksowi, idealne do&nbsp;sypialni i&nbsp;salonu.</li>
+                    <li><strong>Neutralne światło (4000 K)</strong> – dobrze sprawdza się w&nbsp;łazienkach, kuchniach, garderobach.</li>
+                    <li><strong>Zimne światło (5000–6000 K)</strong> – poprawia koncentrację, polecane do&nbsp;biur i&nbsp;miejsc pracy.</li>
                 </ul>
-
-                <p>Nie musisz się ograniczać do&nbsp;jednej barwy w&nbsp;całym mieszkaniu. Wybierz taką, która pasuje do&nbsp;funkcji danego pomieszczenia.</p>
+                
+                <p>Nie&nbsp;musisz się ograniczać do&nbsp;jednej barwy w&nbsp;całym mieszkaniu. Wybierz taką, która pasuje do&nbsp;funkcji danego pomieszczenia.</p>
 
                 <h2>🛋️ 3. Pamiętaj o&nbsp;funkcji dekoracyjnej</h2>
-                <p>Oświetlenie to&nbsp;nie tylko techniczna konieczność. Może być elementem budującym klimat:</p>
                 
-                <p><strong>LED-y w&nbsp;listwach sufitowych</strong>, niszach czy meblach nadają przestrzeni nowoczesny i&nbsp;luksusowy charakter.</p>
-
-                <p><strong>Kinkiety i&nbsp;lampy stołowe</strong> tworzą przyjemne, rozproszone światło wieczorem.</p>
-
-                <div class="highlight-box tip">
-                    <strong>💡 Przykład:</strong> Podświetlony budynek nocą – robi wrażenie. Bez światła znika jego charakter. Po&nbsp;zmroku to&nbsp;właśnie światło buduje nastrój i&nbsp;wydobywa atuty aranżacji.
-                </div>
+                <p>Oświetlenie to&nbsp;nie&nbsp;tylko techniczna konieczność. Może być elementem budującym klimat:</p>
+                
+                <ul>
+                    <li><strong>LED-y w&nbsp;listwach sufitowych</strong>, niszach czy meblach nadają przestrzeni nowoczesny i&nbsp;luksusowy charakter.</li>
+                    <li><strong>Kinkiety i&nbsp;lampy stołowe</strong> tworzą przyjemne, rozproszone światło wieczorem.</li>
+                </ul>
+                
+                <p>Po&nbsp;zmroku to&nbsp;właśnie światło buduje nastrój i&nbsp;wydobywa atuty aranżacji. Przykład? Podświetlony budynek nocą – robi wrażenie. Bez światła znika jego charakter.</p>
 
                 <h2>✅ Na&nbsp;co&nbsp;jeszcze zwrócić uwagę?</h2>
-                <p>Zaplanuj, gdzie będą <strong>włączniki</strong> – dostępność i&nbsp;ergonomia są równie ważne co&nbsp;same oprawy.</p>
                 
-                <p>Zastanów się nad <strong>ściemniaczami</strong> – możliwość regulacji natężenia światła pozwala lepiej dopasować je&nbsp;do&nbsp;sytuacji.</p>
-
-                <p>Jeśli myślisz o&nbsp;<strong>inteligentnym domu</strong>, rozważ systemy sterowania, które umożliwią tworzenie scen świetlnych i&nbsp;zdalne zarządzanie światłem.</p>
-
-                <div class="highlight-box warning">
-                    <strong>⚠️ Pamiętaj:</strong> Wszystkie prace elektryczne związane z&nbsp;oświetleniem powinny być wykonywane przez uprawnionego elektryka zgodnie z&nbsp;obowiązującymi normami.
-                </div>
-
-                <h2>Podsumowanie</h2>
-                <p>Dobrze przemyślane oświetlenie ułatwia codzienne funkcjonowanie, wspiera Twoją produktywność, wpływa na&nbsp;nastrój i&nbsp;może stać się subtelnym, ale kluczowym elementem aranżacji wnętrza. To&nbsp;właśnie światło „uruchamia" wieczorem całe wnętrze.</p>
+                <ul>
+                    <li>Zaplanuj, gdzie będą <strong>włączniki</strong> – dostępność i&nbsp;ergonomia są równie ważne co&nbsp;same oprawy.</li>
+                    <li>Zastanów się nad <strong>ściemniaczami</strong> – możliwość regulacji natężenia światła pozwala lepiej dopasować je&nbsp;do&nbsp;sytuacji.</li>
+                    <li>Jeśli myślisz o&nbsp;<strong>inteligentnym domu</strong>, rozważ systemy sterowania, które umożliwią tworzenie scen świetlnych i&nbsp;zdalne zarządzanie światłem.</li>
+                </ul>
 
                 <div class="highlight-box">
-                    <strong>📋 Kluczowe punkty do&nbsp;zapamiętania:</strong>
-                    <ul>
-                        <li>Doświetl kluczowe miejsca pracy i&nbsp;relaksu</li>
-                        <li>Dobierz barwę światła do&nbsp;funkcji pomieszczenia</li>
-                        <li>Wykorzystaj potencjał dekoracyjny oświetlenia</li>
-                        <li>Zaplanuj ergonomiczne rozmieszczenie włączników</li>
-                        <li>Rozważ ściemniacze i&nbsp;inteligentne sterowanie</li>
-                    </ul>
+                    <strong>Podsumowując:</strong> Dobrze przemyślane oświetlenie ułatwia codzienne funkcjonowanie, wspiera Twoją produktywność, wpływa na&nbsp;nastrój i&nbsp;może stać się subtelnym, ale&nbsp;kluczowym elementem aranżacji wnętrza. To&nbsp;właśnie światło "uruchamia" wieczorem całe wnętrze.
                 </div>
             </div>
 
@@ -496,17 +561,20 @@
                 <h3>Przeczytaj więcej w&nbsp;temacie:</h3>
                 <div class="related-columns">
                     <div class="related-column">
-                        <h4>#⚡EL'Aranżacja</h4>
+                        <h4><a href="https://elkadra.com/elblog?category=el-aranzacja" style="color: #003761; text-decoration: none;">#⚡EL'Aranżacja</a></h4>
                         <ul>
-                            <li><a href="#">tutaj będzie lista artykułów</a></li>
-                            <li><a href="#">tutaj też</a></li>
+                            <li><a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj">💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</a></li>
+                            <li><a href="https://elkadra.com/elblog/sceny-swietlne">🎬 Sceny świetlne w&nbsp;inteligentnym domu</a></li>
+                            <li><a href="https://elkadra.com/elblog/automatyka-temperatury">🌡️ Automatyka temperatury – komfort na&nbsp;co&nbsp;dzień</a></li>
+                            <li><a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy">🔌 Gniazda bez przedłużaczy – przemyślane rozmieszczenie</a></li>
+                            <li><a href="https://elkadra.com/elblog/jak-ukryc-kable">📺 Jak ukryć kable? Estetyka instalacji elektrycznej</a></li>
+                            <li><a href="https://elkadra.com/elblog/instalacja-z-przyszloscia">🧠 Instalacja z&nbsp;myślą o&nbsp;przyszłości</a></li>
                         </ul>
                     </div>
                     <div class="related-column">
-                        <h4>#💡Oświetlenie</h4>
+                        <h4><a href="https://elkadra.com/elblog?category=oswietlenie" style="color: #003761; text-decoration: none;">#💡Oświetlenie</a></h4>
                         <ul>
-                            <li><a href="#">tutaj będzie lista artykułów</a></li>
-                            <li><a href="#">tutaj też</a></li>
+                            <li><a href="https://elkadra.com/elblog/sceny-swietlne">🎬 Sceny świetlne w&nbsp;inteligentnym domu</a></li>
                         </ul>
                     </div>
                 </div>
@@ -525,5 +593,10 @@
         EL'Kadra Karol Drabik, NIP: 6462982087<br>
         All rights reserved
     </div>
+
+    <!-- Floating contact button -->
+    <a href="https://elkadra.com" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
 </body>
 </html>
