@@ -79,36 +79,45 @@
             color: #2c3e50;
             margin-bottom: 40px;
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
+            gap: 20px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
             gap: 25px;
+            width: 100%;
         }
 
         .header-logo {
-            height: calc(7em + 2.5px + 1.2em + 0.5em);
+            height: 8em;
             width: auto;
-            margin-top: -0.1em;
         }
 
         .header-text {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            height: 8em;
         }
 
         .header h1 {
             font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
-            font-size: 7em;
+            font-size: 4em;
             font-weight: normal;
-            margin-bottom: 2.5px;
+            margin-bottom: 1.12em;
             color: #1e345d;
             letter-spacing: 2px;
         }
 
         .header .subtitle {
             font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
-            font-size: 1.2em;
+            font-size: 1.28em;
             color: #555;
             font-weight: normal;
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
 
         .header .description {
@@ -117,6 +126,7 @@
             color: #666;
             font-weight: 300;
             font-style: italic;
+            margin-top: 0;
         }
 
         .intro-text {
@@ -475,18 +485,27 @@
                 gap: 15px;
             }
 
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
             .header-logo {
-                height: calc(5em + 2px + 0.9em + 0.4em);
-                margin-top: -0.05em;
+                height: 6em;
+            }
+
+            .header-text {
+                height: 6em;
             }
 
             .header h1 {
-                font-size: 5em;
-                margin-bottom: 2px;
+                font-size: 3em;
+                margin-bottom: 0.84em;
             }
 
             .header .subtitle {
-                font-size: 0.9em;
+                font-size: 0.96em;
             }
 
             .header .description {
@@ -531,12 +550,14 @@
         <!-- Obszar z treścią -->
         <div class="content-area">
             <header class="header">
-                <img src="https://i.ibb.co/DHz40sbh/logo-granat-bez-t-a.png" alt="EL'Kadra Logo" class="header-logo">
-                <div class="header-text">
-                    <h1>EL'BLOG</h1>
-                    <p class="subtitle">by EL'KADRA Karol Drabik</p>
-                    <p class="description">Praktycznie o instalacjach elektrycznych.</p>
+                <div class="header-top">
+                    <img src="https://i.ibb.co/DHz40sbh/logo-granat-bez-t-a.png" alt="EL'Kadra Logo" class="header-logo">
+                    <div class="header-text">
+                        <h1>EL'BLOG</h1>
+                        <p class="subtitle">by EL'KADRA Karol Drabik</p>
+                    </div>
                 </div>
+                <p class="description">Praktycznie o instalacjach elektrycznych.</p>
             </header>
 
             <div class="intro-text">
