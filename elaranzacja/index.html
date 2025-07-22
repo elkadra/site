@@ -211,30 +211,17 @@
             z-index: 2;
         }
 
-        .hero-content h1 {
-            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
+        .hero-logo {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .hero-logo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
             animation: slideInLeft 1s ease-out;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .special-char {
-            font-family: 'Arial Black', Arial, sans-serif;
-        }
-
-        .hero-brand {
-            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-            animation: slideInLeft 1s ease-out 0.2s both;
         }
 
         .hero-subtitle {
@@ -911,14 +898,16 @@
                 max-width: 400px;
             }
 
-            .hero-content h1 {
-                font-size: 2.2rem;
-                margin-bottom: 0.5rem;
+            @media (max-width: 768px) {
+                .hero-logo img {
+                    max-height: 150px;
+                }
             }
 
-            .hero-brand {
-                font-size: 1rem;
-                margin-bottom: 1rem;
+            @media (max-width: 480px) {
+                .hero-logo img {
+                    max-height: 120px;
+                }
             }
 
             .hero-subtitle {
@@ -1111,8 +1100,9 @@
         </div>
         <div class="hero-container">
             <div class="hero-content">
-                <h1>EL'ARAN<span class="special-char">Ż</span>ACJA</h1>
-                <h2 class="hero-brand">by EL'KADRA Karol Drabik</h2>
+                <div class="hero-logo">
+                    <img src="https://i.ibb.co/2784Dy6S/ELaranzacja-with-bg-1-removebg-1.png" alt="EL'Aranżacja by EL'KADRA Karol Drabik" style="max-width: 100%; height: auto; max-height: 200px;">
+                </div>
                 <p class="hero-subtitle">Instalacja elektryczna skrojona pod Twoje nowe mieszkanie</p>
                 <p class="hero-description">
                     Zmień sztampową instalację elektryczną w&nbsp;swoim nowym mieszkaniu na taką, która będzie uszyta na miarę Twoich potrzeb! Przygotujemy dla Ciebie w&nbsp;pełni funkcjonalną i&nbsp;spersonalizowaną instalację, która ułatwi Ci życie!
