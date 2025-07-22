@@ -22,6 +22,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'JetBrains Mono', monospace;
             line-height: 1.6;
@@ -30,11 +34,15 @@
             margin: 0;
             padding: 0;
             font-size: 16px;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page-wrapper {
             transform: scale(0.7);
             transform-origin: top left;
             width: 142.86%;
-            height: 100vh;
-            overflow-x: hidden;
+            height: 142.86%;
         }
 
         .container {
@@ -62,18 +70,6 @@
             width: 100%;
         }
 
-        .logo-section {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .logo-section img {
-            width: 50%;
-            height: auto;
-            display: block;
-            max-width: 400px;
-        }
-
         .header {
             text-align: left;
             padding: 40px 0;
@@ -89,15 +85,15 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 25px;
             width: 100%;
         }
 
         .contact-icons {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: flex-start;
+            flex: 1;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-left: 0;
         }
 
         .contact-icons a {
@@ -110,54 +106,29 @@
         }
 
         .contact-icons img {
-            width: 32px;
-            height: 32px;
+            width: 64px;
+            height: 64px;
             display: block;
         }
 
         .header-logo {
-            height: auto;
             width: 50%;
             max-width: 50%;
-        }
-
-        .header-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 8em;
-            transform: translateY(-0.32em);
-        }
-
-        .header h1 {
-            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
-            font-size: 4em;
-            font-weight: normal;
-            margin-bottom: -0.4em;
-            color: #1e345d;
-            letter-spacing: 2px;
-        }
-
-        .header .subtitle {
-            font-family: 'Eurostile', 'Arial Black', Arial, sans-serif;
-            font-size: 1.28em;
-            color: #555;
-            font-weight: normal;
-            margin-bottom: 0;
+            height: auto;
         }
 
         .header .description {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.87em;
-            color: #1e345d;
+            color: white;
             font-weight: 500;
             font-style: normal;
             margin-top: 0;
-            background: #e8f4fd;
-            border-left: 4px solid #1e345d;
+            background: #E4A938;
+            border: none;
             padding: 15px 20px;
             border-radius: 5px;
-            text-align: left;
+            text-align: center;
         }
 
         .intro-text {
@@ -262,11 +233,6 @@
             display: block;
         }
 
-        .article-card:hover {
-            text-decoration: none;
-            color: inherit;
-        }
-
         .article-card::before {
             content: '';
             position: absolute;
@@ -286,6 +252,8 @@
             transform: translateX(5px);
             box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
             border-left-color: #2980b9;
+            text-decoration: none;
+            color: inherit;
         }
 
         .article-title {
@@ -395,11 +363,6 @@
             animation: pulseGlow 2s ease-in-out infinite;
         }
 
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
         .footer-graphic {
             width: 100%;
             margin: 0;
@@ -420,6 +383,41 @@
             background-color: #f5f5f5;
             margin: 0;
             line-height: 1.3;
+        }
+
+        /* Floating Contact Button */
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #003761;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
         }
 
         @media (min-width: 1200px) {
@@ -495,7 +493,7 @@
         }
 
         @media (max-width: 768px) {
-            body {
+            .page-wrapper {
                 transform: scale(1.4);
                 transform-origin: top left;
                 width: 71.43%;
@@ -510,27 +508,11 @@
                 padding: 14px;
             }
 
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
             .header-top {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-                justify-content: flex-start;
-            }
-
-            .contact-icons {
-                flex-direction: row;
-                gap: 15px;
-            }
-
-            .contact-icons img {
-                width: 28px;
-                height: 28px;
+                align-items: center;
+                gap: 20px;
+                justify-content: center;
             }
 
             .header-logo {
@@ -538,21 +520,32 @@
                 width: 80%;
             }
 
-            .header h1 {
-                font-size: 3em;
-                margin-bottom: -0.4em;
+            .contact-icons {
+                flex: none;
+                justify-content: center;
+                gap: 30px;
+                margin-left: 0;
             }
 
-            .header .subtitle {
-                font-size: 0.96em;
+            .contact-icons img {
+                width: 48px;
+                height: 48px;
             }
 
-            .header .description {
-                font-size: 0.8em;
+            .copyright {
+                font-size: 12px;
             }
 
-            body {
-                font-size: 10px;
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+                min-height: 44px;
+            }
+
+            .floating-contact-btn::before {
+                font-size: 14px;
             }
 
             .blog-grid {
@@ -580,155 +573,162 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Nagłówek rozciągnięty na całą szerokość -->
-        <div class="header-graphic">
-            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
-        </div>
-
-        <!-- Obszar z treścią -->
-        <div class="content-area">
-            <header class="header">
-                <div class="header-top">
-                    <img src="https://i.ibb.co/ZR5JBdBM/ELBlog-1.png" alt="EL'Blog by EL'Kadra Karol Drabik" class="header-logo">
-                    <div class="contact-icons">
-                        <a href="tel:784972873" title="Zadzwoń: 784 972 873">
-                            <img src="https://i.ibb.co/YFpQsdnW/phone-icon.png" alt="Telefon">
-                        </a>
-                        <a href="mailto:karol@elkadra.com" title="Email: karol@elkadra.com">
-                            <img src="https://i.ibb.co/TBj3nN8j/mail-icon.png" alt="Email">
-                        </a>
-                    </div>
-                </div>
-                <p class="description">Praktycznie o instalacjach elektrycznych.</p>
-            </header>
-
-            <div class="intro-text">
-                <p>Witaj w miejscu, gdzie znajdziesz praktyczne porady dotyczące instalacji elektrycznych w nowym mieszkaniu. Odkryj, jak połączyć funkcjonalność z estetyką i stwórz przestrzeń, która będzie służyć Ci przez lata.</p>
+    <div class="page-wrapper">
+        <div class="container">
+            <!-- Nagłówek rozciągnięty na całą szerokość -->
+            <div class="header-graphic">
+                <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
             </div>
 
-            <div class="blog-grid">
-                <!-- Lewa kolumna - EL'Aranżacja -->
-                <div class="left-column">
-                    <section class="section all-articles" id="el-aranzacja" data-hashtag="el-aranzacja" data-category="el-aranzacja">
-                        <h2 class="section-title">⚡ EL'Aranżacja</h2>
-                        <div class="article-grid">
-                            <a href="https://elkadra.com/elblog/checklista_elaranzacja" class="article-card">
-                                <h3 class="article-title">✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?</h3>
-                                <p class="article-preview">Kompletny przewodnik po najważniejszych elementach...</p>
+            <!-- Obszar z treścią -->
+            <div class="content-area">
+                <header class="header">
+                    <div class="header-top">
+                        <img src="https://i.ibb.co/ZR5JBdBM/ELBlog-1.png" alt="EL'Blog by EL'Kadra Karol Drabik" class="header-logo">
+                        <div class="contact-icons">
+                            <a href="tel:784972873" title="Zadzwoń: 784 972 873">
+                                <img src="https://i.ibb.co/YFpQsdnW/phone-icon.png" alt="Telefon">
                             </a>
-                            
-                            <a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj" class="article-card">
-                                <h3 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h3>
-                                <p class="article-preview">Jak zaplanować oświetlenie, które będzie praktyczne...</p>
-                            </a>
-                            
-                            <a href="https://elkadra.com/elblog/sceny-swietlne" class="article-card">
-                                <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
-                                <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej...</p>
-                            </a>
-                            
-                            <a href="https://elkadra.com/elblog/automatyka-temperatury" class="article-card">
-                                <h3 class="article-title">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</h3>
-                                <p class="article-preview">Inteligentne systemy HVAC...</p>
-                            </a>
-                            
-                            <a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy" class="article-card">
-                                <h3 class="article-title">🔌 Koniec z przedłużaczami – jak dobrze zaplanować lokalizację gniazd?</h3>
-                                <p class="article-preview">Praktyczne wskazówki dotyczące optymalnego rozmieszczenia...</p>
-                            </a>
-                            
-                            <a href="https://elkadra.com/elblog/jak-ukryc-kable" class="article-card">
-                                <h3 class="article-title">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</h3>
-                                <p class="article-preview">Sposoby na eleganckie ukrycie instalacji...</p>
-                            </a>
-                            
-                            <a href="https://elkadra.com/elblog/instalacja-z-przyszloscia" class="article-card">
-                                <h3 class="article-title">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</h3>
-                                <p class="article-preview">Często pomijane elementy...</p>
+                            <a href="mailto:karol@elkadra.com" title="Email: karol@elkadra.com">
+                                <img src="https://i.ibb.co/TBj3nN8j/mail-icon.png" alt="Email">
                             </a>
                         </div>
-                    </section>
+                    </div>
+                    <p class="description">Praktycznie o instalacjach elektrycznych.</p>
+                </header>
+
+                <div class="intro-text">
+                    <p>Witaj w miejscu, gdzie znajdziesz praktyczne porady dotyczące instalacji elektrycznych w nowym mieszkaniu. Odkryj, jak połączyć funkcjonalność z estetyką i stwórz przestrzeń, która będzie służyć Ci przez lata.</p>
                 </div>
 
-                <!-- Prawa strona - 4 sekcje w układzie 2x2 -->
-                <div class="right-columns">
-                    <!-- Górny rząd -->
-                    <div class="right-row">
-                        <section class="section lighting" id="oswietlenie" data-hashtag="oswietlenie" data-category="oswietlenie">
-                            <h2 class="section-title">💡 Oświetlenie</h2>
+                <div class="blog-grid">
+                    <!-- Lewa kolumna - EL'Aranżacja -->
+                    <div class="left-column">
+                        <section class="section all-articles" id="el-aranzacja" data-hashtag="el-aranzacja" data-category="el-aranzacja">
+                            <h2 class="section-title">⚡ EL'Aranżacja</h2>
                             <div class="article-grid">
+                                <a href="https://elkadra.com/elblog/checklista_elaranzacja" class="article-card">
+                                    <h3 class="article-title">✅ Checklista: Na co zwrócić uwagę przy modyfikacji instalacji elektrycznej w nowym mieszkaniu?</h3>
+                                    <p class="article-preview">Kompletny przewodnik po najważniejszych elementach...</p>
+                                </a>
+                                
                                 <a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj" class="article-card">
                                     <h3 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h3>
-                                    <p class="article-preview">Jak zaplanować oświetlenie...</p>
+                                    <p class="article-preview">Jak zaplanować oświetlenie, które będzie praktyczne...</p>
                                 </a>
                                 
                                 <a href="https://elkadra.com/elblog/sceny-swietlne" class="article-card">
-                                    <h3 class="article-title">🎬 Sceny i scenariusze świetlne</h3>
-                                    <p class="article-preview">Automatyka oświetleniowa...</p>
+                                    <h3 class="article-title">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</h3>
+                                    <p class="article-preview">Nowoczesne rozwiązania automatyki oświetleniowej...</p>
                                 </a>
-                            </div>
-                        </section>
-
-                        <section class="section hvac" id="hvac" data-hashtag="hvac" data-category="hvac">
-                            <h2 class="section-title">🍃 HVAC</h2>
-                            <div class="article-grid">
+                                
                                 <a href="https://elkadra.com/elblog/automatyka-temperatury" class="article-card">
-                                    <h3 class="article-title">🌡️ Komfort termiczny bez myślenia</h3>
+                                    <h3 class="article-title">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</h3>
                                     <p class="article-preview">Inteligentne systemy HVAC...</p>
                                 </a>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- Dolny rząd -->
-                    <div class="right-row">
-                        <section class="section outlets" id="instalacja-gniazd" data-hashtag="instalacja-gniazd" data-category="instalacja-gniazd">
-                            <h2 class="section-title">🔌 Instalacja gniazd</h2>
-                            <div class="article-grid">
+                                
                                 <a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy" class="article-card">
-                                    <h3 class="article-title">🔌 Koniec z przedłużaczami</h3>
-                                    <p class="article-preview">Optymalne rozmieszczenie gniazd...</p>
+                                    <h3 class="article-title">🔌 Koniec z przedłużaczami – jak dobrze zaplanować lokalizację gniazd?</h3>
+                                    <p class="article-preview">Praktyczne wskazówki dotyczące optymalnego rozmieszczenia...</p>
                                 </a>
                                 
                                 <a href="https://elkadra.com/elblog/jak-ukryc-kable" class="article-card">
-                                    <h3 class="article-title">🎨 Estetyka instalacji</h3>
-                                    <p class="article-preview">Ukrycie kabli...</p>
-                                </a>
-                            </div>
-                        </section>
-
-                        <section class="section smarthome" id="smarthome" data-hashtag="smarthome" data-category="smarthome">
-                            <h2 class="section-title">🤖 Smarthome</h2>
-                            <div class="article-grid">
-                                <a href="https://elkadra.com/elblog/sceny-swietlne" class="article-card">
-                                    <h3 class="article-title">🎬 Sceny świetlne</h3>
-                                    <p class="article-preview">Automatyka...</p>
+                                    <h3 class="article-title">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</h3>
+                                    <p class="article-preview">Sposoby na eleganckie ukrycie instalacji...</p>
                                 </a>
                                 
                                 <a href="https://elkadra.com/elblog/instalacja-z-przyszloscia" class="article-card">
-                                    <h3 class="article-title">🧠 3 rzeczy o których zapominasz</h3>
+                                    <h3 class="article-title">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</h3>
                                     <p class="article-preview">Często pomijane elementy...</p>
                                 </a>
                             </div>
                         </section>
                     </div>
+
+                    <!-- Prawa strona - 4 sekcje w układzie 2x2 -->
+                    <div class="right-columns">
+                        <!-- Górny rząd -->
+                        <div class="right-row">
+                            <section class="section lighting" id="oswietlenie" data-hashtag="oswietlenie" data-category="oswietlenie">
+                                <h2 class="section-title">💡 Oświetlenie</h2>
+                                <div class="article-grid">
+                                    <a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj" class="article-card">
+                                        <h3 class="article-title">💡 Oświetlenie – nie tylko funkcjonalność, ale i nastrój</h3>
+                                        <p class="article-preview">Jak zaplanować oświetlenie...</p>
+                                    </a>
+                                    
+                                    <a href="https://elkadra.com/elblog/sceny-swietlne" class="article-card">
+                                        <h3 class="article-title">🎬 Sceny i scenariusze świetlne</h3>
+                                        <p class="article-preview">Automatyka oświetleniowa...</p>
+                                    </a>
+                                </div>
+                            </section>
+
+                            <section class="section hvac" id="hvac" data-hashtag="hvac" data-category="hvac">
+                                <h2 class="section-title">🍃 HVAC</h2>
+                                <div class="article-grid">
+                                    <a href="https://elkadra.com/elblog/automatyka-temperatury" class="article-card">
+                                        <h3 class="article-title">🌡️ Komfort termiczny bez myślenia</h3>
+                                        <p class="article-preview">Inteligentne systemy HVAC...</p>
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Dolny rząd -->
+                        <div class="right-row">
+                            <section class="section outlets" id="instalacja-gniazd" data-hashtag="instalacja-gniazd" data-category="instalacja-gniazd">
+                                <h2 class="section-title">🔌 Instalacja gniazd</h2>
+                                <div class="article-grid">
+                                    <a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy" class="article-card">
+                                        <h3 class="article-title">🔌 Koniec z przedłużaczami</h3>
+                                        <p class="article-preview">Optymalne rozmieszczenie gniazd...</p>
+                                    </a>
+                                    
+                                    <a href="https://elkadra.com/elblog/jak-ukryc-kable" class="article-card">
+                                        <h3 class="article-title">🎨 Estetyka instalacji</h3>
+                                        <p class="article-preview">Ukrycie kabli...</p>
+                                    </a>
+                                </div>
+                            </section>
+
+                            <section class="section smarthome" id="smarthome" data-hashtag="smarthome" data-category="smarthome">
+                                <h2 class="section-title">🤖 Smarthome</h2>
+                                <div class="article-grid">
+                                    <a href="https://elkadra.com/elblog/sceny-swietlne" class="article-card">
+                                        <h3 class="article-title">🎬 Sceny świetlne</h3>
+                                        <p class="article-preview">Automatyka...</p>
+                                    </a>
+                                    
+                                    <a href="https://elkadra.com/elblog/instalacja-z-przyszloscia" class="article-card">
+                                        <h3 class="article-title">🧠 3 rzeczy o których zapominasz</h3>
+                                        <p class="article-preview">Często pomijane elementy...</p>
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Stopka rozciągnięta na całą szerokość -->
+            <div class="footer-graphic">
+                <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
             </div>
         </div>
 
-        <!-- Stopka rozciągnięta na całą szerokość -->
-        <div class="footer-graphic">
-            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        <!-- Copyright poza głównym kontenerem -->
+        <div class="copyright">
+            © 2025 Created out of love for Electrical Engineering<br>
+            EL'Kadra Karol Drabik, NIP: 6462982087<br>
+            All rights reserved
         </div>
     </div>
 
-    <!-- Copyright poza głównym kontenerem -->
-    <div class="copyright">
-        © 2025 Created out of love for Electrical Engineering<br>
-        EL'Kadra Karol Drabik, NIP: 6462982087<br>
-        All rights reserved
-    </div>
+    <!-- Floating Contact Button - poza skalowanym wrapper -->
+    <a href="https://elkadra.com" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
 
     <script>
         // System kategorii i hashtagów z animacjami
@@ -742,29 +742,24 @@
             if (category) {
                 const targetElement = document.querySelector(`[data-category="${category}"]`);
                 if (targetElement) {
-                    // Usuń poprzednie podświetlenia
                     document.querySelectorAll('.section').forEach(section => {
                         section.classList.remove('highlight-category', 'dim-other');
                     });
 
-                    // Podświetl docelową sekcję
                     targetElement.classList.add('highlight-category');
                     
-                    // Przyciemnij pozostałe sekcje
                     document.querySelectorAll('.section').forEach(section => {
                         if (section !== targetElement) {
                             section.classList.add('dim-other');
                         }
                     });
 
-                    // Dodaj wskaźnik kategorii
                     const indicator = document.createElement('div');
                     indicator.className = 'category-indicator';
                     indicator.textContent = '★';
                     indicator.title = 'Wybrana kategoria';
                     targetElement.appendChild(indicator);
 
-                    // Scroll do sekcji
                     setTimeout(() => {
                         targetElement.scrollIntoView({ 
                             behavior: 'smooth', 
@@ -772,7 +767,6 @@
                         });
                     }, 300);
 
-                    // Pokaż informację użytkownikowi
                     setTimeout(() => {
                         showCategoryNotification(category);
                     }, 1000);
@@ -792,22 +786,17 @@
                 border-radius: 8px;
                 box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
                 z-index: 1000;
-                font-family: 'Roboto Mono', monospace;
+                font-family: 'JetBrains Mono', monospace;
                 font-size: 12px;
                 opacity: 0;
                 transition: opacity 0.3s ease;
             `;
-            notification.innerHTML = `
-                <strong>🎯 Kategoria: ${category}</strong><br>
-                <small>Sekcja została podświetlona</small>
-            `;
+            notification.innerHTML = `<strong>🎯 Kategoria: ${category}</strong><br><small>Sekcja została podświetlona</small>`;
             
             document.body.appendChild(notification);
             
-            // Animacja pojawienia
             setTimeout(() => notification.style.opacity = '1', 100);
             
-            // Usunięcie po 4 sekundach
             setTimeout(() => {
                 notification.style.opacity = '0';
                 setTimeout(() => notification.remove(), 300);
@@ -828,80 +817,6 @@
             if (hash) {
                 const targetElement = document.getElementById(hash);
                 if (targetElement) {
-                    // Usuń podświetlenie kategorii jeśli istnieje
                     clearCategoryHighlight();
                     
-                    // Smooth scroll do elementu
-                    targetElement.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
-                    });
-                    
-                    // Dodaj animację hashtagu
-                    setTimeout(() => {
-                        targetElement.classList.add('highlight-hashtag');
-                        setTimeout(() => {
-                            targetElement.classList.remove('highlight-hashtag');
-                        }, 2000);
-                    }, 500);
-                }
-            }
-        }
-
-        // Obsłuż parametry URL przy ładowaniu strony
-        window.addEventListener('load', () => {
-            handleCategoryHighlight();
-            handleHashtagNavigation();
-        });
-        
-        // Obsłuż zmiany hash podczas nawigacji
-        window.addEventListener('hashchange', handleHashtagNavigation);
-
-        // Usuń starą funkcjonalność klikania artykułów (teraz to linki)
-        // document.querySelectorAll('.article-card').forEach(card => {
-        //     card.addEventListener('click', function() {
-        //         const title = this.querySelector('.article-title').textContent;
-        //         alert('Przekierowanie do artykułu: ' + title);
-        //     });
-        // });
-
-        // Funkcje testowe
-        function testCategoryHighlight(category) {
-            // Symuluj parametr URL
-            const newURL = new URL(window.location);
-            newURL.searchParams.set('category', category);
-            window.history.pushState({}, '', newURL);
-            handleCategoryHighlight();
-        }
-
-        function testHashtagAnimation(sectionId) {
-            clearCategoryHighlight();
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                setTimeout(() => {
-                    element.classList.add('highlight-hashtag');
-                    setTimeout(() => {
-                        element.classList.remove('highlight-hashtag');
-                    }, 2000);
-                }, 500);
-            }
-        }
-
-        // Informacja w konsoli
-        console.log('🔗 Dostępne hashtagi:');
-        console.log('#el-aranzacja, #oswietlenie, #hvac, #instalacja-gniazd, #smarthome');
-        console.log('');
-        console.log('📂 Dostępne kategorie (parametry URL):');
-        console.log('?category=el-aranzacja');
-        console.log('?category=oswietlenie'); 
-        console.log('?category=hvac');
-        console.log('?category=instalacja-gniazd');
-        console.log('?category=smarthome');
-        console.log('');
-        console.log('🧪 Testy:');
-        console.log('testCategoryHighlight("el-aranzacja")');
-        console.log('testHashtagAnimation("oswietlenie")');
-    </script>
-</body>
-</html>
+                    targetElement.scrollIntoView({
