@@ -87,13 +87,15 @@
         .header-top {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 25px;
             width: 100%;
         }
 
         .header-logo {
-            height: 8em;
+            height: auto;
             width: auto;
+            max-width: 100%;
         }
 
         .header-text {
@@ -493,12 +495,7 @@
             }
 
             .header-logo {
-                height: 6em;
-            }
-
-            .header-text {
-                height: 6em;
-                transform: translateY(-0.24em);
+                max-width: 90%;
             }
 
             .header h1 {
@@ -553,11 +550,7 @@
         <div class="content-area">
             <header class="header">
                 <div class="header-top">
-                    <img src="https://i.ibb.co/DHz40sbh/logo-granat-bez-t-a.png" alt="EL'Kadra Logo" class="header-logo">
-                    <div class="header-text">
-                        <h1>EL'BLOG</h1>
-                        <p class="subtitle">by EL'KADRA Karol Drabik</p>
-                    </div>
+                    <img src="https://i.ibb.co/ZR5JBdBM/ELBlog-1.png" alt="EL'Blog by EL'Kadra Karol Drabik" class="header-logo">
                 </div>
                 <p class="description">Praktycznie o instalacjach elektrycznych.</p>
             </header>
