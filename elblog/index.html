@@ -95,20 +95,25 @@
             justify-content: space-evenly;
             align-items: flex-start; /* Zmieniono z center na flex-start */
             margin-left: 0;
-            gap: 20px; /* Dodano gap dla lepszego odstępu */
+            gap: 40px; /* Zwiększono gap dla lepszego odstępu */
+            padding: 0 20px; /* Dodano padding żeby ikony nie były przy samych brzegach */
         }
 
         .contact-icon-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease;
-            min-width: 100px; /* Dodano minimalną szerokość */
+            min-width: 120px; /* Zwiększono minimalną szerokość */
+            flex-shrink: 0; /* Zapobiega kurczeniu się */
         }
 
-        .contact-icon-wrapper:hover {
+        .contact-icon-wrapper a {
+            display: block;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-icon-wrapper a:hover {
             transform: scale(1.1);
         }
 
@@ -616,13 +621,13 @@
                         <div class="contact-icons">
                             <div class="contact-icon-wrapper">
                                 <a href="tel:784972873">
-                                    <img src="https://i.ibb.co/YFpQsdnW/phone-icon.png" alt="Telefon">
+                                    <img src="https://i.ibb.co/YFpQsdnW/phone-icon.png" alt="phone-icon" border="0">
                                 </a>
                                 <div class="contact-label">784 972 873</div>
                             </div>
                             <div class="contact-icon-wrapper">
                                 <a href="mailto:karol@elkadra.com">
-                                    <img src="https://i.ibb.co/TBj3nN8j/mail-icon.png" alt="Email">
+                                    <img src="https://i.ibb.co/TBj3nN8j/mail-icon.png" alt="mail-icon" border="0">
                                 </a>
                                 <div class="contact-label">karol@elkadra.com</div>
                             </div>
