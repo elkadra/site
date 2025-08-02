@@ -86,25 +86,29 @@
             align-items: flex-start;
             justify-content: space-between;
             width: 100%;
-            min-height: 120px; /* Dodano minimalną wysokość */
+            min-height: 140px;
+            overflow: visible;
         }
 
         .contact-icons {
             display: flex;
             flex: 1;
-            justify-content: space-evenly;
+            justify-content: center;
             align-items: flex-start;
             margin-left: 0;
-            gap: 60px; /* Zwiększono gap dla dwóch ikon w pionie */
-            padding: 0 30px; /* Zwiększono padding żeby ikony nie były przy brzegach */
+            gap: 100px;
+            padding: 0 60px;
+            width: 100%;
+            overflow: visible;
         }
 
         .contact-icon-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 120px; /* Zwiększono minimalną szerokość */
-            flex-shrink: 0; /* Zapobiega kurczeniu się */
+            min-width: 150px;
+            flex-shrink: 0;
+            padding: 0 20px;
         }
 
         .contact-icon-wrapper a {
@@ -121,7 +125,7 @@
             width: 64px;
             height: 64px;
             display: block;
-            margin-bottom: 8px; /* Odstęp między ikoną a tekstem */
+            margin-bottom: 8px;
         }
 
         .contact-label {
@@ -138,8 +142,8 @@
         }
 
         /* Zachowanie kompatybilności wstecznej dla starych linków */
-        .contact-icons a:not(.contact-icon-wrapper) {
-            display: none; /* Ukrywa stare linki jeśli istnieją */
+        .contact-icons a:not(.contact-icon-wrapper a) {
+            display: none;
         }
 
         .header-logo {
@@ -544,7 +548,7 @@
                 align-items: center;
                 gap: 20px;
                 justify-content: center;
-                min-height: auto; /* Reset min-height na mobile */
+                min-height: auto;
             }
 
             .header-logo {
@@ -555,8 +559,14 @@
             .contact-icons {
                 flex: none;
                 justify-content: center;
-                gap: 30px;
+                gap: 80px;
                 margin-left: 0;
+                padding: 0 40px;
+            }
+
+            .contact-icon-wrapper {
+                min-width: 120px;
+                padding: 0 15px;
             }
 
             .contact-icon-wrapper img {
