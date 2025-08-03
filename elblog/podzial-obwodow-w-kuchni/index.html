@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Sensowny podział obwodów elektrycznych w kuchni - EL'Kadra Blog</title>
+    <meta name="description" content="Jak podzielić obwody elektryczne w kuchni? Praktyczny poradnik o bezproblemowej eksploatacji wielu urządzeń jednocześnie - bez wyłączających się zabezpieczeń.">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translateY(5px);
+            padding-right: 0;
+            margin-right: -20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            height: 52px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo-container {
+                max-width: 80%;
+                text-align: center;
+            }
+
+            .contact-icons {
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
+            }
+
+            .contact-icons img {
+                height: 45px;
+                width: auto;
+            }
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .article-meta {
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+
+        .article-tags {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #003761;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
+        }
+
+        .article-excerpt {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .article-content h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+            text-align: left;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .room-section {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #003761;
+        }
+
+        .room-section h4 {
+            color: #003761;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .room-section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .highlight-box.tip {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin: 50px 0 30px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+            text-align: justify;
+        }
+
+        .related-articles {
+            margin: 40px 0 0 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #003761;
+        }
+
+        .related-articles h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .related-columns {
+            display: flex;
+            gap: 30px;
+        }
+
+        .related-column {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .related-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .related-column h4 a {
+            font-size: 1em;
+            color: #003761;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
+        }
+
+        .related-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-column li {
+            margin-bottom: 8px;
+        }
+
+        .related-column a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .related-column a:hover {
+            color: #003761;
+            text-decoration: underline;
+        }
+
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #003761;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            padding: 15px 10px;
+            background-color: #f5f5f5;
+            margin: 20px 0 0 0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .copyright {
+                font-size: 12px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo i ikony kontaktu -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <a href="https://elkadra.com">
+                        <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/1t8QWXyn/phone-icon.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/BVWM7YZW/mail-icon.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="https://elkadra.com">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → ⚡ Sensowny podział obwodów elektrycznych w&nbsp;kuchni
+            </div>
+
+            <div class="article-header">
+                <h1 class="article-title">⚡ Sensowny podział obwodów elektrycznych w&nbsp;kuchni</h1>
+                <div class="article-meta">
+                    <span>📅 3 sierpnia 2025</span>
+                    <span>⏱️ Czas czytania: 5 min</span>
+                </div>
+                <div class="article-tags">
+                    <a href="https://elkadra.com/elblog?category=el-aranzacja" class="tag">#⚡EL'Aranżacja</a>
+                    <a href="https://elkadra.com/elblog?category=instalacja-obwodow" class="tag">#🔌Instalacja obwodów</a>
+                    <a href="https://elkadra.com/elblog?category=kuchnia" class="tag">#🍳Kuchnia</a>
+                </div>
+                <div class="article-excerpt">
+                    Kuchnia to serce każdego domu, gdzie jednocześnie pracuje wiele urządzeń elektrycznych o&nbsp;różnych mocach. Praktyczny poradnik o&nbsp;podziale obwodów dla bezproblemowej eksploatacji sprzętów kuchennych.
+                </div>
+            </div>
+
+            <div class="article-content">
+                <p><strong>Kuchnia to serce każdego domu, gdzie jednocześnie pracuje wiele urządzeń elektrycznych o&nbsp;różnych mocach. Prawidłowy podział instalacji elektrycznej na&nbsp;odpowiednie obwody jest kluczowy dla komfortowego i&nbsp;bezproblemowego korzystania z&nbsp;wszystkich sprzętów kuchennych.</strong></p>
+
+                <h2>Dlaczego podział na&nbsp;obwody ma znaczenie?</h2>
+                
+                <p>Warto na&nbsp;początku wyjaśnić, że sam podział urządzeń na&nbsp;obwody tyczy się nie&nbsp;tyle bezpieczeństwa, ile <strong>bezproblemowej eksploatacji wielu urządzeń w&nbsp;tym samym czasie</strong>. Bezpieczeństwa się nie&nbsp;tyczy, o&nbsp;ile każdy obwód zabezpieczymy odpowiednim zabezpieczeniem, czyli wyłącznikiem B16 dla żył o&nbsp;przekroju 2,5 mm² – wówczas nie&nbsp;ma możliwości, że instalacja ulegnie uszkodzeniu przez zbyt duże obciążenie obwodów. Po&nbsp;prostu konkretny obwód wyłączy się, gdy będzie zbyt mocno obciążony.</p>
+                
+                <p>Problem polega jednak na&nbsp;tym, że gdy wszystkie urządzenia podłączymy do&nbsp;jednego obwodu, każde większe obciążenie spowoduje wyłączenie całej kuchni. To&nbsp;oznacza konieczność ponownego uruchamiania wszystkich urządzeń, w&nbsp;tym lodówki, co&nbsp;jest po&nbsp;prostu niepraktyczne i&nbsp;niewygodne.</p>
+
+                <h2>Moce instalowanych urządzeń</h2>
+                
+                <p>Przed przystąpieniem do&nbsp;planowania podziału obwodów, warto znać typowe moce urządzeń kuchennych:</p>
+                
+                <div class="room-section">
+                    <h4>📊 Typowe moce urządzeń kuchennych:</h4>
+                    <ul>
+                        <li><strong>Piekarnik</strong> – 2000-3500 W</li>
+                        <li><strong>Zmywarka</strong> – 1800-2400 W</li>
+                        <li><strong>Okap</strong> – 150-300 W</li>
+                        <li><strong>Lodówka</strong> – 100-200 W (z okresowymi skokami do&nbsp;400-600 W przy uruchamianiu sprężarki)</li>
+                        <li><strong>Płyta indukcyjna</strong> – 3000-7200 W</li>
+                    </ul>
+                </div>
+
+                <h2>Specyfika płyt indukcyjnych</h2>
+                
+                <p>Płyty indukcyjne w&nbsp;Polsce są dostępne jako jednofazowe lub dwufazowe, jednak <strong>z&nbsp;praktyki jako zasilanie do&nbsp;płyty wykonuje się zasilanie trójfazowe</strong>. Takie rozwiązanie pozwala na&nbsp;lepsze rozłożenie obciążenia i&nbsp;większą elastyczność w&nbsp;korzystaniu z&nbsp;palników o&nbsp;różnych mocach.</p>
+
+                <h2>Niedoceniane moce urządzeń nadblatowych</h2>
+                
+                <p>Szczególną uwagę należy zwrócić na&nbsp;gniazda nadblatowe, gdyż <strong>często moce urządzeń, które stoją na&nbsp;blacie są niedoceniane</strong>. Do&nbsp;typowych urządzeń nadblatowych należą:</p>
+                
+                <div class="room-section">
+                    <h4>🍽️ Urządzenia nadblatowe i&nbsp;ich moce:</h4>
+                    <ul>
+                        <li><strong>Czajnik elektryczny</strong> – 1500-3000 W</li>
+                        <li><strong>Ekspres do&nbsp;kawy</strong> – 800-1500 W</li>
+                        <li><strong>Thermomix</strong> – 500-1500 W</li>
+                        <li><strong>Mikrofalówka</strong> – 800-1200 W</li>
+                        <li><strong>Mikser</strong> – 300-1000 W</li>
+                        <li><strong>Podgrzewacz do&nbsp;butelek dla niemowląt</strong> – 80-500 W</li>
+                        <li><strong>Toster</strong> – 800-1500 W</li>
+                        <li><strong>Opiekacz</strong> – 700-2000 W</li>
+                        <li><strong>Blender</strong> – 300-1500 W</li>
+                        <li><strong>Robot kuchenny</strong> – 500-1500 W</li>
+                    </ul>
+                </div>
+                
+                <p>Jak widać, niektóre z&nbsp;tych urządzeń mają moce porównywalne z&nbsp;większymi sprzętami AGD, a&nbsp;ich jednoczesne używanie może łatwo przeciążyć pojedynczy obwód.</p>
+
+                <h2>Podział obwodów dla kuchni bez płyty indukcyjnej</h2>
+                
+                <p>Dla kuchni bez płyty indukcyjnej proponuje się następujący podział:</p>
+                
+                <div class="room-section">
+                    <h4>🔌 Schemat obwodów – kuchnia bez płyty indukcyjnej:</h4>
+                    <ul>
+                        <li><strong>Obwód 1: Piekarnik</strong> – dedykowany obwód tylko dla piekarnika</li>
+                        <li><strong>Obwód 2: Zmywarka + lodówka + okap</strong> – urządzenia o&nbsp;mniejszych mocach lub pracujące nieciągle</li>
+                        <li><strong>Obwód 3: Gniazda nadblatowe</strong> – wszystkie gniazda dla urządzeń używanych na&nbsp;blacie</li>
+                    </ul>
+                </div>
+
+                <h2>Podział obwodów dla kuchni z&nbsp;płytą indukcyjną</h2>
+                
+                <p>Dla kuchni z&nbsp;płytą indukcyjną sugeruje się następujący układ:</p>
+                
+                <div class="room-section">
+                    <h4>🔌 Schemat obwodów – kuchnia z&nbsp;płytą indukcyjną:</h4>
+                    <ul>
+                        <li><strong>Obwód 1: Płyta indukcyjna (2 fazy) + piekarnik (3. faza)</strong> – wykorzystanie zasilania trójfazowego</li>
+                        <li><strong>Obwód 2: Zmywarka + lodówka + okap</strong> – urządzenia pomocnicze</li>
+                        <li><strong>Obwód 3: Gniazda nadblatowe</strong> – urządzenia nadblatowe</li>
+                    </ul>
+                </div>
+
+                <h2>Rozszerzony podział dla wymagających użytkowników</h2>
+                
+                <p>Jeśli mamy w&nbsp;zwyczaju korzystanie z&nbsp;wielu urządzeń nadblatowych jednocześnie, albo mamy urządzenia, które na&nbsp;stałe znajdują się na&nbsp;blacie (np. czajnik, mikrofalówka, ekspres do&nbsp;kawy), albo chcemy mieć jeszcze większą pewność tego, że będziemy mogli korzystać z&nbsp;naprawdę wielu urządzeń jednocześnie, <strong>sugeruje się dodanie dodatkowego obwodu gniazd nadblatowych</strong>.</p>
+                
+                <div class="room-section">
+                    <h4>🔌 Podział gniazd nadblatowych na&nbsp;dwa obwody:</h4>
+                    <ul>
+                        <li><strong>Obwód A: Gniazda dla urządzeń stałych</strong> – czajnik, ekspres, mikrofalówka (urządzenia, które mają swoje stałe miejsce w&nbsp;kuchni)</li>
+                        <li><strong>Obwód B: Gniazda dla urządzeń doraźnych</strong> – miksery, roboty kuchenne, opiekacze, blendery itp. (urządzenia, które pojawiają się doraźnie)</li>
+                    </ul>
+                </div>
+                
+                <p>Taki podział zapewnia maksymalną elastyczność i&nbsp;komfort użytkowania, eliminując ryzyko wyłączania się obwodów podczas intensywnego gotowania czy przygotowywania posiłków.</p>
+
+                <div class="highlight-box">
+                    <strong>Pamiętaj:</strong> Przemyślany podział obwodów elektrycznych w&nbsp;kuchni to&nbsp;inwestycja w&nbsp;komfort codziennego użytkowania. Chociaż nie&nbsp;jest to&nbsp;kwestia bezpieczeństwa (przy prawidłowych zabezpieczeniach), znacząco wpływa na&nbsp;wygodę i&nbsp;funkcjonalność kuchni. Odpowiedni podział pozwala na&nbsp;jednoczesne korzystanie z&nbsp;wielu urządzeń bez ryzyka wyłączania się instalacji, co&nbsp;jest szczególnie ważne w&nbsp;nowoczesnych kuchniach, gdzie gotowanie stało się coraz bardziej zaawansowane technologicznie.
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-name">inż. Karol Drabik</div>
+                <div class="author-bio">
+                    Inżynier elektryk z&nbsp;wieloletnim doświadczeniem w&nbsp;projektowaniu i&nbsp;wykonawstwie instalacji elektrycznych. 
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na&nbsp;funkcjonalność i&nbsp;zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z&nbsp;lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o&nbsp;oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i&nbsp;system CO.
+                    <br><br>
+                    Potrzebujesz pomocy z&nbsp;instalacją elektryczną? <a href="https://elkadra.com">Skontaktuj się ze&nbsp;mną</a>.
+                </div>
+            </div>
+
+            <div class="related-articles">
+                <h3>Przeczytaj więcej w&nbsp;temacie:</h3>
+                <div class="related-columns">
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=el-aranzacja" style="color: #003761; text-decoration: none;">#⚡EL'Aranżacja</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy">🔌 Koniec z&nbsp;przedłużaczami – jak&nbsp;dobrze zaplanować lokalizację gniazd?</a></li>
+                            <li><a href="https://elkadra.com/elblog/oswietlenie-funkcjonalnosc-nastroj">💡 Oświetlenie – nie tylko funkcjonalność, ale i&nbsp;nastrój</a></li>
+                            <li><a href="https://elkadra.com/elblog/sceny-swietlne">🎬 Sceny i scenariusze świetlne – komfort, klimat i wygoda sterowania</a></li>
+                            <li><a href="https://elkadra.com/elblog/automatyka-temperatury">🌡️ Komfort termiczny bez myślenia – automatyka ogrzewania i klimatyzacji</a></li>
+                            <li><a href="https://elkadra.com/elblog/jak-ukryc-kable">🎨 Estetyka instalacji – jak ukryć kable i zadbać o czystość wizualną mieszkania?</a></li>
+                        </ul>
+                    </div>
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=instalacja-obwodow" style="color: #003761; text-decoration: none;">#🔌Instalacja obwodów</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/gniazda-bez-przedluzaczy">🔌 Koniec z&nbsp;przedłużaczami – jak&nbsp;dobrze zaplanować lokalizację gniazd?</a></li>
+                            <li><a href="https://elkadra.com/elblog/jak-ukryc-kable">🎨 Estetyka instalacji – jak ukryć kable i&nbsp;zadbać o&nbsp;czystość wizualną mieszkania?</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+
+    <!-- Floating contact button -->
+    <a href="https://elkadra.com" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
+</body>
+</html>
