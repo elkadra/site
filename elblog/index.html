@@ -118,28 +118,34 @@
         .blog-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
             gap: 20px;
             min-height: 70vh;
         }
 
         .left-column {
             grid-column: 1;
+            grid-row: 1 / 3; /* Scalenie wszystkich wierszy */
         }
 
         .right-top-left {
             grid-column: 2;
+            grid-row: 1; /* Pierwszy wiersz */
         }
 
         .right-top-right {
             grid-column: 3;
+            grid-row: 1; /* Pierwszy wiersz */
         }
 
         .right-bottom-left {
             grid-column: 2;
+            grid-row: 2; /* Drugi wiersz */
         }
 
         .right-bottom-right {
             grid-column: 3;
+            grid-row: 2; /* Drugi wiersz */
         }
 
         /* Sekcje */
