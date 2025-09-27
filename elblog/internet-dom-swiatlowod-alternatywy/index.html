@@ -1,1 +1,673 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛜 🏠Budujesz dom , a na światłowód trzeba czekać? Poznaj alternatywy i przygotuj instalację na przyszłość! - EL'Kadra Blog</title>
+    <meta name="description" content="Wymarzony dom gotowy, ale światłowód nie dotarł? Poznaj alternatywy internetowe i dowiedz się, jak przygotować instalację na przyszłość już dziś!">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translateY(5px);
+            padding-right: 0;
+            margin-right: -20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            height: 52px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo-container {
+                max-width: 80%;
+                text-align: center;
+            }
+
+            .contact-icons {
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
+            }
+
+            .contact-icons img {
+                height: 45px;
+                width: auto;
+            }
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .article-meta {
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+
+        .article-tags {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #003761;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
+        }
+
+        .article-excerpt {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .article-content h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+            text-align: left;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .highlight-box.tip {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #003761;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin: 50px 0 30px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+            text-align: justify;
+        }
+
+        .related-articles {
+            margin: 40px 0 0 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #003761;
+        }
+
+        .related-articles h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .related-columns {
+            display: flex;
+            gap: 30px;
+        }
+
+        .related-column {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .related-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .related-column h4 a {
+            font-size: 1em;
+            color: #003761;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
+        }
+
+        .related-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-column li {
+            margin-bottom: 8px;
+        }
+
+        .related-column a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .related-column a:hover {
+            color: #003761;
+            text-decoration: underline;
+        }
+
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #003761;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            padding: 15px 10px;
+            background-color: #f5f5f5;
+            margin: 20px 0 0 0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .copyright {
+                font-size: 12px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo i ikony kontaktu -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <a href="https://elkadra.com/">
+                        <img src="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="https://elkadra.com/">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → 🛜 🏠Budujesz dom , a na światłowód trzeba czekać?
+            </div>
+
+            <div class="article-header">
+                <h1 class="article-title">🛜 🏠Budujesz dom , a na światłowód trzeba czekać? Poznaj alternatywy i przygotuj instalację na przyszłość!</h1>
+                <div class="article-meta">
+                    <span>📅 21 września 2025</span>
+                    <span>⏱️ Czas czytania: 4 min</span>
+                </div>
+                <div class="article-tags">
+                    <a href="https://elkadra.com/elblog?category=internet" class="tag">#🛜Internet</a>
+                    <a href="https://elkadra.com/elblog?category=el-budowa" class="tag">#🏠EL'Budowa</a>
+                </div>
+                <div class="article-excerpt">
+                    Wymarzony, nowo wybudowany dom. Wszędzie pachnie świeżością, instalacje są gotowe, a Ty nie możesz się doczekać, by podłączyć najszybszy internet i cieszyć się komfortem. Niestety, często okazuje się, że na przyłącze światłowodowe trzeba będzie poczekać. Co w takiej sytuacji?
+                </div>
+            </div>
+
+            <div class="article-content">
+                <p>Wymarzony, nowo wybudowany dom. Wszędzie pachnie świeżością, instalacje są gotowe, a Ty nie możesz się doczekać, by podłączyć najszybszy internet i cieszyć się komfortem. Niestety, często okazuje się, że na przyłącze światłowodowe, choć planowane w okolicy, trzeba będzie poczekać kilka miesięcy, a czasem nawet lat. Co w takiej sytuacji? Czy jesteś skazany na słaby internet z telefonu? Absolutnie nie!</p>
+                
+                <p>W tym artykule pokażemy, jakie masz alternatywy, aby od pierwszego dnia cieszyć się stabilnym dostępem do sieci, a także – co kluczowe – jak już dziś przygotować dom, by w przyszłości podłączenie światłowodu było czystą formalnością.</p>
+
+                <h2>⏳ Rozwiązania tymczasowe: Internet Mobilny i Radiowy</h2>
+                
+                <p>Gdy światłowodu brak, na placu boju pozostają dwie główne technologie: internet mobilny (LTE/5G) oraz internet radiowy.</p>
+
+                <h3>📱 Internet Mobilny (LTE/5G) – sięgnij po zewnętrzną antenę!</h3>
+                
+                <p>To najpopularniejsze i najszybciej dostępne rozwiązanie. Wkładasz kartę SIM do domowego routera i gotowe. Niestety, wielu użytkowników popełnia błąd, stawiając taki router na parapecie i godząc się na przeciętne transfery. Tłumione przez ściany i okna sygnały komórkowe często nie pozwalają rozwinąć skrzydeł.</p>
+                
+                <p><strong>Nasza rada:</strong> Kluczem do sukcesu jest montaż dedykowanej, zewnętrznej anteny kierunkowej na dachu lub elewacji budynku. Taka antena, precyzyjnie ustawiona w kierunku najbliższego nadajnika (BTS), działa jak potężny wzmacniacz.</p>
+                
+                <p><strong>Zalety:</strong> Omija przeszkody w postaci murów, co drastycznie poprawia siłę i jakość sygnału. Przekłada się to na wyższe prędkości, niższy ping i, co najważniejsze, stabilne połączenie, nawet jeśli mieszkasz w miejscu o słabszym zasięgu.</p>
+
+                <h3>📡 Internet Radiowy – stabilność w zasięgu wzroku</h3>
+                
+                <p>Popularna "radiówka" to technologia, w której sygnał jest przesyłany drogą radiową z nadajnika operatora (umieszczonego np. na wysokim maszcie) do niewielkiej anteny odbiorczej na Twoim dachu.</p>
+                
+                <p><strong>Kluczowy warunek:</strong> Musi istnieć bezpośrednia widoczność między Twoją anteną a nadajnikiem dostawcy – bez drzew, budynków i innych przeszkód na drodze sygnału.</p>
+                
+                <p><strong>Zalety:</strong> Internet radiowy często oferuje większą stabilność i niższe opóźnienia (ping) niż internet mobilny, ponieważ połączenie jest dedykowane i mniej podatne na przeciążenia typowe dla sieci komórkowych.</p>
+
+                <h2>⚖️ Porównanie: Internet Mobilny vs. Radiowy</h2>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Cecha</th>
+                        <th>Internet Mobilny (z anteną zew.)</th>
+                        <th>Internet Radiowy</th>
+                    </tr>
+                    <tr>
+                        <td>Prędkość</td>
+                        <td>Potencjalnie bardzo wysoka (zwłaszcza 5G), ale zmienna w zależności od obciążenia sieci.</td>
+                        <td>Stabilna i gwarantowana w umowie, zazwyczaj niższa niż maksymalne osiągi 5G.</td>
+                    </tr>
+                    <tr>
+                        <td>Stabilność i Ping</td>
+                        <td>Dobra, ale ping może być wyższy i bardziej niestabilny.</td>
+                        <td>Zazwyczaj lepsza. Niższy i bardziej stabilny ping, co jest kluczowe w grach online i pracy zdalnej.</td>
+                    </tr>
+                    <tr>
+                        <td>Limity danych</td>
+                        <td>Często występują w ofertach.</td>
+                        <td>Zazwyczaj brak limitów danych.</td>
+                    </tr>
+                    <tr>
+                        <td>Dostępność</td>
+                        <td>Prawie wszędzie, gdzie jest zasięg komórkowy.</td>
+                        <td>Tylko tam, gdzie działa lokalny dostawca i jest widoczność nadajnika.</td>
+                    </tr>
+                </table>
+
+                <h2>🧠 Myśl przyszłościowo – Jak przygotować dom na światłowód?</h2>
+                
+                <p>Czekanie na światłowód nie oznacza bezczynności. Etap budowy to idealny moment, aby przygotować instalację tak, by w przyszłości uniknąć kucia ścian i bałaganu.</p>
+
+                <h3>Krok 1: Wykonaj telefon do dostawcy</h3>
+                
+                <p>To absolutna podstawa. Zanim położysz tynki, skontaktuj się z operatorem, który świadczy (lub będzie świadczył) usługi w Twoim rejonie. Zapytaj o kluczowe kwestie:</p>
+                
+                <ul>
+                    <li>Kiedy planowane jest podłączenie?</li>
+                    <li>W jakiej formie światłowód będzie doprowadzony do budynku? Czy będzie to przyłącze napowietrzne (ze słupa), czy podziemne (ze studzienki w granicy działki)?</li>
+                </ul>
+                
+                <p>Odpowiedź na to pytanie zdefiniuje dalsze kroki.</p>
+
+                <h3>Krok 2: Przygotuj "drogę" dla kabla</h3>
+                
+                <p><strong>Dla przyłącza podziemnego:</strong> To najlepszy moment, by położyć w ziemi rurę osłonową (tzw. peszel lub arot) od granicy działki (płotu) aż do miejsca, gdzie kabel wejdzie do budynku (np. garażu czy kotłowni). Koszt rury jest znikomy w porównaniu do późniejszego rozkopywania gotowego podjazdu i ogrodu.</p>
+                
+                <p><strong>Dla przyłącza napowietrznego:</strong> Przygotuj miejsce na elewacji, gdzie kabel zostanie zamocowany, i poprowadź od niego rurkę instalacyjną do wnętrza budynku.</p>
+
+                <h2>🔑 Klucz do sukcesu: Pamiętaj o instalacji wewnętrznej!</h2>
+                
+                <p>Wielu inwestorów błędnie zakłada, że monter od dostawcy internetu rozprowadzi im sygnał po całym domu. Nic bardziej mylnego!</p>
+                
+                <p><strong>Operator nie będzie wykonywał dla Ciebie instalacji wewnątrz budynku.</strong> Jego zadanie kończy się na montażu modemu światłowodowego (ONT) w miejscu, które dla niego jest najwygodniejsze – czyli zazwyczaj tuż za ścianą, przez którą wszedł z kablem do domu. Może to być środek salonu lub wiatrołap.</p>
+                
+                <p>To w Twojej gestii jest, aby sygnał z tego miejsca trafił tam, gdzie go potrzebujesz. Jak to zrobić poprawnie?</p>
+                
+                <ul>
+                    <li>Zaplanuj centralny punkt dla urządzeń sieciowych – szafkę multimedialną (teletechniczną), np. w garażu, garderobie czy pomieszczeniu gospodarczym.</li>
+                    <li>Od miejsca, w którym w przyszłości znajdzie się modem operatora (ONT), doprowadź kabel typu skrętka (min. kat. 6) do swojej szafki multimedialnej.</li>
+                    <li>Gdy przyjdzie monter, wskażesz mu gotowe miejsce na modem. On podłączy światłowód, a Ty wepniesz przygotowaną wcześniej skrętkę do portu LAN w jego urządzeniu.</li>
+                    <li>W Twojej szafce skrętka dostarczy sygnał internetowy (już "po miedzi") do Twojego głównego routera lub switcha, który następnie rozprowadzi go po całym domu – kablowo do gniazdek i bezprzewodowo przez punkty dostępowe Wi-Fi.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>Podsumowując:</strong> Dzięki takiemu przygotowaniu unikniesz chaosu, widocznych kabli i problemów z zasięgiem, a przejście na światłowód będzie szybkie, proste i estetyczne.
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-name">inż. Karol Drabik</div>
+                <div class="author-bio">
+                    Inżynier elektryk z wieloletnim doświadczeniem w projektowaniu i wykonawstwie instalacji elektrycznych. 
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na funkcjonalność i zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.
+                    <br><br>
+                    Potrzebujesz pomocy z instalacją elektryczną? <a href="https://elkadra.com/">Skontaktuj się ze mną</a>.
+                </div>
+            </div>
+
+            <div class="related-articles">
+                <h3>Przeczytaj więcej w temacie:</h3>
+                <div class="related-columns">
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=internet" style="color: #003761; text-decoration: none;">#🛜Internet</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/siec-domowa">🏠 Jak zaprojektować sieć domową? Przewodnik po okablowaniu strukturalnym</a></li>
+                            <li><a href="https://elkadra.com/elblog/wifi-pokrycie">📶 Problemy z Wi-Fi w domu? Jak zapewnić pełne pokrycie</a></li>
+                            <li><a href="https://elkadra.com/elblog/smart-home-internet">🏡 Inteligentny dom a wymagania internetowe</a></li>
+                        </ul>
+                    </div>
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=el-budowa" style="color: #003761; text-decoration: none;">#🏠EL'Budowa</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/instalacja-z-przyszloscia">🧠 Co jeszcze warto zaplanować? 3 rzeczy, o których wiele osób zapomina przy instalacji elektrycznej</a></li>
+                            <li><a href="https://elkadra.com/elblog/projekt-instalacji">📋 Dlaczego warto mieć projekt instalacji elektrycznej?</a></li>
+                            <li><a href="https://elkadra.com/elblog/automatyka-budowa">🏗️ Automatyka domowa na etapie budowy – co przygotować?</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+
+    <!-- Floating contact button -->
+    <a href="https://elkadra.com/" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
+
+</body>
+</html>
