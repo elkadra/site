@@ -6,6 +6,8 @@
     <title>EL'Kadra – kompleksowe instalacje elektryczne</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
     <script src="https://unpkg.com/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=TWOJ_SITE_KEY"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
         
@@ -150,10 +152,6 @@
             font-family: 'Roboto Mono', monospace;
         }
         
-        .form-input {
-            
-        }
-        
         .form-textarea {
             height: 180px;
             resize: vertical;
@@ -292,6 +290,16 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        
+        /* Honeypot field - ukryte przed użytkownikami */
+        .honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -324,6 +332,12 @@
         <div id="form-message" class="form-message"></div>
         
         <form class="contact-form" id="contact-form">
+            <!-- Honeypot field - ukryte pole pułapka na boty -->
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+            
+            <!-- Ukryte pole z czasem otwarcia formularza -->
+            <input type="hidden" name="form_timestamp" id="form_timestamp">
+            
             <div class="form-group">
                 <input type="text" class="form-input" name="from_name" placeholder="Imię" required>
             </div>
@@ -382,17 +396,27 @@
     </div>
     
     <script>
-        // Wait for EmailJS to load
+        // INSTRUKCJA KONFIGURACJI:
+        // 1. Wejdź na: https://www.google.com/recaptcha/admin
+        // 2. Zarejestruj swoją stronę (wybierz reCAPTCHA v3)
+        // 3. Skopiuj Site Key i zamień "TWOJ_SITE_KEY" w linii 13 (w <head>)
+        // 4. Secret Key będziesz potrzebować do weryfikacji po stronie serwera
+        
+        const RECAPTCHA_SITE_KEY = 'TWOJ_SITE_KEY'; // <-- Wstaw tu swój Site Key
+        
+        // Zapisz timestamp otwarcia strony (do sprawdzenia czasu wypełniania)
+        const pageLoadTime = Date.now();
+        document.getElementById('form_timestamp').value = pageLoadTime;
+        
+        // Initialize EmailJS
         window.addEventListener('load', function() {
             console.log('Window loaded, checking EmailJS...');
-            console.log('emailjs type:', typeof emailjs);
             
             if (typeof emailjs !== 'undefined') {
                 try {
                     emailjs.init("gYdMWhfUtR6ETuseK");
-                    console.log('EmailJS initialized with old method');
+                    console.log('EmailJS initialized');
                 } catch(e) {
-                    console.log('Old init failed, trying new method');
                     emailjs.init({
                         publicKey: "gYdMWhfUtR6ETuseK",
                     });
@@ -408,56 +432,87 @@
                 const submitBtn = document.getElementById('submit-btn');
                 const messageDiv = document.getElementById('form-message');
                 
-                // Wait a bit more for EmailJS to be ready
-                setTimeout(function() {
-                    if (typeof emailjs === 'undefined') {
-                        console.error('EmailJS still not available after timeout');
+                // HONEYPOT CHECK - jeśli pole jest wypełnione, to bot
+                const honeypot = document.querySelector('[name="website"]').value;
+                if (honeypot) {
+                    console.log('Bot detected - honeypot filled');
+                    messageDiv.className = 'form-message error';
+                    messageDiv.textContent = 'Wykryto nieprawidłowe działanie. Spróbuj ponownie.';
+                    messageDiv.style.display = 'block';
+                    return;
+                }
+                
+                // TIME CHECK - jeśli wypełniono zbyt szybko (< 3 sekundy), to prawdopodobnie bot
+                const submitTime = Date.now();
+                const timeDiff = (submitTime - pageLoadTime) / 1000; // w sekundach
+                if (timeDiff < 3) {
+                    console.log('Bot detected - form filled too quickly:', timeDiff, 'seconds');
+                    messageDiv.className = 'form-message error';
+                    messageDiv.textContent = 'Formularz został wypełniony zbyt szybko. Spróbuj ponownie.';
+                    messageDiv.style.display = 'block';
+                    return;
+                }
+                
+                // Disable button and show loading
+                submitBtn.textContent = 'Wysyłanie...';
+                submitBtn.disabled = true;
+                messageDiv.style.display = 'none';
+                
+                // reCAPTCHA v3 verification
+                grecaptcha.ready(function() {
+                    grecaptcha.execute(RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
+                        console.log('reCAPTCHA token received');
+                        
+                        // Get form data
+                        const templateParams = {
+                            from_name: document.querySelector('[name="from_name"]').value,
+                            from_email: document.querySelector('[name="from_email"]').value,
+                            phone: document.querySelector('[name="phone"]').value || 'Nie podano',
+                            message: document.querySelector('[name="message"]').value,
+                            source_url: window.location.hostname || window.location.href,
+                            recaptcha_token: token // Dodajemy token do parametrów
+                        };
+                        
+                        // UWAGA: Weryfikacja tokenu powinna być po stronie serwera!
+                        // Token możesz przesłać do swojego backendu, który sprawdzi go używając Secret Key
+                        // Więcej info: https://developers.google.com/recaptcha/docs/verify
+                        
+                        console.log('Attempting to send email...');
+                        
+                        // Send email to you (lead notification)
+                        emailjs.send('service_ad01fca', 'template_6q6utwh', templateParams)
+                            .then(function(response) {
+                                console.log('Lead email sent:', response);
+                                return emailjs.send('service_ad01fca', 'template_3r7kpns', templateParams);
+                            })
+                            .then(function(response) {
+                                console.log('Confirmation email sent:', response);
+                                messageDiv.className = 'form-message success';
+                                messageDiv.textContent = 'Dziękuję! Wiadomość została wysłana. Skontaktuję się z Tobą wkrótce.';
+                                messageDiv.style.display = 'block';
+                                document.getElementById('contact-form').reset();
+                                // Reset timestamp
+                                document.getElementById('form_timestamp').value = Date.now();
+                            })
+                            .catch(function(error) {
+                                console.error('EmailJS error:', error);
+                                messageDiv.className = 'form-message error';
+                                messageDiv.textContent = 'Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie lub skontaktuj się bezpośrednio: karol@elkadra.com';
+                                messageDiv.style.display = 'block';
+                            })
+                            .finally(function() {
+                                submitBtn.textContent = 'Wyślij';
+                                submitBtn.disabled = false;
+                            });
+                    }).catch(function(error) {
+                        console.error('reCAPTCHA error:', error);
                         messageDiv.className = 'form-message error';
-                        messageDiv.textContent = 'System e-mail nie został załadowany. Odśwież stronę i spróbuj ponownie.';
+                        messageDiv.textContent = 'Błąd weryfikacji bezpieczeństwa. Odśwież stronę i spróbuj ponownie.';
                         messageDiv.style.display = 'block';
-                        return;
-                    }
-                    
-                    // Disable button and show loading
-                    submitBtn.textContent = 'Wysyłanie...';
-                    submitBtn.disabled = true;
-                    messageDiv.style.display = 'none';
-                    
-                    // Get form data
-                    const templateParams = {
-                        from_name: document.querySelector('[name="from_name"]').value,
-                        from_email: document.querySelector('[name="from_email"]').value,
-                        phone: document.querySelector('[name="phone"]').value || 'Nie podano',
-                        message: document.querySelector('[name="message"]').value,
-                        source_url: window.location.hostname || window.location.href
-                    };
-                    
-                    console.log('Attempting to send with params:', templateParams);
-                    
-                    // Send email to you (lead notification)
-                    emailjs.send('service_ad01fca', 'template_6q6utwh', templateParams)
-                        .then(function(response) {
-                            console.log('Lead email sent:', response);
-                            return emailjs.send('service_ad01fca', 'template_3r7kpns', templateParams);
-                        })
-                        .then(function(response) {
-                            console.log('Confirmation email sent:', response);
-                            messageDiv.className = 'form-message success';
-                            messageDiv.textContent = 'Dziękuję! Wiadomość została wysłana. Skontaktuję się z Tobą wkrótce.';
-                            messageDiv.style.display = 'block';
-                            document.getElementById('contact-form').reset();
-                        })
-                        .catch(function(error) {
-                            console.error('EmailJS detailed error:', error);
-                            messageDiv.className = 'form-message error';
-                            messageDiv.textContent = 'Błąd: ' + (error.text || error.message || 'Nieznany błąd');
-                            messageDiv.style.display = 'block';
-                        })
-                        .finally(function() {
-                            submitBtn.textContent = 'Wyślij';
-                            submitBtn.disabled = false;
-                        });
-                }, 1000); // Wait 1 second for EmailJS to be ready
+                        submitBtn.textContent = 'Wyślij';
+                        submitBtn.disabled = false;
+                    });
+                });
             });
         });
     </script>
