@@ -1,1 +1,738 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏡 🧠 Home Assistant – dlaczego to mózg Twojego inteligentnego domu? - EL'Kadra Blog</title>
+    <meta name="description" content="Google Home to pilot, ale Home Assistant to mózg. Dowiedz się, dlaczego prawdziwa automatyka domowa wymaga czegoś więcej niż sterowanie głosowe.">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/gLmykH7N/logo-granat-bez-t-a.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-area {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 40px;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 400px;
+        }
+
+        .contact-icons {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translateY(5px);
+            padding-right: 0;
+            margin-right: -20px;
+        }
+
+        .contact-icons a {
+            display: inline-block;
+        }
+
+        .contact-icons img {
+            height: 52px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-icons img:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo-container {
+                max-width: 80%;
+                text-align: center;
+            }
+
+            .contact-icons {
+                align-self: center;
+                justify-content: center;
+                gap: 30px;
+                transform: none;
+                margin-right: 0;
+            }
+
+            .contact-icons img {
+                height: 45px;
+                width: auto;
+            }
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .article-meta {
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+
+        .article-tags {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #003761;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #002244;
+            color: white;
+            text-decoration: none;
+        }
+
+        .article-excerpt {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .article-content h3 {
+            font-size: 1.3em;
+            color: #34495e;
+            margin: 30px 0 15px 0;
+            text-align: left;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .highlight-box.tip {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #003761;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .author-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin: 50px 0 30px 0;
+            border-left: 4px solid #2c3e50;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .author-bio {
+            font-size: 14px;
+            color: #666;
+            text-align: justify;
+        }
+
+        .related-articles {
+            margin: 40px 0 0 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #003761;
+        }
+
+        .related-articles h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .related-columns {
+            display: flex;
+            gap: 30px;
+        }
+
+        .related-column {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .related-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .related-column h4 a {
+            font-size: 1em;
+            color: #003761;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .related-column h4 a:hover {
+            color: #002244;
+            text-decoration: underline;
+        }
+
+        .related-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-column li {
+            margin-bottom: 8px;
+        }
+
+        .related-column a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .related-column a:hover {
+            color: #003761;
+            text-decoration: underline;
+        }
+
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #003761;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 55, 97, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-contact-btn:hover {
+            background: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 55, 97, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-contact-btn::before {
+            content: "📞";
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        .footer-graphic {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-graphic img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            padding: 15px 10px;
+            background-color: #f5f5f5;
+            margin: 20px 0 0 0;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .copyright {
+                font-size: 12px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-area {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Nagłówek rozciągnięty na całą szerokość -->
+        <div class="header-graphic">
+            <img src="https://i.ibb.co/SZxWzCZ/nag-wek-vertical.png" alt="EL'Kadra Header">
+        </div>
+
+        <!-- Obszar z treścią -->
+        <div class="content-area">
+            <!-- Logo i ikony kontaktu -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <a href="https://elkadra.com/">
+                        <img src="https://i.ibb.co/zh5bBSzw/logo-napis-granat-2.png" alt="EL'Kadra - Instalacje Elektryczne">
+                    </a>
+                </div>
+                <div class="contact-icons">
+                    <a href="tel:784972873">
+                        <img src="https://i.ibb.co/1t8QWXyn/phone-icon.png" alt="Telefon: 784 972 873">
+                    </a>
+                    <a href="mailto:karol@elkadra.com">
+                        <img src="https://i.ibb.co/BVWM7YZW/mail-icon.png" alt="Email: karol@elkadra.com">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="https://elkadra.com/">Start</a> → <a href="https://elkadra.com/elblog">EL'Blog</a> → 🏡 🧠 Home Assistant – dlaczego to mózg inteligentnego domu?
+            </div>
+
+            <div class="article-header">
+                <h1 class="article-title">🏡 🧠 Home Assistant – dlaczego to mózg Twojego inteligentnego domu?</h1>
+                <div class="article-meta">
+                    <span>📅 6 lutego 2026</span>
+                    <span>⏱️ Czas czytania: 5 min</span>
+                </div>
+                <div class="article-tags">
+                    <a href="https://elkadra.com/elblog?category=smart-home" class="tag">#🏡SmartHome</a>
+                    <a href="https://elkadra.com/elblog?category=automatyka" class="tag">#🤖Automatyka</a>
+                </div>
+                <div class="article-excerpt">
+                    Asystent Google pozwala sterować światłem, muzyką i roletami komendami głosowymi – to wygodne. Ale prawdziwy inteligentny dom to coś więcej niż pilot uniwersalny. To system, który sam reaguje na zdarzenia, łączy różne urządzenia i tworzy scenariusze, o jakich marzysz. Poznaj różnicę między sterowaniem a prawdziwą automatyzacją.
+                </div>
+            </div>
+
+            <div class="article-content">
+                <p>Wielu właścicieli nowoczesnych domów wybiera popularne, sprawdzone urządzenia – inteligentne oświetlenie F&F Fox, system nagłośnienia Sonos, telewizory Samsung, kamery Hikvision. Wszystkie te systemy posiadają oficjalną integrację z Asystentem Google, więc teoretycznie można nimi sterować głosowo z jednego miejsca.</p>
+                
+                <p>I to działa – możesz powiedzieć "Hej Google, włącz światło w salonie" lub "Włącz muzykę w kuchni". To pierwszy, ważny krok w kierunku wygody. Ale czy to już jest prawdziwy inteligentny dom?</p>
+
+                <h2>🎮 Google Home to pilot uniwersalny, nie mózg domu</h2>
+                
+                <p>Wyobraź sobie, że Google Home to bardzo zaawansowany pilot uniwersalny. Pozwala z jednego miejsca sterować każdym urządzeniem z osobna – włączyć światło, zmienić temperaturę, uruchomić muzykę. To ogromna wygoda, szczególnie gdy masz urządzenia różnych producentów.</p>
+                
+                <p>Jednak prawdziwa magia inteligentnego domu tkwi nie w samym sterowaniu, ale w zaawansowanej automatyzacji. Chodzi o to, by dom sam reagował na zdarzenia, a poszczególne systemy inteligentnie ze sobą współpracowały – bez Twojego udziału, bez konieczności wydawania poleceń głosowych.</p>
+
+                <div class="highlight-box tip">
+                    <strong>Kluczowa różnica:</strong> Sterowanie to możliwość wydania komendy. Automatyzacja to sytuacja, w której dom sam wie, co ma zrobić, w odpowiedzi na konkretne zdarzenie.
+                </div>
+
+                <h2>🧠 Home Assistant – centralny mózg i reżyser Twojego domu</h2>
+                
+                <p>Home Assistant to platforma open-source, która staje się centralnym "mózgiem" całego systemu automatyki domowej. W odróżnieniu od Google Home, który jedynie przekazuje Twoje polecenia do odpowiednich urządzeń, Home Assistant:</p>
+                
+                <ul>
+                    <li>Zbiera informacje ze wszystkich systemów w czasie rzeczywistym</li>
+                    <li>Analizuje stan każdego urządzenia i czujnika</li>
+                    <li>Na podstawie tych danych realizuje złożone scenariusze automatyzacji</li>
+                    <li>Łączy urządzenia różnych producentów w spójne ekosystemy</li>
+                    <li>Pozwala tworzyć zaawansowane logiki "jeśli... to..."</li>
+                </ul>
+
+                <p>Najprościej mówiąc: Home Assistant potrafi wykorzystać stan jednego urządzenia (np. "kamera wykryła ruch") do wywołania akcji na urządzeniu innego producenta (np. "włącz światło na podjeździe"). Google Home tego nie potrafi.</p>
+
+                <h2>🚫 Czego nie da się zrealizować bez Home Assistant?</h2>
+                
+                <p>Bez centralnego "mózgu" niemożliwe staje się wdrożenie kluczowych, zautomatyzowanych scenariuszy, które realnie podnoszą komfort życia. Oto konkretne przykłady funkcji, które bez Home Assistant po prostu nie zadziałają:</p>
+
+                <h3>📢 Powiadomienie o zakończeniu prania lub zmywania</h3>
+                
+                <p>Zmywarka Samsung kończy cykl. W świecie Google Home możesz jedynie zapytać o jej status. W świecie Home Assistant dom sam:</p>
+                
+                <ul>
+                    <li>Wykrywa zakończenie cyklu na podstawie zużycia energii lub statusu urządzenia</li>
+                    <li>Wysyła komunikat głosowy na wszystkie głośniki Sonos w domu</li>
+                    <li>Opcjonalnie wysyła powiadomienie push na telefon</li>
+                </ul>
+
+                <p><strong>Dlaczego Google Home tego nie zrobi?</strong> Bo nie potrafi zareagować na zmianę stanu urządzenia Samsung i samodzielnie wywołać akcji na głośnikach Sonos.</p>
+
+                <h3>🚗 Inteligentne oświetlenie podejścia i podjazdu</h3>
+                
+                <p>Wracasz wieczorem do domu. Kamera Hikvision wykrywa ruch na podjeździe. W inteligentnym domu z Home Assistant:</p>
+                
+                <ul>
+                    <li>System sprawdza, czy jest po zmroku (czujnik oświetlenia lub godzina)</li>
+                    <li>Włącza światła na podjeździe (F&F Fox) tylko wtedy, gdy faktycznie jest ciemno</li>
+                    <li>Opcjonalnie – odblokuje bramę, jeśli rozpozna Twój samochód</li>
+                    <li>Po 5 minutach bez ruchu automatycznie gasi światło</li>
+                </ul>
+
+                <p><strong>Dlaczego Google Home tego nie zrobi?</strong> Bo nie może połączyć informacji z kamery (wykrycie ruchu) z czujnikiem światła i sterownikiem oświetlenia w jeden automatyczny scenariusz.</p>
+
+                <h3>📺 Automatyczne przyciemnienie świateł przy filmie</h3>
+                
+                <p>Wieczorem włączasz telewizor Samsung, by obejrzeć film. W domu z Home Assistant:</p>
+                
+                <ul>
+                    <li>System wykrywa włączenie telewizora</li>
+                    <li>Sprawdza, czy jest wieczór (po 20:00)</li>
+                    <li>Przyciemnia światła w salonie (F&F Fox) do 20%</li>
+                    <li>Gdy wyłączysz TV, światła wracają do poprzedniego poziomu</li>
+                </ul>
+
+                <p><strong>Dlaczego Google Home tego nie zrobi?</strong> Bo nie widzi stanu telewizora jako wyzwalacza akcji dla innego systemu.</p>
+
+                <h3>🚪 Prawdziwy scenariusz "Wychodzę z domu"</h3>
+                
+                <p>W Google Home możesz stworzyć rutynę, która zgasi światła i wyłączy muzykę. To prosty ciąg komend. Ale prawdziwy scenariusz "Wychodzę" w Home Assistant to coś więcej:</p>
+                
+                <ul>
+                    <li>System najpierw sprawdza, czy alarm (Hikvision) jest już uzbrojony</li>
+                    <li>Jeśli nie jest – uzbrajia go automatycznie</li>
+                    <li>Jednocześnie gasi wszystkie światła w całym domu</li>
+                    <li>Wyłącza muzykę na wszystkich głośnikach Sonos</li>
+                    <li>Obniża temperaturę ogrzewania o 2 stopnie</li>
+                    <li>Wysyła Ci potwierdzenie na telefon</li>
+                </ul>
+
+                <p>A wszystko to dzieje się inteligentnie – jeśli alarm już był uzbrojony, nie próbuje uzbroić go ponownie. Jeśli któreś światło było już wyłączone, nie próbuje go wyłączyć jeszcze raz.</p>
+
+                <div class="highlight-box">
+                    <strong>To jest różnica między prostą sekwencją komend a prawdziwą inteligencją.</strong> Home Assistant sprawdza warunki, podejmuje decyzje i dopasowuje akcje do rzeczywistego stanu domu.
+                </div>
+
+                <h2>⚖️ Porównanie: Google Home vs Home Assistant</h2>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Funkcja</th>
+                        <th>Google Home</th>
+                        <th>Home Assistant</th>
+                    </tr>
+                    <tr>
+                        <td>Sterowanie głosowe</td>
+                        <td>✅ Tak, doskonałe</td>
+                        <td>✅ Tak, przez integrację z Google</td>
+                    </tr>
+                    <tr>
+                        <td>Proste rutyny ("włącz X, wyłącz Y")</td>
+                        <td>✅ Tak</td>
+                        <td>✅ Tak</td>
+                    </tr>
+                    <tr>
+                        <td>Reagowanie na stany urządzeń</td>
+                        <td>❌ Bardzo ograniczone</td>
+                        <td>✅ Pełne możliwości</td>
+                    </tr>
+                    <tr>
+                        <td>Łączenie urządzeń różnych producentów</td>
+                        <td>❌ Nie</td>
+                        <td>✅ Tak</td>
+                    </tr>
+                    <tr>
+                        <td>Złożone logiki warunkowe (jeśli...to...)</td>
+                        <td>❌ Nie</td>
+                        <td>✅ Tak</td>
+                    </tr>
+                    <tr>
+                        <td>Powiadomienia o zdarzeniach</td>
+                        <td>❌ Bardzo ograniczone</td>
+                        <td>✅ Pełne możliwości</td>
+                    </tr>
+                    <tr>
+                        <td>Lokalność (działa bez internetu)</td>
+                        <td>❌ Wymaga chmury</td>
+                        <td>✅ Może działać lokalnie</td>
+                    </tr>
+                    <tr>
+                        <td>Prywatność danych</td>
+                        <td>⚠️ Dane w chmurze Google</td>
+                        <td>✅ Pełna kontrola nad danymi</td>
+                    </tr>
+                </table>
+
+                <h2>🎯 Podsumowanie: Kiedy potrzebujesz Home Assistant?</h2>
+                
+                <p>Jeśli Twoja wizja inteligentnego domu ogranicza się do sterowania głosowego ("włącz światło", "ustaw temperaturę na 22 stopnie"), to Google Home w zupełności wystarczy.</p>
+                
+                <p>Ale jeśli chcesz, by Twój dom:</p>
+                
+                <ul>
+                    <li>Sam reagował na zdarzenia bez Twojego udziału</li>
+                    <li>Inteligentnie łączył informacje z różnych systemów</li>
+                    <li>Dostosowywał swoje zachowanie do warunków (pora dnia, obecność, pogoda)</li>
+                    <li>Powiadamiał Cię o ważnych zdarzeniach</li>
+                    <li>Tworzył kompleksowe scenariusze, które realnie ułatwiają życie</li>
+                </ul>
+
+                <p>...to Home Assistant jest niezbędny. To fundamentalny element, który pozwala przejść od prostego "włącz/wyłącz" do domu, który realnie myśli, reaguje i ułatwia codzienne życie.</p>
+
+                <div class="highlight-box tip">
+                    <strong>Dobra wiadomość:</strong> Oba systemy świetnie ze sobą współpracują! Home Assistant może wykorzystywać Asystenta Google jako interfejs głosowy, zachowując przy tym pełnię możliwości automatyzacji. To najlepsze z obu światów.
+                </div>
+            </div>
+
+            <div class="author-box">
+                <div class="author-name">inż. Karol Drabik</div>
+                <div class="author-bio">
+                    Inżynier elektryk z wieloletnim doświadczeniem w projektowaniu i wykonawstwie instalacji elektrycznych. 
+                    Nie robię sztuki dla sztuki – gniazdka dla gniazdka – <strong>stawiam na funkcjonalność i zrozumienie</strong>. Uważam, że każdy element instalacji elektrycznej <strong>powinien ułatwić użytkownikowi końcowemu korzystanie z lokalu</strong> lub mieszkania. Bez znaczenia, czy mowa o oprawie, gniazdku, prostym sposobie sterowania oświetleniem, czy automatyce domowej obsługującej wentylację mechaniczną i system CO.
+                    <br><br>
+                    Potrzebujesz pomocy z instalacją elektryczną lub automatyką domową? <a href="https://elkadra.com/">Skontaktuj się ze mną</a>.
+                </div>
+            </div>
+
+            <div class="related-articles">
+                <h3>Przeczytaj więcej w temacie:</h3>
+                <div class="related-columns">
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=smart-home" style="color: #003761; text-decoration: none;">#🏡SmartHome</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/smart-home-basics">🏡 Od czego zacząć budowę inteligentnego domu?</a></li>
+                            <li><a href="https://elkadra.com/elblog/smart-home-mistakes">⚠️ 5 najczęstszych błędów w projektowaniu smart home</a></li>
+                            <li><a href="https://elkadra.com/elblog/smart-home-internet">🌐 Inteligentny dom a wymagania internetowe</a></li>
+                        </ul>
+                    </div>
+                    <div class="related-column">
+                        <h4><a href="https://elkadra.com/elblog?category=automatyka" style="color: #003761; text-decoration: none;">#🤖Automatyka</a></h4>
+                        <ul>
+                            <li><a href="https://elkadra.com/elblog/automatyka-budowa">🏗️ Automatyka domowa na etapie budowy – co przygotować?</a></li>
+                            <li><a href="https://elkadra.com/elblog/oswietlenie-automatyka">💡 Inteligentne oświetlenie – więcej niż włącznik</a></li>
+                            <li><a href="https://elkadra.com/elblog/rolety-automatyka">🪟 Automatyczne rolety – komfort i oszczędność energii</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopka rozciągnięta na całą szerokość -->
+        <div class="footer-graphic">
+            <img src="https://i.ibb.co/GvrG1WrF/stopka-horizontal.png" alt="EL'Kadra Footer">
+        </div>
+    </div>
+
+    <!-- Copyright poza głównym kontenerem -->
+    <div class="copyright">
+        © 2025 Created out of love for Electrical Engineering<br>
+        EL'Kadra Karol Drabik, NIP: 6462982087<br>
+        All rights reserved
+    </div>
+
+    <!-- Floating contact button -->
+    <a href="https://elkadra.com/" class="floating-contact-btn">
+        Skontaktuj się
+    </a>
+
+</body>
+</html>
