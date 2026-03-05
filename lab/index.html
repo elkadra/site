@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EL'Miernik – Wypożyczalnia Sprzętu Pomiarowego | EL'Kadra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0d1f3c;
+      --navy-mid: #142850;
+      --navy-light: #1e3a5f;
+      --electric: #f5a800;
+      --electric-dim: #c98a00;
+      --white: #f4f6fa;
+      --gray: #8a9bb5;
+      --gray-light: #c5cfe0;
+      --accent-green: #00e0a1;
+      --card-bg: #122040;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.4;
+    }
+
+    /* ── HEADER / NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(13, 31, 60, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(245, 168, 0, 0.15);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .logo span { color: var(--electric); }
+
+    nav { display: flex; gap: 36px; align-items: center; }
+    nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--electric); }
+
+    .nav-cta {
+      background: var(--electric);
+      color: var(--navy) !important;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #ffc020 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      overflow: hidden;
+    }
+
+    /* Grid background */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245,168,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,168,0,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Glowing orb */
+    .hero-glow {
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(245,168,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--electric);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 2px;
+      background: var(--electric);
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      max-width: 820px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--electric);
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 540px;
+      color: var(--gray-light);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 44px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--electric);
+      color: var(--navy);
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover {
+      background: #ffc020;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(245,168,0,0.3);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(245,168,0,0.35);
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--electric);
+      color: var(--electric);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 52px;
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(245,168,0,0.12);
+      position: relative;
+      z-index: 1;
+    }
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: var(--electric);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { position: relative; z-index: 1; }
+
+    .section-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--electric);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--electric);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-title em { font-style: normal; color: var(--electric); }
+
+    .section-desc {
+      color: var(--gray-light);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 56px;
+    }
+
+    /* ── DEVICES ── */
+    .devices-section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+    }
+
+    .devices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .device-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(245,168,0,0.1);
+      border-radius: 8px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .device-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--electric);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .device-card:hover {
+      border-color: rgba(245,168,0,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+    .device-card:hover::before { transform: scaleX(1); }
+
+    .device-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--electric);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+
+    .device-icon {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .device-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .device-desc {
+      font-size: 0.875rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .device-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 2px;
+      background: rgba(245,168,0,0.1);
+      color: var(--electric);
+      border: 1px solid rgba(245,168,0,0.2);
+    }
+
+    .device-price {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(245,168,0,0.1);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .price-val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--electric);
+    }
+    .price-unit {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .device-cta {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--electric);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .device-cta::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+    .device-card:hover .device-cta::after { transform: translateX(4px); }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      padding: 100px 0;
+      background: var(--navy-mid);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 0;
+    }
+
+    .step {
+      padding: 40px 32px;
+      background: var(--card-bg);
+      border: 1px solid rgba(245,168,0,0.08);
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: rgba(245,168,0,0.12);
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .step-text {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── WHY ── */
+    .why-section {
+      padding: 100px 0;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: rgba(245,168,0,0.1);
+      border: 1px solid rgba(245,168,0,0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .feature-text p {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Callout box */
+    .callout-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(245,168,0,0.15);
+      border-radius: 8px;
+      padding: 44px 40px;
+      position: sticky;
+      top: 100px;
+    }
+
+    .callout-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .callout-box p {
+      font-size: 0.875rem;
+      color: var(--gray-light);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .contact-list li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .contact-list li a:hover { color: var(--electric); }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: rgba(245,168,0,0.08);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(245,168,0,0.1);
+      padding: 48px 0;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .footer-brand span { color: var(--electric); }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+    .footer-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--electric); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--gray);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 { animation: fadeUp 0.7s ease 0.1s both; }
+    .hero-sub { animation: fadeUp 0.7s ease 0.25s both; }
+    .hero-actions { animation: fadeUp 0.7s ease 0.4s both; }
+    .hero-stats { animation: fadeUp 0.7s ease 0.55s both; }
+    .hero-tag { animation: fadeUp 0.7s ease 0.05s both; }
+
+    /* ── AVAILABILITY BADGE ── */
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,224,161,0.1);
+      border: 1px solid rgba(0,224,161,0.25);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.07em;
+      color: var(--accent-green);
+      text-transform: uppercase;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .availability::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      animation: pulse 1.8s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      header { padding: 16px 24px; }
+      nav { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-stats { gap: 28px; flex-wrap: wrap; }
+      .section-inner { padding: 0 24px; }
+      .devices-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="https://elkadra.com" class="logo">EL'<span>Kadra</span></a>
+    <nav>
+      <a href="#urzadzenia">Urządzenia</a>
+      <a href="#jak-to-dziala">Jak to działa</a>
+      <a href="#dlaczego">Dlaczego my</a>
+      <a href="https://elkadra.com/elblog">Blog</a>
+      <a href="#kontakt" class="nav-cta">Zarezerwuj</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-tag">EL'Miernik — wypożyczalnia sprzętu pomiarowego</div>
+    <h1>Profesjonalny<br />sprzęt<br /><em>bez zakupu.</em></h1>
+    <p class="hero-sub">
+      Wypożycz certyfikowany sprzęt pomiarowy do instalacji elektrycznych. Mierniki wielofunkcyjne, analizatory energii i testery akumulatorów — gotowe na jutro.
+    </p>
+    <div class="hero-actions">
+      <a href="#urzadzenia" class="btn-primary">
+        ⚡ Zobacz urządzenia
+      </a>
+      <a href="#kontakt" class="btn-outline">
+        Zarezerwuj termin
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">3</div>
+        <div class="stat-label">urządzenia w ofercie</div>
+      </div>
+      <div>
+        <div class="stat-val">24h</div>
+        <div class="stat-label">czas realizacji</div>
+      </div>
+      <div>
+        <div class="stat-val">Metrel</div>
+        <div class="stat-label">certyfikowany sprzęt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVICES -->
+  <section class="devices-section" id="urzadzenia">
+    <div class="section-inner">
+      <div class="section-label">Dostępny sprzęt</div>
+      <h2 class="section-title">Urządzenia<br /><em>w wypożyczalni</em></h2>
+      <p class="section-desc">Profesjonalny, skalibrowany sprzęt dla elektryków, instalatorów i firm budowlanych.</p>
+
+      <div class="devices-grid">
+
+        <!-- Card 1 -->
+        <a href="#" class="device-card">
+          <div class="availability">dostępny</div>
+          <div class="device-num">01 / METREL</div>
+          <span class="device-icon">📊</span>
+          <div class="device-name">Miernik Wielofunkcyjny Metrel</div>
+          <div class="device-desc">
+            Kompleksowy pomiar instalacji elektrycznych — rezystancja izolacji, ciągłość, pętla zwarcia, RCD i wiele więcej. Idealny do odbiorów technicznych i przeglądów.
+          </div>
+          <div class="device-tags">
+            <span class="tag">Rezystancja</span>
+            <span class="tag">Izolacja</span>
+            <span class="tag">RCD</span>
+            <span class="tag">Pętla zwarcia</span>
+          </div>
+          <div class="device-price">
+            <span class="price-val">od 80 zł</span>
+            <span class="price-unit">/ dzień</span>
+          </div>
+          <span class="device-cta">Szczegóły i rezerwacja</span>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="#" class="device-card">
+          <div class="availability">dostępny</div>
+          <div class="device-num">02 / METREL</div>
+          <span class="device-icon">⚡</span>
+          <div class="device-name">Analizator Energii Metrel</div>
+          <div class="device-desc">
+            Precyzyjna analiza jakości energii elektrycznej. Pomiar harmonicznych, współczynnika mocy, asymetrii napięć i prądów — niezbędny przy audytach energetycznych.
+          </div>
+          <div class="device-tags">
+            <span class="tag">Harmoniczne</span>
+            <span class="tag">Cos φ</span>
+            <span class="tag">Moc czynna</span>
+            <span class="tag">THD</span>
+          </div>
+          <div class="device-price">
+            <span class="price-val">od 100 zł</span>
+            <span class="price-unit">/ dzień</span>
+          </div>
+          <span class="device-cta">Szczegóły i rezerwacja</span>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="#" class="device-card">
+          <div class="availability">dostępny</div>
+          <div class="device-num">03 / ACT</div>
+          <span class="device-icon">🔋</span>
+          <div class="device-name">Tester Pojemności Akumulatorów ACT 612</div>
+          <div class="device-desc">
+            Profesjonalna diagnostyka akumulatorów UPS, alarmowych i awaryjnego oświetlenia. Pomiar pojemności rzeczywistej i stanu zdrowia ogniwa.
+          </div>
+          <div class="device-tags">
+            <span class="tag">UPS</span>
+            <span class="tag">Pojemność</span>
+            <span class="tag">Stan zdrowia</span>
+            <span class="tag">Alarm</span>
+          </div>
+          <div class="device-price">
+            <span class="price-val">od 60 zł</span>
+            <span class="price-unit">/ dzień</span>
+          </div>
+          <span class="device-cta">Szczegóły i rezerwacja</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="jak-to-dziala">
+    <div class="section-inner">
+      <div class="section-label">Proces</div>
+      <h2 class="section-title">Jak to <em>działa?</em></h2>
+      <p class="section-desc">Cztery proste kroki dzielą Cię od profesjonalnego pomiaru.</p>
+
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Wybierz urządzenie</div>
+          <div class="step-text">Sprawdź dostępność sprzętu i wybierz urządzenie dopasowane do Twojego zadania pomiarowego.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Zarezerwuj termin</div>
+          <div class="step-text">Skontaktuj się telefonicznie lub mailowo. Ustalamy termin wypożyczenia — najczęściej na następny dzień roboczy.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Odbierz i działaj</div>
+          <div class="step-text">Sprzęt jest gotowy, naładowany i sprawdzony. W razie pytań dotyczących obsługi — służę pomocą.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Zwróć po robocie</div>
+          <div class="step-text">Po zakończeniu pomiarów zwracasz sprzęt. Rozliczenie za faktycznie wykorzystane dni.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why-section" id="dlaczego">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div>
+          <div class="section-label">Dlaczego warto</div>
+          <h2 class="section-title">Mierz kiedy<br /><em>potrzebujesz.</em></h2>
+          <p class="section-desc">Profesjonalny sprzęt kosztuje dziesiątki tysięcy złotych. Wypożyczenie to ułamek tej kwoty.</p>
+
+          <div class="why-features">
+            <div class="feature-item">
+              <div class="feature-icon">💰</div>
+              <div class="feature-text">
+                <h4>Brak kosztów stałych</h4>
+                <p>Płacisz tylko wtedy, gdy mierzysz. Bez amortyzacji, serwisowania i kalibracji — to nasza sprawa.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">✅</div>
+              <div class="feature-text">
+                <h4>Sprzęt po kalibracji</h4>
+                <p>Każde urządzenie jest regularnie sprawdzane i posiada aktualne świadectwo kalibracji. Wyniki pomiarów są miarodajne.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🤝</div>
+              <div class="feature-text">
+                <h4>Wsparcie elektryka</h4>
+                <p>Wypożyczasz od inżyniera z praktyką. Możesz zapytać o metodykę pomiarów, normy i interpretację wyników.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📍</div>
+              <div class="feature-text">
+                <h4>Lokalizacja Szczecin</h4>
+                <p>Działamy na terenie Szczecina i okolic. Możliwy odbiór osobisty oraz uzgodniony dowóz dla regularnych klientów.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT CALLOUT -->
+        <div id="kontakt">
+          <div class="callout-box">
+            <h3>Zarezerwuj sprzęt<br />już dziś ⚡</h3>
+            <p>Skontaktuj się bezpośrednio — odpowiem szybko i wspólnie dobierzemy właściwe urządzenie do Twojego zadania.</p>
+            <ul class="contact-list">
+              <li>
+                <a href="tel:784972873">
+                  <span class="contact-icon">📞</span>
+                  784 972 873
+                </a>
+              </li>
+              <li>
+                <a href="mailto:karol@elkadra.com">
+                  <span class="contact-icon">✉️</span>
+                  karol@elkadra.com
+                </a>
+              </li>
+            </ul>
+            <a href="tel:784972873" class="btn-primary" style="width:100%; justify-content:center;">
+              Zadzwoń teraz
+            </a>
+            <a href="mailto:karol@elkadra.com" class="btn-outline" style="width:100%; justify-content:center; margin-top:12px;">
+              Wyślij zapytanie
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">EL'<span>Miernik</span> by EL'Kadra</div>
+      <div class="footer-links">
+        <a href="https://elkadra.com">Główna</a>
+        <a href="https://elkadra.com/elblog">EL'Blog</a>
+        <a href="#urzadzenia">Urządzenia</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-copy">© 2025 EL'Kadra Karol Drabik · NIP: 6462982087</div>
+    </div>
+  </footer>
+
+</body>
+</html>
