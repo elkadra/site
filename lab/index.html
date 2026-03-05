@@ -184,7 +184,23 @@
     ══════════════════════════════════════ */
     .hero {
       min-height: 100vh;
-      background: var(--navy);
+      background:
+        /* gradient tekstowy — lewa strona mocno zakrywa, prawa odkrywa zdjęcie */
+        linear-gradient(
+          105deg,
+          rgba(17, 30, 48, 0.97) 0%,
+          rgba(17, 30, 48, 0.88) 42%,
+          rgba(17, 30, 48, 0.55) 68%,
+          rgba(17, 30, 48, 0.35) 100%
+        ),
+        /* gradient od dołu — przejście do sekcji */
+        linear-gradient(
+          to top,
+          rgba(17, 30, 48, 0.85) 0%,
+          transparent 30%
+        ),
+        url('https://i.ibb.co/V0cdpCVy/f57c15bc-6372-4882-93b8-7040b557680d.jpg')
+        center center / cover no-repeat;
       display: flex;
       align-items: center;
       padding: 120px 48px 80px;
@@ -192,37 +208,36 @@
       overflow: hidden;
     }
 
-    /* Subtle grid */
+    /* Turkusowa kresa — akcent LAB na samym dole hero */
     .hero::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,163,173,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,163,173,0.05) 1px, transparent 1px);
-      background-size: 48px 48px;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal) 0%, rgba(0,163,173,0.15) 70%, transparent 100%);
+      z-index: 2;
       pointer-events: none;
     }
 
-    /* Teal glow bottom-right */
+    /* Teal glow — subtelny blask z lewej przy tekście */
     .hero-glow {
       position: absolute;
-      bottom: -120px; right: -120px;
-      width: 520px; height: 520px;
-      background: radial-gradient(circle, rgba(0,163,173,0.13) 0%, transparent 65%);
+      top: 30%; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,163,173,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 1180px;
-      margin: 0 auto;
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 80px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 580px;
+      margin: 0;
+      padding-left: 4vw;
     }
 
     .hero-kicker {
@@ -246,7 +261,7 @@
     .hero h1 {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(2rem, 4vw, var(--text-4xl));
+      font-size: clamp(2.2rem, 5vw, var(--text-5xl));
       line-height: var(--lh-tight);
       letter-spacing: var(--ls-display);
       text-transform: uppercase;
@@ -317,29 +332,31 @@
     }
 
     /* Hero stats card */
-    .hero-stats-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-top: 3px solid var(--teal);
-      padding: 36px 32px;
-    }
+    /* photo-panel styles removed — photo moved to hero bg */
 
-    .stat-row {
+    .hero-stats-row {
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      align-items: center;
+      gap: 0;
+      margin-top: 52px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      width: 100%;
     }
 
-    .stat-item {
+    .hero-stat-item {
       display: flex;
       flex-direction: column;
       gap: 4px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex: 1;
     }
-    .stat-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
+
+    .hero-stat-sep {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+      margin: 0 28px;
+      flex-shrink: 0;
     }
 
     .stat-val {
@@ -893,9 +910,58 @@
     @media (max-width: 960px) {
       header { padding: 0 24px; }
       nav { display: none; }
-      .hero { padding: 100px 24px 60px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-stats-card { display: none; }
+
+      /* ── HERO MOBILE: zdjęcie nad tekstem, tekst na granatowym tle ── */
+      .hero {
+        /* usuń zdjęcie z background na mobile */
+        background:
+          linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+        padding: 80px 0 0;
+        min-height: auto;
+        flex-direction: column;
+      }
+
+      /* Zdjęcie jako osobny panel na górze */
+      .hero::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 220px;
+        background:
+          linear-gradient(to bottom, rgba(17,30,48,0.25) 0%, rgba(17,30,48,0.7) 100%),
+          url('https://i.ibb.co/V0cdpCVy/f57c15bc-6372-4882-93b8-7040b557680d.jpg')
+          center top / cover no-repeat;
+        order: -1;
+        flex-shrink: 0;
+      }
+
+      /* turkusowa kresa na dole zdjęcia mobile */
+      .hero::before {
+        display: none;
+      }
+
+      .hero-inner {
+        max-width: 100%;
+        width: 100%;
+        padding: 36px 24px 52px;
+        background: var(--navy);
+      }
+
+      .hero-stats-row {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 24px;
+        margin-top: 36px;
+      }
+
+      .hero-stat-item {
+        flex: 0 0 calc(50% - 10px);
+      }
+
+      .hero-stat-sep {
+        display: none;
+      }
+
       .section-wrap { padding: 0 24px; }
       .devices-grid { grid-template-columns: 1fr; }
       .steps-row { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -943,26 +1009,27 @@
         </div>
       </div>
 
-      <div class="hero-stats-card">
-        <div class="stat-row">
-          <div class="stat-item">
+      <div class="hero-stats-row">
+          <div class="hero-stat-item">
             <div class="stat-val">3</div>
             <div class="stat-label">urządzenia w LAB</div>
           </div>
-          <div class="stat-item">
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat-item">
             <div class="stat-val">24h</div>
             <div class="stat-label">czas realizacji</div>
           </div>
-          <div class="stat-item">
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat-item">
             <div class="stat-val">Metrel</div>
             <div class="stat-label">certyfikowany producent</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-val">↑ akt.</div>
-            <div class="stat-label">świadectwa kalibracji</div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat-item">
+            <div class="stat-val">✓</div>
+            <div class="stat-label">aktualna kalibracja</div>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
