@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografika Laptop Brygadzisty - Elkadra Style</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-yellow: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --hp-color: #0096d6;
+            --dell-color: #0076ce;
+            --think-color: #e2231a;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+       .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+       .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--accent-yellow);
+            padding-bottom: 10px;
+        }
+       .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+       .header p {
+            color: var(--accent-yellow);
+            font-weight: bold;
+            margin: 5px 0 0 0;
+        }
+       .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+       .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #334155;
+            transition: transform 0.2s;
+        }
+       .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+        }
+       .icon-box {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+       .model-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--accent-yellow);
+        }
+       .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            border-left: 3px solid var(--accent-yellow);
+            padding-left: 8px;
+        }
+       .atuty-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+       .atuty-list li {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 5px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+       .atuty-list li::before {
+            content: "✓";
+            color: #4ade80;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+       .minus-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+       .minus-box strong {
+            color: #f87171;
+        }
+       .verdykt {
+            margin-top: auto;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px dashed #475569;
+        }
+       .stats {
+            margin-bottom: 20px;
+        }
+       .stat-bar {
+            height: 6px;
+            background: #334155;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+       .stat-fill {
+            height: 100%;
+            background: var(--accent-yellow);
+        }
+       .label-group {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+           .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hardware Engineering Report</h1>
+            <p>Refurbished Laptop Selection: Construction Foreman (Dust/Sun/Auto)</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="icon-box">🏰</div>
+                <div class="model-name">HP EliteBook 840 G8</div>
+                
+                <div class="stats">
+                    <div class="label-group"><span>Jasność (Słońce)</span><span>400-1000 nits</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 100%"></div></div>
+                    <div class="label-group"><span>Bateria (Wh)</span><span>53 Wh</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 70%"></div></div>
+                </div>
+
+                <div class="section-title">Top 3 Inżynierskie Atuty</div>
+                <ul class="atuty-list">
+                    <li>Ekran 400 nitów Low Power</li>
+                    <li>Modułowy RAM (do 64 GB)</li>
+                    <li>Aluminiowe chassis CNC</li>
+                </ul>
+
+                <div class="section-title">Słaby Punkt</div>
+                <div class="minus-box">
+                    <strong>Minus:</strong> Miękkie aluminium podatne na rysy i drobne wgniecenia.
+                </div>
+
+                <div class="verdykt">
+                    <strong>Werdykt Elkadra:</strong> Najbardziej uniwersalna "twierdza" z najlepszym balansem jasności ekranu i łatwości serwisu.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon-box">🔋</div>
+                <div class="model-name">Dell Latitude 7420</div>
+                
+                <div class="stats">
+                    <div class="label-group"><span>Jasność (Słońce)</span><span>400 nits</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 80%"></div></div>
+                    <div class="label-group"><span>Bateria (Wh)</span><span>63 Wh</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 100%"></div></div>
+                </div>
+
+                <div class="section-title">Top 3 Inżynierskie Atuty</div>
+                <ul class="atuty-list">
+                    <li>Potężna bateria 63 Wh</li>
+                    <li>Grafika Iris Xe (CAD 3D)</li>
+                    <li>Lekka klapa z włókna węglowego</li>
+                </ul>
+
+                <div class="section-title">Słaby Punkt</div>
+                <div class="minus-box">
+                    <strong>Minus:</strong> Wymaga częstego przedmuchiwania wentylatora (kurz = throttling).
+                </div>
+
+                <div class="verdykt">
+                    <strong>Werdykt Elkadra:</strong> Maszyna dla inżyniera "w trasie", gdzie kluczowy jest czas pracy w aucie bez ładowarki.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="icon-box">🛡️</div>
+                <div class="model-name">ThinkPad X1 Carbon G8</div>
+                
+                <div class="stats">
+                    <div class="label-group"><span>Jasność (Słońce)</span><span>400-500 nits</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 85%"></div></div>
+                    <div class="label-group"><span>Bateria (Wh)</span><span>51 Wh</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 65%"></div></div>
+                </div>
+
+                <div class="section-title">Top 3 Inżynierskie Atuty</div>
+                <ul class="atuty-list">
+                    <li>Waga piórkowa: 1.09 kg</li>
+                    <li>Klawiatura odporna na "ciężką rękę"</li>
+                    <li>Wewnętrzny system filtrów pyłowych</li>
+                </ul>
+
+                <div class="section-title">Słaby Punkt</div>
+                <div class="minus-box">
+                    <strong>Minus:</strong> Brak slotów RAM (wszystko wlutowane – brak rozbudowy).
+                </div>
+
+                <div class="verdykt">
+                    <strong>Werdykt Elkadra:</strong> Wybór dla managera mobilnego, który ceni brak zbędnych gramów i pancerną klawiaturę.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
