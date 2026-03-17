@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porównanie Systemów Rusztowań - Elektroinstalacje</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background-color: #f4f4f4; padding: 20px; }
+       .chart-container { width: 90%; max-width: 800px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #333; }
+       .legend { font-size: 0.9em; color: #666; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h2>Analiza Porównawcza Rusztowań (Wysokość 6m)</h2>
+    <div class="chart-container">
+        <canvas id="scaffoldChart"></canvas>
+    </div>
+    <div class="legend">
+        *Skala 1-10. W kategorii "Cena" wyższa wartość oznacza lepszą (niższą) cenę zakupu.
+    </div>
+
+    <script>
+        const ctx = document.getElementById('scaffoldChart').getContext('2d');
+        const scaffoldChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels:,
+                datasets:,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: 'Altrex 3400',
+                        data: [7, 9, 10, 7],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: 'Drabex RA 600',
+                        data: [8, 7, 6, 8],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: 'Krause Stabilo 10',
+                        data: [5, 6, 3, 2],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: { display: true },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: { stepSize: 2 }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
