@@ -1,103 +1,993 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analiza Rusztowań 6m</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porównanie Rusztowań Jezdnych 6m – Elektroinstalacje</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --card2: #1c2230;
+    --border: #30363d;
+    --yellow: #f5c400;
+    --orange: #e8651a;
+    --blue: #4d94ff;
+    --green: #3dba6f;
+    --red: #e05252;
+    --muted: #8b949e;
+    --text: #e6edf3;
+    --text2: #c9d1d9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    max-width: 1100px;
+    margin: 0 auto 36px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    border-bottom: 3px solid var(--yellow);
+    padding-bottom: 18px;
+  }
+  .header-icon {
+    font-size: 48px;
+    line-height: 1;
+  }
+  .header-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 4vw, 38px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    line-height: 1.05;
+  }
+  .header-text p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .badge {
+    margin-left: auto;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  /* ---- LEGEND ICONS ROW ---- */
+  .criteria-row {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .criterion {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .crit-icon { font-size: 26px; }
+  .crit-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text2);
+  }
+  .crit-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ---- MAIN TABLE AREA ---- */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .col-headers {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr 1fr 1fr 90px;
+    gap: 8px;
+    padding: 0 0 4px 0;
+  }
+  .col-h {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+  .col-h:first-child { text-align: left; }
+
+  /* ---- MODEL ROW ---- */
+  .model-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr 1fr 1fr 90px;
+    gap: 8px;
+    align-items: center;
+    padding: 12px 16px;
+    transition: border-color 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .model-row:hover {
+    border-color: var(--yellow);
+    transform: translateX(2px);
+  }
+  .model-row.winner {
+    border-color: var(--yellow);
+    background: linear-gradient(90deg, #1e2210 0%, var(--card) 40%);
+  }
+  .model-row.winner::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--yellow);
+    border-radius: 12px 0 0 12px;
+  }
+
+  .model-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    color: var(--text);
+  }
+  .model-name small {
+    display: block;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  /* ---- BAR CELL ---- */
+  .bar-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+  .bar-wrap {
+    width: 100%;
+    height: 8px;
+    background: #252d3a;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  .bar-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* ---- SCORE CELL ---- */
+  .score-cell {
+    text-align: center;
+  }
+  .score-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1;
+  }
+  .score-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .rank-badge {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    text-align: center;
+    line-height: 26px;
+    margin-top: 4px;
+  }
+
+  /* Colors */
+  .c-stiff { color: #4d94ff; }
+  .b-stiff { background: #4d94ff; }
+  .c-light { color: #3dba6f; }
+  .b-light { background: #3dba6f; }
+  .c-speed { color: #e8651a; }
+  .b-speed { background: #e8651a; }
+  .c-price { color: #f5c400; }
+  .b-price { background: #f5c400; }
+  .c-total { color: var(--yellow); }
+
+  /* ---- WINNER BADGE ---- */
+  .winner-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--yellow);
+    color: #0d1117;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+
+  /* ---- NOTES SECTION ---- */
+  .notes-section {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .note-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .note-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .note-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .note-card ul li {
+    font-size: 12.5px;
+    color: var(--text2);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .note-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  /* ---- STAR ---- */
+  .stars {
+    color: var(--yellow);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ---- SAFETY ROW ---- */
+  .safety-row {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    background: linear-gradient(90deg, #1c1a10, #1c2230);
+    border: 1px solid #3d3210;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+  }
+  .safety-row .s-icon { font-size: 22px; }
+  .safety-row strong { color: var(--yellow); }
+
+  @media (max-width: 750px) {
+    .criteria-row { grid-template-columns: 1fr 1fr; }
+    .col-headers, .model-row {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .notes-section { grid-template-columns: 1fr; }
+    .badge { display: none; }
+  }
+</style>
 </head>
-<body style="margin:0; padding:10px; background-color:#f8f9fa; font-family:sans-serif;">
+<body>
 
-    <div id="chart-card-wrapper" style="width:100%; max-width:500px; margin:10px auto; background:#fff; padding:15px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); box-sizing:border-box;">
-        <h3 style="text-align:center; font-size:15px; margin:0 0 15px 0; color:#333; letter-spacing:0.5px;">ANALIZA TECHNICZNA RUSZTOWAŃ (6M)</h3>
-        
-        <div style="position:relative; height:380px; width:100%; display:block;">
-            <canvas id="scaffoldRadarFinal"></canvas>
-        </div>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-icon">🏗️</div>
+  <div class="header-text">
+    <h1>Rusztowania Jezdne 6 m<br>– Wybór dla Brygady Elektroinstalacyjnej</h1>
+    <p>Analiza porównawcza · Kryteria dobrane pod prace elektryczne na wysokości</p>
+  </div>
+  <div class="badge">⚡ Elektroinstalacje</div>
+</div>
 
-        <div style="margin-top:15px; font-size:11px; color:#666; text-align:center; line-height:1.4;">
-            <strong>Skala 1-10:</strong> Im większa powierzchnia, tym system jest bardziej wszechstronny.<br>
-            <span style="color:#e11d48">●</span> Faraone Top <span style="color:#2563eb">●</span> Altrex 3400 <span style="color:#16a34a">●</span> Drabex RA600 <span style="color:#ca8a04">●</span> Krause Stabilo
+<!-- CRITERIA LEGEND -->
+<div class="criteria-row">
+  <div class="criterion">
+    <div class="crit-icon">🔩</div>
+    <div>
+      <div class="crit-label" style="color:#4d94ff">Sztywność</div>
+      <div class="crit-desc">Stabilność podczas pracy narzędziami elektrycznymi; ważna przy wkręcaniu, wierceniu</div>
+    </div>
+  </div>
+  <div class="criterion">
+    <div class="crit-icon">🚚</div>
+    <div>
+      <div class="crit-label" style="color:#3dba6f">Lekkość / Transport</div>
+      <div class="crit-desc">Łatwość przewożenia busem, wnoszenia do obiektów, codziennych przestawień</div>
+    </div>
+  </div>
+  <div class="criterion">
+    <div class="crit-icon">⏱️</div>
+    <div>
+      <div class="crit-label" style="color:#e8651a">Szybkość montażu</div>
+      <div class="crit-desc">Czas rozłożenia i złożenia – kluczowy przy wielu punktach instalacyjnych dziennie</div>
+    </div>
+  </div>
+  <div class="criterion">
+    <div class="crit-icon">💰</div>
+    <div>
+      <div class="crit-label" style="color:#f5c400">Cena (10 = najtaniej)</div>
+      <div class="crit-desc">Stosunek jakości do ceny zakupu lub wynajmu dla ekipy</div>
+    </div>
+  </div>
+</div>
+
+<!-- COLUMN HEADERS -->
+<div class="main">
+  <div class="col-headers">
+    <div class="col-h">Model</div>
+    <div class="col-h" style="color:#4d94ff">🔩 Sztywność</div>
+    <div class="col-h" style="color:#3dba6f">🚚 Lekkość</div>
+    <div class="col-h" style="color:#e8651a">⏱️ Montaż</div>
+    <div class="col-h" style="color:#f5c400">💰 Cena</div>
+    <div class="col-h" style="color:var(--yellow)">WYNIK</div>
+  </div>
+
+  <!-- DATA ROWS - weighted: stiffness 35%, transport 25%, speed 25%, price 15% -->
+  <!-- 
+    Faraone Top:     10,5,7,4  → w=10*0.35+5*0.25+7*0.25+4*0.15 = 3.5+1.25+1.75+0.60 = 7.10
+    Faraone Rapido:  7,9,10,6  → 2.45+2.25+2.50+0.90 = 8.10
+    Altrex RS 44:    9,7,9,5   → 3.15+1.75+2.25+0.75 = 7.90
+    Altrex 3400:     7,9,10,7  → 2.45+2.25+2.50+1.05 = 8.25  ← WINNER
+    Drabex RA 600:   8,7,6,8   → 2.80+1.75+1.50+1.20 = 7.25
+    Krause Stabilo:  9,6,7,5   → 3.15+1.50+1.75+0.75 = 7.15
+    Krause ClimTec:  5,9,7,9   → 1.75+2.25+1.75+1.35 = 7.10
+    Alumexx Prof:    8,8,7,7   → 2.80+2.00+1.75+1.05 = 7.60
+    Higher Prof:     6,8,6,10  → 2.10+2.00+1.50+1.50 = 7.10
+  -->
+
+  <!-- Rank 1 -->
+  <div class="model-row winner">
+    <div>
+      <div class="model-name">Altrex 3400
+        <small>Rusztowanie jezdne aluminiowe</small>
+      </div>
+      <div class="winner-tag">🥇 REKOMENDOWANY</div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:90%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">10</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:100%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:70%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num c-total">8.25</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:var(--yellow);color:#0d1117">#1</div>
+    </div>
+  </div>
+
+  <!-- Rank 2 -->
+  <div class="model-row">
+    <div>
+      <div class="model-name">Faraone Rapido (Compact)
+        <small>Kompaktowe, szybki montaż</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:90%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">10</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:100%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">6</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:60%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#c9d1d9">8.10</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#4d4d4d;color:#fff">#2</div>
+    </div>
+  </div>
+
+  <!-- Rank 3 -->
+  <div class="model-row">
+    <div>
+      <div class="model-name">Altrex RS 44-Power
+        <small>Wysoka sztywność, solidna rama</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:90%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:90%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">5</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:50%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#c9d1d9">7.90</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#3d3d3d;color:#aaa">#3</div>
+    </div>
+  </div>
+
+  <!-- Rank 4 -->
+  <div class="model-row">
+    <div>
+      <div class="model-name">Alumexx Professional
+        <small>Dobry balans wszystkich parametrów</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">8</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:80%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">8</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:80%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:70%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#c9d1d9">7.60</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#3d3d3d;color:#aaa">#4</div>
+    </div>
+  </div>
+
+  <!-- Rank 5 -->
+  <div class="model-row">
+    <div>
+      <div class="model-name">Drabex RA 600
+        <small>Solidny, dobra cena</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">8</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:80%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">6</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:60%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">8</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:80%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#c9d1d9">7.25</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#3d3d3d;color:#aaa">#5</div>
+    </div>
+  </div>
+
+  <!-- Rank 6 -->
+  <div class="model-row">
+    <div>
+      <div class="model-name">Krause Stabilo (Seria 10)
+        <small>Wysoka sztywność, cena wyższa</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:90%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">6</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:60%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">5</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:50%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#c9d1d9">7.15</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#3d3d3d;color:#aaa">#6</div>
+    </div>
+  </div>
+
+  <!-- Rank 7 (tie) -->
+  <div class="model-row">
+    <div>
+      <div class="model-name">Faraone Top System
+        <small>Bardzo sztywne, ciężkie</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">10</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:100%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">5</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:50%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">4</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:40%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#8b949e">7.10</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#2d2d2d;color:#777">#7</div>
+    </div>
+  </div>
+
+  <div class="model-row">
+    <div>
+      <div class="model-name">Krause ClimTec
+        <small>Lekkie, droższe</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">5</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:50%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:90%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">7</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:70%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">9</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:90%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#8b949e">7.10</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#2d2d2d;color:#777">#7</div>
+    </div>
+  </div>
+
+  <div class="model-row">
+    <div>
+      <div class="model-name">Higher Professional
+        <small>Najtańsze, mniejsza sztywność</small>
+      </div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-stiff">6</div>
+      <div class="bar-wrap"><div class="bar-fill b-stiff" style="width:60%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-light">8</div>
+      <div class="bar-wrap"><div class="bar-fill b-light" style="width:80%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-speed">6</div>
+      <div class="bar-wrap"><div class="bar-fill b-speed" style="width:60%"></div></div>
+    </div>
+    <div class="bar-cell">
+      <div class="bar-val c-price">10</div>
+      <div class="bar-wrap"><div class="bar-fill b-price" style="width:100%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-num" style="color:#8b949e">7.10</div>
+      <div class="score-label">wynik</div>
+      <div class="rank-badge" style="background:#2d2d2d;color:#777">#7</div>
+    </div>
+  </div>
+
+</div><!-- end .main -->
+
+<!-- RADAR CHART SECTION -->
+<div style="max-width:1100px;margin:28px auto 0;">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 28px;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;">
+      📡 Wykresy Radarowe – Profil każdego modelu
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:20px;">Kliknij model na liście poniżej, aby porównać go z rekomendowanym Altrex 3400 · Oś = 0–10</div>
+
+    <!-- Model selector -->
+    <div id="model-selector" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;"></div>
+
+    <!-- Two radars side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+      <div>
+        <div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">
+          🥇 ALTREX 3400 — Rekomendowany
         </div>
+        <canvas id="radarWinner" width="380" height="320" style="width:100%;max-width:380px;display:block;margin:0 auto;"></canvas>
+      </div>
+      <div>
+        <div id="compareTitle" style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#c9d1d9;margin-bottom:8px;">
+          Wybierz model do porównania ↑
+        </div>
+        <canvas id="radarCompare" width="380" height="320" style="width:100%;max-width:380px;display:block;margin:0 auto;"></canvas>
+      </div>
     </div>
 
-    <script>
-    (function() {
-        var chartInstance = null;
+    <!-- Legend -->
+    <div style="display:flex;justify-content:center;gap:28px;margin-top:16px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);">
+        <div style="width:12px;height:12px;border-radius:2px;background:#4d94ff;opacity:0.7;"></div> Sztywność
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);">
+        <div style="width:12px;height:12px;border-radius:2px;background:#3dba6f;opacity:0.7;"></div> Lekkość
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);">
+        <div style="width:12px;height:12px;border-radius:2px;background:#e8651a;opacity:0.7;"></div> Szybkość montażu
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);">
+        <div style="width:12px;height:12px;border-radius:2px;background:#f5c400;opacity:0.7;"></div> Cena (wyższa = taniej)
+      </div>
+    </div>
+  </div>
+</div>
 
-        function renderScaffoldChart() {
-            var ctx = document.getElementById('scaffoldRadarFinal');
-            if (!ctx) return;
+<script>
+(function() {
+  const models = [
+    { name: "Faraone Top System",      s: [10, 5,  7,  4],  color: "#e05252" },
+    { name: "Faraone Rapido",          s: [7,  9,  10, 6],  color: "#ff8c42" },
+    { name: "Altrex RS 44-Power",      s: [9,  7,  9,  5],  color: "#4d94ff" },
+    { name: "Altrex 3400",             s: [7,  9,  10, 7],  color: "#f5c400" },
+    { name: "Drabex RA 600",           s: [8,  7,  6,  8],  color: "#a78bfa" },
+    { name: "Krause Stabilo",          s: [9,  6,  7,  5],  color: "#38bdf8" },
+    { name: "Krause ClimTec",          s: [5,  9,  7,  9],  color: "#f472b6" },
+    { name: "Alumexx Professional",    s: [8,  8,  7,  7],  color: "#34d399" },
+    { name: "Higher Professional",     s: [6,  8,  6,  10], color: "#fb923c" }
+  ];
 
-            // Jeśli wykres już istnieje, usuwamy go przed ponownym rysowaniem
-            if (chartInstance) {
-                chartInstance.destroy();
-            }
+  const labels = ["Sztywność", "Lekkość", "Szybkość\nmontażu", "Cena"];
+  const axisColors = ["#4d94ff", "#3dba6f", "#e8651a", "#f5c400"];
+  const winner = models.find(m => m.name === "Altrex 3400");
 
-            chartInstance = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels:,
-                    datasets:,
-                            borderColor: '#e11d48',
-                            backgroundColor: 'rgba(225, 29, 72, 0.1)',
-                            borderWidth: 3,
-                            pointRadius: 2
-                        },
-                        {
-                            label: 'Altrex 3400',
-                            data: [7, 9, 10, 7],
-                            borderColor: '#2563eb',
-                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                            borderWidth: 3,
-                            pointRadius: 2
-                        },
-                        {
-                            label: 'Drabex RA 600',
-                            data: [8, 7, 6, 8],
-                            borderColor: '#16a34a',
-                            backgroundColor: 'rgba(22, 163, 74, 0.1)',
-                            borderWidth: 3,
-                            pointRadius: 2
-                        },
-                        {
-                            label: 'Krause Stabilo 10',
-                            data: [5, 6, 3, 2],
-                            borderColor: '#ca8a04',
-                            backgroundColor: 'rgba(202, 138, 4, 0.1)',
-                            borderWidth: 3,
-                            pointRadius: 2
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            min: 0,
-                            max: 10,
-                            ticks: { display: false, stepSize: 2 },
-                            pointLabels: { font: { size: 11, weight: 'bold' }, color: '#444' },
-                            grid: { color: '#eee' }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false } // Legenda własna w HTML dla oszczędności miejsca na mobilnych
-                    }
-                }
-            });
-        }
+  // Build selector buttons
+  const sel = document.getElementById('model-selector');
+  let active = null;
+  models.filter(m => m.name !== "Altrex 3400").forEach(m => {
+    const btn = document.createElement('button');
+    btn.textContent = m.name;
+    btn.dataset.name = m.name;
+    btn.style.cssText = `
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
+      padding: 6px 14px; border-radius: 20px; cursor: pointer;
+      border: 1.5px solid #30363d; background: #1c2230; color: #c9d1d9;
+      transition: all 0.15s;
+    `;
+    btn.addEventListener('mouseenter', () => { if (btn.dataset.name !== (active?.name)) btn.style.borderColor = m.color; });
+    btn.addEventListener('mouseleave', () => { if (btn.dataset.name !== (active?.name)) btn.style.borderColor = '#30363d'; });
+    btn.addEventListener('click', () => {
+      active = m;
+      sel.querySelectorAll('button').forEach(b => {
+        b.style.background = '#1c2230'; b.style.color = '#c9d1d9'; b.style.borderColor = '#30363d';
+      });
+      btn.style.background = m.color + '22';
+      btn.style.borderColor = m.color;
+      btn.style.color = '#fff';
+      document.getElementById('compareTitle').textContent = m.name.toUpperCase();
+      document.getElementById('compareTitle').style.color = m.color;
+      drawRadar('radarCompare', m, m.color);
+    });
+    sel.appendChild(btn);
+  });
 
-        // Zabezpieczenie przed błędem renderowania na mobilnych:
-        // 1. Próba przy załadowaniu DOM
-        document.addEventListener('DOMContentLoaded', renderScaffoldChart);
-        // 2. Próba przy pełnym załadowaniu okna
-        window.addEventListener('load', renderScaffoldChart);
-        // 3. Krytyczny FIX: Wymuszenie po 500ms (czas na obliczenie wymiarów paki przez telefon)
-        setTimeout(renderScaffoldChart, 500);
-    })();
-    </script>
+  // Draw winner always
+  drawRadar('radarWinner', winner, '#f5c400');
+  // Default compare: Faraone Rapido
+  const defaultCompare = models.find(m => m.name === "Faraone Rapido");
+  active = defaultCompare;
+  document.getElementById('compareTitle').textContent = defaultCompare.name.toUpperCase();
+  document.getElementById('compareTitle').style.color = defaultCompare.color;
+  drawRadar('radarCompare', defaultCompare, defaultCompare.color);
+  // Highlight default btn
+  sel.querySelectorAll('button').forEach(b => {
+    if (b.dataset.name === defaultCompare.name) {
+      b.style.background = defaultCompare.color + '22';
+      b.style.borderColor = defaultCompare.color;
+      b.style.color = '#fff';
+    }
+  });
+
+  function drawRadar(canvasId, model, color) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.offsetWidth || 380;
+    const H = 320;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W / 2;
+    const cy = H / 2 + 10;
+    const maxR = Math.min(W, H) * 0.36;
+    const N = 4;
+    const angles = []; // top, right, bottom, left → for 4 axes
+    for (let i = 0; i < N; i++) angles.push(-Math.PI/2 + (2 * Math.PI * i) / N);
+
+    // Draw grid rings
+    for (let ring = 1; ring <= 5; ring++) {
+      const r = maxR * (ring / 5);
+      ctx.beginPath();
+      for (let i = 0; i < N; i++) {
+        const x = cx + r * Math.cos(angles[i]);
+        const y = cy + r * Math.sin(angles[i]);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = ring === 5 ? '#3a4050' : '#252d3a';
+      ctx.lineWidth = ring === 5 ? 1.5 : 1;
+      ctx.stroke();
+
+      // Ring label (value)
+      if (ring % 2 === 0) {
+        ctx.fillStyle = '#4a5568';
+        ctx.font = '9px Barlow, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(ring * 2, cx + 4, cy - r + 3);
+      }
+    }
+
+    // Draw axis lines
+    for (let i = 0; i < N; i++) {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + maxR * Math.cos(angles[i]), cy + maxR * Math.sin(angles[i]));
+      ctx.strokeStyle = axisColors[i] + '55';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Draw axis labels
+    const labelOffset = 22;
+    const labelTexts = ["Sztywność", "Lekkość", "Szybkość\nmontażu", "Cena"];
+    for (let i = 0; i < N; i++) {
+      const lx = cx + (maxR + labelOffset) * Math.cos(angles[i]);
+      const ly = cy + (maxR + labelOffset) * Math.sin(angles[i]);
+      ctx.fillStyle = axisColors[i];
+      ctx.font = 'bold 11px "Barlow Condensed", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const lines = labelTexts[i].split('\n');
+      lines.forEach((line, li) => {
+        ctx.fillText(line, lx, ly + (li - (lines.length-1)/2) * 13);
+      });
+    }
+
+    // Draw data polygon
+    const vals = model.s;
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const r = maxR * (vals[i] / 10);
+      const x = cx + r * Math.cos(angles[i]);
+      const y = cy + r * Math.sin(angles[i]);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = color + '2a';
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // Draw dots at each vertex
+    for (let i = 0; i < N; i++) {
+      const r = maxR * (vals[i] / 10);
+      const x = cx + r * Math.cos(angles[i]);
+      const y = cy + r * Math.sin(angles[i]);
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.strokeStyle = '#0d1117';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Value label near dot
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 12px "Barlow Condensed", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const vOffX = Math.cos(angles[i]) * 14;
+      const vOffY = Math.sin(angles[i]) * 14;
+      ctx.fillText(vals[i], x + vOffX, y + vOffY);
+    }
+
+    // Center score
+    const score = (vals[0]*0.35 + vals[1]*0.25 + vals[2]*0.25 + vals[3]*0.15).toFixed(2);
+    ctx.fillStyle = color;
+    ctx.font = 'bold 22px "Barlow Condensed", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(score, cx, cy - 5);
+    ctx.fillStyle = '#8b949e';
+    ctx.font = '10px Barlow, sans-serif';
+    ctx.fillText('wynik', cx, cy + 12);
+  }
+
+  // Redraw on resize
+  window.addEventListener('resize', () => {
+    drawRadar('radarWinner', winner, '#f5c400');
+    if (active) drawRadar('radarCompare', active, active.color);
+  });
+})();
+</script>
+
+<!-- WAGI KRYTERIÓW info -->
+<div class="safety-row">
+  <div class="s-icon">⚖️</div>
+  <div>
+    <strong>Metodologia ważenia:</strong> Sztywność 35% · Lekkość/Transport 25% · Szybkość montażu 25% · Cena 15% — 
+    dobrane pod specyfikę prac elektroinstalacyjnych (dużo punktów dziennie, praca narzędziami, transport busem).
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="notes-section">
+  <div class="note-card">
+    <h3 style="color:var(--yellow)">⚡ Dlaczego Altrex 3400?</h3>
+    <ul>
+      <li>Najszybszy montaż w teście (10/10) – krytyczny przy instalacji wielu punktów w ciągu dnia</li>
+      <li>Bardzo lekka aluminiowa konstrukcja – łatwy załadunek i rozładunek busa ekipy</li>
+      <li>Wystarczająca sztywność (7/10) do wiercenia, prowadzenia kabli i montażu rozdzielnic</li>
+      <li>Rozsądna cena – dobry stosunek jakości do nakładu inwestycyjnego</li>
+      <li>Szeroka dostępność części zamiennych i akcesoriów na rynku polskim</li>
+    </ul>
+  </div>
+  <div class="note-card">
+    <h3 style="color:#4d94ff">🔩 Kiedy wybrać Faraone Top System?</h3>
+    <ul>
+      <li>Prace wymagające maksymalnej stabilności – np. instalacja ciężkich tablic, szaf rozdzielczych</li>
+      <li>Obiekty przemysłowe z nierówną nawierzchnią – wysoka sztywność (10/10) daje komfort pracy</li>
+      <li>Jeśli rusztowanie stoi przez dłuższy czas i nie jest codziennie przestawiane</li>
+      <li>Wady: cięższe, kosztowniejsze – nie idealne do pracy „z koła"</li>
+    </ul>
+  </div>
+  <div class="note-card">
+    <h3 style="color:#e05252">⚠️ Bezpieczeństwo – wymagania prawne</h3>
+    <ul>
+      <li>Rusztowania 6 m podlegają <strong style="color:var(--text)">PN-EN 1004</strong> – klasa min. 3 (150 kg/m²)</li>
+      <li>Wymagane barierki boczne + poprzeczka łańcuchowa przy każdym wejściu</li>
+      <li>Kółka z blokadą (minimum 4 blokady) – obowiązkowe podczas pracy</li>
+      <li>Użytkownik zobowiązany do przeglądu przed każdym użyciem (BHP)</li>
+      <li>Przy pracy z narzędziami elektrycznymi – uwaga na prowadzenie przewodów (nie przez ramy)</li>
+    </ul>
+  </div>
+  <div class="note-card">
+    <h3 style="color:#3dba6f">💡 Praktyczne wskazówki dla brygady</h3>
+    <ul>
+      <li>Zakup 2 lekkich rusztowań (np. Altrex 3400) = większa elastyczność niż 1 ciężkie</li>
+      <li>Skrzynka narzędziowa z hakiem na ramę rusztowania przyspiesza pracę na wysokości</li>
+      <li>Do obiektów z windą towarową – waga ma mniejsze znaczenie niż sztywność</li>
+      <li>Wynajem przed zakupem – sprawdź Altrex 3400 i Faraone Rapido w realnych warunkach</li>
+      <li>Dodatkowe wsporniki podłogowe przy pracach na parkietach / posadzkach epoksydowych</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  Infografika przygotowana dla brygady elektroinstalacyjnej · Dane: tabela porównawcza + wagi kryteriów dobrane pod specyfikę branży elektrycznej<br>
+  Oceny w skali 1–10 · Wynik końcowy = średnia ważona · Marzec 2026
+</div>
 
 </body>
 </html>
