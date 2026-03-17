@@ -3,101 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porównanie Rusztowań 6m - Fix Mobilny</title>
+    <title>Analiza Rusztowań 6m</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f7f9; margin: 0; padding: 15px; }
-        h2 { font-size: 16px; text-align: center; color: #333; margin-bottom: 20px; }
-        /* Kontener z wymuszoną wysokością i pozycjonowaniem */
-       .chart-container {
-            position: relative;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 10px;
-            width: 100%;
-            height: 380px; /* Sztywna wysokość dla mobilnych */
-            margin: 0 auto;
-            box-sizing: border-box;
-        }
-       .info { font-size: 11px; color: #777; text-align: center; margin-top: 15px; line-height: 1.4; }
-    </style>
 </head>
-<body>
+<body style="margin:0; padding:10px; background-color:#f8f9fa; font-family:sans-serif;">
 
-    <h2>ANALIZA TECHNICZNA RUSZTOWAŃ (6M)</h2>
-    
-    <div class="chart-container">
-        <canvas id="scaffoldRadarChart" width="400" height="400"></canvas>
-    </div>
+    <div id="chart-card-wrapper" style="width:100%; max-width:500px; margin:10px auto; background:#fff; padding:15px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); box-sizing:border-box;">
+        <h3 style="text-align:center; font-size:15px; margin:0 0 15px 0; color:#333; letter-spacing:0.5px;">ANALIZA TECHNICZNA RUSZTOWAŃ (6M)</h3>
+        
+        <div style="position:relative; height:380px; width:100%; display:block;">
+            <canvas id="scaffoldRadarFinal"></canvas>
+        </div>
 
-    <div class="info">
-        <strong>Legenda:</strong> Wykres radarowy 1-10.<br>
-        *Cena: 10 = najniższy koszt. Sztywność: 10 = rury 50mm/max stabilność.
+        <div style="margin-top:15px; font-size:11px; color:#666; text-align:center; line-height:1.4;">
+            <strong>Skala 1-10:</strong> Im większa powierzchnia, tym system jest bardziej wszechstronny.<br>
+            <span style="color:#e11d48">●</span> Faraone Top <span style="color:#2563eb">●</span> Altrex 3400 <span style="color:#16a34a">●</span> Drabex RA600 <span style="color:#ca8a04">●</span> Krause Stabilo
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('scaffoldRadarChart');
-            
+    (function() {
+        var chartInstance = null;
+
+        function renderScaffoldChart() {
+            var ctx = document.getElementById('scaffoldRadarFinal');
             if (!ctx) return;
 
-            new Chart(ctx, {
+            // Jeśli wykres już istnieje, usuwamy go przed ponownym rysowaniem
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
                 type: 'radar',
                 data: {
                     labels:,
                     datasets:,
                             borderColor: '#e11d48',
                             backgroundColor: 'rgba(225, 29, 72, 0.1)',
-                            borderWidth: 2
+                            borderWidth: 3,
+                            pointRadius: 2
                         },
                         {
                             label: 'Altrex 3400',
                             data: [7, 9, 10, 7],
                             borderColor: '#2563eb',
                             backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                            borderWidth: 2
+                            borderWidth: 3,
+                            pointRadius: 2
                         },
                         {
                             label: 'Drabex RA 600',
                             data: [8, 7, 6, 8],
                             borderColor: '#16a34a',
                             backgroundColor: 'rgba(22, 163, 74, 0.1)',
-                            borderWidth: 2
+                            borderWidth: 3,
+                            pointRadius: 2
                         },
                         {
                             label: 'Krause Stabilo 10',
                             data: [5, 6, 3, 2],
                             borderColor: '#ca8a04',
                             backgroundColor: 'rgba(202, 138, 4, 0.1)',
-                            borderWidth: 2
+                            borderWidth: 3,
+                            pointRadius: 2
                         }
                     ]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false, // Kluczowe dla poprawnego wypełnienia kontenera
-                    aspectRatio: 1, // Radar najlepiej wygląda jako kwadrat
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { boxWidth: 12, font: { size: 10 } }
-                        }
-                    },
+                    maintainAspectRatio: false,
                     scales: {
                         r: {
                             min: 0,
                             max: 10,
                             ticks: { display: false, stepSize: 2 },
-                            pointLabels: { 
-                                font: { size: 11, weight: 'bold' },
-                                color: '#444'
-                            }
+                            pointLabels: { font: { size: 11, weight: 'bold' }, color: '#444' },
+                            grid: { color: '#eee' }
                         }
+                    },
+                    plugins: {
+                        legend: { display: false } // Legenda własna w HTML dla oszczędności miejsca na mobilnych
                     }
                 }
             });
-        });
+        }
+
+        // Zabezpieczenie przed błędem renderowania na mobilnych:
+        // 1. Próba przy załadowaniu DOM
+        document.addEventListener('DOMContentLoaded', renderScaffoldChart);
+        // 2. Próba przy pełnym załadowaniu okna
+        window.addEventListener('load', renderScaffoldChart);
+        // 3. Krytyczny FIX: Wymuszenie po 500ms (czas na obliczenie wymiarów paki przez telefon)
+        setTimeout(renderScaffoldChart, 500);
+    })();
     </script>
+
 </body>
 </html>
