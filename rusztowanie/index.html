@@ -2,91 +2,111 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porównanie Rusztowań - Wersja Mobilna</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Porównanie Rusztowań 6m - Mobilny Ekspert</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; }
-        h2 { color: #1c1e21; font-size: 1.2rem; text-align: center; margin: 15px 0; }
-       .chart-wrapper { width: 100%; max-width: 600px; background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); box-sizing: border-box; }
-       .canvas-container { position: relative; height: 350px; width: 100%; }
-       .legend-info { font-size: 0.75rem; color: #65676b; margin-top: 15px; text-align: center; line-height: 1.4; padding: 0 10px; }
-        @media (max-width: 480px) {.canvas-container { height: 300px; } h2 { font-size: 1rem; } }
+        :root { --primary-bg: #f8f9fa; --card-bg: #ffffff; --text-main: #212529; }
+        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--primary-bg); margin: 0; padding: 15px; color: var(--text-main); }
+        h2 { font-size: 1.1rem; text-align: center; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        /* Kluczowy fix: wymuszenie wysokości na kontenerze */
+       .chart-box { 
+            background: var(--card-bg); 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            padding: 10px; 
+            position: relative; 
+            width: 100%; 
+            height: 400px; /* Stała wysokość dla pewności renderowania */
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        canvas { width: 100%!important; height: 100%!important; }
+       .footer-info { font-size: 0.75rem; color: #6c757d; margin-top: 20px; text-align: center; line-height: 1.5; padding: 0 10px; }
+        @media (max-width: 480px) {.chart-box { height: 350px; } h2 { font-size: 0.95rem; } }
     </style>
 </head>
 <body>
 
     <h2>Analiza Techniczna Rusztowań (6m)</h2>
     
-    <div class="chart-wrapper">
-        <div class="canvas-container">
-            <canvas id="scaffoldRadarChart"></canvas>
-        </div>
+    <div class="chart-box">
+        <canvas id="scaffoldRadar"></canvas>
     </div>
 
-    <div class="legend-info">
-        <strong>Skala 1-10:</strong> Im dalej od środka, tym lepiej w danej kategorii.<br>
-        *Cena: 10 = najniższy koszt zakupu. Sztywność: 10 = najwyższa stabilność.
+    <div class="footer-info">
+        <strong>Interpretacja danych:</strong> Im większa powierzchnia wielokąta, tym system jest bardziej wszechstronny.<br>
+        *Cena: 10 = najniższy koszt. Sztywność: 10 = max stabilność (rury 50mm).
     </div>
 
     <script>
-        const data = {
-            labels:,
-            datasets:,
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
-                    borderWidth: 2
-                },
-                {
-                    label: 'Altrex 3400',
-                    data: [7, 9, 10, 7],
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
-                    borderWidth: 2
-                },
-                {
-                    label: 'Drabex RA 600',
-                    data: [8, 7, 6, 8],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.2)',
-                    borderWidth: 2
-                },
-                {
-                    label: 'Krause Stabilo 10',
-                    data: [5, 6, 3, 2],
-                    borderColor: '#f1c40f',
-                    backgroundColor: 'rgba(241, 196, 15, 0.2)',
-                    borderWidth: 2
-                }
-            ]
-        };
-
-        const config = {
-            type: 'radar',
-            data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { boxWidth: 12, padding: 15, font: { size: 11 } }
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('scaffoldRadar').getContext('2d');
+            
+            const data = {
+                labels:,
+                datasets:,
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.15)',
+                        borderWidth: 3,
+                        pointRadius: 3
+                    },
+                    {
+                        label: 'Altrex 3400',
+                        data: [7, 9, 10, 7],
+                        borderColor: '#0d6efd',
+                        backgroundColor: 'rgba(13, 110, 253, 0.15)',
+                        borderWidth: 3,
+                        pointRadius: 3
+                    },
+                    {
+                        label: 'Drabex RA 600',
+                        data: [8, 7, 6, 8],
+                        borderColor: '#198754',
+                        backgroundColor: 'rgba(25, 135, 84, 0.15)',
+                        borderWidth: 3,
+                        pointRadius: 3
+                    },
+                    {
+                        label: 'Krause Stabilo 10',
+                        data: [5, 6, 3, 2],
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.15)',
+                        borderWidth: 3,
+                        pointRadius: 3
                     }
-                },
-                scales: {
-                    r: {
-                        min: 0,
-                        max: 10,
-                        ticks: { display: false, stepSize: 2 },
-                        pointLabels: { font: { size: 10, weight: 'bold' } }
+                ]
+            };
+
+            const config = {
+                type: 'radar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, /* Pozwala na dopasowanie do wymuszonej wysokości */
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { boxWidth: 10, font: { size: 10, weight: '600' }, padding: 10 }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 10,
+                            ticks: { display: false, stepSize: 2 },
+                            pointLabels: { font: { size: 11, weight: 'bold' }, color: '#495057' },
+                            grid: { color: '#dee2e6' },
+                            angleLines: { color: '#dee2e6' }
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        window.onload = function() {
-            new Chart(document.getElementById('scaffoldRadarChart'), config);
-        };
+            new Chart(ctx, config);
+        });
     </script>
 </body>
 </html>
