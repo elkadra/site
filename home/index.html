@@ -9,6 +9,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Lokalny font z repa.
+     AKTUALNA ŚCIEŻKA zakłada, że ten plik leży w site/home/index.html.
+     Po przeprowadzce do site/index.html — zmień '../fonts/...' na 'fonts/...'
+     Jeśli plik się nie załaduje, fallback przechodzi na Goldmana z Google Fonts. */
+  @font-face {
+    font-family: 'Eurostile Extended';
+    src: url('../fonts/EurostileExtendedTwo-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --navy: #002e52;
     --navy-dark: #001a30;
@@ -35,7 +47,7 @@
     --rule: #e5e5e5;
     --rule-strong: #c7ccd1;
 
-    --font-display: 'Goldman', 'Courier New', monospace;
+    --font-display: 'Eurostile Extended', 'Goldman', 'Arial Black', 'Courier New', monospace;
     --font-mono: 'Roboto Mono', 'Courier New', monospace;
   }
 
@@ -204,8 +216,8 @@
   .hero-title {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(60px, 13vw, 200px);
-    line-height: 0.85;
+    font-size: clamp(44px, 7vw, 108px);
+    line-height: 0.92;
     letter-spacing: -0.02em;
     color: var(--navy);
     margin-bottom: 28px;
@@ -390,7 +402,11 @@
     padding: clamp(70px, 10vh, 120px) 0;
     background: var(--white);
   }
+  .kierunek.hidden { display: none; } /* dodaj tę klasę na <a class="kierunek hidden">, żeby ukryć linię do czasu gotowości LP */
   .kierunek-list { border-top: 2px solid var(--navy); }
+
+  /* Ukrywanie kierunków bez gotowej podstrony — dodaj klasę "draft" do <a class="kierunek"> */
+  .kierunek.draft { display: none !important; }
   .kierunek {
     display: grid;
     grid-template-columns: 60px 1fr auto;
@@ -419,7 +435,30 @@
     letter-spacing: 0.1em;
   }
   .kierunek:hover .kierunek-num { color: var(--navy); }
-  .kierunek-tag { display: inline-flex; align-items: center; gap: 10px; }
+  .kierunek-tag { display: inline-flex; align-items: center; gap: 12px; }
+  .kierunek-icon-wrap {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--platinum);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .kierunek-icon-wrap svg,
+  .kierunek-icon-wrap img {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+  .kierunek-icon-wrap .swatch-fallback {
+    width: 14px;
+    height: 14px;
+    display: block;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
   .kierunek-swatch {
     width: 18px;
     height: 18px;
@@ -453,6 +492,33 @@
   .kierunek:hover .kierunek-arrow {
     color: var(--navy);
     transform: translateX(6px);
+  }
+
+  /* === KIERUNEK — STAN "WKRÓTCE" ===
+     Dodaj klasę .kierunek--soon do <a class="kierunek"> aby:
+     — wyłączyć interakcję (nie klika)
+     — zgasić opis wizualnie
+     — zamienić strzałkę na tag "WKRÓTCE"
+     Użycie: <a href="#" class="kierunek kierunek--soon"> ... </a>
+     Alternatywa: dodaj style="display:none" albo zakomentuj HTML, żeby całkiem ukryć. */
+  .kierunek--soon {
+    opacity: 0.55;
+    pointer-events: none;
+    cursor: default;
+  }
+  .kierunek--soon .kierunek-arrow {
+    font-size: 0;
+  }
+  .kierunek--soon .kierunek-arrow::after {
+    content: 'WKRÓTCE';
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    padding: 4px 8px;
+    border: 1px solid var(--rule-strong);
+    background: var(--ash);
   }
 
   @media (max-width: 899px) {
@@ -535,6 +601,14 @@
     gap: 14px;
     min-height: 240px;
   }
+  .zasada-wide {
+    grid-column: 1 / -1;
+    background: var(--navy-dark);
+    padding: 36px 32px;
+    min-height: auto;
+  }
+  .zasada-wide .zasada-title { font-size: clamp(22px, 2.6vw, 32px); max-width: 640px; }
+  .zasada-wide .zasada-text { font-size: 13px; max-width: 780px; }
   .zasada-num {
     font-size: 11px;
     letter-spacing: 0.15em;
@@ -945,14 +1019,15 @@
       <div class="hero-grid">
         <div class="hero-manifest">
           <p>
-            <strong>Zbieramy brygadę najlepszych elektryków na Śląsku.</strong>
-            Jednostkę specjalną do zadań elektrycznych — od ziemnej roboty po
-            sieć LAN, od falownika w wentylacji po rozdzielnię główną.
+            <strong>Brygada, która rozwiązuje każdy elektryczny problem</strong> — bez znaczenia,
+            czy to trudne, brudne prace ziemne, czy wysublimowana sieć LAN,
+            czy podłączenie falownika do wentylatora. Wszystko, co ma prąd
+            i sens, leży w naszym obszarze.
           </p>
           <p>
             Nie <span class="highlight">kładziemy kabli</span>. Budujemy układy nerwowe
-            budynków. Siedem kierunków, jeden sposób myślenia: fizyka ponad
-            projektem, efekt ponad obecnością, system ponad chaosem.
+            budynków. Jeden sposób myślenia dla każdej linii: fizyka ponad
+            projektem, kompletność ponad wycinkami, system ponad chaosem.
           </p>
         </div>
         <div class="hero-ctas">
@@ -1058,10 +1133,12 @@
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 02 · Kierunki</div>
-      <h2 class="section-title"><span class="slash">/</span>Siedem linii, jedna brygada.</h2>
+      <h2 class="section-title"><span class="slash">/</span>Różne fronty, jedna brygada.</h2>
       <p class="section-sub">
-        Każdy kierunek ma własny kolor, własne narzędzia i własną stronę.
-        Poniżej — mapa. Kliknij w ten, który Cię dotyczy.
+        Każda linia zamyka temat od projektu po serwis — bez odsyłania do
+        podwykonawców, bez dzielenia odpowiedzialności, bez "to nie nasza
+        branża". Wybierz to, co Cię dotyczy — trafisz od razu do ludzi, którzy
+        robią dokładnie tę robotę.
       </p>
     </div>
 
@@ -1070,7 +1147,8 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">01</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--dom);"></div>
+          <!-- miejsce na ikonę linii. Podmień <span class="swatch-fallback"> na <img src="icons/dom.svg"> albo inline SVG -->
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--dom);"></span></div>
           <div class="kierunek-name">Dom</div>
         </div>
         <div class="kierunek-desc"><span class="label">/INSTALACJE I MODERNIZACJE</span> — klienci indywidualni, domy jednorodzinne, mieszkania. Od koncepcji po uruchomienie.</div>
@@ -1080,7 +1158,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">02</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--pro);"></div>
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--pro);"></span></div>
           <div class="kierunek-name">Pro</div>
         </div>
         <div class="kierunek-desc"><span class="label">/BIZNES B2B I PRZEMYSŁ</span> — pomiary elektryczne, remonty zakładowe, dokumentacja powykonawcza w standardzie.</div>
@@ -1090,7 +1168,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">03</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--partner);"></div>
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--partner);"></span></div>
           <div class="kierunek-name">Partner</div>
         </div>
         <div class="kierunek-desc"><span class="label">/WSPARCIE DLA BRANŻY HVAC</span> — firmy hydrauliczne, wod-kan, wentylacja. Wasze projekty, nasze obwody.</div>
@@ -1100,7 +1178,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">04</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--smart);"></div>
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--smart);"></span></div>
           <div class="kierunek-name">Smart</div>
         </div>
         <div class="kierunek-desc"><span class="label">/INTELIGENTNY DOM I AUTOMATYKA</span> — projekt, integracja, serwis. Z myślą o użytkowniku, nie o gadżetach.</div>
@@ -1110,7 +1188,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">05</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--power);"></div>
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--power);"></span></div>
           <div class="kierunek-name">Power</div>
         </div>
         <div class="kierunek-desc"><span class="label">/PRZYŁĄCZA I ZASILANIA</span> — rozdzielnice, dobór, prefabrykacja, pomiary odbiorcze. Klienci indywidualni i obiektowi.</div>
@@ -1120,7 +1198,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">06</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--lab);"></div>
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--lab);"></span></div>
           <div class="kierunek-name">Lab</div>
         </div>
         <div class="kierunek-desc"><span class="label">/WYNAJEM APARATURY POMIAROWEJ</span> — mierniki z kalibracją, instruktaż obsługi, na dni lub tygodnie.</div>
@@ -1130,7 +1208,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">07</div>
         <div class="kierunek-tag">
-          <div class="kierunek-swatch" style="background: var(--signal);"></div>
+          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--signal);"></span></div>
           <div class="kierunek-name">Signal</div>
         </div>
         <div class="kierunek-desc"><span class="label">/TELETECHNIKA I SIECI</span> — LAN, CCTV, kontrola dostępu, SSWiN. Bo sygnał to też prąd.</div>
@@ -1163,37 +1241,22 @@
       <div class="zasada">
         <div class="zasada-num">02</div>
         <div class="zasada-title">Myślimy<br>10 lat do przodu</div>
-        <div class="zasada-text">Każdy przewód w rozdzielnicy, każda puszka — trwale opisane. Za dekadę ktoś ma móc wrócić do tej instalacji i zrozumieć ją w minutę, nie w dzień.</div>
+        <div class="zasada-text">Każdy aparat w rozdzielnicy, każda puszka — trwale opisane. Za dekadę ktoś ma móc wrócić do tej instalacji i zrozumieć ją w minutę, nie w dzień.</div>
       </div>
       <div class="zasada">
         <div class="zasada-num">03</div>
-        <div class="zasada-title">Efekt,<br>nie obecność</div>
-        <div class="zasada-text">Klient płaci za zrobioną instalację, a nie za to, że ktoś "był w pracy". Promujemy szybkich i dokładnych. Kawowi specjaliści sami się eliminują.</div>
-      </div>
-      <div class="zasada">
-        <div class="zasada-num">04</div>
         <div class="zasada-title">Symbioza<br>branżowa</div>
         <div class="zasada-text">Nie walczymy z hydraulikiem o przestrzeń w ścianie. Planujemy tak, żeby instalacje ze sobą nie walczyły. Szanujemy statykę, przepusty, tynk.</div>
       </div>
       <div class="zasada">
-        <div class="zasada-num">05</div>
+        <div class="zasada-num">04</div>
         <div class="zasada-title">Higiena<br>miejsca pracy</div>
         <div class="zasada-text">Odkurzacz i miotła ważą tyle samo co wiertarka. Misja kończy się, kiedy po nas zostaje czystość — nie pobojowisko do sprzątnięcia przez klienta.</div>
       </div>
-      <div class="zasada">
-        <div class="zasada-num">06</div>
-        <div class="zasada-title">Błąd zgłoszony,<br>nie ukryty</div>
-        <div class="zasada-text">Błąd zgłoszony natychmiast to lekcja. Błąd ukryty to sabotaż. Cenimy odwagę przyznania się do pomyłki bardziej niż fałszywą perfekcję.</div>
-      </div>
-      <div class="zasada">
-        <div class="zasada-num">07</div>
-        <div class="zasada-title">Nieśmiertelnik<br>na rozdzielnicy</div>
-        <div class="zasada-text">Każda rozdzielnica, którą podłączamy, jest sygnowana naszym logo. To podpis. Jeśli zrobiona krzywo — to tak, jakbyśmy napluli na własne nazwisko.</div>
-      </div>
-      <div class="zasada">
-        <div class="zasada-num">08</div>
-        <div class="zasada-title">Nie szukamy<br>pracowników</div>
-        <div class="zasada-text">Szukamy współplemieńców. Będziemy robić rzeczy trudne i nowe. Jeśli ktoś woli ciepłą posadkę i klepanie tego samego od 20 lat — nie u nas.</div>
+      <div class="zasada zasada-wide">
+        <div class="zasada-num">05 · Kluczowe</div>
+        <div class="zasada-title">Nie pracownicy — <br>technicy operacyjni.</div>
+        <div class="zasada-text">U nas nie ma „pracowników". Są wyspecjalizowani technicy operacyjni — każdy ekspert w swoim wycinku elektryki. Rozdzielnicami zajmuje się kto inny niż teletechniką, automatyką czy pomiarami. Każda robota trafia w ręce kogoś, kto zna ją najlepiej — i wyłącznie tą się zajmuje na co dzień.</div>
       </div>
     </div>
   </div>
@@ -1224,7 +1287,7 @@
           [<strong>Placeholder biogramu</strong> — kilka zdań o doświadczeniu, ścieżce zawodowej, dlaczego akurat elektryka. Ten fragment podmienimy, jak mi podeślesz własną wersję. Reszta strony już brzmi z kodeksu, ale biogram to Twój głos osobisty — nie chcę go zmyślać.]
         </p>
         <p class="bio-text">
-          Budujemy brygadę elektryków, którzy traktują tynk, statykę, wentylację i HVAC jak część swojej roboty — nie jako "nie moja branża". Stąd EL'Kadra, stąd siedem kierunków, stąd "wszystkie fazy".
+          Budujemy brygadę elektryków, którzy traktują tynk, statykę, wentylację i HVAC jak część swojej roboty — nie jako "nie moja branża". Stąd EL'Kadra, stąd podział na osobne kierunki, stąd "wszystkie fazy".
         </p>
         <div class="bio-stamp">
           <div class="bio-stamp-line">— inż. Karol Drabik</div>
