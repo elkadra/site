@@ -460,25 +460,24 @@
   .kierunek-tag { display: inline-flex; align-items: center; gap: 12px; }
   .kierunek-icon-wrap {
     position: relative;
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--platinum);
-    border: 1px solid rgba(0,0,0,0.08);
   }
   .kierunek-icon-wrap svg,
   .kierunek-icon-wrap img {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     display: block;
   }
   .kierunek-icon-wrap .swatch-fallback {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     display: block;
+    background: var(--signal);
     border: 1px solid rgba(0,0,0,0.15);
   }
   .kierunek-swatch {
@@ -1010,12 +1009,7 @@
         <ul>
           <li><a href="#kierunki">Kierunki</a></li>
           <li><a href="#manifest">Manifest</a></li>
-          <li><a href="#inzynier">Inżynier</a></li>
-          <li><a href="#warsztat">Warsztat</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
-      <a href="#kontakt" class="nav-cta">Brief →</a>
+          <li><a href="#inzynier">Założyciel</a></li>
     </div>
   </div>
 </header>
@@ -1169,8 +1163,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">01</div>
         <div class="kierunek-tag">
-          <!-- miejsce na ikonę linii. Podmień <span class="swatch-fallback"> na <img src="icons/dom.svg"> albo inline SVG -->
-          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--dom);"></span></div>
+          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_dom.svg" alt=""></div>
           <div class="kierunek-name">Dom</div>
         </div>
         <div class="kierunek-desc"><span class="label">/INSTALACJE I MODERNIZACJE</span> — klienci indywidualni, domy jednorodzinne, mieszkania. Od koncepcji po uruchomienie.</div>
@@ -1180,7 +1173,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">02</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--pro);"></span></div>
+          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_pro.svg" alt=""></div>
           <div class="kierunek-name">Pro</div>
         </div>
         <div class="kierunek-desc"><span class="label">/BIZNES B2B I PRZEMYSŁ</span> — pomiary elektryczne, remonty zakładowe, dokumentacja powykonawcza w standardzie.</div>
@@ -1190,7 +1183,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">03</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--partner);"></span></div>
+          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_partner.svg" alt=""></div>
           <div class="kierunek-name">Partner</div>
         </div>
         <div class="kierunek-desc"><span class="label">/WSPARCIE DLA BRANŻY HVAC</span> — firmy hydrauliczne, wod-kan, wentylacja. Wasze projekty, nasze obwody.</div>
@@ -1200,7 +1193,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">04</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--smart);"></span></div>
+          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_smart.svg" alt=""></div>
           <div class="kierunek-name">Smart</div>
         </div>
         <div class="kierunek-desc"><span class="label">/INTELIGENTNY DOM I AUTOMATYKA</span> — projekt, integracja, serwis. Z myślą o użytkowniku, nie o gadżetach.</div>
@@ -1210,7 +1203,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">05</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--power);"></span></div>
+          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_power.svg" alt=""></div>
           <div class="kierunek-name">Power</div>
         </div>
         <div class="kierunek-desc"><span class="label">/PRZYŁĄCZA I ZASILANIA</span> — rozdzielnice, dobór, prefabrykacja, pomiary odbiorcze. Klienci indywidualni i obiektowi.</div>
@@ -1220,7 +1213,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">06</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--lab);"></span></div>
+          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_lab.svg" alt=""></div>
           <div class="kierunek-name">Lab</div>
         </div>
         <div class="kierunek-desc"><span class="label">/WYNAJEM APARATURY POMIAROWEJ</span> — mierniki z kalibracją, instruktaż obsługi, na dni lub tygodnie.</div>
@@ -1230,6 +1223,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">07</div>
         <div class="kierunek-tag">
+          <!-- TODO: ikona Signal gdy zostanie wykonana; na razie neutralny placeholder -->
           <div class="kierunek-icon-wrap"><span class="swatch-fallback" style="background: var(--signal);"></span></div>
           <div class="kierunek-name">Signal</div>
         </div>
@@ -1283,8 +1277,8 @@
 <section class="inzynier" id="inzynier">
   <div class="container">
     <div class="section-header">
-      <div class="section-id">§ 04 · Inżynier</div>
-      <h2 class="section-title"><span class="slash">/</span>Kto prowadzi brygad<span class="pl-char">ę</span>.</h2>
+      <div class="section-id">§ 04 · Zało<span class="pl-char">ż</span>yciel</div>
+      <h2 class="section-title"><span class="slash">/</span>Więcej o zało<span class="pl-char">ż</span>ycielu.</h2>
     </div>
 
     <div class="inzynier-grid">
@@ -1298,7 +1292,7 @@
       <div class="bio">
         <div class="section-id">§ 04.1 · Biogram</div>
         <p class="bio-lead">
-          Jestem <strong>in<span class="pl-char">ż</span>ynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chc<span class="pl-char">ę</span> codziennie pracować — takich, którzy widz<span class="pl-char">ą</span> więcej niż jeden kabel.
+          Jestem <strong>in<span class="pl-char">ż</span>ynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chc<span class="pl-char">ę</span> codziennie pracować — takich, którzy o inwestycji i robotach myślą całościowo.
         </p>
         <p class="bio-text">
           [<strong>Placeholder biogramu</strong> — kilka zdań o doświadczeniu, ścieżce zawodowej, dlaczego akurat elektryka. Ten fragment podmienimy, jak mi podeślesz własną wersję. Reszta strony już brzmi z kodeksu, ale biogram to Twój głos osobisty — nie chcę go zmyślać.]
@@ -1446,7 +1440,7 @@
         <h4>Nawigacja</h4>
         <ul>
           <li><a href="#manifest">Manifest</a></li>
-          <li><a href="#inzynier">Inżynier</a></li>
+          <li><a href="#inzynier">Założyciel</a></li>
           <li><a href="#warsztat">Warsztat</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
           <li><a href="#">Polityka prywatności</a></li>
