@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EL'KADRA / WSZYSTKIE FAZY — Kompletne rozwiązania elektryczne</title>
 <meta name="description" content="EL'KADRA. Jednostka specjalna do zadań elektrycznych. Od projektu po serwis — wszystkie fazy.">
+
+<!-- Favicon — sygnet granat bez tła, PNG.
+     Nazwa pliku ma polski znak (ł) — większość nowoczesnych przeglądarek sobie radzi,
+     ale jeśli pojawią się problemy, zmień nazwę pliku w repo na ASCII
+     (np. elkadra_sygnet_granat.png) i zaktualizuj ścieżkę poniżej. -->
+<link rel="icon" type="image/png" href="../images/logos/elkadra_sygnet_granat_bez_tła.png">
+<link rel="apple-touch-icon" href="../images/logos/elkadra_sygnet_granat_bez_tła.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -70,9 +77,16 @@
   .pl-char {
     font-family: var(--font-display-pl);
     font-weight: 900;
-    /* lekka korekta optyczna — Arial Black bywa nieco szerszy
-       od Eurostile na tej samej wielkości */
-    letter-spacing: -0.02em;
+    /* Arial Black jest węższy i krótszy pionowo niż Eurostile Extended.
+       Zwiększam font-size, żeby polski znak optycznie dorównał
+       sąsiednim literom. Negatywny margin bilansuje dodatkową wysokość,
+       żeby nie rozepchnąć linii. */
+    font-size: 1.08em;
+    letter-spacing: -0.03em;
+    display: inline-block;
+    margin-top: -0.04em;
+    margin-bottom: -0.04em;
+    line-height: 0.9;
   }
   body {
     font-family: var(--font-mono);
@@ -142,6 +156,16 @@
   }
   .wordmark { display: flex; align-items: center; gap: 12px; }
   .wordmark-svg { width: 34px; height: 34px; flex: 0 0 34px; }
+
+  /* Logo bitmapowe (plik SVG z repa) — w belce i w stopce */
+  .wordmark-img {
+    height: 42px;
+    width: auto;
+    display: block;
+  }
+  .wordmark-img-footer {
+    height: 72px; /* wersja pełna ma tagline pod logo, potrzebuje więcej miejsca */
+  }
   .wordmark-text {
     font-family: var(--font-display);
     font-weight: 700;
@@ -996,14 +1020,7 @@
   <div class="container">
     <div class="header-inner">
       <a href="#" class="wordmark">
-        <svg class="wordmark-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 2 L22 2 C30 2 36 9 36 19 C36 29 30 38 22 38 L4 38 Z" fill="#002e52"/>
-          <path d="M22 8 L11 22 L18 22 L16 32 L28 17 L21 17 L23 8 Z" fill="#ffffff"/>
-        </svg>
-        <div>
-          <div class="wordmark-text">EL'KADRA</div>
-          <div class="wordmark-sub">/Karol Drabik</div>
-        </div>
+        <img class="wordmark-img" src="../images/logos/elkadra_logo_slogan_granat_na_bialym_rgb.svg" alt="EL'KADRA / Wszystkie fazy">
       </a>
       <nav class="nav-desktop">
         <ul>
@@ -1163,7 +1180,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">01</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_dom.svg" alt=""></div>
+          <div class="kierunek-icon-wrap"><img src="../images/icons/elkadra_dom.svg" alt=""></div>
           <div class="kierunek-name">Dom</div>
         </div>
         <div class="kierunek-desc"><span class="label">/INSTALACJE I MODERNIZACJE</span> — klienci indywidualni, domy jednorodzinne, mieszkania. Od koncepcji po uruchomienie.</div>
@@ -1173,7 +1190,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">02</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_pro.svg" alt=""></div>
+          <div class="kierunek-icon-wrap"><img src="../images/icons/elkadra_pro.svg" alt=""></div>
           <div class="kierunek-name">Pro</div>
         </div>
         <div class="kierunek-desc"><span class="label">/BIZNES B2B I PRZEMYSŁ</span> — pomiary elektryczne, remonty zakładowe, dokumentacja powykonawcza w standardzie.</div>
@@ -1183,7 +1200,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">03</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_partner.svg" alt=""></div>
+          <div class="kierunek-icon-wrap"><img src="../images/icons/elkadra_partner.svg" alt=""></div>
           <div class="kierunek-name">Partner</div>
         </div>
         <div class="kierunek-desc"><span class="label">/WSPARCIE DLA BRANŻY HVAC</span> — firmy hydrauliczne, wod-kan, wentylacja. Wasze projekty, nasze obwody.</div>
@@ -1193,7 +1210,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">04</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_smart.svg" alt=""></div>
+          <div class="kierunek-icon-wrap"><img src="../images/icons/elkadra_smart.svg" alt=""></div>
           <div class="kierunek-name">Smart</div>
         </div>
         <div class="kierunek-desc"><span class="label">/INTELIGENTNY DOM I AUTOMATYKA</span> — projekt, integracja, serwis. Z myślą o użytkowniku, nie o gadżetach.</div>
@@ -1203,7 +1220,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">05</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_power.svg" alt=""></div>
+          <div class="kierunek-icon-wrap"><img src="../images/icons/elkadra_power.svg" alt=""></div>
           <div class="kierunek-name">Power</div>
         </div>
         <div class="kierunek-desc"><span class="label">/PRZYŁĄCZA I ZASILANIA</span> — rozdzielnice, dobór, prefabrykacja, pomiary odbiorcze. Klienci indywidualni i obiektowi.</div>
@@ -1213,7 +1230,7 @@
       <a href="#" class="kierunek">
         <div class="kierunek-num">06</div>
         <div class="kierunek-tag">
-          <div class="kierunek-icon-wrap"><img src="images/icons/elkadra_lab.svg" alt=""></div>
+          <div class="kierunek-icon-wrap"><img src="../images/icons/elkadra_lab.svg" alt=""></div>
           <div class="kierunek-name">Lab</div>
         </div>
         <div class="kierunek-desc"><span class="label">/WYNAJEM APARATURY POMIAROWEJ</span> — mierniki z kalibracją, instruktaż obsługi, na dni lub tygodnie.</div>
@@ -1394,14 +1411,7 @@
     <div class="footer-grid">
       <div class="footer-col footer-brand">
         <a href="#" class="wordmark">
-          <svg class="wordmark-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 2 L22 2 C30 2 36 9 36 19 C36 29 30 38 22 38 L4 38 Z" fill="#ffffff"/>
-            <path d="M22 8 L11 22 L18 22 L16 32 L28 17 L21 17 L23 8 Z" fill="#001a30"/>
-          </svg>
-          <div>
-            <div class="wordmark-text">EL'KADRA</div>
-            <div class="wordmark-sub">/WSZYSTKIE FAZY</div>
-          </div>
+          <img class="wordmark-img wordmark-img-footer" src="../images/logos/elkadra_logo_pelne_biale_na_czarnym_rgb.svg" alt="EL'KADRA / Wszystkie fazy / Kompletne rozwiązania elektryczne dla domu i biznesu">
         </a>
         <p class="footer-brand-text">
           Kompletne rozwiązania elektryczne dla domu i biznesu. Jednostka
