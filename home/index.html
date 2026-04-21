@@ -48,11 +48,24 @@
     --rule-strong: #c7ccd1;
 
     --font-display: 'Eurostile Extended', 'Goldman', 'Arial Black', 'Courier New', monospace;
+    --font-display-pl: 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
     --font-mono: 'Roboto Mono', 'Courier New', monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+
+  /* =====================================================
+     POLSKIE ZNAKI W NAGŁÓWKACH
+     Goldman/Eurostile mają polskie znaki, ale akcenty są
+     za cienkie względem ciężaru liter. Dodaj klasę "pl"
+     do dowolnego nagłówka, żeby przełączyć go na Arial Black.
+     Przykład: <h2 class="section-title pl">Różne fronty.</h2>
+     ===================================================== */
+  .pl {
+    font-family: var(--font-display-pl) !important;
+    letter-spacing: -0.01em;
+  }
   body {
     font-family: var(--font-mono);
     font-weight: 400;
@@ -419,7 +432,7 @@
   }
   @media (min-width: 900px) {
     .kierunek {
-      grid-template-columns: 60px 180px 1fr 40px;
+      grid-template-columns: 60px 220px 1fr 40px;
       padding: 30px 0;
     }
   }
@@ -1133,7 +1146,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 02 · Kierunki</div>
-      <h2 class="section-title"><span class="slash">/</span>Różne fronty, jedna brygada.</h2>
+      <h2 class="section-title pl"><span class="slash">/</span>Różne fronty, jedna brygada.</h2>
       <p class="section-sub">
         Każda linia zamyka temat od projektu po serwis — bez odsyłania do
         podwykonawców, bez dzielenia odpowiedzialności, bez "to nie nasza
@@ -1240,12 +1253,12 @@
       </div>
       <div class="zasada">
         <div class="zasada-num">02</div>
-        <div class="zasada-title">Myślimy<br>10 lat do przodu</div>
+        <div class="zasada-title pl">Myślimy<br>10 lat do przodu</div>
         <div class="zasada-text">Każdy aparat w rozdzielnicy, każda puszka — trwale opisane. Za dekadę ktoś ma móc wrócić do tej instalacji i zrozumieć ją w minutę, nie w dzień.</div>
       </div>
       <div class="zasada">
         <div class="zasada-num">03</div>
-        <div class="zasada-title">Symbioza<br>branżowa</div>
+        <div class="zasada-title pl">Symbioza<br>branżowa</div>
         <div class="zasada-text">Nie walczymy z hydraulikiem o przestrzeń w ścianie. Planujemy tak, żeby instalacje ze sobą nie walczyły. Szanujemy statykę, przepusty, tynk.</div>
       </div>
       <div class="zasada">
@@ -1255,8 +1268,8 @@
       </div>
       <div class="zasada zasada-wide">
         <div class="zasada-num">05 · Kluczowe</div>
-        <div class="zasada-title">Nie pracownicy — <br>technicy operacyjni.</div>
-        <div class="zasada-text">U nas nie ma „pracowników". Są wyspecjalizowani technicy operacyjni — każdy ekspert w swoim wycinku elektryki. Rozdzielnicami zajmuje się kto inny niż teletechniką, automatyką czy pomiarami. Każda robota trafia w ręce kogoś, kto zna ją najlepiej — i wyłącznie tą się zajmuje na co dzień.</div>
+        <div class="zasada-title pl">Każdy<br>robi wszystko.</div>
+        <div class="zasada-text">Nie ma u nas podziału na „panów z biura" i „roboli" ani sztywnych silosów kompetencji. Elektryk bierze miotłę, kierownik bierze wiertarkę, kosztorysant wchodzi na budowę. Każdy rozumie całość — statykę, tynk, wentylację, HVAC — bo inaczej nie da się dobrze poprowadzić obwodu. Decyzje powstają bliżej kabla, nie dalej od niego.</div>
       </div>
     </div>
   </div>
@@ -1267,7 +1280,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 04 · Inżynier</div>
-      <h2 class="section-title"><span class="slash">/</span>Kto prowadzi brygadę.</h2>
+      <h2 class="section-title pl"><span class="slash">/</span>Kto prowadzi brygadę.</h2>
     </div>
 
     <div class="inzynier-grid">
@@ -1280,7 +1293,7 @@
       </div>
       <div class="bio">
         <div class="section-id">§ 04.1 · Biogram</div>
-        <p class="bio-lead">
+        <p class="bio-lead pl">
           Jestem <strong>inżynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chcę codziennie pracować — takich, którzy widzą więcej niż jeden kabel.
         </p>
         <p class="bio-text">
