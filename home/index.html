@@ -57,14 +57,22 @@
 
   /* =====================================================
      POLSKIE ZNAKI W NAGŁÓWKACH
-     Goldman/Eurostile mają polskie znaki, ale akcenty są
-     za cienkie względem ciężaru liter. Dodaj klasę "pl"
-     do dowolnego nagłówka, żeby przełączyć go na Arial Black.
-     Przykład: <h2 class="section-title pl">Różne fronty.</h2>
+     Eurostile/Goldman mają polskie znaki, ale niektóre akcenty
+     są słabo narysowane (np. Ż). Żeby podmienić TYLKO literę,
+     a nie cały nagłówek, owiń ją w <span class="pl-char">:
+
+       <h2>Ró<span class="pl-char">ż</span>ne fronty.</h2>
+
+     Wtedy R-Ó-N-E jest w Eurostile, a samo Ż w Arial Black.
+     Staraj się dopasować rozmiar — klasa działa dziedzicznie
+     po rodzicu (font-size, weight, color zostają).
      ===================================================== */
-  .pl {
-    font-family: var(--font-display-pl) !important;
-    letter-spacing: -0.01em;
+  .pl-char {
+    font-family: var(--font-display-pl);
+    font-weight: 900;
+    /* lekka korekta optyczna — Arial Black bywa nieco szerszy
+       od Eurostile na tej samej wielkości */
+    letter-spacing: -0.02em;
   }
   body {
     font-family: var(--font-mono);
@@ -432,7 +440,8 @@
   }
   @media (min-width: 900px) {
     .kierunek {
-      grid-template-columns: 60px 220px 1fr 40px;
+      grid-template-columns: 60px 260px 1fr 40px;
+      gap: 40px;
       padding: 30px 0;
     }
   }
@@ -1146,7 +1155,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 02 · Kierunki</div>
-      <h2 class="section-title pl"><span class="slash">/</span>Różne fronty, jedna brygada.</h2>
+      <h2 class="section-title"><span class="slash">/</span>Ró<span class="pl-char">ż</span>ne fronty, jedna brygada.</h2>
       <p class="section-sub">
         Każda linia zamyka temat od projektu po serwis — bez odsyłania do
         podwykonawców, bez dzielenia odpowiedzialności, bez "to nie nasza
@@ -1253,23 +1262,18 @@
       </div>
       <div class="zasada">
         <div class="zasada-num">02</div>
-        <div class="zasada-title pl">Myślimy<br>10 lat do przodu</div>
+        <div class="zasada-title">My<span class="pl-char">ś</span>limy<br>10 lat do przodu</div>
         <div class="zasada-text">Każdy aparat w rozdzielnicy, każda puszka — trwale opisane. Za dekadę ktoś ma móc wrócić do tej instalacji i zrozumieć ją w minutę, nie w dzień.</div>
       </div>
       <div class="zasada">
         <div class="zasada-num">03</div>
-        <div class="zasada-title pl">Symbioza<br>branżowa</div>
+        <div class="zasada-title">Symbioza<br>bran<span class="pl-char">ż</span>owa</div>
         <div class="zasada-text">Nie walczymy z hydraulikiem o przestrzeń w ścianie. Planujemy tak, żeby instalacje ze sobą nie walczyły. Szanujemy statykę, przepusty, tynk.</div>
       </div>
       <div class="zasada">
         <div class="zasada-num">04</div>
         <div class="zasada-title">Higiena<br>miejsca pracy</div>
         <div class="zasada-text">Odkurzacz i miotła ważą tyle samo co wiertarka. Misja kończy się, kiedy po nas zostaje czystość — nie pobojowisko do sprzątnięcia przez klienta.</div>
-      </div>
-      <div class="zasada zasada-wide">
-        <div class="zasada-num">05 · Kluczowe</div>
-        <div class="zasada-title pl">Każdy<br>robi wszystko.</div>
-        <div class="zasada-text">Nie ma u nas podziału na „panów z biura" i „roboli" ani sztywnych silosów kompetencji. Elektryk bierze miotłę, kierownik bierze wiertarkę, kosztorysant wchodzi na budowę. Każdy rozumie całość — statykę, tynk, wentylację, HVAC — bo inaczej nie da się dobrze poprowadzić obwodu. Decyzje powstają bliżej kabla, nie dalej od niego.</div>
       </div>
     </div>
   </div>
@@ -1280,7 +1284,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 04 · Inżynier</div>
-      <h2 class="section-title pl"><span class="slash">/</span>Kto prowadzi brygadę.</h2>
+      <h2 class="section-title"><span class="slash">/</span>Kto prowadzi brygad<span class="pl-char">ę</span>.</h2>
     </div>
 
     <div class="inzynier-grid">
@@ -1293,8 +1297,8 @@
       </div>
       <div class="bio">
         <div class="section-id">§ 04.1 · Biogram</div>
-        <p class="bio-lead pl">
-          Jestem <strong>inżynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chcę codziennie pracować — takich, którzy widzą więcej niż jeden kabel.
+        <p class="bio-lead">
+          Jestem <strong>in<span class="pl-char">ż</span>ynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chc<span class="pl-char">ę</span> codziennie pracować — takich, którzy widz<span class="pl-char">ą</span> więcej niż jeden kabel.
         </p>
         <p class="bio-text">
           [<strong>Placeholder biogramu</strong> — kilka zdań o doświadczeniu, ścieżce zawodowej, dlaczego akurat elektryka. Ten fragment podmienimy, jak mi podeślesz własną wersję. Reszta strony już brzmi z kodeksu, ale biogram to Twój głos osobisty — nie chcę go zmyślać.]
