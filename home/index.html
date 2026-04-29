@@ -397,11 +397,12 @@
   }
   .fazy-track {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1px;
     background: var(--rule-strong);
     border: 1px solid var(--rule-strong);
   }
+  @media (min-width: 600px) { .fazy-track { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 700px) { .fazy-track { grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 1100px) { .fazy-track { grid-template-columns: repeat(6, 1fr); } }
 
