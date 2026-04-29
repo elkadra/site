@@ -6,12 +6,15 @@
 <title>EL'KADRA / WSZYSTKIE FAZY — Kompletne rozwiązania elektryczne</title>
 <meta name="description" content="EL'KADRA. Jednostka specjalna do zadań elektrycznych. Od projektu po serwis — wszystkie fazy.">
 
-<!-- Favicon — sygnet granat bez tła, PNG.
-     Nazwa pliku ma polski znak (ł) — większość nowoczesnych przeglądarek sobie radzi,
-     ale jeśli pojawią się problemy, zmień nazwę pliku w repo na ASCII
-     (np. elkadra_sygnet_granat.png) i zaktualizuj ścieżkę poniżej. -->
-<link rel="icon" type="image/png" href="../images/logos/elkadra_sygnet_granat_bez_tła.png">
-<link rel="apple-touch-icon" href="../images/logos/elkadra_sygnet_granat_bez_tła.png">
+<!-- Favicony — pełen zestaw dla przeglądarek, iOS, Androida, PWA.
+     Folder "faicons" — nazwa z literówką (powinno być "favicons"),
+     ale zostawiamy tak jak jest w repo. Jeśli kiedyś zmienisz nazwę folderu,
+     podmień wszystkie "../images/faicons/" na "../images/favicons/". -->
+<link rel="icon" type="image/svg+xml" href="../images/faicons/favicon.svg">
+<link rel="icon" type="image/x-icon" href="../images/faicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="96x96" href="../images/faicons/favicon-96x96.png">
+<link rel="apple-touch-icon" href="../images/faicons/apple-touch-icon.png">
+<link rel="manifest" href="../images/faicons/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -159,12 +162,12 @@
 
   /* Logo bitmapowe (plik SVG z repa) — w belce i w stopce */
   .wordmark-img {
-    height: 42px;
+    height: 56px;
     width: auto;
     display: block;
   }
   .wordmark-img-footer {
-    height: 72px; /* wersja pełna ma tagline pod logo, potrzebuje więcej miejsca */
+    height: 88px; /* wersja pełna ma tagline pod logo, potrzebuje więcej miejsca */
   }
   .wordmark-text {
     font-family: var(--font-display);
@@ -267,6 +270,9 @@
     color: var(--navy);
     margin-bottom: 28px;
     text-transform: uppercase;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
   }
   .hero-title .slash {
     color: var(--orange);
@@ -361,11 +367,15 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: clamp(32px, 5vw, 56px);
-    line-height: 1;
-    letter-spacing: -0.01em;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     color: var(--navy);
     text-transform: uppercase;
-    max-width: 780px;
+    max-width: 900px;
+    /* nie łam pojedynczych słów w środku — przenoś do następnej linii w całości */
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
   }
   .section-title .slash { color: var(--orange); font-weight: 400; }
   .section-sub {
@@ -742,6 +752,9 @@
     letter-spacing: 0;
     margin: 24px 0 32px;
     max-width: 560px;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
   }
   .bio-lead strong { font-weight: 700; }
   .bio-text {
@@ -849,6 +862,17 @@
   .blog-card:hover .blog-link::after { transform: translateX(4px); }
 
   .warsztat-cta { margin-top: 40px; display: flex; justify-content: center; }
+
+  /* Instagram feed (LightWidget) — osobne osadzenia dla desktop/mobile.
+     Ukryty iframe + loading="lazy" sprawia, że w praktyce ładuje się
+     tylko jeden wariant. Breakpoint 800px zgrany z resztą strony. */
+  .ig-feed { margin-top: 40px; }
+  .ig-desktop { display: none; }
+  .ig-mobile { display: block; }
+  @media (min-width: 800px) {
+    .ig-desktop { display: block; }
+    .ig-mobile { display: none; }
+  }
 
   /* KONTAKT */
   .kontakt {
@@ -1166,7 +1190,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 02 · Kierunki</div>
-      <h2 class="section-title"><span class="slash">/</span>Ró<span class="pl-char">ż</span>ne fronty, jedna brygada.</h2>
+      <h2 class="section-title"><span class="slash">/</span>Różne fronty, jedna brygada.</h2>
       <p class="section-sub">
         Każda linia zamyka temat od projektu po serwis — bez odsyłania do
         podwykonawców, bez dzielenia odpowiedzialności, bez "to nie nasza
@@ -1273,12 +1297,12 @@
       </div>
       <div class="zasada">
         <div class="zasada-num">02</div>
-        <div class="zasada-title">My<span class="pl-char">ś</span>limy<br>10 lat do przodu</div>
+        <div class="zasada-title">Myślimy<br>10 lat do przodu</div>
         <div class="zasada-text">Każdy aparat w rozdzielnicy, każda puszka — trwale opisane. Za dekadę ktoś ma móc wrócić do tej instalacji i zrozumieć ją w minutę, nie w dzień.</div>
       </div>
       <div class="zasada">
         <div class="zasada-num">03</div>
-        <div class="zasada-title">Symbioza<br>bran<span class="pl-char">ż</span>owa</div>
+        <div class="zasada-title">Symbioza<br>branżowa</div>
         <div class="zasada-text">Nie walczymy z hydraulikiem o przestrzeń w ścianie. Planujemy tak, żeby instalacje ze sobą nie walczyły. Szanujemy statykę, przepusty, tynk.</div>
       </div>
       <div class="zasada">
@@ -1294,8 +1318,8 @@
 <section class="inzynier" id="inzynier">
   <div class="container">
     <div class="section-header">
-      <div class="section-id">§ 04 · Zało<span class="pl-char">ż</span>yciel</div>
-      <h2 class="section-title"><span class="slash">/</span>Więcej o zało<span class="pl-char">ż</span>ycielu.</h2>
+      <div class="section-id">§ 04 · Założyciel</div>
+      <h2 class="section-title"><span class="slash">/</span>Więcej o&nbsp;założycielu.</h2>
     </div>
 
     <div class="inzynier-grid">
@@ -1309,7 +1333,7 @@
       <div class="bio">
         <div class="section-id">§ 04.1 · Biogram</div>
         <p class="bio-lead">
-          Jestem <strong>in<span class="pl-char">ż</span>ynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chc<span class="pl-char">ę</span> codziennie pracować — takich, którzy o inwestycji i robotach myślą całościowo.
+          Jestem <strong>inżynierem elektrykiem</strong>. EL'Kadra to firma, w której zbieram wokół siebie ludzi, z którymi chcę codziennie pracować — takich, którzy o&nbsp;inwestycji i&nbsp;robotach myślą całościowo.
         </p>
         <p class="bio-text">
           [<strong>Placeholder biogramu</strong> — kilka zdań o doświadczeniu, ścieżce zawodowej, dlaczego akurat elektryka. Ten fragment podmienimy, jak mi podeślesz własną wersję. Reszta strony już brzmi z kodeksu, ale biogram to Twój głos osobisty — nie chcę go zmyślać.]
@@ -1327,39 +1351,44 @@
   </div>
 </section>
 
-<!-- Warsztat / Blog -->
+<!-- Warsztat / Instagram -->
 <section class="warsztat" id="warsztat">
   <div class="container">
     <div class="section-header">
       <div class="section-id">§ 05 · Warsztat</div>
       <h2 class="section-title"><span class="slash">/</span>Notatki z roboty.</h2>
       <p class="section-sub">
-        Bez wodolejstwa, bez SEO-gadania. Konkretne obserwacje z placu budowy,
-        rozdzielnic i pomiarów. Czyta się 5–10 minut, zapamiętuje na długo.
+        Migawki z placu budowy, rozdzielnic i warsztatu — na bieżąco.
+        Prosto z pierwszej linii, bez filtra marketingowego.
       </p>
     </div>
 
-    <div class="blog-grid">
-      <a href="#" class="blog-card">
-        <div class="blog-meta"><span>/DOM /SMART</span><span>10 MIN</span></div>
-        <h3 class="blog-title">Automatyka, która przestaje działać po roku — czego unikać na etapie projektu</h3>
-        <div class="blog-link">Czytaj</div>
-      </a>
-      <a href="#" class="blog-card">
-        <div class="blog-meta"><span>/PRO /POWER</span><span>6 MIN</span></div>
-        <h3 class="blog-title">Pomiary odbiorcze w hali — trzy rzeczy, które inwestor sprawdza zawsze</h3>
-        <div class="blog-link">Czytaj</div>
-      </a>
-      <a href="#" class="blog-card">
-        <div class="blog-meta"><span>/LAB</span><span>4 MIN</span></div>
-        <h3 class="blog-title">Jak dobrać miernik do rezystancji uziemienia, kiedy nie mierzysz tego co tydzień</h3>
-        <div class="blog-link">Czytaj</div>
-      </a>
+    <!-- LightWidget: Instagram feed. Dwa warianty osadzenia,
+         przełączane CSS-em w zależności od szerokości ekranu.
+         Ukryty iframe z loading="lazy" nie ładuje się, dopóki
+         nie wejdzie w viewport — więc w praktyce jedno osadzenie
+         na urządzenie. -->
+    <div class="ig-feed">
+      <div class="ig-desktop">
+        <iframe src="//lightwidget.com/widgets/b3f0ad8e6da55d5c84ea956c54a37e07.html"
+                scrolling="no" allowtransparency="true"
+                class="lightwidget-widget"
+                style="width:100%;border:0;overflow:hidden;"
+                loading="lazy"></iframe>
+      </div>
+      <div class="ig-mobile">
+        <iframe src="//lightwidget.com/widgets/03bd8e23bf3b5827be1c4414e7092936.html"
+                scrolling="no" allowtransparency="true"
+                class="lightwidget-widget"
+                style="width:100%;border:0;overflow:hidden;"
+                loading="lazy"></iframe>
+      </div>
     </div>
+    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js" async></script>
 
     <div class="warsztat-cta">
-      <a href="#" class="btn btn-ghost">
-        <span>Wszystkie wpisy</span>
+      <a href="https://www.instagram.com/elkadra" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+        <span>Zobacz na Instagramie</span>
         <span class="arrow">→</span>
       </a>
     </div>
@@ -1411,7 +1440,7 @@
     <div class="footer-grid">
       <div class="footer-col footer-brand">
         <a href="#" class="wordmark">
-          <img class="wordmark-img wordmark-img-footer" src="../images/logos/elkadra_logo_pelne_biale_na_czarnym_rgb.svg" alt="EL'KADRA / Wszystkie fazy / Kompletne rozwiązania elektryczne dla domu i biznesu">
+          <img class="wordmark-img wordmark-img-footer" src="../images/logos/elkadra_logo_pelne_biale_bez_tla_rgb.png" alt="EL'KADRA / Wszystkie fazy / Kompletne rozwiązania elektryczne dla domu i biznesu">
         </a>
         <p class="footer-brand-text">
           Kompletne rozwiązania elektryczne dla domu i biznesu. Jednostka
