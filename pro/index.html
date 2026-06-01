@@ -1,963 +1,921 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EL'KADRA — Partner inżynierski dla generalnych wykonawców</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL'KADRA [PRO] — Partner inżynierski dla generalnych wykonawców</title>
+<meta name="description" content="EL'KADRA PRO. Przekaż nam zakres elektryczny i nigdy więcej nie niańcz podwykonawcy. Samowystarczalna brygada inżynierska dla generalnych wykonawców.">
+<link rel="icon" type="image/svg+xml" href="../images/faicons/favicon.svg">
+<link rel="icon" type="image/x-icon" href="../images/faicons/favicon.ico">
+<link rel="apple-touch-icon" href="../images/faicons/apple-touch-icon.png">
+<link rel="manifest" href="../images/faicons/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Eurostile Extended';
+    src: url('../fonts/EurostileExtendedTwo-Bold.woff2') format('woff2'),
+         url('../fonts/EurostileExtendedTwo-Bold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Eurostile Extended';
+    src: url('../fonts/EurostileExtendedTwo-Regular.woff2') format('woff2'),
+         url('../fonts/EurostileExtendedTwo-Regular.otf') format('opentype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
 
-    @font-face {
-      font-family: 'EurostileExtended';
-      src: url('../fonts/EurostileExtendedTwo-Bold.woff2') format('woff2'),
-           url('../fonts/EurostileExtendedTwo-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'EurostileExtended';
-      src: url('../fonts/EurostileExtendedTwo-Regular.woff2') format('woff2'),
-           url('../fonts/EurostileExtendedTwo-Regular.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    :root {
-      --granat:      #002e52;
-      --granat-mid:  #003d6e;
-      --granat-deep: #001d35;
-      --pomarancz:   #fca311;
-      --pomarancz-dk:#e08e00;
-      --grafit:      #5c5c5c;
-      --popiel:      #e5e5e5;
-      --biel:        #ffffff;
-      --pro:         #4a5563;
-      --pro-light:   #6b7280;
-      --bg:          #f5f4f2;
-      --bg-alt:      #eeece9;
-      --danger:      #b91c1c;
-      --success:     #166534;
-      --kremowy:     #fff6e7;
-      --piaskowy:    #fed188;
-      --stalowy:     #8097a9;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Roboto Mono', monospace; background: var(--bg); color: #1a1a1a; line-height: 1.65; font-size: 16px; }
-    h1,h2,h3,h4 { font-family: 'EurostileExtended', sans-serif; }
-    .wrap    { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    .wrap-sm { max-width: 760px;  margin: 0 auto; padding: 0 24px; }
-    .wrap-xs { max-width: 640px;  margin: 0 auto; padding: 0 24px; }
-    section  { padding: 88px 0; }
-    section.tight { padding: 56px 0; }
+  :root {
+    --navy: #002e52;
+    --navy-dark: #001a30;
+    --black: #000000;
+    --graphite: #5c5c5c;
+    --white: #ffffff;
+    --ash: #e5e5e5;
+    --orange: #fca311;
+    --steel: #8097a9;
+    --platinum: #e6eaee;
+    --cream: #fff6e7;
 
-    /* ── SECTION LABEL ── */
-    .section-label {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--pro); margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
-    }
-    .section-label::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--pomarancz); flex-shrink: 0; }
-    .section-label.light { color: var(--piaskowy); }
-    .section-label.light::before { background: var(--pomarancz); }
+    --pro: #4a5563;
+    --pro-deep: #39424d;
+    --pro-dim: rgba(74,85,99,0.10);
+    --pro-border: rgba(74,85,99,0.28);
 
-    /* ── NAV ── */
-    nav { background: var(--granat-deep); padding: 0 24px; height: 58px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--pomarancz); }
-    .nav-logo { font-family: 'EurostileExtended', sans-serif; font-size: 18px; font-weight: 700; color: var(--biel); letter-spacing: .1em; text-decoration: none; }
-    .nav-logo span { color: var(--pomarancz); }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-tag { font-family: 'Roboto Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--biel); background: var(--pro); padding: 4px 10px; }
-    .nav-cta { background: var(--pomarancz); color: var(--granat); font-family: 'EurostileExtended', sans-serif; font-size: 12px; font-weight: 700; padding: 9px 18px; text-decoration: none; letter-spacing: .06em; transition: background .2s, transform .15s; }
-    .nav-cta:hover { background: var(--pomarancz-dk); transform: translateY(-1px); }
+    --ink: #001a30;
+    --ink-muted: #5c5c5c;
+    --ink-soft: #8097a9;
+    --rule: #e5e5e5;
+    --rule-strong: #c7ccd1;
+    --danger: #b91c1c;
+    --success: #166534;
 
-    /* ── HERO ── */
-    #hero {
-      background: var(--granat-deep);
-      padding: 100px 0 110px;
-      position: relative;
-      overflow: hidden;
-    }
-    /* Circuit grid background */
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(252,163,17,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(252,163,17,.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-    }
-    /* Diagonal orange slash — key visual motyw */
-    .hero-slash {
-      position: absolute;
-      top: -40px; right: 80px;
-      width: 8px;
-      height: 140%;
-      background: var(--pomarancz);
-      transform: rotate(35deg);
-      opacity: .18;
-    }
-    .hero-slash-2 {
-      position: absolute;
-      top: -40px; right: 130px;
-      width: 3px;
-      height: 140%;
-      background: var(--pomarancz);
-      transform: rotate(35deg);
-      opacity: .10;
-    }
-    .hero-slash-navy {
-      position: absolute;
-      top: -40px; right: 30px;
-      width: 14px;
-      height: 140%;
-      background: rgba(255,255,255,.04);
-      transform: rotate(35deg);
-    }
-    /* Bottom diagonal cut */
-    #hero::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 60px;
-      background: var(--bg);
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
-    }
-    .hero-pre { font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--piaskowy); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
-    .hero-pre::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--pomarancz); }
-    .hero-h1 { font-size: clamp(26px, 4vw, 50px); font-weight: 700; color: var(--biel); max-width: 780px; margin-bottom: 28px; line-height: 1.1; position: relative; z-index: 1; }
-    .hero-h1 em { font-style: normal; color: var(--pomarancz); }
-    .hero-sub { font-size: 15px; color: rgba(255,255,255,.65); max-width: 580px; margin-bottom: 40px; line-height: 1.8; font-weight: 300; position: relative; z-index: 1; }
-    .hero-bullets { list-style: none; margin-bottom: 48px; display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 1; }
-    .hero-bullets li { display: flex; align-items: flex-start; gap: 14px; font-size: 14px; color: rgba(255,255,255,.82); line-height: 1.6; }
-    .hero-bullets li::before { content: '✓'; color: var(--pomarancz); font-weight: 700; flex-shrink: 0; margin-top: 1px; font-family: 'EurostileExtended', sans-serif; }
-    .btn-primary { display: inline-block; background: var(--pomarancz); color: var(--granat); font-family: 'EurostileExtended', sans-serif; font-size: 13px; font-weight: 700; padding: 16px 36px; text-decoration: none; letter-spacing: .08em; transition: background .2s, transform .2s, box-shadow .2s; text-transform: uppercase; position: relative; z-index: 1; }
-    .btn-primary:hover { background: var(--pomarancz-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(252,163,17,.3); }
-    .hero-proof { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,.32); font-style: italic; position: relative; z-index: 1; }
+    --font-display: 'Eurostile Extended', 'Goldman', 'Arial Black', monospace;
+    --font-mono: 'Roboto Mono', 'Courier New', monospace;
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px); }
 
-    /* Vertical PRO line identifier */
-    .hero-vline {
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 36px;
-      background: var(--pro);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-    }
-    .hero-vline span {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      white-space: nowrap;
-    }
-    .hero-vline::before {
-      content: '';
-      position: absolute;
-      top: 24px; left: 50%; transform: translateX(-50%);
-      width: 8px; height: 8px;
-      background: var(--pomarancz);
-    }
-    #hero .wrap { padding-left: 64px; }
+  /* META BAR */
+  .meta-bar {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--navy-dark);
+  }
+  .meta-bar .container { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .meta-bar-group { display: flex; align-items: center; gap: 18px; }
+  .meta-bar-item { display: flex; align-items: center; gap: 8px; opacity: 0.85; }
+  .meta-bar-item:hover { opacity: 1; }
+  .meta-bar svg { width: 12px; height: 12px; }
+  .status-dot { width: 6px; height: 6px; background: #4ade80; display: inline-block; box-shadow: 0 0 6px #4ade80; animation: pulse 2s infinite; }
+  .pro-flag { background: var(--pro); padding: 2px 9px; letter-spacing: 0.12em; font-weight: 500; opacity: 1; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  @media (max-width: 700px) { .meta-bar-hide-mobile { display: none; } }
 
-    /* ── NUMBERS ── */
-    #numbers { background: var(--pro); padding: 0; border-top: none; }
-    .numbers-grid { display: grid; grid-template-columns: repeat(4,1fr); }
-    .num-item {
-      text-align: center;
-      padding: 44px 20px;
-      border-right: 1px solid rgba(255,255,255,.08);
-      position: relative;
-      transition: background .25s;
-    }
-    .num-item:last-child { border-right: none; }
-    .num-item:hover { background: rgba(252,163,17,.08); }
-    .num-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 0; height: 3px;
-      background: var(--pomarancz);
-      transition: width .3s;
-    }
-    .num-item:hover::after { width: 60%; }
-    .num-val { font-family: 'EurostileExtended', sans-serif; font-size: 48px; font-weight: 700; color: var(--pomarancz); line-height: 1; }
-    .num-label { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 10px; max-width: 120px; margin-left: auto; margin-right: auto; line-height: 1.5; letter-spacing: .04em; }
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--rule); }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; gap: 32px; }
+  .wordmark { display: flex; align-items: center; gap: 10px; }
+  .wordmark-img { height: 40px; width: auto; display: block; }
+  .wordmark-text { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--navy); letter-spacing: 0.04em; line-height: 1; }
+  .pro-box { background: var(--pro); color: var(--white); font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 0.12em; padding: 4px 8px; line-height: 1; }
+  .header-slash { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-desktop { display: none; }
+  @media (min-width: 980px) { .nav-desktop { display: block; } }
+  nav ul { display: flex; gap: 28px; list-style: none; align-items: center; }
+  nav a { font-size: 12px; font-weight: 500; color: var(--ink); text-transform: uppercase; letter-spacing: 0.1em; }
+  nav a:hover { color: var(--pro); }
+  nav a::before { content: '/'; color: var(--ink-soft); margin-right: 4px; }
+  .nav-cta { display: none; padding: 10px 18px; background: var(--navy); color: var(--white); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--black); }
+  @media (min-width: 980px) { .nav-cta { display: inline-block; } }
 
-    /* ── LOGOS ── */
-    #loga { background: var(--biel); }
+  /* HERO */
+  .hero { padding: clamp(56px, 9vh, 110px) 0 clamp(70px, 11vh, 130px); position: relative; overflow: hidden; background: var(--white); }
+  .hero::before { content: ''; position: absolute; top: 0; right: 0; width: 45%; height: 60%; background: var(--platinum); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%); opacity: 0.5; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 22%; height: 32%; background: var(--pro); clip-path: polygon(0 30%, 100% 100%, 0 100%); opacity: 0.06; pointer-events: none; }
+  .hero-inner { position: relative; z-index: 2; }
+  .hero-doc-header { display: flex; justify-content: space-between; align-items: start; border-bottom: 1px solid var(--rule-strong); padding-bottom: 14px; margin-bottom: 44px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); gap: 20px; flex-wrap: wrap; }
+  .hero-doc-header span::before { content: '/'; color: var(--ink-soft); margin-right: 4px; }
+  .hero-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 5.4vw, 80px); line-height: 0.96; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 28px; text-transform: uppercase; word-break: keep-all; hyphens: none; }
+  .hero-title .slash { color: var(--orange); font-weight: 400; display: inline-block; margin-right: 0.05em; }
+  .hero-title .period { color: var(--navy); }
+  .hero-tagline { font-size: clamp(15px, 1.8vw, 20px); font-weight: 400; color: var(--ink); max-width: 720px; line-height: 1.5; margin-bottom: 48px; }
+  .hero-tagline strong { font-weight: 500; background: linear-gradient(to bottom, transparent 60%, rgba(0,46,82,0.12) 60%); }
+  .hero-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; margin-top: 52px; padding-top: 40px; border-top: 1px solid var(--rule); }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.5fr 1fr; gap: 72px; } }
+  .hero-manifest { font-size: 14px; line-height: 1.75; color: var(--ink); font-weight: 300; }
+  .hero-manifest p { margin-bottom: 16px; }
+  .hero-manifest strong { font-weight: 500; color: var(--navy); }
+  .hero-manifest .highlight { background: var(--platinum); padding: 2px 6px; }
+  .hero-ctas { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+  .btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 40px; padding: 15px 22px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--navy); transition: all 0.2s; cursor: pointer; min-width: 260px; font-family: var(--font-mono); }
+  .btn-primary { background: var(--navy); color: var(--white); }
+  .btn-primary:hover { background: var(--black); border-color: var(--black); }
+  .btn-ghost { background: transparent; color: var(--navy); }
+  .btn-ghost:hover { background: var(--navy); color: var(--white); }
+  .btn .arrow { transition: transform 0.2s; }
+  .btn:hover .arrow { transform: translateX(4px); }
 
-    /* ── CARDS ── */
-    .cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
-    .card {
-      background: var(--biel);
-      padding: 36px 28px 32px;
-      border-top: 3px solid var(--pomarancz);
-      position: relative;
-      overflow: hidden;
-      transition: transform .25s, box-shadow .25s;
-    }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
-    /* Decorative corner slash */
-    .card::after {
-      content: '';
-      position: absolute;
-      bottom: -20px; right: -20px;
-      width: 60px; height: 60px;
-      background: var(--pomarancz);
-      opacity: .06;
-      transform: rotate(45deg);
-    }
-    .card-pro-tag { display: inline-block; font-family: 'Roboto Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--biel); background: var(--pro); padding: 3px 8px; margin-bottom: 14px; }
-    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 14px; color: var(--granat); line-height: 1.3; }
-    .card p { font-size: 13px; color: var(--grafit); line-height: 1.85; }
+  /* HERO STATS */
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 52px; padding-top: 36px; border-top: 1px solid var(--rule); background: var(--white); }
+  .hero-stat { padding: 0 20px; border-right: 1px solid var(--rule); }
+  .hero-stat:first-child { padding-left: 0; }
+  .hero-stat:last-child { border-right: none; }
+  .stat-val { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--pro); line-height: 1; }
+  .stat-label { font-size: 11px; letter-spacing: 0.04em; color: var(--ink-muted); margin-top: 8px; line-height: 1.4; }
+  @media (max-width: 700px) { .hero-stats { grid-template-columns: 1fr 1fr; gap: 24px 0; } .hero-stat:nth-child(2) { border-right: none; } }
 
-    .card:nth-child(2) { border-top-color: var(--pro); }
-    .card:nth-child(2) .card-pro-tag { background: var(--pomarancz); color: var(--granat); }
+  /* SECTION COMMONS */
+  .section-header { margin-bottom: 48px; }
+  .section-id { font-size: 11px; font-weight: 500; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+  .section-id::before { content: ''; width: 24px; height: 1px; background: var(--ink-muted); display: block; }
+  .section-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4.4vw, 50px); line-height: 1.05; letter-spacing: -0.02em; color: var(--navy); text-transform: uppercase; max-width: 900px; word-break: keep-all; hyphens: none; }
+  .section-title .slash { color: var(--orange); font-weight: 400; }
+  .section-sub { font-size: 14px; color: var(--ink-muted); margin-top: 16px; max-width: 640px; line-height: 1.65; }
 
+  /* PROBLEM (truths) — navy grid cells */
+  .problem { padding: clamp(70px, 10vh, 120px) 0; background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
+  .problem::before { content: ''; position: absolute; top: 0; left: 0; width: 38%; height: 32%; background: var(--navy-dark); clip-path: polygon(0 0, 100% 0, 0 100%); opacity: 0.5; }
+  .problem .container { position: relative; z-index: 2; }
+  .problem .section-id { color: var(--orange); }
+  .problem .section-id::before { background: var(--orange); }
+  .problem .section-title { color: var(--white); }
+  .problem-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); margin-top: 8px; }
+  @media (min-width: 800px) { .problem-grid { grid-template-columns: repeat(3, 1fr); } }
+  .problem-cell { background: var(--navy); padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; min-height: 240px; transition: background 0.25s; }
+  .problem-cell:hover { background: var(--navy-dark); }
+  .problem-num { font-size: 11px; letter-spacing: 0.15em; color: var(--orange); font-weight: 500; }
+  .problem-cell p { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.7; }
+  .problem-bridge { margin-top: 40px; font-family: var(--font-display); font-weight: 400; font-size: clamp(16px, 2vw, 22px); color: var(--white); border-left: 2px solid var(--orange); padding-left: 24px; line-height: 1.4; max-width: 720px; }
 
-    /* ── BRIDGE ── */
-    #bridge {
-      background: var(--pro);
-      padding: 44px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    #bridge::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    #bridge p { max-width: 620px; margin: 0 auto; font-size: 14px; color: rgba(255,255,255,.82); line-height: 1.85; padding: 0 24px; position: relative; z-index: 1; }
+  /* SOLUTION (3 day-1 cards) — fazy style */
+  .solution { padding: clamp(70px, 10vh, 120px) 0; background: var(--platinum); border-bottom: 1px solid var(--rule-strong); }
+  .solution-track { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule-strong); border: 1px solid var(--rule-strong); }
+  @media (min-width: 800px) { .solution-track { grid-template-columns: repeat(3, 1fr); } }
+  .sol-cell { background: var(--white); padding: 30px 26px; display: flex; flex-direction: column; gap: 14px; min-height: 260px; transition: background 0.25s, color 0.25s; }
+  .sol-cell:hover { background: var(--navy); color: var(--white); }
+  .sol-cell:hover .sol-desc { color: rgba(255,255,255,0.78); }
+  .sol-cell:hover .sol-name { color: var(--white); }
+  .sol-cell:hover .sol-head { border-bottom-color: rgba(255,255,255,0.2); }
+  .sol-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
+  .sol-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--pro); padding: 3px 8px; font-weight: 500; }
+  .sol-icon { width: 22px; height: 22px; color: var(--pro); }
+  .sol-cell:hover .sol-icon { color: var(--orange); }
+  .sol-name { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--navy); text-transform: uppercase; line-height: 1.1; }
+  .sol-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.65; margin-top: auto; }
 
-    /* ── TRUTHS ── */
-    #truths { background: var(--bg-alt); position: relative; overflow: hidden; }
-    #truths::before {
-      content: '/PRO';
-      position: absolute;
-      top: 50%; right: -20px; transform: translateY(-50%) rotate(90deg);
-      font-family: 'EurostileExtended', sans-serif;
-      font-size: 80px; font-weight: 700;
-      color: rgba(74,85,99,.05);
-      white-space: nowrap;
-      pointer-events: none;
-      letter-spacing: .1em;
-    }
-    #truths h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: var(--granat); margin-bottom: 36px; }
-    .truth-item { border-left: 3px solid var(--pomarancz); padding: 20px 24px; margin-bottom: 12px; background: var(--biel); transition: border-color .2s, transform .2s; }
-    .truth-item:hover { border-color: var(--pro); transform: translateX(4px); }
-    .truth-item p { font-size: 14px; color: var(--grafit); line-height: 1.85; }
-    .truths-bridge { margin-top: 40px; font-size: 14px; color: var(--pro); font-style: italic; text-align: center; font-weight: 500; }
+  /* METHOD — numbered steps */
+  .method { padding: clamp(70px, 10vh, 120px) 0; background: var(--white); position: relative; overflow: hidden; }
+  .method-watermark { position: absolute; font-family: var(--font-display); font-weight: 700; font-size: clamp(120px, 24vw, 360px); color: var(--pro); opacity: 0.04; top: 50%; right: -50px; transform: translateY(-50%); pointer-events: none; line-height: 1; z-index: 0; }
+  .method .container { position: relative; z-index: 1; }
+  .method-steps { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule-strong); border: 1px solid var(--rule-strong); }
+  .mstep { background: var(--white); display: grid; grid-template-columns: 80px 1fr; gap: 0; transition: background 0.2s; }
+  .mstep:hover { background: var(--platinum); }
+  .mstep-num-col { background: var(--navy); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .mstep-num { font-family: var(--font-display); font-weight: 700; font-size: 28px; color: var(--orange); }
+  .mstep-body { padding: 28px 32px; }
+  .mstep-opener { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pro); margin-bottom: 8px; }
+  .mstep-name { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--navy); text-transform: uppercase; margin-bottom: 12px; }
+  .mstep-text { font-size: 13px; color: var(--ink); line-height: 1.7; font-weight: 300; margin-bottom: 8px; }
+  .mstep-result { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--success); margin-top: 10px; display: inline-block; }
+  @media (max-width: 600px) { .mstep { grid-template-columns: 56px 1fr; } }
 
-    /* ── B/A ── */
-    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-    .ba-col { background: var(--biel); padding: 36px 32px; }
-    .ba-col h3 { font-size: 12px; font-weight: 700; padding-bottom: 12px; margin-bottom: 18px; border-bottom: 2px solid; letter-spacing: .12em; text-transform: uppercase; }
-    .ba-col.before h3 { color: var(--danger); border-color: var(--danger); }
-    .ba-col.after  h3 { color: var(--success); border-color: var(--success); }
-    .ba-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .ba-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--grafit); line-height: 1.65; }
-    .ba-list .icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
-    .before .icon { color: var(--danger); }
-    .after  .icon { color: var(--success); }
+  /* SCOPE (catalog) — fazy grid */
+  .scope { padding: clamp(70px, 10vh, 120px) 0; background: var(--ash); border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
+  .scope-track { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule-strong); border: 1px solid var(--rule-strong); }
+  @media (min-width: 600px) { .scope-track { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .scope-track { grid-template-columns: repeat(3, 1fr); } }
+  .scope-cell { background: var(--white); padding: 26px 24px; display: flex; flex-direction: column; gap: 10px; min-height: 150px; transition: background 0.25s, color 0.25s; position: relative; }
+  .scope-cell::after { content: '/PRO'; position: absolute; top: 14px; right: 16px; font-size: 9px; letter-spacing: 0.1em; color: var(--pro); font-weight: 700; opacity: 0.6; }
+  .scope-cell:hover { background: var(--pro); color: var(--white); }
+  .scope-cell:hover .scope-desc { color: rgba(255,255,255,0.8); }
+  .scope-cell:hover .scope-name { color: var(--white); }
+  .scope-cell:hover::after { color: rgba(255,255,255,0.6); }
+  .scope-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--navy); text-transform: uppercase; line-height: 1.15; }
+  .scope-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.55; margin-top: auto; }
 
+  /* STANDARD (contract elements) — kierunek list */
+  .standard { padding: clamp(70px, 10vh, 120px) 0; background: var(--white); }
+  .standard-list { border-top: 2px solid var(--pro); }
+  .std-row { display: grid; grid-template-columns: 50px 1fr; gap: 20px; align-items: start; padding: 26px 0; border-bottom: 1px solid var(--rule); transition: background 0.25s, padding 0.25s; }
+  @media (min-width: 900px) { .std-row { grid-template-columns: 50px 280px 1fr; gap: 36px; padding: 30px 0; align-items: center; } }
+  .std-row:hover { background: var(--platinum); padding-left: 18px; padding-right: 18px; }
+  .std-num { font-size: 13px; font-weight: 500; color: var(--pro); letter-spacing: 0.1em; }
+  .std-name { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--navy); text-transform: uppercase; line-height: 1.1; }
+  .std-desc { font-size: 13px; color: var(--ink); line-height: 1.6; max-width: 640px; }
+  @media (max-width: 899px) { .std-row { grid-template-areas: "num name" "num desc"; grid-template-columns: 50px 1fr; gap: 6px 16px; } .std-num { grid-area: num; padding-top: 3px; } .std-name { grid-area: name; } .std-desc { grid-area: desc; margin-top: 8px; } }
 
-    /* /PRO watermark */
-    .pro-watermark {
-      position: absolute;
-      font-family: 'EurostileExtended', sans-serif;
-      font-weight: 700;
-      color: var(--pro);
-      opacity: .05;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      letter-spacing: -.02em;
-      line-height: 1;
-    }
-    #method { position: relative; overflow: hidden; }
-    #method .pro-watermark { font-size: clamp(120px, 22vw, 320px); top: 50%; right: -40px; transform: translateY(-50%); }
-    #method .wrap-sm { position: relative; z-index: 1; }
+  /* FIT (for who / not) — two columns navy */
+  .fit { padding: clamp(70px, 10vh, 120px) 0; background: var(--navy); color: var(--white); }
+  .fit .section-id { color: var(--orange); }
+  .fit .section-id::before { background: var(--orange); }
+  .fit .section-title { color: var(--white); }
+  .fit-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.12); margin-top: 8px; }
+  @media (min-width: 800px) { .fit-grid { grid-template-columns: 1fr 1fr; } }
+  .fit-col { background: var(--navy); padding: 36px 32px; }
+  .fit-col.no { background: var(--navy-dark); }
+  .fit-col h3 { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .fit-col.yes h3 { color: #6ee7a8; }
+  .fit-col.no h3 { color: #f8a5a5; }
+  .fit-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .fit-list li { display: flex; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+  .fit-list .ic { flex-shrink: 0; font-weight: 700; }
+  .yes .ic { color: #6ee7a8; }
+  .no .ic { color: #f8a5a5; }
 
-    /* ── METHOD ── */
-    #method { background: var(--biel); }
-    #method h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 700; text-align: center; margin-bottom: 12px; color: var(--granat); }
-    .method-sub { text-align: center; font-size: 13px; color: var(--grafit); max-width: 540px; margin: 0 auto 48px; line-height: 1.8; }
-    .method-steps { display: flex; flex-direction: column; gap: 3px; }
-    .step { display: grid; grid-template-columns: 72px 1fr; border-left: 4px solid var(--pomarancz); transition: border-color .2s; }
-    .step:hover { border-color: var(--pro); }
-    .step-num-col { display: flex; align-items: center; justify-content: center; background: var(--pro); position: relative; overflow: hidden; transition: background .2s; }
-    .step:hover .step-num-col { background: var(--granat); }
-    .step-num-col::after { content: ''; position: absolute; bottom: -15px; right: -15px; width: 40px; height: 40px; background: rgba(252,163,17,.15); transform: rotate(45deg); }
-    .step-num { font-family: 'EurostileExtended', sans-serif; font-size: 28px; font-weight: 700; color: var(--pomarancz); position: relative; z-index: 1; }
-    .step-body { background: var(--bg); padding: 28px 32px; transition: background .2s; }
-    .step:hover .step-body { background: #f0ede9; }
-    .step-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; color: var(--granat); }
-    .step-opener { font-family: 'Roboto Mono', monospace; font-size: 11px; font-weight: 700; color: var(--pro); margin-bottom: 10px; letter-spacing: .08em; text-transform: uppercase; }
-    .step-body p { font-size: 13px; color: var(--grafit); line-height: 1.85; margin-bottom: 8px; }
-    .step-result { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--success); margin-top: 4px; letter-spacing: .04em; }
+  /* WHY (objection + scarcity + guarantee) — manifest style */
+  .why { padding: clamp(80px, 11vh, 130px) 0; background: var(--white); }
+  .why-obj { border: 2px solid var(--navy); background: var(--cream); padding: 40px 44px; max-width: 820px; margin: 0 auto 56px; }
+  .why-obj-q { font-family: var(--font-display); font-weight: 700; font-size: clamp(18px, 2.4vw, 26px); color: var(--navy); text-transform: uppercase; margin-bottom: 24px; line-height: 1.15; }
+  .why-obj-q::before { content: '" '; color: var(--orange); }
+  .why-obj-q::after { content: ' "'; color: var(--orange); }
+  .why-obj p { font-size: 13px; color: var(--ink); line-height: 1.75; margin-bottom: 14px; font-weight: 300; }
+  .why-obj p:last-child { margin-bottom: 0; }
+  .why-obj p strong { font-weight: 500; color: var(--navy); }
+  .why-dual { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 920px; margin: 0 auto; }
+  @media (min-width: 800px) { .why-dual { grid-template-columns: 1fr 1fr; } }
+  .why-box { padding: 32px 30px; border: 1px solid var(--rule-strong); }
+  .why-box.guarantee { border-top: 4px solid var(--orange); background: var(--white); }
+  .why-box.scarcity { border-top: 4px solid var(--pro); background: var(--platinum); }
+  .why-box h3 { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--navy); text-transform: uppercase; margin-bottom: 14px; line-height: 1.15; }
+  .why-box p { font-size: 13px; color: var(--ink-muted); line-height: 1.7; }
+  .why-box p strong { color: var(--navy); font-weight: 500; }
 
-    /* ── FOR WHO ── */
-    #whoisfor { background: var(--bg-alt); }
-    #whoisfor h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; text-align: center; margin-bottom: 44px; color: var(--granat); }
-    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-    .who-col { background: var(--biel); padding: 36px 32px; }
-    .who-col h3 { font-size: 12px; font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--popiel); letter-spacing: .12em; text-transform: uppercase; }
-    .who-col.yes h3 { color: var(--success); }
-    .who-col.no  h3 { color: var(--danger); }
-    .who-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .who-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--grafit); line-height: 1.65; }
-    .who-list .icon { flex-shrink: 0; font-weight: 700; }
-    .yes .icon { color: var(--success); }
-    .no  .icon { color: var(--danger); }
+  /* REFERENCES (logos + testimonials) */
+  .refs { padding: clamp(70px, 10vh, 110px) 0; background: var(--platinum); }
+  .logos-block { margin-bottom: 56px; }
+  .logos-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pro); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .logos-label::before { content: ''; width: 24px; height: 2px; background: var(--pro); display: block; }
+  .logos-row { display: flex; align-items: center; gap: 44px; flex-wrap: wrap; }
+  .logos-row img { height: 38px; width: auto; filter: grayscale(100%) opacity(55%); transition: filter 0.2s; }
+  .logos-row img:hover { filter: grayscale(0%) opacity(100%); }
+  .logos-row.investors img { height: 34px; }
+  .testimonials-track { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule-strong); border: 1px solid var(--rule-strong); margin-top: 8px; }
+  @media (min-width: 800px) { .testimonials-track { grid-template-columns: repeat(3, 1fr); } }
+  .tcard { background: var(--white); padding: 30px 26px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+  .tcard-ph { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 16px 0; }
+  .tcard-ph .q { font-family: var(--font-display); font-size: 32px; color: var(--rule-strong); line-height: 1; }
+  .tcard-ph .lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+  .tcard-ph .note { font-size: 11px; color: var(--ink-soft); font-style: italic; line-height: 1.5; }
+  .tcard-author { border-top: 1px solid var(--rule); padding-top: 14px; margin-top: 16px; }
+  .tcard-author .nm { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--navy); letter-spacing: 0.02em; }
+  .tcard-author .rl { font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
 
-    /* ── OBJECTION ── */
-    .obj-box { border-left: 4px solid var(--pomarancz); background: var(--kremowy); padding: 36px 40px; max-width: 720px; margin: 0 auto; }
-    .obj-quote { font-family: 'EurostileExtended', sans-serif; font-size: 20px; font-weight: 700; color: var(--grafit); margin-bottom: 20px; }
-    .obj-quote::before { content: '"'  ; color: var(--pomarancz); }
-    .obj-quote::after  { content: '"'  ; color: var(--pomarancz); }
-    .obj-box p { font-size: 14px; color: var(--grafit); line-height: 1.85; margin-bottom: 12px; }
-    .obj-box p:last-child { margin-bottom: 0; }
+  /* INACTION (cost of not deciding) */
+  .inaction { padding: clamp(70px, 10vh, 120px) 0; background: var(--navy-dark); color: var(--white); }
+  .inaction .section-id { color: var(--orange); }
+  .inaction .section-id::before { background: var(--orange); }
+  .inaction .section-title { color: var(--white); }
+  .inaction-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .inaction-item { display: grid; grid-template-columns: 130px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid rgba(255,255,255,0.15); align-items: baseline; }
+  .inaction-when { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--orange); text-transform: uppercase; letter-spacing: 0.02em; }
+  .inaction-item p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; font-weight: 300; }
+  @media (max-width: 700px) { .inaction-item { grid-template-columns: 1fr; gap: 8px; } }
 
-    /* ── CATALOG ── */
-    #zakres h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; text-align: center; margin-bottom: 12px; color: var(--granat); }
-    .catalog-intro { text-align: center; font-size: 13px; color: var(--grafit); max-width: 560px; margin: 0 auto 44px; line-height: 1.8; }
-    .catalog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
-    .cat-item { background: var(--biel); padding: 24px; border-bottom: 3px solid var(--pomarancz); position: relative; overflow: hidden; transition: transform .2s, box-shadow .2s; }
-    .cat-item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
-    .cat-item::before { content: '/PRO'; position: absolute; top: 10px; right: 10px; font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--pro); letter-spacing: .1em; font-weight: 700; opacity: .6; }
-    .cat-name { font-family: 'EurostileExtended', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--granat); }
-    .cat-desc { font-size: 12px; color: var(--grafit); line-height: 1.7; }
+  /* FAQ */
+  .faq { padding: clamp(70px, 10vh, 120px) 0; background: var(--white); }
+  .faq-list { border-top: 2px solid var(--pro); max-width: 920px; }
+  .faq-item { border-bottom: 1px solid var(--rule); padding: 26px 0; display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 800px) { .faq-item { grid-template-columns: 1fr 1.4fr; gap: 40px; } }
+  .faq-q { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--navy); line-height: 1.25; text-transform: uppercase; letter-spacing: 0.01em; }
+  .faq-a { font-size: 13px; color: var(--ink); line-height: 1.75; font-weight: 300; }
+  .faq-a strong { font-weight: 500; color: var(--navy); }
 
-    /* ── BREAKDOWN ── */
-    #breakdown {
-      background: linear-gradient(160deg, var(--granat-deep) 0%, var(--granat-deep) 45%, var(--pro) 130%);
-      position: relative;
-      overflow: hidden;
-    }
-    #breakdown::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(252,163,17,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(252,163,17,.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-    /* diagonal accent */
-    #breakdown::after {
-      content: '';
-      position: absolute;
-      top: -60px; right: 60px;
-      width: 6px; height: 130%;
-      background: var(--pomarancz);
-      transform: rotate(35deg);
-      opacity: .12;
-    }
-    #breakdown h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: var(--biel); text-align: center; margin-bottom: 12px; position: relative; z-index: 1; }
-    .breakdown-intro { text-align: center; font-size: 13px; color: rgba(255,255,255,.5); max-width: 540px; margin: 0 auto 44px; line-height: 1.8; position: relative; z-index: 1; }
-    .breakdown-list { display: flex; flex-direction: column; gap: 3px; position: relative; z-index: 1; }
-    .bd-item { display: grid; grid-template-columns: 56px 1fr; background: rgba(255,255,255,.04); border-left: 3px solid var(--pomarancz); transition: background .2s; }
-    .bd-item:hover { background: rgba(255,255,255,.07); }
-    .bd-icon-col { display: flex; align-items: center; justify-content: center; background: var(--pro); font-size: 18px; transition: background .2s; }
-    .bd-item:hover .bd-icon-col { background: var(--granat-mid); }
-    .bd-body { padding: 22px 26px; }
-    .bd-body h3 { font-size: 15px; font-weight: 700; color: var(--biel); margin-bottom: 8px; }
-    .bd-body p { font-size: 13px; color: rgba(255,255,255,.68); line-height: 1.85; }
+  /* FOUNDER (bio) */
+  .founder { padding: clamp(80px, 11vh, 130px) 0; background: var(--platinum); }
+  .founder-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start; }
+  @media (min-width: 900px) { .founder-grid { grid-template-columns: 5fr 7fr; gap: 64px; } }
+  .portrait { aspect-ratio: 4/5; background: var(--navy); position: relative; overflow: hidden; color: var(--white); }
+  .portrait::after { content: ''; position: absolute; bottom: 0; right: 0; width: 55%; height: 45%; background: var(--navy-dark); clip-path: polygon(100% 0, 100% 100%, 0 100%); opacity: 0.7; z-index: 1; }
+  .portrait-monogram { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: clamp(70px, 13vw, 160px); line-height: 1; letter-spacing: -0.04em; color: var(--white); z-index: 2; }
+  .portrait-monogram .dot { color: var(--orange); }
+  .portrait-meta { position: absolute; top: 18px; left: 18px; right: 18px; z-index: 3; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .portrait-footnote { position: absolute; bottom: 18px; left: 18px; z-index: 3; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .portrait-footnote::before { content: '/ '; color: var(--orange); }
+  .portrait-caption { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-muted); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .bio-lead { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 2.6vw, 28px); line-height: 1.25; color: var(--navy); margin: 8px 0 28px; max-width: 560px; word-break: keep-all; }
+  .bio-lead strong { font-weight: 700; }
+  .bio-text { font-size: 13px; line-height: 1.75; color: var(--ink); font-weight: 300; max-width: 560px; margin-bottom: 16px; }
+  .bio-text strong { font-weight: 500; color: var(--navy); }
+  .bio-stamp { margin-top: 36px; padding: 20px 24px; border: 2px solid var(--navy); background: var(--white); display: inline-block; transform: rotate(-1deg); }
+  .bio-stamp-line { font-size: 11px; color: var(--navy); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+  .bio-stamp-name { font-family: var(--font-display); font-size: 20px; color: var(--navy); font-weight: 700; letter-spacing: 0.02em; }
+  .bio-stamp-role { font-size: 10px; color: var(--ink-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 6px; }
 
-    /* ── TESTIMONIALS ── */
-    #referencje { background: var(--bg-alt); }
-    #referencje h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; text-align: center; margin-bottom: 10px; color: var(--granat); }
-    .testimonials-sub { text-align: center; font-size: 13px; color: var(--grafit); margin-bottom: 40px; font-style: italic; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
-    .testimonial-card { background: var(--biel); padding: 28px 24px; border-top: 3px solid var(--pro); min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
-    .testimonial-placeholder { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 12px 0; }
-    .ph-icon { font-size: 26px; }
-    .ph-text { font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--popiel); text-align: center; letter-spacing: .1em; text-transform: uppercase; }
-    .ph-note { font-size: 11px; color: var(--popiel); text-align: center; font-style: italic; line-height: 1.6; }
-    .testimonial-author { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--popiel); }
-    .author-name { font-family: 'EurostileExtended', sans-serif; font-size: 12px; font-weight: 700; color: var(--granat); letter-spacing: .04em; }
-    .author-role { font-size: 11px; color: var(--grafit); margin-top: 3px; letter-spacing: .04em; }
-    .testimonials-note { text-align: center; margin-top: 24px; font-size: 12px; color: var(--grafit); font-style: italic; }
+  /* CONTACT / BRIEF */
+  .kontakt { padding: clamp(80px, 11vh, 130px) 0; background: var(--black); color: var(--white); position: relative; overflow: hidden; }
+  .kontakt::before { content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 50%; background: var(--pro); clip-path: polygon(30% 0, 100% 0, 100% 100%); opacity: 0.5; }
+  .kontakt .container { position: relative; z-index: 2; }
+  .kontakt .section-id { color: var(--orange); }
+  .kontakt .section-id::before { background: var(--orange); }
+  .kontakt .section-title { color: var(--white); }
+  .kontakt .section-sub { color: rgba(255,255,255,0.7); }
+  .kontakt-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 52px; }
+  @media (min-width: 900px) { .kontakt-grid { grid-template-columns: 1.2fr 1fr; gap: 64px; } }
+  .form-fields { display: flex; flex-direction: column; gap: 22px; }
+  .ff { display: flex; flex-direction: column; gap: 8px; }
+  .ff label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .ff label::before { content: '/ '; color: var(--orange); }
+  .ff input { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.25); padding: 12px 0; font-family: var(--font-mono); font-size: 15px; color: var(--white); transition: border-color 0.2s; }
+  .ff input::placeholder { color: rgba(255,255,255,0.3); }
+  .ff input:focus { outline: none; border-bottom-color: var(--orange); }
+  .form-submit { margin-top: 8px; }
+  .btn-submit { width: 100%; background: var(--orange); color: var(--navy); border: none; padding: 17px; font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .btn-submit:hover { background: #e08e00; }
+  .form-note { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 14px; letter-spacing: 0.04em; }
+  .kontakt-field { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; margin-bottom: 28px; }
+  .kontakt-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .kontakt-label::before { content: '/ '; color: var(--orange); }
+  .kontakt-value { font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 30px); font-weight: 700; color: var(--white); display: block; transition: color 0.2s; }
+  a.kontakt-value:hover { color: var(--orange); }
+  .kontakt-subtext { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px; }
 
-    /* ── GUARANTEE / SCARCITY ── */
-    .guarantee-box { border: 2px dashed var(--pomarancz); background: var(--kremowy); padding: 44px 52px; text-align: center; max-width: 660px; margin: 0 auto; }
-    .guarantee-box h2 { font-size: 22px; font-weight: 700; margin-bottom: 14px; color: var(--granat); }
-    .guarantee-box p { font-size: 14px; color: var(--grafit); line-height: 1.85; }
-    .scarcity-box { border: 2px solid var(--pro); border-left: 6px solid var(--pro); background: #f0f1f3; padding: 36px 44px; text-align: center; max-width: 640px; margin: 0 auto; }
-    .scarcity-box h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--granat); }
-    .scarcity-box p { font-size: 13px; color: var(--grafit); line-height: 1.85; }
+  /* FOOTER */
+  footer { background: var(--navy-dark); color: var(--white); padding: 48px 0 24px; font-size: 12px; }
+  .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  @media (min-width: 700px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 40px; } }
+  .footer-col h4 { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 18px; font-weight: 500; }
+  .footer-col h4::before { content: '/ '; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { color: rgba(255,255,255,0.8); font-size: 12px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--orange); }
+  .footer-brand .wordmark-text { color: var(--white); }
+  .footer-brand-text { color: rgba(255,255,255,0.6); max-width: 340px; line-height: 1.6; margin-top: 16px; font-size: 12px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; flex-wrap: wrap; gap: 10px; font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
 
-    /* ── PREFORM ── */
-    #preform-cta {
-      background: var(--granat);
-      padding: 80px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    #preform-cta::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(252,163,17,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,163,17,.05) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-    .preform-slash { position: absolute; top: -40px; left: 100px; width: 5px; height: 140%; background: var(--pomarancz); transform: rotate(35deg); opacity: .15; pointer-events: none; }
-    .preform-slash-2 { position: absolute; top: -40px; left: 140px; width: 2px; height: 140%; background: var(--pomarancz); transform: rotate(35deg); opacity: .08; pointer-events: none; }
-    #preform-cta .pre-main { font-family: 'EurostileExtended', sans-serif; font-size: clamp(16px, 2.5vw, 22px); color: var(--biel); max-width: 620px; margin: 0 auto 16px; line-height: 1.45; font-weight: 700; position: relative; z-index: 1; }
-    #preform-cta .pre-sub { font-size: 13px; color: rgba(255,255,255,.45); font-style: italic; margin-bottom: 36px; line-height: 1.8; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
-
-    /* ── FORM ── */
-    #formularz { background: var(--bg); }
-    .form-box { background: var(--biel); padding: 52px; max-width: 580px; margin: 0 auto; border-top: 4px solid var(--pomarancz); box-shadow: 0 8px 40px rgba(0,0,0,.08); }
-    .form-box h2 { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 10px; color: var(--granat); }
-    .form-sub { text-align: center; font-size: 13px; color: var(--grafit); margin-bottom: 32px; line-height: 1.7; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 10px; font-weight: 700; margin-bottom: 6px; letter-spacing: .14em; text-transform: uppercase; color: var(--pro); }
-    .form-group input { width: 100%; padding: 13px 14px; border: 1px solid var(--popiel); font-size: 14px; font-family: 'Roboto Mono', monospace; color: var(--granat); background: var(--bg); outline: none; transition: border-color .2s, box-shadow .2s; }
-    .form-group input:focus { border-color: var(--pro); box-shadow: 0 0 0 3px rgba(74,85,99,.1); }
-    .btn-form { width: 100%; background: var(--granat); color: var(--biel); font-family: 'EurostileExtended', sans-serif; font-size: 13px; font-weight: 700; padding: 17px; border: none; cursor: pointer; letter-spacing: .08em; text-transform: uppercase; margin-top: 8px; transition: background .2s, transform .15s, box-shadow .2s; }
-    .btn-form:hover { background: var(--pro); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
-    .form-disclaimer { text-align: center; font-size: 11px; color: var(--grafit); margin-top: 12px; }
-    .form-alt { text-align: center; margin-top: 24px; font-size: 13px; color: var(--grafit); line-height: 2.0; }
-    .form-alt a { color: var(--granat); text-decoration: none; border-bottom: 1px solid var(--popiel); transition: border-color .2s; }
-    .form-alt a:hover { border-color: var(--pomarancz); }
-
-    /* ── FAQ ── */
-    #faq { background: var(--bg-alt); }
-    #faq h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; text-align: center; margin-bottom: 44px; color: var(--granat); }
-    .faq-list { max-width: 700px; margin: 0 auto; border-top: 2px solid var(--pro); }
-    .faq-item { border-bottom: 1px solid var(--popiel); transition: background .2s; }
-    .faq-item:hover { background: var(--biel); }
-    .faq-q { font-family: 'EurostileExtended', sans-serif; font-size: 15px; font-weight: 700; color: var(--granat); padding: 22px 16px 10px; }
-    .faq-a { font-size: 13px; color: var(--grafit); line-height: 1.9; padding: 0 16px 22px; }
-    .faq-cta { text-align: center; margin-top: 36px; }
-    .btn-link { font-family: 'EurostileExtended', sans-serif; font-size: 13px; font-weight: 700; color: var(--granat); text-decoration: none; border-bottom: 2px solid var(--pomarancz); padding-bottom: 2px; letter-spacing: .06em; transition: color .2s; }
-    .btn-link:hover { color: var(--pomarancz); }
-
-    /* ── INACTION ── */
-    #inaction { background: var(--biel); }
-    #inaction h2 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; margin-bottom: 32px; color: var(--granat); }
-    .inaction-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
-    .inaction-list li { font-size: 15px; color: var(--grafit); line-height: 1.75; border-left: 3px solid var(--pro); padding: 6px 0 6px 18px; transition: border-color .2s; }
-    .inaction-list li:hover { border-color: var(--danger); }
-    .inaction-list li::before { content: '✗ '; color: var(--danger); font-weight: 700; }
-
-    /* ── BIO ── */
-    #o-nas {
-      background: var(--granat-deep);
-      position: relative;
-      overflow: hidden;
-    }
-    #o-nas::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(252,163,17,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(252,163,17,.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-    #o-nas h2 { font-size: clamp(18px, 3vw, 24px); font-weight: 700; text-align: center; margin-bottom: 36px; color: var(--biel); position: relative; z-index: 1; }
-    .bio-body { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.95; margin-bottom: 16px; position: relative; z-index: 1; }
-    .bio-proof { background: rgba(255,255,255,.05); border-left: 4px solid var(--pomarancz); padding: 22px 28px; margin: 28px 0; position: relative; z-index: 1; }
-    .bio-proof p { font-size: 13px; font-style: italic; color: rgba(255,255,255,.8); line-height: 1.8; }
-    .bio-proof-source { margin-top: 12px; font-size: 10px; font-style: normal; color: var(--piaskowy); letter-spacing: .12em; text-transform: uppercase; font-weight: 700; font-family: 'Roboto Mono', monospace; }
-    .bio-cta { text-align: center; margin-top: 32px; position: relative; z-index: 1; }
-    #o-nas .section-label { position: relative; z-index: 1; }
-
-    /* ── FOOTER ── */
-    footer { background: var(--granat-deep); border-top: 3px solid var(--pomarancz); color: rgba(255,255,255,.4); padding: 40px 24px; }
-    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; }
-    .footer-logo-text { font-family: 'EurostileExtended', sans-serif; font-size: 18px; color: var(--biel); letter-spacing: .1em; }
-    .footer-logo-text span { color: var(--pomarancz); }
-    .footer-tagline { font-family: 'Roboto Mono', monospace; font-size: 10px; color: rgba(255,255,255,.28); letter-spacing: .1em; text-transform: uppercase; margin-top: 8px; }
-    .footer-contact { font-size: 12px; text-align: right; line-height: 2.1; }
-    .footer-contact a { color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
-    .footer-contact a:hover { color: var(--pomarancz); }
-    .footer-bottom { max-width: 1080px; margin: 20px auto 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 11px; text-align: center; letter-spacing: .04em; }
-
-    @media (max-width: 860px) {
-      .cards-grid, .ba-grid, .who-grid, .testimonials-grid { grid-template-columns: 1fr; }
-      .catalog-grid { grid-template-columns: repeat(2,1fr); }
-      .numbers-grid { grid-template-columns: repeat(2,1fr); }
-      .form-box { padding: 32px 22px; }
-      .obj-box, .guarantee-box, .scarcity-box { padding: 28px 22px; }
-      .footer-inner { flex-direction: column; }
-      .footer-contact { text-align: left; }
-    }
-    @media (max-width: 560px) {
-      .hero-vline { width: 24px; }
-      .hero-vline span { font-size: 8px; letter-spacing: .2em; }
-      #hero .wrap { padding-left: 44px; }
-      section { padding: 60px 0; }
-      .numbers-grid { grid-template-columns: repeat(2,1fr); }
-      .catalog-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  /* Animations */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .reveal-1 { animation-delay: 0.05s; }
+  .reveal-2 { animation-delay: 0.16s; }
+  .reveal-3 { animation-delay: 0.28s; }
+</style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">EL'<span>KADRA</span></a>
-  <div class="nav-right">
-    <span class="nav-tag">/PRO — B2B</span>
-    <a href="#formularz" class="nav-cta">Omów projekt</a>
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="hero-vline"><span>EL'KADRA / PRO LINE — B2B</span></div>
-  <div class="wrap">
-    <div class="hero-slash"></div><div class="hero-slash-2"></div><div class="hero-slash-navy"></div>
-    <p class="hero-pre">Partner inżynierski dla generalnych wykonawców</p>
-    <h1 class="hero-h1">Przekaż nam zakres elektryczny. I <em>nigdy więcej nie niańcz podwykonawcy.</em></h1>
-    <p class="hero-sub">EL'KADRA wjeżdża na budowę samowystarczalnie, wyłapuje błędy projektowe zanim zamienią się w koszty rozbiórki i dostarcza kompletną dokumentację w dniu zakończenia prac — żebyś mógł wystawić fakturę natychmiast.</p>
-    <ul class="hero-bullets">
-      <li>Pełna autonomia logistyczna — własne certyfikowane rozdzielnice budowlane. Żadnego obciążenia od Dnia 1.</li>
-      <li>Wyłapujemy kolizje projektowe zanim trafią w ścianę i zniszczą Twoją marżę kontraktową.</li>
-      <li>Perfekcyjna dokumentacja powykonawcza dostarczona w terminie — retencja zwolniona zgodnie z harmonogramem.</li>
-    </ul>
-    <a href="#formularz" class="btn-primary">Omów zakres projektu →</a>
-    <p class="hero-proof">Prowadzone przez inżyniera z doświadczeniem przy wieżowcu 30-piętrowym, 700 lokali.</p>
-  </div>
-</section>
-
-<div id="numbers">
-  <div class="wrap">
-    <div class="numbers-grid">
-      <div class="num-item"><p class="num-val">700</p><p class="num-label">lokali w flagowym projekcie referencyjnym</p></div>
-      <div class="num-item"><p class="num-val">14</p><p class="num-label">dni na wymianę 200 opraw LED</p></div>
-      <div class="num-item"><p class="num-val">5–10%</p><p class="num-label">wartości kontraktu odblokowanej w retencjach</p></div>
-      <div class="num-item"><p class="num-val">36–60</p><p class="num-label">miesięcy pełna gwarancja na wszystkie prace</p></div>
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="container">
+    <div class="meta-bar-group">
+      <div class="meta-bar-item"><span class="status-dot"></span>STATUS: PRZYJMUJEMY ZLECENIA</div>
+      <div class="meta-bar-item meta-bar-hide-mobile">REGION: ŚLĄSK</div>
+      <div class="meta-bar-item"><span class="pro-flag">LINIA / PRO — B2B</span></div>
+    </div>
+    <div class="meta-bar-group">
+      <a class="meta-bar-item" href="tel:784972873">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+        784 972 873
+      </a>
+      <a class="meta-bar-item meta-bar-hide-mobile" href="mailto:karol@elkadra.com">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        karol@elkadra.com
+      </a>
     </div>
   </div>
 </div>
 
-<!-- LOGOS -->
-<div id="loga" style="background:var(--biel);border-bottom:1px solid var(--popiel);">
-
-  <!-- Współpracowaliśmy z -->
-  <div style="padding:44px 24px 32px;border-bottom:1px solid var(--popiel);">
-    <p style="text-align:center;font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pro);margin-bottom:28px;">Współpracowaliśmy z</p>
-    <div style="display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;max-width:900px;margin:0 auto;">
-      <img src="../images/colab/electroventi.png" alt="Electroventi" style="height:36px;width:auto;filter:grayscale(100%) opacity(55%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(55%)'">
-      <img src="../images/colab/inare.png" alt="Inare" style="height:36px;width:auto;filter:grayscale(100%) opacity(55%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(55%)'">
-      <img src="../images/colab/pzn.png" alt="PZN" style="height:36px;width:auto;filter:grayscale(100%) opacity(55%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(55%)'">
-      <img src="../images/colab/strom.png" alt="Strom" style="height:36px;width:auto;filter:grayscale(100%) opacity(55%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(55%)'">
-    </div>
-  </div>
-
-  <!-- Nasze instalacje pracują w -->
-  <div style="padding:32px 24px 44px;">
-    <p style="text-align:center;font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pro);margin-bottom:28px;">Nasze instalacje pracują w obiektach</p>
-    <div style="display:flex;justify-content:center;align-items:center;gap:44px;flex-wrap:wrap;max-width:1000px;margin:0 auto;">
-      <img src="../images/investors/TTBS.png" alt="TTBS" style="height:32px;width:auto;filter:grayscale(100%) opacity(50%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(50%)'">
-      <img src="../images/investors/erste.png" alt="Erste" style="height:32px;width:auto;filter:grayscale(100%) opacity(50%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(50%)'">
-      <img src="../images/investors/sp-zoz-myszkow.png" alt="SP ZOZ Myszków" style="height:32px;width:auto;filter:grayscale(100%) opacity(50%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(50%)'">
-      <img src="../images/investors/sum.png" alt="SUM" style="height:32px;width:auto;filter:grayscale(100%) opacity(50%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(50%)'">
-      <img src="../images/investors/tramwaje-slaskie.png" alt="Tramwaje Śląskie" style="height:32px;width:auto;filter:grayscale(100%) opacity(50%);transition:filter .2s;" onmouseover="this.style.filter='grayscale(0%) opacity(100%)'" onmouseout="this.style.filter='grayscale(100%) opacity(50%)'">
-    </div>
-  </div>
-
-</div>
-
-<section id="karty" style="background:var(--bg);">
-  <div class="wrap">
-    <span class="section-label">Co zmienia się od Dnia 1</span>
-    <div class="cards-grid">
-      <div class="card">
-        <span class="card-pro-tag">LOGISTYKA</span>
-        <h3>Przywozimy własne zaplecze</h3>
-        <p>Wjeżdżamy z własnymi certyfikowanymi rozdzielnicami budowlanymi, kontenerami magazynowymi i oświetleniem tymczasowym. Nie organizujesz dla nas nic — żadnego pożyczania, żadnego chaosu w Dniu 1. Zarządzamy zasilaniem elektrycznym całego placu budowy.</p>
-      </div>
-      <div class="card">
-        <span class="card-pro-tag">INŻYNIERIA</span>
-        <h3>Wyłapujemy błędy wcześnie</h3>
-        <p>Od momentu otrzymania dokumentacji weryfikujemy plany elektryczne z planami konstrukcyjnymi i HVAC. Kolizje projektowe zgłaszamy na etapie stanu surowego — gdy ich poprawienie kosztuje godziny przy biurku, nie pieniądze na rozbiórkę.</p>
-      </div>
-      <div class="card">
-        <span class="card-pro-tag">DOKUMENTACJA</span>
-        <h3>Oddajemy bezbłędne dokumenty</h3>
-        <p>Kompletna DPW — rysunki powykonawcze, protokoły pomiarowe, certyfikaty — dostarczona dokładnie w terminie. Faktura końcowa wychodzi natychmiast. Żadnych brakujących papierów blokujących Twoje rozliczenie z inwestorem.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div id="bridge">
-  <p>Zanim osiągniesz czysty odbiór końcowy, musisz przetrwać Dzień 1. Większość podwykonawców elektrycznych przywozi na budowę ukryte koszty — i większość generalnych wykonawców przyjęła to jako normę.</p>
-</div>
-
-<section id="prawda">
-  <div class="wrap-sm">
-    <span class="section-label light">Rzeczywisty koszt standardowych ekip</span>
-    <h2>Dlaczego Twoja marża kontraktowa jest zawsze zagrożona.</h2>
-    <div class="truth-item"><p>Budynek gotowy, inwestor czeka — Cash Flow wciąż zamrożony. Podwykonawca elektryczny „składa" protokoły pomiarowe tygodnie po zakończeniu prac. Retencja zablokowana. Faktury końcowej wystawić nie możesz.</p></div>
-    <div class="truth-item"><p>Zatrudniłeś najtańszego, żeby chronić budżet. Potem skończyły się materiały, jakość spadła, a wyburzanie ścian dla naprawy ich błędów pochłonęło całą marżę — wielokrotnie więcej niż różnica między rzetelnym a najtańszym oferentem.</p></div>
-    <div class="truth-item"><p>Kierownik Budowy traci dni na gonieniu ekip, które oferują jedynie ciszę radiową. Zła komunikacja zamienia drobny problem w pełnowymiarowy kryzys zanim ktokolwiek odbierze telefon. Efekt domina zatrzymuje tynkarzy, posadzkarzy i HVAC — licznik kar zaczyna tykać.</p></div>
-    <p class="truths-bridge">Nie musi tak być. Partnerstwo z dedykowanym zespołem inżynierskim zmienia rzeczywistość na Twojej budowie.</p>
-  </div>
-</section>
-
-<section id="porownanie" style="background:var(--bg-alt);">
-  <div class="wrap">
-    <span class="section-label">Zmiana</span>
-    <h2 style="font-size:clamp(18px,3vw,26px);font-weight:700;margin-bottom:40px;color:var(--granat);">Co zmienia się po wejściu EL'KADRA na projekt.</h2>
-    <div class="ba-grid">
-      <div class="ba-col before">
-        <h3>Przed...</h3>
-        <ul class="ba-list">
-          <li><span class="icon">✗</span> Dokumentacyjne „czarne dziury" blokują Twoją ostatnią fakturę na tygodnie.</li>
-          <li><span class="icon">✗</span> Podwykonawcy traktują Twój plac jak własny magazyn — pożyczają sprzęt, czas i prąd.</li>
-          <li><span class="icon">✗</span> Kolizje projektowe odkryte po otynkowaniu ścian. Rozbiórka rusza. Zaczyna się szukanie winnych.</li>
-          <li><span class="icon">✗</span> Kierownik Budowy niańczy ekipę elektryczną zamiast zarządzać ścieżką krytyczną.</li>
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="https://elkadra.com" class="wordmark">
+        <img class="wordmark-img" src="../images/logos/elkadra_logo_granat_na_bialym_rgb.svg" alt="EL'KADRA" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+        <span class="wordmark-text" style="display:none;">EL'KADRA</span>
+        <span class="pro-box">PRO</span>
+        <span class="header-slash meta-bar-hide-mobile">/ Inżynieria dla GW</span>
+      </a>
+      <nav class="nav-desktop">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#proces">Proces</a></li>
+          <li><a href="#zakres">Zakres</a></li>
+          <li><a href="#zalozyciel">Założyciel</a></li>
+          <li><a href="#brief" class="nav-cta">Omów projekt</a></li>
         </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-doc-header reveal reveal-1">
+        <span>DOC: EL'KADRA.PRO</span>
+        <span>REV: 2026.01</span>
+        <span class="meta-bar-hide-mobile">CLASS: B2B</span>
+        <span class="meta-bar-hide-mobile">ODBIORCA: GENERALNY WYKONAWCA</span>
       </div>
-      <div class="ba-col after">
-        <h3>Teraz...</h3>
-        <ul class="ba-list">
-          <li><span class="icon">✓</span> Perfekcyjna DPW dostarczona w ostatnim dniu prac. Faktura końcowa wychodzi natychmiast.</li>
-          <li><span class="icon">✓</span> Przyjeżdżamy z własną infrastrukturą. Zero obciążenia dla Twojego zespołu.</li>
-          <li><span class="icon">✓</span> Kolizje wyłapane na papierze w stanie surowym — gdy naprawa kosztuje godziny, nie budżet rozbiórki.</li>
-          <li><span class="icon">✓</span> Kierownik Budowy przekazuje zakres i wraca do tematu dopiero gdy odbiór końcowy przechodzi bez uwag.</li>
-        </ul>
+      <h1 class="hero-title reveal reveal-2">
+        Przekaż nam<br>zakres elektryczny<span class="period">.</span>
+      </h1>
+      <p class="hero-tagline reveal reveal-3">
+        I <strong>nigdy więcej nie niańcz podwykonawcy.</strong> Wjeżdżamy na budowę samowystarczalnie, wyłapujemy błędy projektowe zanim zamienią się w koszty rozbiórki i oddajemy dokumentację w dniu zakończenia prac — żebyś wystawił fakturę natychmiast.
+      </p>
+
+      <div class="hero-grid">
+        <div class="hero-manifest">
+          <p>
+            <strong>Brygada inżynierska, która przejmuje pełną odpowiedzialność za zakres elektryczny i teletechniczny.</strong> Bez próśb o prąd, kontenery czy zaplecze. Bez „to nie nasz zakres". Bez czekania na dokumentację tygodniami po zakończeniu robót.
+          </p>
+          <p>
+            Nie <span class="highlight">kładziemy kabli</span> w ciemno. Czytamy projekt całościowo, łapiemy kolizje branżowe na papierze i chronimy Twoją marżę kontraktową od pierwszego dnia na placu.
+          </p>
+        </div>
+        <div class="hero-ctas">
+          <a href="#brief" class="btn btn-primary">
+            <span>Omów zakres projektu</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#proces" class="btn btn-ghost">
+            <span>Zobacz jak pracujemy</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-val">700</div>
+          <div class="stat-label">lokali w flagowym projekcie referencyjnym</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-val">14</div>
+          <div class="stat-label">dni na wymianę 200 opraw LED</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-val">5–10%</div>
+          <div class="stat-label">wartości kontraktu odblokowanej w retencjach</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-val">36–60</div>
+          <div class="stat-label">miesięcy gwarancji na wszystkie prace</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="method" style="background:var(--biel);">
-  <div class="pro-watermark">/PRO</div>
-  <div class="wrap-sm">
-    <span class="section-label">Nasz proces</span>
-    <h2>Jak chronimy Twoją marżę kontraktową.</h2>
-    <p class="method-sub">Zarządzamy zakresem elektrycznym jako partner inżynierski — usuwając błędy zanim zamienią się w kosztowne rozbiórki.</p>
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 01 · Problem</div>
+      <h2 class="section-title">Dlaczego Twoja marża jest zawsze zagrożona.</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.7);">Trzy scenariusze, które generalni wykonawcy przyjęli jako „normę" — a które systematycznie pożerają budżet i czas.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-cell">
+        <div class="problem-num">RYZYKO 01 · CASH FLOW</div>
+        <p>Budynek gotowy, inwestor czeka — a Cash Flow zamrożony. Podwykonawca wciąż „składa" protokoły pomiarowe tygodnie po zakończeniu prac. Retencja zablokowana. Faktury końcowej wystawić nie możesz.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-num">RYZYKO 02 · PRZERÓBKI</div>
+        <p>Zatrudniłeś najtańszego, żeby chronić budżet. Skończyły się materiały, jakość spadła, a wyburzanie ścian dla naprawy błędów pochłonęło całą marżę — wielokrotnie więcej niż różnica w cenie.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-num">RYZYKO 03 · KOMUNIKACJA</div>
+        <p>Kierownik Budowy traci dni na gonieniu ekip, które oferują ciszę radiową. Drobny problem urasta do kryzysu zanim ktokolwiek odbierze telefon. Efekt domina zatrzymuje kolejne branże.</p>
+      </div>
+    </div>
+    <p class="problem-bridge">Nie musi tak być. Partnerstwo z dedykowanym zespołem inżynierskim zmienia rzeczywistość na Twojej budowie.</p>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="rozwiazanie">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 02 · Rozwiązanie</div>
+      <h2 class="section-title"><span class="slash">/</span>Co zmienia się od Dnia 1.</h2>
+      <p class="section-sub">Trzy rzeczy, które dzieją się od momentu, gdy wjeżdżamy na Twój plac budowy.</p>
+    </div>
+    <div class="solution-track">
+      <div class="sol-cell">
+        <div class="sol-head">
+          <span class="sol-tag">Logistyka</span>
+          <svg class="sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="12"/><path d="M3 12 H21 M8 8 V4 H16 V8"/></svg>
+        </div>
+        <div class="sol-name">Przywozimy własne zaplecze</div>
+        <div class="sol-desc">Wjeżdżamy z własnymi certyfikowanymi rozdzielnicami budowlanymi, kontenerami i oświetleniem tymczasowym. Nie organizujesz dla nas nic. To my zarządzamy zasilaniem elektrycznym całego placu.</div>
+      </div>
+      <div class="sol-cell">
+        <div class="sol-head">
+          <span class="sol-tag">Inżynieria</span>
+          <svg class="sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20 L10 14 L14 18 L20 4"/><path d="M14 4 H20 V10"/></svg>
+        </div>
+        <div class="sol-name">Wyłapujemy błędy wcześnie</div>
+        <div class="sol-desc">Weryfikujemy plany elektryczne z konstrukcyjnymi i HVAC od momentu otrzymania dokumentacji. Kolizje zgłaszamy gdy ich poprawa kosztuje godziny przy biurku — nie pieniądze na rozbiórkę.</div>
+      </div>
+      <div class="sol-cell">
+        <div class="sol-head">
+          <span class="sol-tag">Dokumentacja</span>
+          <svg class="sol-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3 H16 L20 7 V21 H6 Z"/><path d="M9 11 H15 M9 15 H15"/></svg>
+        </div>
+        <div class="sol-name">Oddajemy bezbłędne dokumenty</div>
+        <div class="sol-desc">Kompletna DPW — rysunki, protokoły, certyfikaty — dostarczona dokładnie w terminie. Faktura końcowa wychodzi natychmiast, bez papierów blokujących rozliczenie z inwestorem.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method" id="proces">
+  <div class="method-watermark">/PRO</div>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 03 · Proces</div>
+      <h2 class="section-title"><span class="slash">/</span>Jak chronimy Twoją marżę.</h2>
+      <p class="section-sub">Zarządzamy zakresem elektrycznym jako partner inżynierski — usuwając błędy zanim zamienią się w kosztowne rozbiórki.</p>
+    </div>
     <div class="method-steps">
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">01</span></div>
-        <div class="step-body">
-          <h3>Wyłapujemy błędy na papierze</h3>
-          <p class="step-opener">Wiesz dokładnie, w co wchodzisz — zanim ruszą prace.</p>
-          <p>Analizujemy projekt pod kątem kolizji branżowych przed podpisaniem umowy. Nie dajesz nam w ciemno wyceny — otrzymujesz rzetelny audyt inżynierski identyfikujący rzeczywiste ryzyka wykonawcze upfront.</p>
-          <p>Nie zaniżamy oferty żeby wygrać przetarg. Zero ukrytych kosztów w trakcie realizacji.</p>
-          <span class="step-result">✓ Problemy rozwiązane na ekranie, nie z młotkiem w ręku</span>
+      <div class="mstep">
+        <div class="mstep-num-col"><span class="mstep-num">01</span></div>
+        <div class="mstep-body">
+          <div class="mstep-opener">Wiesz w co wchodzisz — zanim ruszą prace</div>
+          <div class="mstep-name">Wyłapujemy błędy na papierze</div>
+          <p class="mstep-text">Analizujemy projekt pod kątem kolizji branżowych zanim podpiszemy umowę. Nie dajesz nam w ciemno wyceny — otrzymujesz rzetelny audyt inżynierski. Nie zaniżamy oferty żeby wygrać przetarg. Zero ukrytych kosztów w trakcie realizacji.</p>
+          <span class="mstep-result">✓ Problemy rozwiązane na ekranie, nie z młotkiem w ręku</span>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">02</span></div>
-        <div class="step-body">
-          <h3>Wjeżdżamy w pełni samowystarczalnie</h3>
-          <p class="step-opener">Dzień 1 na budowie — zero obciążenia dla GW.</p>
-          <p>Przywozimy własne kontenery magazynowe i certyfikowane rozdzielnice budowlane. Natychmiast uruchamiamy pakiet serwisowy placu — zasilanie maszyn, oświetlenie BHP, uziemienie rusztowań. Dedykowany budżet 20 roboczogodzin miesięcznie na prace konserwacyjne w standardzie.</p>
-          <p>Nie organizujesz dla nas ani jednego elementu infrastruktury.</p>
-          <span class="step-result">✓ Zarządzamy elektrycznym zapleczem budowy od Dnia 1</span>
+      <div class="mstep">
+        <div class="mstep-num-col"><span class="mstep-num">02</span></div>
+        <div class="mstep-body">
+          <div class="mstep-opener">Dzień 1 na budowie — zero obciążenia dla GW</div>
+          <div class="mstep-name">Wjeżdżamy samowystarczalnie</div>
+          <p class="mstep-text">Przywozimy własne kontenery i certyfikowane rozdzielnice budowlane. Uruchamiamy pakiet serwisowy placu — zasilanie maszyn, oświetlenie BHP, uziemienie rusztowań. Nie organizujesz dla nas ani jednego elementu infrastruktury.</p>
+          <span class="mstep-result">✓ Zarządzamy elektrycznym zapleczem budowy od Dnia 1</span>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num-col"><span class="step-num">03</span></div>
-        <div class="step-body">
-          <h3>Testujemy wszystko wewnętrznie</h3>
-          <p class="step-opener">Odbiory zdane za pierwszym razem — zawsze.</p>
-          <p>Przeprowadzamy pełną diagnostykę sprzętem Metrel przed przyjazdem oficjalnego inspektora. Weryfikujemy ciągłość instalacji i zgodność z normami wewnętrznie — sami wyłapujemy i usuwamy wszelkie braki.</p>
-          <p>Gdy inspektor przyjeżdża — wszystko działa. Odbiór staje się formalnością.</p>
-          <span class="step-result">✓ Oficjalny odbiór zdany — wystawiasz fakturę tego samego dnia</span>
+      <div class="mstep">
+        <div class="mstep-num-col"><span class="mstep-num">03</span></div>
+        <div class="mstep-body">
+          <div class="mstep-opener">Odbiory zdane za pierwszym razem — zawsze</div>
+          <div class="mstep-name">Testujemy wszystko wewnętrznie</div>
+          <p class="mstep-text">Przeprowadzamy pełną diagnostykę sprzętem Metrel przed przyjazdem zewnętrznego inspektora. Weryfikujemy ciągłość instalacji i zgodność z normami sami. Gdy inspektor przyjeżdża — wszystko działa. Odbiór staje się formalnością.</p>
+          <span class="mstep-result">✓ Oficjalny odbiór zdany — wystawiasz fakturę tego samego dnia</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="dla-kogo">
-  <div class="wrap">
-    <span class="section-label">Dopasowanie</span>
-    <h2>Z kim nawiązujemy współpracę.</h2>
-    <div class="who-grid">
-      <div class="who-col yes">
+<!-- SCOPE -->
+<section class="scope" id="zakres">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 04 · Zakres prac</div>
+      <h2 class="section-title">Kompletny układ nerwowy budynku.</h2>
+      <p class="section-sub">Nie tylko „ciągniemy kable". Stawiamy, testujemy i certyfikujemy każdy system potrzebny do zdania odbioru.</p>
+    </div>
+    <div class="scope-track">
+      <div class="scope-cell"><div class="scope-name">Sieci zasilające</div><div class="scope-desc">Wewnętrzne linie zasilające (WLZ) i główne rozdzielnice.</div></div>
+      <div class="scope-cell"><div class="scope-name">Oświetlenie</div><div class="scope-desc">Instalacje oświetlenia wewnętrznego, zewnętrznego i awaryjnego.</div></div>
+      <div class="scope-cell"><div class="scope-name">Systemy bezpieczeństwa</div><div class="scope-desc">Kontrola dostępu, CCTV, systemy sygnalizacji włamania.</div></div>
+      <div class="scope-cell"><div class="scope-name">SAP · Sygnalizacja Pożaru</div><div class="scope-desc">Certyfikowane systemy detekcji i alarmowania pożarowego.</div></div>
+      <div class="scope-cell"><div class="scope-name">DSO · Dźwiękowy System Ostrzegawczy</div><div class="scope-desc">Zintegrowane systemy ewakuacyjne i nagłośnienia.</div></div>
+      <div class="scope-cell"><div class="scope-name">Teletechnika · Niskoprądowe</div><div class="scope-desc">Okablowanie strukturalne LAN, RTV/SAT, FTTH, domofony.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARD -->
+<section class="standard" id="standard">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 05 · Standard kontraktu</div>
+      <h2 class="section-title"><span class="slash">/</span>Co zawiera każdy kontrakt.</h2>
+      <p class="section-sub">To, co przywozimy na każdy projekt — bez dopłat, bez osobnych zleceń, bez próśb o rzeczy, które miałbyś organizować sam.</p>
+    </div>
+    <div class="standard-list">
+      <div class="std-row">
+        <div class="std-num">01</div>
+        <div class="std-name">Własna infrastruktura</div>
+        <div class="std-desc">Certyfikowane rozdzielnice budowlane, kontenery magazynowe, oświetlenie tymczasowe. Obsługujemy zasilanie dla pozostałych branż — maszyny, oświetlenie BHP, uziemienie rusztowań. Zero obciążenia dla Twojego zespołu od Dnia 1.</div>
+      </div>
+      <div class="std-row">
+        <div class="std-num">02</div>
+        <div class="std-name">Audyt i Value Engineering</div>
+        <div class="std-desc">Weryfikujemy plany elektryczne z konstrukcyjnymi i HVAC przed podpisaniem umowy. Szukamy wspólnie mądrzejszych sposobów alokacji budżetu — bez kompromisu w jakości i bezpieczeństwie.</div>
+      </div>
+      <div class="std-row">
+        <div class="std-num">03</div>
+        <div class="std-name">Realizacja wszystkich faz</div>
+        <div class="std-desc">Budujemy zgodnie z rygorystycznym standardem inżynierskim i koordynujemy z innymi branżami dzień po dniu. Gdy pojawiają się konflikty — rozwiązujemy je proaktywnie, inżynier do inżyniera.</div>
+      </div>
+      <div class="std-row">
+        <div class="std-num">04</div>
+        <div class="std-name">Diagnostyka LAB</div>
+        <div class="std-desc">Pełne pomiary elektryczne i weryfikacja zgodności sprzętem Metrel — wewnętrznie, przed przyjazdem oficjalnego inspektora. Wyłapujemy i usuwamy braki sami. Odbiór staje się formalnością.</div>
+      </div>
+      <div class="std-row">
+        <div class="std-num">05</div>
+        <div class="std-name">Biała Dokumentacja</div>
+        <div class="std-desc">Kompletny operat DPW — schematy powykonawcze, certyfikaty, protokoły pomiarowe — w segregatorach i wersji cyfrowej. Dostarczony w ostatnim dniu prac. Żadnej czarnej dziury blokującej Twoją płatność.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="fit" id="dla-kogo">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 06 · Dopasowanie</div>
+      <h2 class="section-title"><span class="slash">/</span>Z kim pracujemy.</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col yes">
         <h3>✓ To dla Ciebie, jeśli...</h3>
-        <ul class="who-list">
-          <li><span class="icon">✓</span> Realizujesz złożone hale przemysłowe, obiekty użyteczności publicznej lub wysokiej klasy budownictwo, gdzie standardy dokumentacyjne są niepodważalne.</li>
-          <li><span class="icon">✓</span> Masz dość niańczenia ekip elektrycznych i chcesz przekazać zakres — i naprawdę o nim zapomnieć.</li>
-          <li><span class="icon">✓</span> Sprawdzony podwykonawca już zawiódł Cię przy technicznie wymagającym projekcie i nie możesz pozwolić, żeby to się powtórzyło.</li>
+        <ul class="fit-list">
+          <li><span class="ic">→</span> Realizujesz złożone hale przemysłowe, obiekty użyteczności publicznej lub wysokiej klasy budownictwo, gdzie standardy dokumentacyjne są niepodważalne.</li>
+          <li><span class="ic">→</span> Masz dość niańczenia ekip elektrycznych i chcesz przekazać zakres — i naprawdę o nim zapomnieć.</li>
+          <li><span class="ic">→</span> Sprawdzony podwykonawca zawiódł Cię już przy technicznie wymagającym projekcie i nie możesz pozwolić, by to się powtórzyło.</li>
         </ul>
       </div>
-      <div class="who-col no">
-        <h3>✗ To NIE jest dla Ciebie, jeśli...</h3>
-        <ul class="who-list">
-          <li><span class="icon">✗</span> Zarządzasz masowym budownictwem mieszkaniowym, gdzie jedynym kryterium jest najniższa cena za metr.</li>
-          <li><span class="icon">✗</span> Preferujesz mikrozarządzanie każdą branżą i chcesz zachować pełną kontrolę operacyjną samodzielnie.</li>
-          <li><span class="icon">✗</span> Priorytetem jest cena wejściowa — niezależnie od ukrytych kosztów, które za nią idą.</li>
+      <div class="fit-col no">
+        <h3>✗ To NIE dla Ciebie, jeśli...</h3>
+        <ul class="fit-list">
+          <li><span class="ic">→</span> Zarządzasz masowym budownictwem mieszkaniowym, gdzie jedynym kryterium jest najniższa cena za metr.</li>
+          <li><span class="ic">→</span> Preferujesz mikrozarządzanie każdą branżą i chcesz zachować pełną kontrolę operacyjną samodzielnie.</li>
+          <li><span class="ic">→</span> Priorytetem jest cena wejściowa — niezależnie od ukrytych kosztów, które za nią idą.</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section id="obiekcja" style="background:var(--biel);">
-  <div class="wrap">
-    <span class="section-label">Pytanie, które wszyscy zadają</span>
-    <div class="obj-box">
-      <p class="obj-quote">Wasza marka ma tylko 18 miesięcy.</p>
-      <p>Rejestracja firmy jest nowa. Inżynierski osąd, który ją napędza — nie. Wnosimy siedem lat bezpośredniego, praktycznego doświadczenia w zarządzaniu złożonymi instalacjami — w tym wieżowcami 30-piętrowymi z 700 lokalami i wielkoskalowymi obiektami przemysłowymi.</p>
-      <p>Ten dorobek był zdobywany na prawdziwych budowach. EL'KADRA powstała, żeby stosować standardy Tier-1 bez korporacyjnego nadmiaru spowalniającego większe firmy.</p>
-      <p>Gdy przekazujesz nam zakres elektryczny, polegasz na inżynierze w pokoju — nie na dacie na stopce firmowej.</p>
+<!-- WHY (objection + guarantee + scarcity) -->
+<section class="why" id="dlaczego">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 07 · Dlaczego my</div>
+      <h2 class="section-title">Pytanie, które wszyscy zadają.</h2>
     </div>
-  </div>
-</section>
-
-<section id="zakres" style="background:var(--bg);">
-  <div class="wrap">
-    <span class="section-label">Zakres prac</span>
-    <h2>Kompletny układ nerwowy budynku.</h2>
-    <p class="catalog-intro">Nie tylko „ciągniemy kable." Stawiamy, testujemy i certyfikujemy każdy niskonapięciowy i elektryczny system potrzebny do zdania odbioru.</p>
-    <div class="catalog-grid">
-      <div class="cat-item"><p class="cat-name">Sieci zasilające</p><p class="cat-desc">Wewnętrzne linie zasilające (WLZ) i główne rozdzielnice.</p></div>
-      <div class="cat-item"><p class="cat-name">Oświetlenie</p><p class="cat-desc">Kompletne instalacje oświetlenia wewnętrznego, zewnętrznego i awaryjnego.</p></div>
-      <div class="cat-item"><p class="cat-name">Systemy bezpieczeństwa</p><p class="cat-desc">Kontrola dostępu, CCTV, systemy sygnalizacji włamania.</p></div>
-      <div class="cat-item"><p class="cat-name">SAP — Sygnalizacja Pożaru</p><p class="cat-desc">Certyfikowane systemy detekcji i alarmowania pożarowego (PPOŻ).</p></div>
-      <div class="cat-item"><p class="cat-name">DSO — Dźwiękowy System Ostrzegawczy</p><p class="cat-desc">Zintegrowane systemy ewakuacyjne i nagłośnienia.</p></div>
-      <div class="cat-item"><p class="cat-name">Teletechnika / Niskoprądowe</p><p class="cat-desc">Okablowanie strukturalne LAN, RTV/SAT, FTTH, domofony.</p></div>
+    <div class="why-obj">
+      <div class="why-obj-q">Wasza marka ma tylko 18 miesięcy.</div>
+      <p>Rejestracja firmy jest nowa. <strong>Inżynierski osąd, który ją napędza — nie.</strong> Wnosimy siedem lat bezpośredniego doświadczenia w zarządzaniu złożonymi instalacjami — w tym wieżowcami 30-piętrowymi z 700 lokalami i wielkoskalowymi obiektami przemysłowymi.</p>
+      <p>Ten dorobek był zdobywany na prawdziwych budowach, nie za biurkiem. Nie przenieśliśmy juniorskiego zespołu pod nowy szyld. EL'KADRA powstała, żeby stosować standardy Tier-1 bez korporacyjnego nadmiaru spowalniającego większe firmy.</p>
+      <p>Gdy przekazujesz nam zakres elektryczny, polegasz na <strong>inżynierze w pokoju</strong> — nie na dacie w stopce firmowej.</p>
     </div>
-  </div>
-</section>
-
-<section id="breakdown">
-  <div class="wrap-sm">
-    <span class="section-label light">Standard realizacji</span>
-    <h2>Co zawiera każdy kontrakt EL'KADRA.</h2>
-    <p class="breakdown-intro">Oto co przywozimy na każdy projekt — bez dopłat, bez niespodzianek, bez próśb o rzeczy, które miałbyś organizować sam.</p>
-    <div class="breakdown-list">
-      <div class="bd-item">
-        <div class="bd-icon-col">⚡</div>
-        <div class="bd-body">
-          <h3>Własna infrastruktura zasilania i zaplecze</h3>
-          <p>Certyfikowane rozdzielnice budowlane, kontenery magazynowe, oświetlenie tymczasowe. Obsługujemy zasilanie dla pozostałych branż — zasilanie maszyn, oświetlenie BHP, uziemienie rusztowań. Dedykowany budżet 20 roboczogodzin miesięcznie na prace serwisowe w standardzie. Zero obciążenia od Dnia 1.</p>
-        </div>
+    <div class="why-dual">
+      <div class="why-box guarantee">
+        <h3>Gwarancja: odbiór za pierwszym razem</h3>
+        <p>Dokumentacja powykonawcza przejdzie odbiory Straży Pożarnej i Nadzoru Budowlanego za pierwszym podejściem — bez poprawek, bez czarnych dziur blokujących ostatnią fakturę. Wszystkie prace objęte <strong>gwarancją 36–60 miesięcy</strong> i rękojmią.</p>
       </div>
-      <div class="bd-item">
-        <div class="bd-icon-col">📐</div>
-        <div class="bd-body">
-          <h3>Audyt inżynierski i optymalizacja budżetu</h3>
-          <p>Weryfikujemy plany elektryczne z planami konstrukcyjnymi i HVAC przed podpisaniem umowy. Szukamy wspólnie mądrzejszych sposobów alokacji budżetu — bez kompromisu w jakości i bezpieczeństwie. Value Engineering jako standard, nie usługa dodatkowa.</p>
-        </div>
-      </div>
-      <div class="bd-item">
-        <div class="bd-icon-col">🔧</div>
-        <div class="bd-body">
-          <h3>Realizacja wszystkich faz z aktywną koordynacją</h3>
-          <p>Budujemy zgodnie z rygorystycznymi standardami inżynierskimi. Koordynujemy z innymi branżami dzień po dniu. Gdy pojawiają się konflikty — rozwiązujemy je proaktywnie. Komunikacja inżynier-do-inżyniera. Żadnego przerzucania winy.</p>
-        </div>
-      </div>
-      <div class="bd-item">
-        <div class="bd-icon-col">🔬</div>
-        <div class="bd-body">
-          <h3>Diagnostyka LAB przed odbiorem</h3>
-          <p>Pełne pomiary elektryczne i weryfikacja zgodności sprzętem Metrel — przeprowadzone wewnętrznie przed przyjazdem oficjalnego inspektora. Wyłapujemy i usuwamy wszelkie braki sami. Oficjalny odbiór staje się formalnością.</p>
-        </div>
-      </div>
-      <div class="bd-item">
-        <div class="bd-icon-col">📁</div>
-        <div class="bd-body">
-          <h3>Biała Dokumentacja — w terminie, zawsze</h3>
-          <p>Kompletny zestaw schematów powykonawczych, certyfikatów i protokołów pomiarowych w oprawionych segregatorach i wersji cyfrowej. Dostarczony w ostatnim dniu prac. Żadnego czekania, żadnego gonionego, żadnej czarnej dziury dokumentacyjnej blokującej Twoją płatność.</p>
-        </div>
+      <div class="why-box scarcity">
+        <h3>Pojemność ściśle ograniczona</h3>
+        <p>Świadomie limitujemy liczbę aktywnych projektów — to jedyny sposób, by zagwarantować pełną obecność, własny sprzęt na placu i kompletną odpowiedzialność za każdy kontrakt. Projekty wielkoskalowe wymagają planowania z <strong>3–6 miesięcznym wyprzedzeniem</strong>. Pierwszeństwo mają kontrakty złożone jako pierwsze.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="referencje">
-  <div class="wrap">
-    <span class="section-label">Referencje</span>
-    <h2>Co mówią generalni wykonawcy.</h2>
-    <p class="testimonials-sub">Poniżej wkrótce pojawią się opinie partnerów z naszych dotychczasowych realizacji.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-placeholder">
-          <span class="ph-icon">💬</span>
-          <p class="ph-text">Referencja — wkrótce</p>
-          <p class="ph-note">Opinia Kierownika Budowy z projektu przemysłowego lub wysokościowego — fokus na autonomię logistyczną lub dokumentację</p>
-        </div>
-        <div class="testimonial-author">
-          <p class="author-name">Imię Nazwisko</p>
-          <p class="author-role">Kierownik Budowy · Nazwa firmy GW</p>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-placeholder">
-          <span class="ph-icon">💬</span>
-          <p class="ph-text">Referencja — wkrótce</p>
-          <p class="ph-note">Opinia Prezesa / Dyrektora GW — fokus na ochronę marży, Cash Flow lub terminowość</p>
-        </div>
-        <div class="testimonial-author">
-          <p class="author-name">Imię Nazwisko</p>
-          <p class="author-role">Prezes / Dyrektor · Nazwa firmy GW</p>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-placeholder">
-          <span class="ph-icon">💬</span>
-          <p class="ph-text">Referencja — wkrótce</p>
-          <p class="ph-note">Opinia o konkretnej realizacji — np. modernizacja oświetlenia Katowice lub projekt wysokościowy</p>
-        </div>
-        <div class="testimonial-author">
-          <p class="author-name">Imię Nazwisko</p>
-          <p class="author-role">Stanowisko · Nazwa firmy GW</p>
-        </div>
+<!-- REFERENCES -->
+<section class="refs" id="referencje">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 08 · Referencje</div>
+      <h2 class="section-title"><span class="slash">/</span>Zaufali nam.</h2>
+    </div>
+
+    <div class="logos-block">
+      <div class="logos-label">Współpracowaliśmy z</div>
+      <div class="logos-row">
+        <img src="../images/colab/electroventi.png" alt="Electroventi">
+        <img src="../images/colab/inare.png" alt="Inare">
+        <img src="../images/colab/pzn.png" alt="PZN">
+        <img src="../images/colab/strom.png" alt="Strom">
       </div>
     </div>
-    <p class="testimonials-note">Aktywnie gromadzimy referencje z ukończonych projektów. Skontaktuj się bezpośrednio, aby poprosić o kontakty referencyjne.</p>
-  </div>
-</section>
 
-<section id="gwarancja" class="tight" style="background:var(--bg-alt);">
-  <div class="wrap">
-    <div class="guarantee-box">
-      <h2>Gwarantujemy zdanie odbioru za pierwszym razem.</h2>
-      <p>Dokumentacja powykonawcza przejdzie odbiory Straży Pożarnej i Nadzoru Budowlanego bez poprawek i bez czarnych dziur blokujących Twoją ostatnią fakturę. Wszystkie prace objęte są <strong>gwarancją 36–60 miesięcy</strong> oraz rękojmią.</p>
+    <div class="logos-block">
+      <div class="logos-label">Nasze instalacje pracują w obiektach</div>
+      <div class="logos-row investors">
+        <img src="../images/investors/TTBS.png" alt="TTBS">
+        <img src="../images/investors/erste.png" alt="Erste">
+        <img src="../images/investors/sp-zoz-myszkow.png" alt="SP ZOZ Myszków">
+        <img src="../images/investors/sum.png" alt="SUM">
+        <img src="../images/investors/tramwaje-slaskie.png" alt="Tramwaje Śląskie">
+      </div>
     </div>
-  </div>
-</section>
 
-<section id="dostepnosc" class="tight" style="background:var(--biel);">
-  <div class="wrap">
-    <div class="scarcity-box">
-      <h2>Nasza pojemność jest ściśle ograniczona.</h2>
-      <p>Świadomie limitujemy liczbę aktywnych projektów — to jedyny sposób, żeby zagwarantować pełną obecność, własny sprzęt na placu i kompletną odpowiedzialność techniczną za każdy kontrakt. Projekty wielkoskalowe wymagają planowania zasobów z 3–6 miesięcznym wyprzedzeniem. <strong>Pierwszeństwo mają kontrakty złożone jako pierwsze — bez wyjątków.</strong></p>
-    </div>
-  </div>
-</section>
-
-<div id="preform-cta">
-  <div class="preform-slash"></div><div class="preform-slash-2"></div><div class="wrap-xs">
-    <p class="pre-main">Przekaż nam zakres elektryczny. I nigdy więcej nie niańcz podwykonawcy.</p>
-    <p class="pre-sub">Wjeżdżamy samowystarczalnie, wyłapujemy kolizje wcześnie i dostarczamy perfekcyjną dokumentację — żebyś odblokował retencję w terminie. Nasz harmonogram zapełnia się 3–6 miesięcy z wyprzedzeniem.</p>
-    <a href="#formularz" class="btn-primary">Omów zakres projektu →</a>
-  </div>
-</div>
-
-<section id="formularz">
-  <div class="wrap">
-    <div class="form-box">
-      <h2>Omów zakres projektu.</h2>
-      <p class="form-sub">Opisz nam swój projekt. Umówimy wstępną rozmowę i określimy czytelny przedmiar robót — bez zobowiązań, bez ogólnikowego cennika.</p>
-      <div class="form-group">
-        <label for="f-type">Jaki to rodzaj projektu? *</label>
-        <input type="text" id="f-type" placeholder="np. hala przemysłowa, obiekt użyteczności publicznej..." required>
+    <div class="testimonials-track">
+      <div class="tcard">
+        <div class="tcard-ph">
+          <div class="q">"</div>
+          <div class="lbl">Referencja — wkrótce</div>
+          <div class="note">Kierownik Budowy — projekt przemysłowy lub wysokościowy</div>
+        </div>
+        <div class="tcard-author"><div class="nm">Imię Nazwisko</div><div class="rl">Kierownik Budowy · Firma GW</div></div>
       </div>
-      <div class="form-group">
-        <label for="f-timeline">Planowany harmonogram projektu?</label>
-        <input type="text" id="f-timeline" placeholder="np. start Q3 2025, budowa 14 miesięcy...">
+      <div class="tcard">
+        <div class="tcard-ph">
+          <div class="q">"</div>
+          <div class="lbl">Referencja — wkrótce</div>
+          <div class="note">Prezes / Dyrektor GW — ochrona marży, Cash Flow</div>
+        </div>
+        <div class="tcard-author"><div class="nm">Imię Nazwisko</div><div class="rl">Prezes / Dyrektor · Firma GW</div></div>
       </div>
-      <div class="form-group">
-        <label for="f-name">Imię i nazwisko *</label>
-        <input type="text" id="f-name" required>
-      </div>
-      <div class="form-group">
-        <label for="f-email">Służbowy adres e-mail *</label>
-        <input type="email" id="f-email" required>
-      </div>
-      <div class="form-group">
-        <label for="f-phone">Telefon bezpośredni</label>
-        <input type="tel" id="f-phone">
-      </div>
-      <button type="button" class="btn-form">Omów zakres projektu →</button>
-      <p class="form-disclaimer">Bez zobowiązań. Odpowiadamy w ciągu jednego dnia roboczego.</p>
-      <div class="form-alt">
-        Wolisz kontakt bezpośredni?<br>
-        📞 <a href="tel:+48784972873">+48 784 972 873</a> &nbsp;·&nbsp; ✉️ <a href="mailto:karol@elkadra.com">karol@elkadra.com</a><br>
-        🌐 <a href="https://elkadra.com">elkadra.com</a>
+      <div class="tcard">
+        <div class="tcard-ph">
+          <div class="q">"</div>
+          <div class="lbl">Referencja — wkrótce</div>
+          <div class="note">Konkretna realizacja — np. modernizacja LED Katowice</div>
+        </div>
+        <div class="tcard-author"><div class="nm">Imię Nazwisko</div><div class="rl">Stanowisko · Firma GW</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="faq" style="background:var(--bg-alt);">
-  <div class="wrap">
-    <span class="section-label">FAQ</span>
-    <h2>Konkretne odpowiedzi dla generalnych wykonawców.</h2>
+<!-- INACTION -->
+<section class="inaction" id="koszt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 09 · Koszt braku decyzji</div>
+      <h2 class="section-title">Ukryty koszt standardowego podejścia.</h2>
+    </div>
+    <ul class="inaction-list">
+      <li class="inaction-item">
+        <div class="inaction-when">Za 6 miesięcy</div>
+        <p>Nadal jesteś de facto elektrykiem budowy. Rozwiązujesz problemy z zasilaniem, gdy Twoja ekipa czeka — bo zakres elektryczny nigdy naprawdę nie został przekazany.</p>
+      </li>
+      <li class="inaction-item">
+        <div class="inaction-when">Za rok</div>
+        <p>Budynek gotowy, inwestor czeka. Retencja wciąż zamrożona, bo ścigasz brakujące protokoły pomiarowe od niezorganizowanego podwykonawcy.</p>
+      </li>
+      <li class="inaction-item">
+        <div class="inaction-when">Konsekwencja</div>
+        <p>Brak wyboru prawdziwego partnera inżynierskiego oznacza akceptację ryzyka, które wybucha w najgorszym możliwym momencie — tuż przed odbiorem końcowym, gdy wszystko stoi na szali.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 10 · FAQ</div>
+      <h2 class="section-title"><span class="slash">/</span>Konkretne odpowiedzi.</h2>
+    </div>
     <div class="faq-list">
       <div class="faq-item">
-        <p class="faq-q">Marka jest nowa. Jak mogę powierzyć Wam krytyczny projekt?</p>
-        <p class="faq-a">Marka ma 18 miesięcy, ale inżynierski osąd, który ją napędza, oparty jest na 7-letnim track record przy projektach Tier-1 — w tym 30-piętrowych wieżowcach i złożonych obiektach przemysłowych. EL'KADRA powstała, żeby stosować te standardy bez korporacyjnej biurokracji. Nadzór głównego inżyniera na każdym projekcie — bez pośredników.</p>
+        <div class="faq-q">Marka jest nowa. Jak Wam zaufać przy krytycznym projekcie?</div>
+        <div class="faq-a">Marka ma 18 miesięcy, ale inżynierski osąd opiera się na 7-letnim track record przy projektach Tier-1 — wieżowce 30-piętrowe, złożone obiekty przemysłowe. Na każdym projekcie masz nadzór głównego inżyniera, bez pośredników.</div>
       </div>
       <div class="faq-item">
-        <p class="faq-q">Jesteście drożsi niż moja obecna ekipa elektryczna?</p>
-        <p class="faq-a">Właściwe pytanie brzmi: ile oszczędzasz. Nasza stawka obejmuje własny sprzęt wysokiej klasy i infrastrukturę budowy — nie działamy jako „pasożyci sprzętowi." Nasz przegląd inżynierski chroni przed kosztami, które normalnie tracisz na naprawianie błędów najtańszego oferenta. Jedno uniknięte zdarzenie rozbiórkowe zazwyczaj oszczędza więcej niż cała różnica cenowa między nami a najniższą ofertą.</p>
+        <div class="faq-q">Jesteście drożsi niż moja obecna ekipa?</div>
+        <div class="faq-a">Właściwe pytanie: ile <strong>oszczędzasz</strong>. Stawka obejmuje własny sprzęt i infrastrukturę — nie jesteśmy „pasożytami sprzętowymi". Jedno uniknięte zdarzenie rozbiórkowe zazwyczaj oszczędza więcej niż cała różnica cenowa wobec najtańszej oferty.</div>
       </div>
       <div class="faq-item">
-        <p class="faq-q">Mam sprawdzonych podwykonawców. Po co zmieniać?</p>
-        <p class="faq-a">Generalni wykonawcy zazwyczaj dzwonią do nas po tym, jak sprawdzona ekipa zawodzi na technicznie wymagającym zleceniu. Pytanie jest proste: czy Twój obecny zespół radzi sobie ze ścisłymi standardami dokumentacyjnymi, przyjeżdża samowystarczalnie i aktywnie chroni Twoją marżę? Specjalizujemy się w kontraktach B2B wysokiego ryzyka — nie zastępujemy standardowych elektryków przy rutynowych pracach. Jesteśmy partnerem, po którego sięgasz gdy nie możesz sobie pozwolić na błąd.</p>
+        <div class="faq-q">Mam sprawdzonych podwykonawców. Po co zmieniać?</div>
+        <div class="faq-a">GW dzwonią do nas zwykle po tym, jak sprawdzona ekipa zawiodła na trudnym zleceniu. Specjalizujemy się w kontraktach B2B wysokiego ryzyka — nie zastępujemy standardowych elektryków przy rutynie. Jesteśmy partnerem na projekty, gdzie nie możesz pozwolić sobie na błąd.</div>
       </div>
       <div class="faq-item">
-        <p class="faq-q">Potrzebuję pełnej przewidywalności budżetowej. Co dokładnie dostanę?</p>
-        <p class="faq-a">Wszystkie wyceny oparte są na szczegółowym przedmiarze robót opracowanym wspólnie przed podpisaniem umowy. Bez zaniżania żeby wygrać przetarg. Bez ukrytych kosztów w trakcie realizacji. Wiesz dokładnie co dostarczamy zanim złożysz podpis — jak w naszym standardowym ofertowniku opartym na rzetelnych stawkach rynkowych.</p>
+        <div class="faq-q">Potrzebuję pełnej przewidywalności budżetu.</div>
+        <div class="faq-a">Wszystkie wyceny oparte na szczegółowym przedmiarze robót opracowanym wspólnie przed podpisaniem umowy. Bez zaniżania, bez ukrytych kosztów. Wiesz dokładnie co dostarczamy zanim złożysz podpis.</div>
       </div>
       <div class="faq-item">
-        <p class="faq-q">Nieduży zespół — czy realnie zdążycie z moim terminem?</p>
-        <p class="faq-a">Precyzja bije liczebność. Dobrze zorganizowany, wykwalifikowany zespół konsekwentnie wyprzedza większą, słabiej skoordynowaną ekipę generującą chaos. Track record potwierdza: 200 opraw LED wymienione w 14 dni w hali wysokiego składowania w Katowicach, całość z podnośnika koszowego. Lepsza organizacja wygrywa z masą roboczą — każdorazowo.</p>
+        <div class="faq-q">Nieduży zespół — zdążycie z terminem?</div>
+        <div class="faq-a">Precyzja bije liczebność. Dobrze zorganizowany zespół wyprzedza większą, słabiej skoordynowaną ekipę. Track record: 200 opraw LED w 14 dni w hali wysokiego składowania, całość z podnośnika koszowego.</div>
       </div>
       <div class="faq-item">
-        <p class="faq-q">Co się dzieje, gdy kolizja projektowa zostanie odkryta po rozpoczęciu prac?</p>
-        <p class="faq-a">Nasz proces jest zbudowany tak, żeby do tego nie dochodziło — weryfikujemy plany z dokumentacją konstrukcyjną zanim beton zdecyduje za wszystkich. Jeśli problem ujawni się jednak na placu, stajemy razem z Tobą: przedstawiamy fakty, bierzemy odpowiedzialność techniczną i rozwiązujemy go niezwłocznie. Żadnych wymówek. Wszystkie prace objęte są gwarancją 36–60 miesięcy i rękojmią.</p>
+        <div class="faq-q">Co, gdy kolizja wyjdzie po rozpoczęciu prac?</div>
+        <div class="faq-a">Proces jest zbudowany tak, by do tego nie dochodziło — weryfikujemy plany zanim beton zdecyduje za wszystkich. Jeśli problem ujawni się na placu, stajemy razem z Tobą: fakty, odpowiedzialność techniczna, szybkie rozwiązanie. Bez przerzucania winy.</div>
       </div>
-    </div>
-    <div class="faq-cta">
-      <a href="#formularz" class="btn-link">Omów zakres projektu →</a>
     </div>
   </div>
 </section>
 
-<section id="inaction" style="background:var(--biel);">
-  <div class="wrap-sm">
-    <span class="section-label">Koszt braku decyzji</span>
-    <h2>Ukryty koszt standardowego podejścia.</h2>
-    <ul class="inaction-list">
-      <li><strong>Za sześć miesięcy</strong> nadal jesteś de facto elektrykiem budowy. Rozwiązujesz problemy z zasilaniem, gdy Twoja ekipa czeka — bo zakres elektryczny nigdy naprawdę nie został przekazany.</li>
-      <li><strong>Za rok</strong> budynek gotowy, inwestor czeka. Retencja wciąż zamrożona, bo ścigasz brakujące protokoły pomiarowe od niezorganizowanego podwykonawcy.</li>
-      <li>Brak wyboru prawdziwego partnera inżynierskiego oznacza akceptację ryzyka, które wybucha w najgorszym możliwym momencie — tuż przed odbiorem końcowym, gdy wszystko stoi na szali.</li>
-    </ul>
-    <div style="text-align:center;">
-      <a href="#formularz" class="btn-primary">Omów zakres projektu →</a>
+<!-- FOUNDER -->
+<section class="founder" id="zalozyciel">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 11 · Założyciel</div>
+      <h2 class="section-title"><span class="slash">/</span>Kto za tym stoi.</h2>
+    </div>
+    <div class="founder-grid">
+      <div>
+        <div class="portrait">
+          <div class="portrait-meta"><span>EK / PRO</span><span>FOUNDER</span></div>
+          <div class="portrait-monogram">K<span class="dot">.</span>D<span class="dot">.</span></div>
+          <div class="portrait-footnote">FOTOGRAFIA W DRODZE</div>
+          <!-- Gdy będzie zdjęcie: <img class="portrait-img" src="../images/photos/karol_drabik.jpg" alt="Karol Drabik"> -->
+        </div>
+        <div class="portrait-caption"><span>/ KAROL DRABIK</span><span>FORMAT 4:5</span></div>
+      </div>
+      <div class="bio">
+        <p class="bio-lead">Lata na budowach nauczyły mnie jednego: <strong>dobry projekt rozpoznaje się po tym, czego na nim nie widać.</strong></p>
+        <p class="bio-text"><strong>Siedem lat w branży</strong> — większość z miernikiem w ręku, na rusztowaniach, przy rozdzielnicach. Zanim zacząłem prowadzić projekty, sam przeszedłem każdy etap roboty fizycznej. Wiem co znaczy zaplanować coś dobrze — albo źle.</p>
+        <p class="bio-text">Jako inżynier robót elektrycznych prowadziłem instalacje na dużych obiektach kubaturowych: <strong>wieżowiec mieszkaniowy z 700 lokalami na 30 kondygnacjach</strong>, budynki użyteczności publicznej, hale przemysłowe.</p>
+        <p class="bio-text">Rynek nie potrzebował kolejnej standardowej ekipy. Potrzebował partnera inżynierskiego, który bierze pełną odpowiedzialność. Stąd EL'KADRA, stąd linia PRO — dla generalnych wykonawców, którzy traktują zakres elektryczny jako zbyt krytyczny, by powierzyć go przypadkowej ekipie.</p>
+        <div class="bio-stamp">
+          <div class="bio-stamp-line">— inż. Karol Drabik</div>
+          <div class="bio-stamp-name">KAROL DRABIK</div>
+          <div class="bio-stamp-role">Główny inżynier / Założyciel</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="o-nas">
-  <div class="wrap-sm">
-    <span class="section-label light">O EL'KADRA</span>
-    <h2>Inżynieria zaprojektowana dla kontroli nad budową.</h2>
-    <p class="bio-body">Lata spędzone na budowach — w zakładach przemysłowych, obiektach użyteczności publicznej, 30-piętrowych wieżowcach. Wszędzie ten sam wzorzec: podwykonawcy generowali chaos, a generalni wykonawcy płacili za to cenę.</p>
-    <p class="bio-body">Rynek nie potrzebował kolejnej standardowej ekipy. Potrzebował partnera inżynierskiego, który bierze pełną odpowiedzialność. EL'KADRA powstała wokół jednej zasady: instalacja elektryczna to układ nerwowy budynku — musi być zaprojektowana inżyniersko, nie tylko zainstalowana. Właściwe planowanie eliminuje rozbiórki. Za każdym razem.</p>
-    <p class="bio-body">EL'KADRA istnieje po to, żeby oddać Kierownikom Budowy ich czas. Wyłapujemy błędy wcześnie, wjeżdżamy z własną logistyką, koordynujemy z innymi branżami proaktywnie i oddajemy dokumentację zdającą odbiory za pierwszym razem. Jak mawiał prof. Fryze: elektrotechnika uzależnia bardziej niż jakikolwiek środek. Ta pasja napędza nas do jedynego akceptowalnego standardu — najwyższego.</p>
-    <div class="bio-proof">
-      <p>„Marka jest nowa. Inżynierski osąd, który za nią stoi — nie." Ostatnio wymieniliśmy 200 opraw LED w hali wysokiego składowania w Katowicach w zaledwie 14 dni, pracując wyłącznie z podnośnika koszowego. To nasz standard na każdym projekcie.</p>
-      <p class="bio-proof-source">inż. Karol Drabik — Główny Inżynier / Założyciel · EL'KADRA</p>
+<!-- CONTACT / BRIEF -->
+<section class="kontakt" id="brief">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-id">§ 12 · Brief</div>
+      <h2 class="section-title"><span class="slash">/</span>Omów zakres projektu.</h2>
+      <p class="section-sub">Opisz nam projekt. Umówimy wstępną rozmowę i określimy czytelny przedmiar robót — bez zobowiązań, bez ogólnikowego cennika.</p>
     </div>
-    <div class="bio-cta">
-      <a href="#formularz" class="btn-primary">Omów zakres projektu →</a>
+    <div class="kontakt-grid">
+      <div>
+        <div class="form-fields">
+          <div class="ff"><label>Rodzaj projektu *</label><input type="text" placeholder="hala przemysłowa, obiekt użyteczności publicznej, wieżowiec..."></div>
+          <div class="ff"><label>Harmonogram</label><input type="text" placeholder="np. start Q3 2026, budowa 14 miesięcy"></div>
+          <div class="ff"><label>Imię i nazwisko *</label><input type="text" placeholder=""></div>
+          <div class="ff"><label>Służbowy e-mail *</label><input type="email" placeholder=""></div>
+          <div class="ff"><label>Telefon</label><input type="tel" placeholder=""></div>
+          <div class="form-submit">
+            <button type="button" class="btn-submit">Wyślij brief →</button>
+            <p class="form-note">Bez zobowiązań. Odpowiadamy w ciągu jednego dnia roboczego.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="kontakt-field">
+          <div class="kontakt-label">Telefon</div>
+          <a href="tel:784972873" class="kontakt-value">+48 784 972 873</a>
+          <div class="kontakt-subtext">pn–pt, 8:00–18:00</div>
+        </div>
+        <div class="kontakt-field">
+          <div class="kontakt-label">Email</div>
+          <a href="mailto:karol@elkadra.com" class="kontakt-value">karol@elkadra.com</a>
+          <div class="kontakt-subtext">odpowiedź do 24h</div>
+        </div>
+        <div class="kontakt-field">
+          <div class="kontakt-label">Rejestracja</div>
+          <div class="kontakt-value" style="font-size:16px; font-family:var(--font-mono); font-weight:400;">EL'Kadra Karol Drabik<br>NIP 646 298 20 87</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div>
-      <p class="footer-logo-text">EL'<span>KADRA</span></p>
-      <p class="footer-tagline">/WSZYSTKIE FAZY · Kompletne Rozwiązania Elektryczne</p>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="wordmark"><span class="wordmark-text">EL'KADRA</span><span class="pro-box">PRO</span></div>
+        <p class="footer-brand-text">Partner inżynierski dla generalnych wykonawców. Przekaż nam zakres elektryczny i nigdy więcej nie niańcz podwykonawcy.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Nawigacja</h4>
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#proces">Proces</a></li>
+          <li><a href="#zakres">Zakres</a></li>
+          <li><a href="#zalozyciel">Założyciel</a></li>
+          <li><a href="#brief">Brief</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:784972873">+48 784 972 873</a></li>
+          <li><a href="mailto:karol@elkadra.com">karol@elkadra.com</a></li>
+          <li><a href="https://elkadra.com">elkadra.com</a></li>
+          <li style="color:rgba(255,255,255,0.5); font-size:11px; margin-top:8px;">NIP 646 298 20 87</li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-contact">
-      <a href="tel:+48784972873">+48 784 972 873</a><br>
-      <a href="mailto:karol@elkadra.com">karol@elkadra.com</a><br>
-      <a href="https://elkadra.com">elkadra.com</a><br>
-      <span style="color:rgba(255,255,255,.28);">NIP: 646 298 20 87</span>
+    <div class="footer-bottom">
+      <div>© 2026 EL'KADRA · KAROL DRABIK</div>
+      <div>/ ENGINEERED WITH PASSION</div>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 EL'Kadra Karol Drabik · Wszelkie prawa zastrzeżone</div>
 </footer>
 
 </body>
