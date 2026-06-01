@@ -136,8 +136,40 @@
     .btn-primary:hover { background: var(--pomarancz-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(252,163,17,.3); }
     .hero-proof { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,.32); font-style: italic; position: relative; z-index: 1; }
 
+
+    /* Vertical PRO line identifier */
+    .hero-vline {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 36px;
+      background: var(--pro);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .hero-vline span {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      white-space: nowrap;
+    }
+    .hero-vline::before {
+      content: '';
+      position: absolute;
+      top: 24px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px;
+      background: var(--pomarancz);
+    }
+    #hero .wrap { padding-left: 64px; }
+
     /* ── NUMBERS ── */
-    #numbers { background: var(--granat); padding: 0; border-top: none; }
+    #numbers { background: var(--pro); padding: 0; border-top: none; }
     .numbers-grid { display: grid; grid-template-columns: repeat(4,1fr); }
     .num-item {
       text-align: center;
@@ -188,6 +220,10 @@
     .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 14px; color: var(--granat); line-height: 1.3; }
     .card p { font-size: 13px; color: var(--grafit); line-height: 1.85; }
 
+    .card:nth-child(2) { border-top-color: var(--pro); }
+    .card:nth-child(2) .card-pro-tag { background: var(--pomarancz); color: var(--granat); }
+
+
     /* ── BRIDGE ── */
     #bridge {
       background: var(--pro);
@@ -234,6 +270,24 @@
     .ba-list .icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
     .before .icon { color: var(--danger); }
     .after  .icon { color: var(--success); }
+
+
+    /* /PRO watermark */
+    .pro-watermark {
+      position: absolute;
+      font-family: 'EurostileExtended', sans-serif;
+      font-weight: 700;
+      color: var(--pro);
+      opacity: .05;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+    #method { position: relative; overflow: hidden; }
+    #method .pro-watermark { font-size: clamp(120px, 22vw, 320px); top: 50%; right: -40px; transform: translateY(-50%); }
+    #method .wrap-sm { position: relative; z-index: 1; }
 
     /* ── METHOD ── */
     #method { background: var(--biel); }
@@ -287,7 +341,7 @@
 
     /* ── BREAKDOWN ── */
     #breakdown {
-      background: var(--granat-deep);
+      background: linear-gradient(160deg, var(--granat-deep) 0%, var(--granat-deep) 45%, var(--pro) 130%);
       position: relative;
       overflow: hidden;
     }
@@ -437,6 +491,9 @@
       .footer-contact { text-align: left; }
     }
     @media (max-width: 560px) {
+      .hero-vline { width: 24px; }
+      .hero-vline span { font-size: 8px; letter-spacing: .2em; }
+      #hero .wrap { padding-left: 44px; }
       section { padding: 60px 0; }
       .numbers-grid { grid-template-columns: repeat(2,1fr); }
       .catalog-grid { grid-template-columns: 1fr; }
@@ -454,6 +511,7 @@
 </nav>
 
 <section id="hero">
+  <div class="hero-vline"><span>EL'KADRA / PRO LINE — B2B</span></div>
   <div class="wrap">
     <div class="hero-slash"></div><div class="hero-slash-2"></div><div class="hero-slash-navy"></div>
     <p class="hero-pre">Partner inżynierski dla generalnych wykonawców</p>
@@ -574,6 +632,7 @@
 </section>
 
 <section id="method" style="background:var(--biel);">
+  <div class="pro-watermark">/PRO</div>
   <div class="wrap-sm">
     <span class="section-label">Nasz proces</span>
     <h2>Jak chronimy Twoją marżę kontraktową.</h2>
