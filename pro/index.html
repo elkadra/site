@@ -132,8 +132,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* prawa strona kadru (postacie); pion ~38% obejmuje kaski u góry i uścisk niżej */
-    object-position: 76% 38%;
+    /* przesunięte w lewo (66%) i w górę (28%) — więcej kasków, postacie bardziej w kadrze */
+    object-position: 66% 28%;
   }
   /* Gradient granatowy: mocno kryje lewą stronę (tekst), odkrywa prawą (zdjęcie) */
   .hero-photo::after {
@@ -500,11 +500,11 @@
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Zdjęcie hero. Ścieżka domyślna: ../images/hero/pro-hero-handshake2.png
+  <!-- Zdjęcie hero. Ścieżka domyślna: ../images/hero/pro-hero-handshake.png
        Jeśli wgrałeś plik pod inną nazwą, podmień src lub zmień nazwę pliku na dysku. -->
   <div class="hero-photo">
     <img src="../images/hero/pro-hero-handshake2.png" alt="Przekazanie zakresu elektrycznego na budowie — inżynierowie EL'KADRA"
-         onerror="if(!this.dataset.f){this.dataset.f=1;this.src='./pro-hero-handshake2.png';}else if(this.dataset.f==1){this.dataset.f=2;this.src='../images/hero/Gemini_Generated_Image_plfk7mplfk7mplfk.png';}else{this.style.display='none';}">
+         onerror="if(!this.dataset.f){this.dataset.f=1;this.src='../images/hero/pro-hero-hanshake2.png';}else if(this.dataset.f==1){this.dataset.f=2;this.src='../images/hero/pro-hero-handshake.png';}else{this.style.display='none';}">
   </div>
   <div class="container">
     <div class="hero-inner">
