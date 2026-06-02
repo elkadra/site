@@ -109,10 +109,63 @@
   @media (min-width: 980px) { .nav-cta { display: inline-block; } }
 
   /* HERO */
-  .hero { padding: clamp(56px, 9vh, 110px) 0 clamp(70px, 11vh, 130px); position: relative; overflow: hidden; background: var(--white); }
-  .hero::before { content: ''; position: absolute; top: 0; right: 0; width: 45%; height: 60%; background: var(--platinum); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%); opacity: 0.5; pointer-events: none; }
-  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 22%; height: 32%; background: var(--pro); clip-path: polygon(0 30%, 100% 100%, 0 100%); opacity: 0.06; pointer-events: none; }
+  .hero {
+    padding: clamp(56px, 9vh, 110px) 0 clamp(70px, 11vh, 130px);
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-dark);
+  }
+  /* Zdjęcie tła — uścisk dłoni na budowie. Po przeprowadzce zmień ścieżkę jeśli inna. */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background: url('../images/hero/pro-hero-handshake.png') center right / cover no-repeat;
+    z-index: 0;
+  }
+  /* Gradient granatowy: mocno kryje lewą stronę (tekst), odkrywa prawą (zdjęcie) */
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(100deg,
+        rgba(0,26,48,0.97) 0%,
+        rgba(0,26,48,0.92) 38%,
+        rgba(0,26,48,0.62) 62%,
+        rgba(0,26,48,0.30) 100%),
+      linear-gradient(to top, rgba(0,26,48,0.85) 0%, transparent 35%);
+  }
+  /* Pomarańczowa kresa na dole hero — akcent */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange) 0%, rgba(252,163,17,0.15) 55%, transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+  }
   .hero-inner { position: relative; z-index: 2; }
+  /* Na ciemnym tle — odwróć kolory tekstu hero */
+  .hero .hero-doc-header { border-bottom-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+  .hero .hero-doc-header span::before { color: var(--orange); }
+  .hero .hero-title { color: var(--white); }
+  .hero .hero-tagline { color: rgba(255,255,255,0.88); }
+  .hero .hero-tagline strong { color: var(--white); background: linear-gradient(to bottom, transparent 60%, rgba(252,163,17,0.35) 60%); }
+  .hero .hero-grid { border-top-color: rgba(255,255,255,0.15); }
+  .hero .hero-manifest { color: rgba(255,255,255,0.78); }
+  .hero .hero-manifest strong { color: var(--white); }
+  .hero .hero-manifest .highlight { background: rgba(255,255,255,0.12); color: var(--white); }
+  .hero .btn-ghost { color: var(--white); border-color: rgba(255,255,255,0.5); }
+  .hero .btn-ghost:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+  .hero .hero-stats { border-top-color: rgba(255,255,255,0.15); background: transparent; }
+  .hero .hero-stat { border-right-color: rgba(255,255,255,0.15); }
+  .hero .stat-val { color: var(--orange); }
+  .hero .stat-label { color: rgba(255,255,255,0.6); }
+  @media (max-width: 760px) {
+    /* Na mobile zdjęcie schodzi pod tekst — mocniejszy gradient żeby tekst był czytelny */
+    .hero-photo::after { background: linear-gradient(180deg, rgba(0,26,48,0.85) 0%, rgba(0,26,48,0.94) 60%, rgba(0,26,48,0.97) 100%); }
+  }
   .hero-doc-header { display: flex; justify-content: space-between; align-items: start; border-bottom: 1px solid var(--rule-strong); padding-bottom: 14px; margin-bottom: 44px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); gap: 20px; flex-wrap: wrap; }
   .hero-doc-header span::before { content: '/'; color: var(--ink-soft); margin-right: 4px; }
   .hero-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 5.4vw, 80px); line-height: 0.96; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 28px; text-transform: uppercase; word-break: keep-all; hyphens: none; }
@@ -368,6 +421,22 @@
   .reveal-1 { animation-delay: 0.05s; }
   .reveal-2 { animation-delay: 0.16s; }
   .reveal-3 { animation-delay: 0.28s; }
+
+  /* SCROLL REVEAL */
+  .sr { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); will-change: opacity, transform; }
+  .sr.in { opacity: 1; transform: translateY(0); }
+  /* Stagger dla komórek w siatkach */
+  .sr-stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+  .sr-stagger.in > * { opacity: 1; transform: translateY(0); }
+  .sr-stagger.in > *:nth-child(1) { transition-delay: 0.00s; }
+  .sr-stagger.in > *:nth-child(2) { transition-delay: 0.08s; }
+  .sr-stagger.in > *:nth-child(3) { transition-delay: 0.16s; }
+  .sr-stagger.in > *:nth-child(4) { transition-delay: 0.24s; }
+  .sr-stagger.in > *:nth-child(5) { transition-delay: 0.32s; }
+  .sr-stagger.in > *:nth-child(6) { transition-delay: 0.40s; }
+  @media (prefers-reduced-motion: reduce) {
+    .sr, .sr-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -418,6 +487,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-photo"></div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-doc-header reveal reveal-1">
@@ -454,7 +524,7 @@
         </div>
       </div>
 
-      <div class="hero-stats">
+      <div class="hero-stats sr-stagger">
         <div class="hero-stat">
           <div class="stat-val">700</div>
           <div class="stat-label">lokali w flagowym projekcie referencyjnym</div>
@@ -479,12 +549,12 @@
 <!-- PROBLEM -->
 <section class="problem" id="problem">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 01 · Problem</div>
       <h2 class="section-title">Dlaczego Twoja marża jest zawsze zagrożona.</h2>
       <p class="section-sub" style="color:rgba(255,255,255,0.7);">Trzy scenariusze, które generalni wykonawcy przyjęli jako „normę" — a które systematycznie pożerają budżet i czas.</p>
     </div>
-    <div class="problem-grid">
+    <div class="problem-grid sr-stagger">
       <div class="problem-cell">
         <div class="problem-num">RYZYKO 01 · CASH FLOW</div>
         <p>Budynek gotowy, inwestor czeka — a Cash Flow zamrożony. Podwykonawca wciąż „składa" protokoły pomiarowe tygodnie po zakończeniu prac. Retencja zablokowana. Faktury końcowej wystawić nie możesz.</p>
@@ -505,12 +575,12 @@
 <!-- SOLUTION -->
 <section class="solution" id="rozwiazanie">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 02 · Rozwiązanie</div>
       <h2 class="section-title"><span class="slash">/</span>Co zmienia się od Dnia 1.</h2>
       <p class="section-sub">Trzy rzeczy, które dzieją się od momentu, gdy wjeżdżamy na Twój plac budowy.</p>
     </div>
-    <div class="solution-track">
+    <div class="solution-track sr-stagger">
       <div class="sol-cell">
         <div class="sol-head">
           <span class="sol-tag">Logistyka</span>
@@ -543,12 +613,12 @@
 <section class="method" id="proces">
   <div class="method-watermark">/PRO</div>
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 03 · Proces</div>
       <h2 class="section-title"><span class="slash">/</span>Jak chronimy Twoją marżę.</h2>
       <p class="section-sub">Zarządzamy zakresem elektrycznym jako partner inżynierski — usuwając błędy zanim zamienią się w kosztowne rozbiórki.</p>
     </div>
-    <div class="method-steps">
+    <div class="method-steps sr-stagger">
       <div class="mstep">
         <div class="mstep-num-col"><span class="mstep-num">01</span></div>
         <div class="mstep-body">
@@ -583,12 +653,12 @@
 <!-- SCOPE -->
 <section class="scope" id="zakres">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 04 · Zakres prac</div>
       <h2 class="section-title">Kompletny układ nerwowy budynku.</h2>
       <p class="section-sub">Nie tylko „ciągniemy kable". Stawiamy, testujemy i certyfikujemy każdy system potrzebny do zdania odbioru.</p>
     </div>
-    <div class="scope-track">
+    <div class="scope-track sr-stagger">
       <div class="scope-cell"><div class="scope-name">Sieci zasilające</div><div class="scope-desc">Wewnętrzne linie zasilające (WLZ) i główne rozdzielnice.</div></div>
       <div class="scope-cell"><div class="scope-name">Oświetlenie</div><div class="scope-desc">Instalacje oświetlenia wewnętrznego, zewnętrznego i awaryjnego.</div></div>
       <div class="scope-cell"><div class="scope-name">Systemy bezpieczeństwa</div><div class="scope-desc">Kontrola dostępu, CCTV, systemy sygnalizacji włamania.</div></div>
@@ -602,12 +672,12 @@
 <!-- STANDARD -->
 <section class="standard" id="standard">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 05 · Standard kontraktu</div>
       <h2 class="section-title"><span class="slash">/</span>Co zawiera każdy kontrakt.</h2>
       <p class="section-sub">To, co przywozimy na każdy projekt — bez dopłat, bez osobnych zleceń, bez próśb o rzeczy, które miałbyś organizować sam.</p>
     </div>
-    <div class="standard-list">
+    <div class="standard-list sr-stagger">
       <div class="std-row">
         <div class="std-num">01</div>
         <div class="std-name">Własna infrastruktura</div>
@@ -640,11 +710,11 @@
 <!-- FIT -->
 <section class="fit" id="dla-kogo">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 06 · Dopasowanie</div>
       <h2 class="section-title"><span class="slash">/</span>Z kim pracujemy.</h2>
     </div>
-    <div class="fit-grid">
+    <div class="fit-grid sr-stagger">
       <div class="fit-col yes">
         <h3>✓ To dla Ciebie, jeśli...</h3>
         <ul class="fit-list">
@@ -668,17 +738,17 @@
 <!-- WHY (objection + guarantee + scarcity) -->
 <section class="why" id="dlaczego">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 07 · Dlaczego my</div>
       <h2 class="section-title">Pytanie, które wszyscy zadają.</h2>
     </div>
-    <div class="why-obj">
+    <div class="why-obj sr">
       <div class="why-obj-q">Wasza marka ma tylko 18 miesięcy.</div>
       <p>Rejestracja firmy jest nowa. <strong>Inżynierski osąd, który ją napędza — nie.</strong> Wnosimy siedem lat bezpośredniego doświadczenia w zarządzaniu złożonymi instalacjami — w tym wieżowcami 30-piętrowymi z 700 lokalami i wielkoskalowymi obiektami przemysłowymi.</p>
       <p>Ten dorobek był zdobywany na prawdziwych budowach, nie za biurkiem. Nie przenieśliśmy juniorskiego zespołu pod nowy szyld. EL'KADRA powstała, żeby stosować standardy Tier-1 bez korporacyjnego nadmiaru spowalniającego większe firmy.</p>
       <p>Gdy przekazujesz nam zakres elektryczny, polegasz na <strong>inżynierze w pokoju</strong> — nie na dacie w stopce firmowej.</p>
     </div>
-    <div class="why-dual">
+    <div class="why-dual sr-stagger">
       <div class="why-box guarantee">
         <h3>Gwarancja: odbiór za pierwszym razem</h3>
         <p>Dokumentacja powykonawcza przejdzie odbiory Straży Pożarnej i Nadzoru Budowlanego za pierwszym podejściem — bez poprawek, bez czarnych dziur blokujących ostatnią fakturę. Wszystkie prace objęte <strong>gwarancją 36–60 miesięcy</strong> i rękojmią.</p>
@@ -694,12 +764,12 @@
 <!-- REFERENCES -->
 <section class="refs" id="referencje">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 08 · Referencje</div>
       <h2 class="section-title"><span class="slash">/</span>Zaufali nam.</h2>
     </div>
 
-    <div class="logos-block">
+    <div class="logos-block sr">
       <div class="logos-label">Współpracowaliśmy z</div>
       <div class="logos-row">
         <img src="../images/colab/electroventi.png" alt="Electroventi">
@@ -709,7 +779,7 @@
       </div>
     </div>
 
-    <div class="logos-block">
+    <div class="logos-block sr">
       <div class="logos-label">Nasze instalacje pracują w obiektach</div>
       <div class="logos-row investors">
         <img src="../images/investors/TTBS.png" alt="TTBS">
@@ -720,7 +790,7 @@
       </div>
     </div>
 
-    <div class="testimonials-track">
+    <div class="testimonials-track sr-stagger">
       <div class="tcard">
         <div class="tcard-ph">
           <div class="q">"</div>
@@ -752,11 +822,11 @@
 <!-- INACTION -->
 <section class="inaction" id="koszt">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 09 · Koszt braku decyzji</div>
       <h2 class="section-title">Ukryty koszt standardowego podejścia.</h2>
     </div>
-    <ul class="inaction-list">
+    <ul class="inaction-list sr-stagger">
       <li class="inaction-item">
         <div class="inaction-when">Za 6 miesięcy</div>
         <p>Nadal jesteś de facto elektrykiem budowy. Rozwiązujesz problemy z zasilaniem, gdy Twoja ekipa czeka — bo zakres elektryczny nigdy naprawdę nie został przekazany.</p>
@@ -776,11 +846,11 @@
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 10 · FAQ</div>
       <h2 class="section-title"><span class="slash">/</span>Konkretne odpowiedzi.</h2>
     </div>
-    <div class="faq-list">
+    <div class="faq-list sr-stagger">
       <div class="faq-item">
         <div class="faq-q">Marka jest nowa. Jak Wam zaufać przy krytycznym projekcie?</div>
         <div class="faq-a">Marka ma 18 miesięcy, ale inżynierski osąd opiera się na 7-letnim track record przy projektach Tier-1 — wieżowce 30-piętrowe, złożone obiekty przemysłowe. Na każdym projekcie masz nadzór głównego inżyniera, bez pośredników.</div>
@@ -812,11 +882,11 @@
 <!-- FOUNDER -->
 <section class="founder" id="zalozyciel">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 11 · Założyciel</div>
       <h2 class="section-title"><span class="slash">/</span>Kto za tym stoi.</h2>
     </div>
-    <div class="founder-grid">
+    <div class="founder-grid sr">
       <div>
         <div class="portrait">
           <div class="portrait-meta"><span>EK / PRO</span><span>FOUNDER</span></div>
@@ -844,12 +914,12 @@
 <!-- CONTACT / BRIEF -->
 <section class="kontakt" id="brief">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header sr">
       <div class="section-id">§ 12 · Brief</div>
       <h2 class="section-title"><span class="slash">/</span>Omów zakres projektu.</h2>
       <p class="section-sub">Opisz nam projekt. Umówimy wstępną rozmowę i określimy czytelny przedmiar robót — bez zobowiązań, bez ogólnikowego cennika.</p>
     </div>
-    <div class="kontakt-grid">
+    <div class="kontakt-grid sr">
       <div>
         <div class="form-fields">
           <div class="ff"><label>Rodzaj projektu *</label><input type="text" placeholder="hala przemysłowa, obiekt użyteczności publicznej, wieżowiec..."></div>
@@ -918,5 +988,24 @@
   </div>
 </footer>
 
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.sr, .sr-stagger');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 </body>
 </html>
