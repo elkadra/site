@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:inż. Maksym Lysak
+N:Lysak;Maksym;;inż.;
+item1.EMAIL;TYPE=INTERNET:maksm@elkadra.com
+item1.X-ABLabel:
+item2.TEL:+48 733 296 851
+item2.X-ABLabel:Telefony komórkowe
+ORG:EL'Kadra
+TITLE:Inżynier Prowadzący
+item3.URL:elkadra.com/pro
+item3.X-ABLabel:
+PHOTO:https://lh3.googleusercontent.com/contacts/AG6tpzGRTRLRkG_M7rd6IwCcM0
+ 8xj4hwq_s1vijBRN4SYl3q2xIGbu3K
+CATEGORIES:myContacts
+END:VCARD

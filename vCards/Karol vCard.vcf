@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:inż. Karol Drabik
+N:Drabik;Karol ;;inż. ;
+item1.EMAIL;TYPE=INTERNET:karol@elkadra.com
+item1.X-ABLabel:
+item2.TEL:784 972 873
+item2.X-ABLabel:
+ORG:EL'Kadra
+TITLE:Główny Inżynier / Założyciel
+item3.URL:elkadra.com/pro
+item3.X-ABLabel:
+PHOTO:https://lh3.googleusercontent.com/contacts/AG6tpzHgDctiVQGlA3B1kSgLrP
+ wPe__kUrcMNlSAEDLdbPNaSrxh-QPo
+CATEGORIES:myContacts
+END:VCARD
