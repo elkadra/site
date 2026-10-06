@@ -1,0 +1,826 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Osiem torów automatyki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#F2F1EE; --surface:#FFFFFF; --surface-2:#F8F7F4; --surface-3:#EDEBE6;
+  --ink:#191C1F; --ink-2:#4A5056; --ink-3:#7E858C;
+  --line:#DBD8D2; --line-2:#C5C1B9;
+  --n:#1F4E79; --n-soft:#E4EDF5;
+  --l1:#8A4F2A; --l1-soft:#F4E9E1;
+  --pe:#5F7F1F; --pe-soft:#EBF0DC;
+  --warn:#9C6A0C; --warn-soft:#F7EEDA;
+  --crit:#9E2F27; --crit-soft:#F7E3E1;
+  --shadow:0 1px 2px rgba(25,28,31,.05), 0 6px 18px -10px rgba(25,28,31,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#13161A; --surface:#1B1F24; --surface-2:#22262C; --surface-3:#2A2F35;
+    --ink:#E9E7E2; --ink-2:#A8AFB6; --ink-3:#787F86;
+    --line:#2D333A; --line-2:#3D444C;
+    --n:#77ADDD; --n-soft:#1B2C3C;
+    --l1:#CE9166; --l1-soft:#33241A;
+    --pe:#9EC24E; --pe-soft:#25301A;
+    --warn:#DCA83F; --warn-soft:#332814;
+    --crit:#E0817A; --crit-soft:#331D1B;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 18px -10px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13161A; --surface:#1B1F24; --surface-2:#22262C; --surface-3:#2A2F35;
+  --ink:#E9E7E2; --ink-2:#A8AFB6; --ink-3:#787F86;
+  --line:#2D333A; --line-2:#3D444C;
+  --n:#77ADDD; --n-soft:#1B2C3C;
+  --l1:#CE9166; --l1-soft:#33241A;
+  --pe:#9EC24E; --pe-soft:#25301A;
+  --warn:#DCA83F; --warn-soft:#332814;
+  --crit:#E0817A; --crit-soft:#331D1B;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 18px -10px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:Archivo,"Archivo","Helvetica Neue",Arial,sans-serif; text-wrap:balance; margin:0; letter-spacing:-.012em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+a{color:var(--n)}
+
+.wrap{max-width:1180px; margin:0 auto; padding-inline:20px}
+
+/* ── nav ─────────────────────────── */
+.topbar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.topbar-in{display:flex; align-items:center; gap:14px; height:50px}
+.brandmark{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500;
+  letter-spacing:.14em; color:var(--ink-3); white-space:nowrap; flex:0 0 auto;
+}
+.navchips{display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto}
+.navchips::-webkit-scrollbar{display:none}
+.navchips a{
+  flex:0 0 auto; font-size:12.5px; font-weight:500; color:var(--ink-2);
+  text-decoration:none; padding:5px 9px; border-radius:5px; white-space:nowrap;
+}
+.navchips a:hover{background:var(--surface-3); color:var(--ink)}
+#themeBtn{
+  flex:0 0 auto; background:none; border:1px solid var(--line-2); color:var(--ink-2);
+  border-radius:5px; width:30px; height:26px; cursor:pointer; font-size:13px; line-height:1;
+}
+
+/* ── masthead ────────────────────── */
+.mast{padding-block:44px 34px; border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--l1); margin-bottom:14px;
+}
+.mast h1{font-size:clamp(30px,5.6vw,50px); line-height:1.03; font-weight:700; max-width:22ch}
+.mast .lede{margin-top:18px; max-width:62ch; font-size:16.5px; color:var(--ink-2)}
+.mast .lede strong{color:var(--ink); font-weight:600}
+
+/* ── sections ────────────────────── */
+section{padding-block:48px; border-bottom:1px solid var(--line)}
+.sechead{display:flex; align-items:baseline; gap:12px; margin-bottom:8px; flex-wrap:wrap}
+.secnum{
+  font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3);
+  letter-spacing:.06em; flex:0 0 auto;
+}
+.sechead h2{font-size:clamp(21px,3.2vw,29px); font-weight:600}
+.secsub{color:var(--ink-2); max-width:70ch; margin:0 0 26px; font-size:15px}
+
+/* ── type cards ──────────────────── */
+.types{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line)}
+.type{border-bottom:1px solid var(--line); background:transparent}
+.type-hd{
+  display:grid; grid-template-columns:34px 1fr auto; gap:14px; align-items:center;
+  width:100%; text-align:left; background:none; border:0; padding:15px 4px;
+  cursor:pointer; color:var(--ink); font:inherit;
+}
+.type-hd:hover{background:var(--surface-2)}
+.type-hd:focus-visible{outline:2px solid var(--n); outline-offset:-2px}
+.tbadge{
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500;
+  width:30px; height:30px; display:grid; place-items:center; border-radius:4px;
+  background:var(--surface-3); color:var(--ink-2); border:1px solid var(--line-2);
+}
+.type.new .tbadge{background:var(--l1-soft); color:var(--l1); border-color:var(--l1)}
+.type-t{font-family:Archivo,sans-serif; font-weight:600; font-size:16px; line-height:1.25}
+.type-ex{font-size:12.5px; color:var(--ink-3); font-family:"IBM Plex Mono",monospace; margin-top:3px}
+.type-meta{display:flex; align-items:center; gap:14px; flex:0 0 auto}
+.tprice{font-family:"IBM Plex Mono",monospace; font-size:14px; font-weight:500; text-align:right; white-space:nowrap}
+.tprice small{display:block; font-size:10.5px; color:var(--ink-3); font-weight:400; letter-spacing:.04em}
+.caret{color:var(--ink-3); transition:transform .18s; font-size:11px}
+.type[open] .caret, .type.open .caret{transform:rotate(90deg)}
+.type-body{padding:2px 4px 24px 48px; display:none}
+.type.open .type-body{display:block}
+@media(max-width:560px){ .type-body{padding-left:8px} .type-hd{grid-template-columns:30px 1fr; row-gap:8px} .type-meta{grid-column:1/-1; justify-content:space-between} }
+.tgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:18px 26px; margin-top:4px}
+.tgrid h4{font-size:11px; font-family:"IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:5px}
+.tgrid p{margin:0; font-size:14px; color:var(--ink-2)}
+.tgrid ul{margin:0; padding-left:17px; font-size:14px; color:var(--ink-2)}
+.tgrid li{margin-bottom:3px}
+
+.tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px}
+.tag{
+  font-size:11.5px; font-family:"IBM Plex Mono",monospace; padding:2.5px 7px;
+  border-radius:3px; border:1px solid var(--line-2); color:var(--ink-2); background:var(--surface-2);
+}
+.tag.good{background:var(--pe-soft); color:var(--pe); border-color:var(--pe)}
+.tag.bad{background:var(--crit-soft); color:var(--crit); border-color:var(--crit)}
+.tag.mid{background:var(--warn-soft); color:var(--warn); border-color:var(--warn)}
+
+/* ── calculator ──────────────────── */
+.calc{display:grid; grid-template-columns:270px 1fr; gap:30px; align-items:start}
+@media(max-width:880px){.calc{grid-template-columns:1fr}}
+.panel{
+  background:var(--surface); border:1px solid var(--line); border-radius:8px;
+  padding:18px; box-shadow:var(--shadow);
+}
+.panel > h3{font-size:12px; font-family:"IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px}
+.fieldset{display:flex; flex-direction:column; gap:9px; margin-bottom:18px}
+.fieldset:last-child{margin-bottom:0}
+.field{display:grid; grid-template-columns:1fr 74px; gap:10px; align-items:center}
+.field label{font-size:13.5px; color:var(--ink-2); line-height:1.3}
+.field input{
+  font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  width:100%; padding:5px 7px; font-size:13.5px; text-align:right;
+  background:var(--surface-2); color:var(--ink);
+  border:1px solid var(--line-2); border-radius:4px;
+}
+.field input:focus{outline:2px solid var(--n); outline-offset:-1px; border-color:var(--n)}
+.divider{border:0; border-top:1px solid var(--line); margin:0 0 16px}
+.hint{font-size:11.5px; color:var(--ink-3); line-height:1.45; margin:10px 0 0}
+
+/* ── bars ────────────────────────── */
+.barrow{display:grid; grid-template-columns:210px 1fr 108px; gap:12px; align-items:center; padding:7px 0}
+@media(max-width:700px){.barrow{grid-template-columns:1fr; gap:4px; padding:11px 0; border-bottom:1px solid var(--line)}}
+.barlab{font-size:13px; line-height:1.25}
+.barlab .bk{font-family:"IBM Plex Mono",monospace; color:var(--ink-3); font-size:11.5px; margin-right:5px}
+.bartrack{display:flex; height:22px; border-radius:3px; overflow:hidden; background:var(--surface-3); min-width:0}
+.bartrack span{display:block; min-width:0}
+.bartot{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-size:13.5px; font-weight:500; text-align:right}
+.bartot em{display:block; font-style:normal; font-size:10.5px; color:var(--ink-3); font-weight:400}
+.legend{display:flex; flex-wrap:wrap; gap:14px; margin:4px 0 18px; font-size:12px; color:var(--ink-2)}
+.legend i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px}
+
+/* ── tables ──────────────────────── */
+.tblwrap{overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:640px}
+th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+thead th{
+  background:var(--surface-2); font-family:"IBM Plex Mono",monospace; font-weight:500;
+  font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3);
+  position:sticky; top:0; white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+tbody tr:hover{background:var(--surface-2)}
+.vd{font-weight:600; font-size:12.5px; white-space:nowrap}
+.vd.y{color:var(--pe)} .vd.n{color:var(--crit)} .vd.m{color:var(--warn)}
+
+/* ── charts ──────────────────────── */
+.charts{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+@media(max-width:880px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:16px; box-shadow:var(--shadow)}
+.chartbox h3{font-size:14.5px; font-weight:600; margin-bottom:3px}
+.chartbox p{font-size:12.5px; color:var(--ink-3); margin:0 0 12px}
+svg{display:block; width:100%; height:auto; max-width:100%; overflow:visible}
+
+/* ── quiz ────────────────────────── */
+.quiz{display:grid; grid-template-columns:1fr 320px; gap:28px; align-items:start}
+@media(max-width:880px){.quiz{grid-template-columns:1fr}}
+.q{margin-bottom:20px}
+.q > p{font-size:14px; font-weight:600; margin:0 0 8px; font-family:Archivo,sans-serif}
+.q > p span{font-family:"IBM Plex Mono",monospace; font-weight:400; color:var(--ink-3); font-size:12px; margin-right:7px}
+.opts{display:flex; flex-wrap:wrap; gap:7px}
+.opts button{
+  font:inherit; font-size:13px; padding:6px 11px; cursor:pointer;
+  background:var(--surface); color:var(--ink-2);
+  border:1px solid var(--line-2); border-radius:14px;
+}
+.opts button:hover{border-color:var(--n); color:var(--ink)}
+.opts button[aria-pressed="true"]{background:var(--n); border-color:var(--n); color:#fff}
+:root[data-theme="dark"] .opts button[aria-pressed="true"],
+:root:not([data-theme="light"]) .opts button[aria-pressed="true"]{color:#0F1216}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .opts button[aria-pressed="true"]{color:#fff}}
+.result{position:sticky; top:calc(64px + env(safe-area-inset-top,0px))}
+.rank{display:flex; flex-direction:column; gap:8px}
+.rankrow{display:grid; grid-template-columns:26px 1fr auto; gap:9px; align-items:center; font-size:13.5px}
+.rankrow .rk{font-family:"IBM Plex Mono",monospace; color:var(--ink-3); font-size:12px}
+.rankrow.top{font-weight:600}
+.rankrow.out{opacity:.4; text-decoration:line-through}
+.rbar{height:5px; border-radius:3px; background:var(--surface-3); overflow:hidden; grid-column:2/-1; margin-top:-3px}
+.rbar span{display:block; height:100%; background:var(--n)}
+
+/* ── prose blocks ────────────────── */
+.note{
+  border-left:3px solid var(--l1); background:var(--l1-soft);
+  padding:14px 16px; border-radius:0 6px 6px 0; margin:20px 0; font-size:14px;
+}
+.note.crit{border-left-color:var(--crit); background:var(--crit-soft)}
+.note.good{border-left-color:var(--pe); background:var(--pe-soft)}
+.note strong{font-family:Archivo,sans-serif}
+.note p{margin:0}
+.note p + p{margin-top:9px}
+
+.scripts{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:16px}
+.script{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:16px; box-shadow:var(--shadow)}
+.script h4{font-size:14.5px; font-weight:600; margin-bottom:4px}
+.script .dx{font-size:11px; font-family:"IBM Plex Mono",monospace; letter-spacing:.09em; text-transform:uppercase; color:var(--l1); margin-bottom:9px}
+.script p{margin:0 0 9px; font-size:13.5px; color:var(--ink-2)}
+.script .say{
+  border-left:2px solid var(--n); padding-left:11px; font-size:13.5px;
+  color:var(--ink); margin:0;
+}
+
+.ck{list-style:none; padding:0; margin:0; display:grid; gap:9px}
+.ck li{display:grid; grid-template-columns:20px 1fr; gap:10px; font-size:14px; color:var(--ink-2)}
+.ck li b{color:var(--ink); font-family:Archivo,sans-serif; font-weight:600}
+.ck .mk{font-family:"IBM Plex Mono",monospace; color:var(--pe); font-size:13px}
+.ck.warn .mk{color:var(--crit)}
+
+.srcs{columns:2 250px; column-gap:28px; font-size:12.5px; color:var(--ink-2)}
+.srcs p{margin:0 0 7px; break-inside:avoid}
+.srcs b{display:block; color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; margin:14px 0 5px}
+.srcs b:first-child{margin-top:0}
+
+footer{padding-block:32px 46px; font-size:12.5px; color:var(--ink-3)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="topbar"><div class="wrap topbar-in">
+  <span class="brandmark">EL'KADRA</span>
+  <nav class="navchips">
+    <a href="#typologia">Typologia</a>
+    <a href="#kalkulator">Kalkulator</a>
+    <a href="#mapy">Mapy</a>
+    <a href="#kwalifikacja">Kwalifikacja</a>
+    <a href="#segmenty">Segmenty</a>
+    <a href="#zadrogo">„Za drogo"</a>
+    <a href="#ryzyka">Ryzyka</a>
+    <a href="#zrodla">Źródła</a>
+  </nav>
+  <button id="themeBtn" type="button" aria-label="Przełącz motyw">◐</button>
+</div></div>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow">Kompendium wewnętrzne · wrzesień 2026</div>
+    <h1>Osiem torów automatyki i klient dla każdego z nich</h1>
+    <p class="lede">Twoje pięć typów plus trzy, które w praktyce rozstrzygają najwięcej rozmów. Wszystkie liczby są <strong>nadwyżką ponad instalację standardową</strong>, netto, dla domu jednorodzinnego — bo dokładnie tak klient je porównuje. Kalkulator pokazuje, gdzie naprawdę siedzi koszt: przy pięciu z ośmiu torów <strong>drożej wychodzi Twoja głowa niż sprzęt</strong>.</p>
+  </header>
+
+  <!-- ══════════ 1 TYPOLOGIA ══════════ -->
+  <section id="typologia">
+    <div class="sechead"><span class="secnum">01</span><h2>Typologia — pięć Twoich i trzy dopisane</h2></div>
+    <p class="secsub">Trzy brakujące: <b>KNX</b> (przewodowy, ale wielodostawcowy — inna kategoria niż „pudełkowy"), <b>hybryda</b> (najczęstsza właściwa odpowiedź, a prawie nikt jej nie oferuje) i <b>poziom 0 — instalacja smart-ready</b>, która jest jedyną uczciwą odpowiedzią na „chciałbym, ale za drogo" u klienta w budowie. Kliknij wiersz, żeby rozwinąć. Kwoty przeliczają się z kalkulatora poniżej.</p>
+    <div class="types" id="typeList"></div>
+    <p class="hint">Pominięte świadomie: <b>PLC przemysłowy</b> (Siemens LOGO!, WAGO, Beckhoff) — sensowny na obiektach komercyjnych i w technologii, nie w domu; oraz <b>systemy retrofit na falach radiowych 868 MHz</b> (Nice, Somfy io) — w praktyce tylko do rolet i bram, jako podzbiór toru A.</p>
+  </section>
+
+  <!-- ══════════ 2 KALKULATOR ══════════ -->
+  <section id="kalkulator">
+    <div class="sechead"><span class="secnum">02</span><h2>Kalkulator ośmiu torów</h2></div>
+    <p class="secsub">Ustaw zakres i swoje stawki. Model liczy <b>nadwyżkę ponad instalację standardową</b>: materiał automatyki z narzutem, nadwyżkę kablową (topologia gwiaździsta do rozdzielnicy zamiast łączników w przelocie), godziny montażowe ponad normę oraz godziny inżynierskie — projekt logiki, adresacja, konfiguracja, automatyzacje, panele, uruchomienie, szkolenie klienta.</p>
+
+    <div class="calc">
+      <div class="panel">
+        <h3>Zakres obiektu</h3>
+        <div class="fieldset">
+          <div class="field"><label for="i_pow">Powierzchnia <span class="mono">m²</span></label><input id="i_pow" type="number" min="40" max="800" step="10" value="150"></div>
+          <div class="field"><label for="i_obw">Obwody oświetleniowe sterowane</label><input id="i_obw" type="number" min="0" max="200" value="30"></div>
+          <div class="field"><label for="i_dim">— z tego ściemniane</label><input id="i_dim" type="number" min="0" max="200" value="10"></div>
+          <div class="field"><label for="i_rol">Rolety / żaluzje</label><input id="i_rol" type="number" min="0" max="80" value="10"></div>
+          <div class="field"><label for="i_str">Strefy ogrzewania</label><input id="i_str" type="number" min="0" max="60" value="8"></div>
+          <div class="field"><label for="i_prz">Punkty przyciskowe</label><input id="i_prz" type="number" min="0" max="200" value="26"></div>
+          <div class="field"><label for="i_czu">Czujniki (ruch, otwarcie, temp.)</label><input id="i_czu" type="number" min="0" max="120" value="12"></div>
+          <div class="field"><label for="i_int">Integracje (PC, PV, rekuperacja, domofon)</label><input id="i_int" type="number" min="0" max="15" value="2"></div>
+        </div>
+        <hr class="divider">
+        <h3>Twoje stawki</h3>
+        <div class="fieldset">
+          <div class="field"><label for="i_mont">Godzina montażowa <span class="mono">zł</span></label><input id="i_mont" type="number" min="30" max="400" step="5" value="85"></div>
+          <div class="field"><label for="i_inz">Godzina inżynierska <span class="mono">zł</span></label><input id="i_inz" type="number" min="60" max="600" step="10" value="160"></div>
+          <div class="field"><label for="i_nar">Narzut na materiał <span class="mono">%</span></label><input id="i_nar" type="number" min="0" max="80" value="15"></div>
+        </div>
+        <p class="hint">Stawka inżynierska ma być wyższa od montażowej. Jeżeli programowanie liczysz po stawce elektryka, każdy tor z Home Assistantem sprzedajesz poniżej kosztu — i to jest zwykle prawdziwa przyczyna tego, że „na HA się nie zarabia".</p>
+      </div>
+
+      <div>
+        <div class="legend">
+          <span><i style="background:var(--n)"></i>Materiał</span>
+          <span><i style="background:var(--l1)"></i>Nadwyżka kablowa</span>
+          <span><i style="background:var(--pe)"></i>Montaż</span>
+          <span><i style="background:var(--warn)"></i>Inżynieria</span>
+          <span><i style="background:var(--ink-3)"></i>Licencje / szkolenia (amortyzacja)</span>
+        </div>
+        <div id="bars"></div>
+        <p class="hint" id="barsNote"></p>
+
+        <h3 style="font-size:14.5px;margin:28px 0 4px">Rozbicie na warstwy oferty</h3>
+        <p class="hint" style="margin:0 0 12px">Kiedy klient mówi „za drogo", nie schodzisz ze stawki — wycinasz warstwę. Kolejność cięcia od dołu tabeli: czujniki i integracje odpadają bez śladu, kable pod rolety i oświetlenie nie odpadają nigdy.</p>
+        <div class="tblwrap"><table id="layerTbl"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3 MAPY ══════════ -->
+  <section id="mapy">
+    <div class="sechead"><span class="secnum">03</span><h2>Dwie mapy, które kończą dyskusję</h2></div>
+    <p class="secsub">Pierwsza mapa jest dla klienta: pokazuje, że tanie wejście i tania rozbudowa to dwie różne rzeczy, i że przewodówka jest decyzją podejmowaną raz, na etapie surowym. Druga jest dla Ciebie: mówi, ile godzin Twojej głowy kosztuje każdy poziom otwartości systemu. Punkty przesuwają się razem z kalkulatorem.</p>
+    <div class="legend">
+      <span><i style="background:var(--n)"></i>Bezprzewodowe — A, B</span>
+      <span><i style="background:var(--l1)"></i>Przewodowe — C, D, E, F</span>
+      <span><i style="background:var(--pe)"></i>Mieszane i poziom 0 — G, H</span>
+    </div>
+    <div class="charts">
+      <div class="chartbox">
+        <h3>Wejście vs. rozbudowa po wykończeniu</h3>
+        <p>Oś Y: koszt dodania jednej funkcji, gdy tynki i podłogi są już zrobione.</p>
+        <div id="chart1"></div>
+      </div>
+      <div class="chartbox">
+        <h3>Otwartość vs. Twoje godziny inżynierskie</h3>
+        <p>Otwartość: lokalne API, brak wymuszonej chmury, wielodostawczość, wymienność sprzętu.</p>
+        <div id="chart2"></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><strong>Co z tego wynika dla sprzedaży.</strong> Lewy dolny róg pierwszej mapy — A, B, H — to tory, w których klient nie musi być dziś pewny, czego chce. Prawy górny — C, D, E, F — to tory, w których musi. To nie kwestia budżetu, a kwestia <em>momentu decyzji</em>, i najczęściej właśnie tego klient nie rozumie, kiedy mówi „przemyślę".</p>
+      <p>Druga mapa pokazuje, dlaczego tor F (własna kompozycja na ESP) nie jest tanim rozwiązaniem: jest tak samo otwarty jak B, a kosztuje Cię dwa razy więcej godzin. Otwartość kupuje się taniej przez KNX albo przez Shelly z Home Assistantem niż przez lutowanie.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 4 KWALIFIKACJA ══════════ -->
+  <section id="kwalifikacja">
+    <div class="sechead"><span class="secnum">04</span><h2>Siedem pytań kwalifikacyjnych</h2></div>
+    <p class="secsub">Zadaj je na pierwszym spotkaniu, zanim wymienisz jakąkolwiek markę. Odpowiedzi na pytania 1 i 2 wykluczają tory twardo — nie ma sensu opowiadać o Grentonie w domu, w którym mieszkają od trzech lat.</p>
+    <div class="quiz">
+      <div id="quizForm"></div>
+      <div class="panel result">
+        <h3>Ranking dla tego klienta</h3>
+        <div class="rank" id="quizOut"></div>
+        <p class="hint" id="quizWhy">Odpowiedz na pytania, żeby zobaczyć ranking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 5 SEGMENTY ══════════ -->
+  <section id="segmenty">
+    <div class="sechead"><span class="secnum">05</span><h2>Segment klienta → tor</h2></div>
+    <p class="secsub">Dwa segmenty, na których Ci zależy, w pierwszych kolumnach. Reszta dla porządku, bo przez Electroventi i tak trafią do Ciebie obiekty komercyjne, a tam kryteria są zupełnie inne: dokumentacja, wielodostawczość i to, kto będzie serwisował za osiem lat.</p>
+    <div class="tblwrap"><table>
+      <thead><tr>
+        <th>Tor</th>
+        <th>Dom w budowie<br><span style="font-weight:400;text-transform:none;letter-spacing:0">stan surowy</span></th>
+        <th>Rezydencja<br><span style="font-weight:400;text-transform:none;letter-spacing:0">premium</span></th>
+        <th>Mieszkanie<br><span style="font-weight:400;text-transform:none;letter-spacing:0">retrofit</span></th>
+        <th>Obiekt komercyjny<br><span style="font-weight:400;text-transform:none;letter-spacing:0">przez GW</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td><b>A</b> Bezprzew. pudełkowy</td>
+          <td><span class="vd m">Tylko jako plan B</span><div class="hint">Marnujesz etap surowy — kabel można było położyć raz</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Limity scen, brak centralnej logiki, osprzęt nie trzyma poziomu</div></td>
+          <td><span class="vd y">Tak</span><div class="hint">Bez bruzdowania, bez bramki, bez abonamentu</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Brak dokumentacji i serwisowalności pod odbiór</div></td></tr>
+        <tr><td><b>B</b> Bezprzew. szyty na miarę</td>
+          <td><span class="vd m">Warunkowo</span><div class="hint">Dobre, jeśli budżet nie domyka przewodówki — ale Shelly Pro po Ethernecie, nie WiFi</div></td>
+          <td><span class="vd n">Nie samodzielnie</span><div class="hint">30 klientów WiFi w domu premium to reklamacja, nie instalacja</div></td>
+          <td><span class="vd y">Tak, optymalnie</span><div class="hint">Najlepszy stosunek możliwości do ceny w retrofitcie</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Brak umowy serwisowej producenta, brak SLA</div></td></tr>
+        <tr><td><b>C</b> Przewodowy pudełkowy</td>
+          <td><span class="vd y">Tak, domyślnie</span><div class="hint">Najkrótsza droga od surowego do działającego; narzędzia projektowe skracają Twój czas</div></td>
+          <td><span class="vd y">Tak</span><div class="hint">Loxone / Grenton — marka, panele, wsparcie producenta</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Nie ma trasy do rozdzielnicy</div></td>
+          <td><span class="vd m">Zależy od GW</span><div class="hint">Grenton przechodzi; przy przetargu publicznym zwykle wymagany standard otwarty</div></td></tr>
+        <tr><td><b>D</b> KNX</td>
+          <td><span class="vd m">Gdy budżet 50k+</span><div class="hint">Najdroższy start, najtańsza wymiana pojedynczego elementu za 10 lat</div></td>
+          <td><span class="vd y">Tak, wzorcowo</span><div class="hint">Jedyny tor, który klient premium może oddać innej firmie bez przebudowy</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Cena i magistrala</div></td>
+          <td><span class="vd y">Tak, często wymagany</span><div class="hint">Standard w specyfikacjach; oficjalna integracja z HA w rdzeniu</div></td></tr>
+        <tr><td><b>E</b> boneIO + HA</td>
+          <td><span class="vd y">Tak, świadomie</span><div class="hint">Najniższy koszt sprzętu w przewodówce; wymaga Twojej dyspozycyjności na lata</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Klient premium kupuje markę i serwis producenta, nie Twoją pamięć o konfiguracji</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Wymaga gwiazdy do rozdzielnicy</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">Brak potwierdzonej deklaracji zgodności — zob. sekcja 07</div></td></tr>
+        <tr><td><b>F</b> HA + własna kompozycja</td>
+          <td><span class="vd n">Nie u klienta</span><div class="hint">Ten sam koszt co Grenton, bez CE, bez gwarancji, z Tobą jako jedynym serwisem</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">—</div></td>
+          <td><span class="vd n">Nie</span><div class="hint">—</div></td>
+          <td><span class="vd n">Nigdy</span><div class="hint">Podpisujesz protokół odbioru własnymi uprawnieniami</div></td></tr>
+        <tr><td><b>G</b> Hybryda</td>
+          <td><span class="vd y">Tak — najczęściej właściwa</span><div class="hint">Przewodowo to, co nieodwracalne; bezprzewodowo to, co klient dopowie później</div></td>
+          <td><span class="vd m">Jako uzupełnienie</span><div class="hint">Warstwa bezprzewodowa na czujniki i dodatki poza magistralą</div></td>
+          <td><span class="vd m">Tylko w remoncie kapitalnym</span><div class="hint">Gdy i tak zrywasz podłogi</div></td>
+          <td><span class="vd m">Rzadko</span><div class="hint">Dwa systemy to dwie ścieżki serwisowe w dokumentacji</div></td></tr>
+        <tr><td><b>H</b> Smart-ready, poziom 0</td>
+          <td><span class="vd y">Tak — oferuj zawsze jako wariant</span><div class="hint">Jedyna uczciwa odpowiedź na „za drogo" w stanie surowym</div></td>
+          <td><span class="vd m">Tylko przy przesuniętej decyzji</span><div class="hint">Gdy klient jeszcze nie wybrał architekta wnętrz</div></td>
+          <td><span class="vd n">Nie dotyczy</span><div class="hint">—</div></td>
+          <td><span class="vd y">Tak, standardowo</span><div class="hint">Rezerwa kablowa i przepusty to normalny zakres w kosztorysie</div></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ══════════ 6 ZA DROGO ══════════ -->
+  <section id="zadrogo">
+    <div class="sechead"><span class="secnum">06</span><h2>„Chciałbym, ale za drogo" — trzy różne zdania</h2></div>
+    <p class="secsub">To jedno zdanie oznacza trzy różne rzeczy i każda ma inną odpowiedź. Odpowiedź na jedną z nich zastosowana do innej brzmi jak wymijanie i kosztuje Cię zlecenie. Najpierw rozpoznaj, które to jest.</p>
+    <div class="scripts">
+      <div class="script">
+        <div class="dx">Diagnoza 1 · zły rząd wielkości</div>
+        <h4>„Myślałem, że to będzie kilka tysięcy"</h4>
+        <p>Klient nie miał punktu odniesienia i Twoja oferta jest pierwszą liczbą, jaką zobaczył. Nie da się tego naprawić po wysłaniu wyceny — trzeba zakotwiczyć widełki <b>na pierwszym spotkaniu</b>, zanim cokolwiek policzysz.</p>
+        <p class="say">„Zanim policzę cokolwiek dokładnie: w domu tej wielkości automatyka to zwykle od stu do trzystu złotych na metr, netto, ponad zwykłą instalację. Sto — jeżeli chcemy tylko dobrze przygotować dom. Trzysta — jeżeli chcemy pełną automatykę z panelami i integracją pompy. Gdzie się Pan w tym widzi?"</p>
+      </div>
+      <div class="script">
+        <div class="dx">Diagnoza 2 · nie widzi wartości</div>
+        <h4>„Nie wiem, czy to warte tych pieniędzy"</h4>
+        <p>Nie zna korzyści poza „świecenie z telefonu", a to faktycznie nie jest warte trzydziestu tysięcy. Przestaw rozmowę na warstwę, która się sama zwraca — ogrzewanie strefowe — i pokaż tabelę warstw z sekcji 02, żeby mógł ciąć sam.</p>
+        <p class="say">„Rozbiję ofertę na warstwy z cenami i Pan zdecyduje, gdzie się zatrzymać. Tylko jedno zastrzeżenie: warstwę kablową pod rolety i oświetlenie albo robimy teraz, albo już nigdy — pozostałe można dokupić w każdym momencie."</p>
+      </div>
+      <div class="script">
+        <div class="dx">Diagnoza 3 · nie ma teraz środków</div>
+        <h4>„Na tym etapie budowy mnie to nie stać"</h4>
+        <p>Najczęstszy przypadek u domu w budowie i jedyny, w którym masz naprawdę dobrą odpowiedź. Sprzedaj <b>tor H</b>: kabel i rezerwę teraz, system wtedy, kiedy będą pieniądze. Kabel to jedna piąta kosztu i całość nieodwracalności.</p>
+        <p class="say">„To zrobimy tak, żeby ta decyzja nie przepadła. Teraz kładziemy okablowanie gwiaździste do rozdzielnicy i rezerwę pod magistralę, plus przekaźniki bistabilne — dom działa normalnie, jak każdy inny. Kiedy zdecyduje się Pan na system, dołożymy sterownik i jest gotowe, bez bruzdowania. Gdybyśmy tego nie zrobili teraz, powrót do tego kosztowałby trzykrotnie więcej."</p>
+      </div>
+    </div>
+    <div class="note good">
+      <p><strong>Liczba, którą warto mieć w głowie.</strong> W kalkulatorze z domyślnym zakresem tor H (smart-ready) i tor A (Simon GO) kosztują prawie tyle samo. Różnica jest w tym, co klient ma po roku: przy torze A ma aplikację i zamkniętą drogę do przewodówki; przy torze H nie ma aplikacji i otwartą drogę do wszystkiego. Dla klienta, który jeszcze nie wie, czego chce, to nie jest równa wymiana — i to jest Twój argument.</p>
+    </div>
+    <div class="note crit">
+      <p><strong>Czego nie robić.</strong> Nie schodź z ceny przez obniżenie stawki inżynierskiej ani przez „to sobie dorobię wieczorami". W torach B, E i F godziny inżynierskie to od jednej trzeciej do prawie połowy wyceny — obcięcie tej pozycji nie jest rabatem, jest pracą za darmo, i to na najbardziej pracochłonnym torze z ośmiu. Cenę obniża się <em>wyłącznie</em> przez zawężenie zakresu albo zmianę toru na tańszy.</p>
+      <p>Drugie: nie schodź z przewodowego na bezprzewodowy „żeby było taniej", nie mówiąc klientowi wprost, co traci. To jest moment, w którym powstaje reklamacja za dwa lata — klient pamięta obiecane możliwości, a nie to, że zmieniliście technologię, żeby zmieścić się w budżecie. Zapisz zmianę toru w mailu.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 7 RYZYKA ══════════ -->
+  <section id="ryzyka">
+    <div class="sechead"><span class="secnum">07</span><h2>Formalności, które podpisujesz własnym nazwiskiem</h2></div>
+    <p class="secsub">Ta sekcja dotyczy torów E i F, ale przeczytaj ją, zanim wyślesz pierwszą ofertę na którykolwiek z nich. Podpisując protokół odbioru instalacji elektrycznej oświadczasz zgodność z PN-HD 60364 i z przepisami — a aparat bez deklaracji zgodności w rozdzielnicy 230 V jest wadą instalacji, którą firmujesz swoimi uprawnieniami.</p>
+
+    <h3 style="font-size:15px;margin:22px 0 10px">Zrób to, zanim wycenisz tor E lub F</h3>
+    <ul class="ck warn">
+      <li><span class="mk">01</span><span><b>Pisemne zapytanie do producenta o deklarację zgodności UE</b> wraz z wykazem norm zharmonizowanych (LVD 2014/35/UE, EMC 2014/30/UE, RED 2014/53/UE przy radiu, RoHS). Nie znalazłem oznaczenia CE ani deklaracji w publicznych materiałach boneIO — może istnieć, ale nie potwierdzisz tego stroną produktową. Brak odpowiedzi to brak oferty.</span></li>
+      <li><span class="mk">02</span><span><b>Sprawdzenie u brokera, czy Twoje OC zawodowe pokrywa</b> instalację aparatury bez deklaracji zgodności. Prawdopodobnie nie pokrywa, a to zmienia rachunek ryzyka całkowicie.</span></li>
+      <li><span class="mk">03</span><span><b>Świadomość, że sprowadzając moduł z Chin bezpośrednio, stajesz się importerem</b> w rozumieniu ustawy z 13.04.2016 o systemach oceny zgodności i przejmujesz pełną odpowiedzialność producenta: deklaracja, dokumentacja techniczna, instrukcja po polsku, oznakowanie, WEEE. Dokumenty od dostawcy nie przenoszą tej odpowiedzialności.</span></li>
+      <li><span class="mk">04</span><span><b>Wzór umowy serwisowej z abonamentem</b> dla wszystkiego, co stoi na Home Assistancie. Bez tego model nie domyka się finansowo na horyzoncie dziesięciu lat, a klient dzwoni w niedzielę bezpłatnie.</span></li>
+    </ul>
+
+    <h3 style="font-size:15px;margin:28px 0 10px">Architektura, którą da się obronić przy odbiorze</h3>
+    <p class="secsub" style="margin-bottom:14px">Zasada nadrzędna dla torów B, E i F: <b>serwer jest warstwą komfortu, nie warstwą sterowania.</b> Dom musi działać bez niego. Klient ocenia system nie wtedy, gdy działa, a wtedy, gdy padnie.</p>
+    <ul class="ck">
+      <li><span class="mk">L0</span><span><b>Warstwa fizyczna.</b> Przekaźniki bistabilne na szynie DIN (Finder, Relpol) sterowane bezpośrednio z przycisków monostabilnych. Światło działa przy padniętym sterowniku i padniętym serwerze. Sterownik podpięty równolegle na drugie wejście cewki — jako sterowanie dodatkowe, nie jedyne. Potrzebny styk pomocniczy na wejście cyfrowe, inaczej system nie zna stanu obwodu. Dlatego sterownik z 35–49 wejściami ma sens ekonomiczny.</span></li>
+      <li><span class="mk">L1</span><span><b>Warstwa sterownika.</b> Cała logika przycisk → wyjście zapisana lokalnie: w ESPHome (<span class="mono">on_press</span>, <span class="mono">interlock</span>, <span class="mono">restore_mode</span>) albo w Node-RED na sterowniku. Zero automatyzacji serwera w torze podstawowym.</span></li>
+      <li><span class="mk">L2</span><span><b>Warstwa serwera.</b> Sceny, harmonogramy, obecność, pogoda, powiadomienia, wykresy, integracje. Może paść bez wpływu na użytkowalność domu.</span></li>
+    </ul>
+    <div class="note crit">
+      <p><strong>Trzy granice, których nie przekraczasz.</strong> Żaden z ośmiu torów nie zastępuje centrali alarmowej ani sterownika bezpieczeństwa — oddymianie, ppoż. i wyłączniki awaryjne nie idą przez automatykę komfortu, i to ma być zapisane w umowie. Aktualizacje serwera wykonuje wyłącznie wykonawca w okienku serwisowym — klient klikający „Update" to najczęstsza przyczyna awarii. I dokumentacja powykonawcza: eksport konfiguracji, schemat adresacji wejść i wyjść, dane logowania, instrukcja przywrócenia z kopii — na piśmie, przekazana klientowi. Zabezpiecza jego, ale przede wszystkim Ciebie.</p>
+    </div>
+    <div class="note">
+      <p><strong>Co jeszcze zmieniło się w 2025–2026 i trzeba o tym wiedzieć.</strong> Home Assistant wycofał instalacje Core i Supervised oraz architektury 32-bitowe — zostają HA OS i Container na aarch64/amd64, czyli mini-PC albo maszyna wirtualna, nigdy karta SD. Od wersji 2025.1 są wbudowane kopie automatyczne z szyfrowaniem. Nie ma i nie będzie klastra ani przełączania awaryjnego — realną redundancją jest warstwa L0 powyżej, nie drugi serwer. Zasilanie awaryjne jest obowiązkowe: nagłe odcięcie uszkadza bazę.</p>
+      <p>Po stronie sprzętu: Home Assistant Yellow jest wycofany z produkcji. Tuya przeszedł z ESP8266 na własne układy Beken — flashowanie Tasmoty i ESPHome na nowych urządzeniach praktycznie nie działa, a <span class="mono">tuya-convert</span> został załatany. Tuya bierz wyłącznie w wersji Zigbee, gdzie chmura producenta nie występuje w łańcuchu, i tylko tam, gdzie awaria nie boli.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 8 ŹRÓDŁA ══════════ -->
+  <section id="zrodla">
+    <div class="sechead"><span class="secnum">08</span><h2>Skąd te liczby</h2></div>
+    <p class="secsub">Ceny sprzętu zebrane we wrześniu 2026 z cenników producentów i polskich sklepów, przeliczone na netto przy VAT 23% tam, gdzie źródło podawało brutto. Godziny montażowe i inżynierskie to model oparty na zakresie prac, nie na publikowanych danych — <b>skoryguj je po pierwszej instalacji każdego toru, bo to najbardziej niepewna część wyceny</b>. Kurs przyjęty dla boneIO: 4,25 PLN/EUR.</p>
+    <div class="srcs">
+      <b>Bezprzewodowe pudełkowe</b>
+      <p><a href="https://go.kontakt-simon.com.pl/">Kontakt-Simon — Simon GO</a> · <a href="https://smarterdom.pl/pl/11--kontaktsimon-go-bleboxeu-inside">SmarterDom — ceny Simon GO</a> · <a href="https://www.home-assistant.io/integrations/blebox/">HA — integracja BleBox (Simon 24/54/55 GO)</a> · <a href="https://www.fif.com.pl/fox/fox-system.html">F&amp;F — system FOX</a> · <a href="https://sklep.normatech.pl/pl/c/System-zdalnego-sterowania-Wi-Fi-FOX-FF/449">Normatech — ceny FOX</a> · <a href="https://github.com/fandf92/foxrestapiclient">foxrestapiclient</a></p>
+      <b>Bezprzewodowe szyte na miarę</b>
+      <p><a href="https://www.eltrox.pl/p/61999-shelly-pro-4pm">Eltrox — Shelly Pro 4PM</a> · <a href="https://www.eltrox.pl/p/61996-shelly-1-mini-gen4">Eltrox — Shelly 1 Mini Gen4</a> · <a href="https://www.home-assistant.io/integrations/shelly/">HA — integracja Shelly (lokalna)</a> · <a href="https://www.homebrainz.pl/p/smlight-slzb-06-zalecany-do-zigbee2mqtt">Homebrainz — SLZB-06</a> · <a href="https://aqara-polska.pl/">Aqara Polska</a> · <a href="https://www.nabucasa.com/pricing">Nabu Casa — cennik</a> · <a href="https://github.com/rospogrigio/localtuya/issues/2189">LocalTuya — zmiany protokołu Tuya</a></p>
+      <b>Przewodowe pudełkowe</b>
+      <p><a href="https://e-domus.com.pl/inteligentny-dom/grenton">e-domus — cennik Grenton</a> · <a href="https://szkolenia.grenton.pl/">Grenton — szkolenia</a> · <a href="https://knowledgebase.grenton.com/pl/gate-http-integracja-z-home-assistant">Grenton — Gate HTTP + HA</a> · <a href="https://shop.loxone.com/plpl/">Loxone — sklep PL</a> · <a href="https://www.loxone.com/plpl/faq-partner-loxone/">Loxone — program partnerski</a> · <a href="https://help.ampio.com/pl/prices/">Ampio — cennik detaliczny (v45.0, 09.2026)</a> · <a href="https://ampio.com/pl/integracje">Ampio — integracje</a></p>
+      <b>KNX</b>
+      <p><a href="https://my.knx.org/en/shop/ets">KNX — licencje ETS6</a> · <a href="https://automatykabudynku.pl/collections/mdt">Automatyka Budynku — MDT</a> · <a href="https://thinkofhome.pl/sklep/knx/">Think of Home — KNX</a> · <a href="https://www.knxpolska.pl/podstawowe.html">KNX Polska — kurs podstawowy</a> · <a href="https://knxpoland.pl/szkolenia-knx/">KNX Poland — kalendarz szkoleń 2026</a></p>
+      <b>boneIO i własna kompozycja</b>
+      <p><a href="https://store.boneio.eu/">boneIO — sklep</a> · <a href="https://boneio.eu/pl/docs/esp/introduction/comparison">boneIO — Black vs ESP</a> · <a href="https://boneio.eu/pl/docs/black/current/configuration/modbus">boneIO — Modbus</a> · <a href="https://botland.com.pl/1879-boneio-automatyka-domowa">Botland — boneIO</a> · <a href="https://shop.kincony.com/collections/kc868-ax">KinCony KC868</a> · <a href="https://kamami.pl/en/AD-and-DA-converters/1182933-gravity-2-channel-i2c-dac-2-channel-0-10v-dac-converter.html">Kamami — DAC 0–10 V GP8403</a> · <a href="https://www.gotronik.pl/16-przekaznikow-rs485-modbus-rtu-na-szyne-din-p-7963.html">Gotronik — 16× Modbus RTU DIN</a> · <a href="https://esphome.io/components/binary_sensor/index.html">ESPHome — logika lokalna</a></p>
+      <b>Platforma i formalności</b>
+      <p><a href="https://www.home-assistant.io/blog/2025/05/22/deprecating-core-and-supervised-installation-methods-and-32-bit-systems/">HA — wycofanie Core i Supervised</a> · <a href="https://www.home-assistant.io/blog/2025/01/03/3-2-1-backup/">HA — kopie wbudowane</a> · <a href="https://works-with.home-assistant.io/">Works with Home Assistant</a> · <a href="https://www.home-assistant.io/yellow/">HA Yellow — koniec produkcji</a> · <a href="https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20160000542">Ustawa o systemach oceny zgodności i nadzoru rynku</a> · <a href="https://www.gov.pl/web/rozwoj-technologia/system-oceny-zgodnosci-i-nadzoru-rynku">MRiT — ocena zgodności</a> · <a href="https://elektryk.io/przepisy-i-uprawnienia/norma-pn-hd-60364-najwazniejsze-wymagania-dla-instalacji-elektrycznych-niskiego-napiecia">PN-HD 60364 — wymagania</a></p>
+    </div>
+  </section>
+
+  <footer>
+    Dokument wewnętrzny EL'KADRA · model kosztowy oparty na cenach z września 2026 · widełki godzinowe do kalibracji po pierwszych realizacjach
+  </footer>
+</div>
+
+<script>
+/* ═══════════════════ MODEL ═══════════════════ */
+const T = [
+{k:'A', neu:false, name:'Bezprzewodowy „pudełkowy"', ex:'Simon GO · Fox · BleBox',
+ mat:{obw:140,dim:155,rol:150,str:320,prz:20,czu:110}, fix:0, kab:0,
+ mont:{fn:.35,in:.05}, inz:{b:4,fn:.25,in:.10,it:2}, lic:0, rozb:240, open:5,
+ what:'Moduł radiowy w puszce pod łącznikiem albo w ramce osprzętu. Żaden z dwóch głównych systemów w Polsce nie wymaga bramki ani abonamentu — koszt startowy to koszt pierwszego modułu. Simon GO to technicznie BleBox pod marką Kontakt-Simon, przez co ma oficjalną, lokalną integrację w rdzeniu Home Assistanta. Fox jest o 10–28% tańszy za moduł, ale integrację z HA piszesz sam po REST.',
+ fit:['Mieszkanie i retrofit — dom już mieszkalny, bez opcji bruzdowania','Klient, który nie wie, czego chce, i chce zacząć od trzech pomieszczeń','Dom w budowie, w którym przewodówka nie zmieściła się w budżecie — ale wtedy koniecznie z torem H pod spodem'],
+ risk:['Każdy moduł to osobny klient WiFi 2,4 GHz — powyżej 30 sztuk router domowy przestaje być wiarygodny','Brak mesh: moduł głęboko w puszce za metalową ramką nie podłapie sygnału przez sąsiedni','Brak centralnej logiki — bez HA harmonogramy liczy chmura producenta','Twardy limit 30 akcji w jednym kontrolerze Simon GO','Ogrzewanie strefowe wychodzi drogo: osobny termostat na strefę, bez koordynacji między nimi'],
+ tags:[['Bez bramki','good'],['Bez abonamentu','good'],['Lokalne REST API','good'],['Oficjalna integracja HA (Simon GO)','good'],['Integrację Fox z HA piszesz sam','mid'],['WiFi — limit skali','bad'],['Brak logiki centralnej','bad']]},
+
+{k:'B', neu:false, name:'Bezprzewodowy szyty na miarę', ex:'Shelly · Zigbee · Home Assistant',
+ mat:{obw:78,dim:95,rol:120,str:170,prz:15,czu:80}, fix:1900, kab:15,
+ mont:{fn:.30,in:.12}, inz:{b:14,fn:.50,in:.20,it:4}, lic:0, rozb:210, open:10,
+ what:'Shelly na obwody, Zigbee na czujniki, Home Assistant jako mózg. Najtańszy materiał w całym zestawieniu przy pełnej otwartości — Shelly gada lokalnie po WebSocket i MQTT, chmurę można wyłączyć, Zigbee w ogóle nie ma chmury w łańcuchu. Serwer: mini-PC N100 (~850 netto), nie Raspberry Pi — po dołożeniu obudowy i NVMe Pi 5 wychodzi drożej i słabiej.',
+ fit:['Retrofit z ambicjami — mieszkanie lub dom, w którym da się dołożyć trasy tylko punktowo','Klient techniczny, który sam lubi dłubać i doceni otwartość','Budżet 15–30 tys. netto przy szerokim zakresie funkcji'],
+ risk:['Shelly Pro w rozdzielnicy podłączaj po Ethernecie, nie po WiFi — to usuwa jedyne poważne ryzyko tego toru','Zigbee i WiFi dzielą pasmo 2,4 GHz: kanały ustal przed zakupem (WiFi 1 + Zigbee 25/26), nie po','Aqara łamie standard Zigbee — trzymaj jednolity park routerów','Shelly Gen4 ma radio WiFi albo Zigbee, nie oba naraz — po przełączeniu wypada z integracji Shelly','Utrzymanie serwera przechodzi na Ciebie: bez umowy serwisowej ten tor nie domyka się finansowo'],
+ tags:[['Najtańszy materiał','good'],['Pełna lokalność','good'],['MQTT + WebSocket','good'],['Rozbudowa najtańsza','good'],['Wymaga serwera','mid'],['Utrzymanie po Twojej stronie','mid'],['WiFi — planuj AP','bad']]},
+
+{k:'C', neu:false, name:'Przewodowy „pudełkowy" magistralowy', ex:'Grenton · Loxone · Ampio',
+ mat:{obw:125,dim:420,rol:330,str:220,prz:90,czu:150}, fix:2400, kab:70,
+ mont:{fn:.50,in:.25}, inz:{b:12,fn:.40,in:.12,it:4}, lic:0, rozb:1100, open:5,
+ what:'Jedna kategoria, ale trzy bardzo różne systemy — i to warto rozróżniać. <b>Grenton</b>: polski, logika w LUA, darmowy Object Manager, szkolenie 600 zł zwracane rabatem, każda integracja to osobny moduł Gate (Modbus +670 netto). <b>Loxone</b>: najbardziej zamknięty (Tree/Air własnościowe, brak oficjalnego API), ale darmowy Config i mocna marka w premium; od poziomu Silver obowiązkowa recertyfikacja roczna. <b>Ampio</b>: polski, magistrala CAN, najniższe ceny modułów i natywne MQTT z REST — najbardziej otwarty z trzech.',
+ fit:['Dom jednorodzinny w stanie surowym — to jest tor domyślny','Rezydencja premium, gdzie klient kupuje markę i wsparcie producenta','Klient nietechniczny, który chce, żeby po prostu działało, bez rozmów o aktualizacjach'],
+ risk:['Ściemnianie w Grentonie jest kosztowne — moduł jednokanałowy 430 netto; przy większej liczbie ściemnianych obwodów licz DALI albo 0–10 V','Decyzja jest nieodwracalna: po tynkach rozbudowa oznacza bruzdowanie','Loxone: model partnerski z coroczną recertyfikacją to koszt stały Twojej firmy, nie projektu','Żaden z trzech nie ma oficjalnej integracji w rdzeniu Home Assistanta — jeśli klient tego chce, idzie przez Gate HTTP lub MQTT'],
+ tags:[['Najkrótsza droga do odbioru','good'],['Narzędzia projektowe','good'],['Marka i wsparcie producenta','good'],['Darmowe oprogramowanie','good'],['Ściemnianie drogie (Grenton)','mid'],['Loxone zamknięty','bad'],['Nieodwracalne po tynkach','bad']]},
+
+{k:'D', neu:true, name:'KNX — przewodowy standard otwarty', ex:'MDT · Zennio · Schneider · ABB',
+ mat:{obw:170,dim:350,rol:210,str:280,prz:180,czu:220}, fix:3030, kab:70,
+ mont:{fn:.50,in:.25}, inz:{b:14,fn:.45,in:.13,it:3.5}, lic:680, rozb:1250, open:9,
+ what:'Tor, którego nie było na Twojej liście, a jest osobną kategorią: przewodowy, ale <b>wielodostawczy</b>, więc nie „pudełkowy". Norma ISO/IEC 14543, komponenty kilkudziesięciu producentów wymienne między sobą, oficjalna integracja <span class="mono">knx</span> w rdzeniu Home Assistanta — najlepsze wsparcie HA z całej ósemki. Najdroższy start i jedyny tor, w którym koszt wejścia jest w dużej mierze kosztem Twoich kwalifikacji, a nie sprzętu.',
+ fit:['Rezydencja premium — jedyny tor, który klient może za dziesięć lat oddać innej firmie bez przebudowy','Obiekty komercyjne przez generalnego wykonawcę: często wprost wymagany w specyfikacji, standard w przetargach publicznych','Klient, dla którego niezależność od losów jednego producenta jest realną wartością, nie hasłem'],
+ risk:['Koszt wejścia Twojej firmy: ETS6 Professional ~4 300 netto plus kurs KNX Basic ~2 500 netto — amortyzuje się przy ok. dziesięciu instalacjach','ETS6 Home (€350) jest licencją tylko do użytku prywatnego — nie na zlecenia; ETS6 Lite ma limit 20 urządzeń na projekt','Konwersja licencji z dongla USB na chmurową jest niemożliwa — wybierz raz, świadomie','Przyciski i panele KNX podnoszą materiał najbardziej z całej ósemki'],
+ tags:[['Standard ISO/IEC','good'],['Wielodostawczy','good'],['Oficjalna integracja HA w rdzeniu','good'],['Wymagany w przetargach','good'],['Najdroższy start','bad'],['ETS + kurs jako koszt wejścia','mid'],['Najdroższy materiał','bad']]},
+
+{k:'E', neu:false, name:'Przewodowy boneIO + Home Assistant', ex:'boneIO Black / ESP · MQTT · Node-RED',
+ mat:{obw:70,dim:180,rol:140,str:110,prz:25,czu:70}, fix:2450, kab:90,
+ mont:{fn:.55,in:.28}, inz:{b:22,fn:.70,in:.20,it:5}, lic:0, rozb:1150, open:9,
+ what:'Polska spółka z Łodzi, sterowniki na szynę DIN, 24 wyjścia 16 A i 35–49 wejść w jednym module — stąd najniższy koszt na kanał w całej przewodówce (~70 netto). Dwie linie: <b>Black</b> (BeagleBone z Linuksem, lokalny Node-RED i broker MQTT, konfiguracja w GUI, start ~3 min) i <b>ESP</b> (ESP32 z ESPHome, tylko YAML, start ~5 s). Gwarancja 24 miesiące.',
+ fit:['Dom w budowie, gdzie chcesz przewodówkę przy budżecie bezprzewodowym — i akceptujesz, że nadrabiasz to godzinami','Klient techniczny, który świadomie wybiera otwartość i zgadza się na abonament serwisowy','Twój własny dom i pierwsze realizacje, na których kalibrujesz godziny'],
+ risk:['<b>Nie znalazłem publicznie oznaczenia CE ani deklaracji zgodności UE</b> — zob. sekcja 07, punkt 01. To warunek wstępny, nie formalność','Ściemnianie 230 V wymaga osobnego rozwiązania — wbudowany moduł ściemniający to PWM 12–24 V do taśm LED, nie faza','Autonomia po utracie serwera nie jest automatyczna: musi być zaprojektowana w warstwach L0 i L1','Black startuje ~3 minuty po zaniku zasilania — warstwa przekaźników bistabilnych jest tu obowiązkowa','Jedna spółka: upadłość oznacza brak części zamiennych do systemu, który firmujesz','Część modeli była niedostępna w momencie badania — sprawdź dostępność przed ofertą'],
+ tags:[['Najtańszy kanał w przewodówce','good'],['Lokalny Node-RED i MQTT','good'],['Polski producent, 24 mies.','good'],['Złączki wtykowe — łatwy serwis','good'],['Deklaracja zgodności do potwierdzenia','bad'],['Ściemnianie 230 V osobno','mid'],['Duży nakład godzin','mid']]},
+
+{k:'F', neu:false, name:'Home Assistant + własna kompozycja', ex:'ESP32 · DAC 0–10 V · Modbus RTU · ekspandery I²C',
+ mat:{obw:65,dim:175,rol:130,str:100,prz:8,czu:70}, fix:2900, kab:90,
+ mont:{fn:.60,in:.30}, inz:{b:32,fn:1.00,in:.25,it:6}, lic:0, rozb:1200, open:10,
+ what:'Przekaźniki Modbus na szynie, ESP32 z ESPHome, przetworniki DAC 0–10 V do ściemniania, ekspandery I²C na wejścia. Materiał najtańszy z ośmiu torów — i to jest cała zaleta. Kalkulator pokazuje, że <b>koszt całkowity wychodzi na poziomie Grentona albo wyżej</b>, bo inżynieria zjada całą oszczędność na sprzęcie.',
+ fit:['Twój własny dom, prototypy, stanowisko testowe','Nauka — to najlepszy sposób, żeby zrozumieć, za co się płaci w torach C i D'],
+ risk:['<b>Brak CE na modułach KinCony, Waveshare, Eletechsup.</b> Sprowadzając je bezpośrednio stajesz się importerem z pełną odpowiedzialnością producenta','Przekaźniki w tanich modułach Modbus mają ~10 000 cykli mechanicznych — przy obwodzie oświetleniowym używanym 10× dziennie to około trzech lat; aparaty instalacyjne Finder czy Hager mają 100 000 do 1 000 000','I²C musi zostać w obudowie rozdzielnicy — na dłuższe trasy tylko RS-485','Rewizje płytek zmieniają pinout i firmware bez ostrzeżenia; identycznej sztuki za dwa lata nie kupisz','Jesteś jedyną osobą, która rozumie tę konfigurację — także za cztery lata i piętnaście instalacji później','Nieudokumentowany aparat w rozdzielnicy 230 V psuje zgodność całego zestawu (PN-EN 61439)'],
+ tags:[['Najtańszy materiał','good'],['Pełna kontrola','good'],['Ten sam koszt co Grenton','bad'],['Brak CE','bad'],['Przekaźniki 10 tys. cykli','bad'],['Najwięcej godzin','bad'],['Ryzyko serwisowe 10 lat','bad']]},
+
+{k:'G', neu:true, name:'Hybryda — przewodowy szkielet, bezprzewodowe dodatki', ex:'Grenton lub boneIO + Shelly / Zigbee',
+ mat:{obw:106,dim:290,rol:330,str:220,prz:60,czu:80}, fix:3400, kab:45,
+ mont:{fn:.45,in:.20}, inz:{b:16,fn:.45,in:.16,it:4}, lic:0, rozb:400, open:8,
+ what:'Tor, którego nie było na liście, a w praktyce najczęściej jest właściwą odpowiedzią. Przewodowo to, co <b>nieodwracalne i krytyczne</b>: oświetlenie główne, rolety, ogrzewanie strefowe. Bezprzewodowo to, co klient dopowie później i co się zmienia: czujniki, dodatkowe punkty, oświetlenie dekoracyjne, gniazda. Model liczy szkielet przewodowy na 60% obwodów.',
+ fit:['Dom w budowie z budżetem między torem B a torem C — czyli większość klientów, którzy mówili „za drogo"','Klient, który zna trzy funkcje, których chce, i nie wie, co jeszcze','Rezydencja, gdzie magistrala nie dojdzie wszędzie (budynek gospodarczy, ogród, altana)'],
+ risk:['Dwa systemy to dwie ścieżki serwisowe — w dokumentacji powykonawczej musi być jasne, co czym jest sterowane','Rośnie nakład inżynierski: godzin więcej niż w czystym torze C, bo integrujesz dwie warstwy','Wymaga dyscypliny w projekcie: granica przewodowe/bezprzewodowe ustalona raz, przed pierwszym kablem'],
+ tags:[['Najczęściej właściwa odpowiedź','good'],['Kabel tam, gdzie się liczy','good'],['Tania rozbudowa po wykończeniu','good'],['Dwie ścieżki serwisowe','mid'],['Więcej integracji po Twojej stronie','mid']]},
+
+{k:'H', neu:true, name:'Instalacja smart-ready — poziom 0', ex:'przekaźniki bistabilne · gwiazda do rozdzielnicy · rezerwa magistrali',
+ mat:{obw:45,dim:120,rol:80,str:180,prz:30,czu:0}, fix:700, kab:85,
+ mont:{fn:.40,in:.15}, inz:{b:3,fn:.05,in:.02,it:0}, lic:0, rozb:350, open:10,
+ what:'Nie jest systemem i dlatego jest najważniejszym torem w tym dokumencie. Klasyczna instalacja z przekaźnikami bistabilnymi, okablowaniem gwiaździstym do rozdzielnicy, sterownikami rolet, termostatami strefowymi i rezerwą kablową pod magistralę. Dom działa jak każdy inny — bez aplikacji. Ale <b>całość nieodwracalności jest już kupiona</b>, a doważenie dowolnego toru C, D, E, F czy G sprowadza się później do dołożenia sterownika w rozdzielnicy.',
+ fit:['Każdy dom w stanie surowym, w którym klient mówi „chciałbym, ale nie na tym etapie" — oferuj to zawsze jako wariant w ofercie, nie po pytaniu','Klient, który jeszcze nie wybrał architekta wnętrz ani nie wie, gdzie stanie telewizor','Obiekt komercyjny: rezerwa kablowa i przepusty to normalna pozycja kosztorysu, nie ekstrawagancja'],
+ risk:['Klient nie dostaje aplikacji i trzeba to powiedzieć wprost, bo inaczej poczuje się oszukany','Wymaga projektu adresacji i opisu rozdzielnicy — inaczej rezerwa jest bezużyteczna, także dla Ciebie za trzy lata','Styki pomocnicze przekaźników bistabilnych warto wyprowadzić od razu, żeby przyszły sterownik znał stan obwodów'],
+ tags:[['Nie zamyka żadnej drogi','good'],['Najtańsze wejście z sensem','good'],['Odpowiedź na „za drogo"','good'],['Rezerwa kablowa = 20% kosztu, 100% nieodwracalności','good'],['Brak aplikacji','mid']]}
+];
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const IN=['pow','obw','dim','rol','str','prz','czu','int','mont','inz','nar'];
+const fmt=n=>Math.round(n).toLocaleString('pl-PL');
+
+function scope(){
+  const g=id=>Math.max(0, +$('#i_'+id).value||0);
+  const s={pow:g('pow'),obw:g('obw'),rol:g('rol'),str:g('str'),prz:g('prz'),czu:g('czu'),it:g('int'),
+           mont:g('mont'),inz:g('inz'),nar:g('nar')};
+  s.dim=Math.min(g('dim'), s.obw);
+  s.fn=s.obw+s.rol+s.str; s.in=s.prz+s.czu;
+  return s;
+}
+
+function calc(t,s){
+  const m=t.mat;
+  const matRaw=(s.obw-s.dim)*m.obw + s.dim*m.dim + s.rol*m.rol + s.str*m.str + s.prz*m.prz + s.czu*m.czu + t.fix;
+  const material=matRaw*(1+s.nar/100);
+  const kabel=(s.fn+s.in)*t.kab;
+  const hM=t.mont.fn*s.fn + t.mont.in*s.in;
+  const hI=t.inz.b + t.inz.fn*s.fn + t.inz.in*s.in + t.inz.it*s.it;
+  const montaz=hM*s.mont, inzynieria=hI*s.inz;
+  const total=material+kabel+montaz+inzynieria+t.lic;
+  return {material,kabel,montaz,inzynieria,lic:t.lic,total,hM,hI,
+          perM2: s.pow>0? total/s.pow : 0};
+}
+
+/* ═══════════════════ TYPOLOGIA ═══════════════════ */
+function renderTypes(){
+  $('#typeList').innerHTML = T.map(t=>`
+   <div class="type${t.neu?' new':''}" data-k="${t.k}">
+     <button class="type-hd" type="button" aria-expanded="false">
+       <span class="tbadge">${t.k}</span>
+       <span><span class="type-t">${t.name}${t.neu?' <span class="mono" style="font-size:10.5px;color:var(--l1);letter-spacing:.08em">DOPISANY</span>':''}</span><span class="type-ex">${t.ex}</span></span>
+       <span class="type-meta"><span class="tprice" data-p="${t.k}">—<small>NETTO</small></span><span class="caret">▶</span></span>
+     </button>
+     <div class="type-body">
+       <p style="margin:0 0 16px;font-size:14.5px;color:var(--ink-2);max-width:78ch">${t.what}</p>
+       <div class="tgrid">
+         <div><h4>Dla kogo</h4><ul>${t.fit.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+         <div><h4>Na co uważać</h4><ul>${t.risk.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+         <div><h4>Twój nakład przy domyślnym zakresie</h4><p data-h="${t.k}">—</p></div>
+       </div>
+       <div class="tags">${t.tags.map(([l,c])=>`<span class="tag ${c}">${l}</span>`).join('')}</div>
+     </div>
+   </div>`).join('');
+  $$('.type-hd').forEach(b=>b.addEventListener('click',()=>{
+    const p=b.parentElement, o=p.classList.toggle('open');
+    b.setAttribute('aria-expanded', o?'true':'false');
+  }));
+}
+
+/* ═══════════════════ BARS + LAYERS ═══════════════════ */
+function renderBars(s){
+  const rows=T.map(t=>({t,c:calc(t,s)}));
+  const max=Math.max(...rows.map(r=>r.c.total))||1;
+  const C=['var(--n)','var(--l1)','var(--pe)','var(--warn)','var(--ink-3)'];
+  $('#bars').innerHTML = rows.map(({t,c})=>{
+    const parts=[c.material,c.kabel,c.montaz,c.inzynieria,c.lic];
+    const segs=parts.map((v,i)=>v>0?`<span style="background:${C[i]};flex:0 0 ${(v/max*100).toFixed(2)}%" title="${fmt(v)} zł"></span>`:'').join('');
+    return `<div class="barrow">
+      <div class="barlab"><span class="bk">${t.k}</span>${t.name}</div>
+      <div class="bartrack">${segs}</div>
+      <div class="bartot">${fmt(c.total)} zł<em>${fmt(c.perM2)} zł/m² · ${c.hI.toFixed(0)} h inż.</em></div>
+    </div>`;
+  }).join('');
+
+  const cheap=rows.reduce((a,b)=>a.c.total<b.c.total?a:b);
+  const F=rows.find(r=>r.t.k==='F').c, Cc=rows.find(r=>r.t.k==='C').c;
+  const inzShare=r=>Math.round(r.c.inzynieria/r.c.total*100);
+  $('#barsNote').innerHTML =
+    `Udział inżynierii w wycenie: <b>A ${inzShare(rows[0])}%</b>, <b>B ${inzShare(rows[1])}%</b>, <b>C ${inzShare(rows[2])}%</b>, <b>D ${inzShare(rows[3])}%</b>, <b>E ${inzShare(rows[4])}%</b>, <b>F ${inzShare(rows[5])}%</b>, <b>G ${inzShare(rows[6])}%</b>, <b>H ${inzShare(rows[7])}%</b>. `+
+    `Tor F (własna kompozycja) ma materiał najtańszy z ośmiu, a całość wychodzi ${F.total>=Cc.total?'drożej niż':'na poziomie'} toru C — różnicę zjada ${F.hI.toFixed(0)} godzin inżynierskich wobec ${Cc.hI.toFixed(0)}.`;
+
+  // warstwy oferty
+  const layers=[
+    {n:'Oświetlenie — obwody przełączane', cut:'nie do cięcia', f:(t,s)=>(s.obw-s.dim)*t.mat.obw},
+    {n:'Ściemnianie', cut:'można ograniczyć liczbę obwodów', f:(t,s)=>s.dim*t.mat.dim},
+    {n:'Rolety i żaluzje', cut:'nie do cięcia — silniki i kable', f:(t,s)=>s.rol*t.mat.rol},
+    {n:'Ogrzewanie strefowe', cut:'jedyna warstwa, która się zwraca', f:(t,s)=>s.str*t.mat.str},
+    {n:'Punkty przyciskowe i panele', cut:'panele → zwykłe przyciski', f:(t,s)=>s.prz*t.mat.prz},
+    {n:'Czujniki', cut:'wycinaj pierwsze', f:(t,s)=>s.czu*t.mat.czu},
+    {n:'Centrala, serwer, zasilanie, szafa', cut:'nie do cięcia', f:(t,s)=>t.fix},
+    {n:'Nadwyżka kablowa', cut:'nigdy — to cała nieodwracalność', f:(t,s)=>(s.fn+s.in)*t.kab}
+  ];
+  const show=['A','B','C','E','G','H'];
+  const ts=show.map(k=>T.find(t=>t.k===k));
+  const dim='style="color:var(--ink-3);font-size:12.5px"';
+  const hi='style="background:var(--surface-2);font-weight:600"';
+  let h='<thead><tr><th>Warstwa</th><th>Strategia cięcia</th>';
+  for(const t of ts) h+='<th class="num">'+t.k+'</th>';
+  h+='</tr></thead><tbody>';
+  for(const l of layers){
+    h+='<tr><td>'+l.n+'</td><td '+dim+'>'+l.cut+'</td>';
+    for(const t of ts){ const v=l.f(t,s)*(1+s.nar/100); h+='<td class="num">'+(v>0?fmt(v):'—')+'</td>'; }
+    h+='</tr>';
+  }
+  h+='<tr '+hi+'><td>Materiał + kabel razem</td><td></td>';
+  for(const t of ts){ const c=calc(t,s); h+='<td class="num">'+fmt(c.material+c.kabel)+'</td>'; }
+  h+='</tr><tr '+hi+'><td>Robocizna i inżynieria</td><td '+dim+'>nie podlega rabatowi</td>';
+  for(const t of ts){ const c=calc(t,s); h+='<td class="num">'+fmt(c.montaz+c.inzynieria+c.lic)+'</td>'; }
+  h+='</tr></tbody>';
+  $('#layerTbl').innerHTML=h;
+
+  // ceny w typologii
+  rows.forEach(({t,c})=>{
+    const el=document.querySelector(`[data-p="${t.k}"]`);
+    if(el) el.innerHTML=`${fmt(c.total)} zł<small>${fmt(c.perM2)} ZŁ/M²</small>`;
+    const h=document.querySelector(`[data-h="${t.k}"]`);
+    if(h) h.innerHTML=`<b class="mono">${c.hI.toFixed(0)} h</b> inżynierii i <b class="mono">${c.hM.toFixed(0)} h</b> montażu ponad normę. Inżynieria to <b>${inzShare({c})}%</b> wyceny. Rozbudowa o jedną funkcję po wykończeniu wnętrz: <b class="mono">≈${fmt(t.rozb)} zł</b>.`;
+  });
+  return rows;
+}
+
+/* ═══════════════════ CHARTS ═══════════════════ */
+/* kolor = rodzina, nie ozdoba: bezprzewodowe / przewodowe / mieszane */
+const PAL={A:'--n',B:'--n',C:'--l1',D:'--l1',E:'--l1',F:'--l1',G:'--pe',H:'--pe'};
+function scatter(el,pts,xl,yl,xfmt,yfmt){
+  const W=460,H=330,P={l:52,r:18,t:14,b:42};
+  const xs=pts.map(p=>p.x), ys=pts.map(p=>p.y);
+  const x0=0, x1=Math.max(...xs)*1.08;
+  const y0=0, y1=Math.max(...ys)*1.12;
+  const sx=v=>P.l+(v-x0)/(x1-x0)*(W-P.l-P.r);
+  const sy=v=>H-P.b-(v-y0)/(y1-y0)*(H-P.t-P.b);
+  const xt=[0,.25,.5,.75,1].map(f=>x0+f*(x1-x0));
+  const yt=[0,.25,.5,.75,1].map(f=>y0+f*(y1-y0));
+  let g='';
+  yt.forEach(v=>{g+=`<line x1="${P.l}" y1="${sy(v).toFixed(1)}" x2="${W-P.r}" y2="${sy(v).toFixed(1)}" stroke="var(--line)" stroke-width="1"/>
+    <text x="${P.l-8}" y="${(sy(v)+4).toFixed(1)}" text-anchor="end" font-size="10" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">${yfmt(v)}</text>`});
+  xt.forEach(v=>{g+=`<text x="${sx(v).toFixed(1)}" y="${H-P.b+16}" text-anchor="middle" font-size="10" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">${xfmt(v)}</text>`});
+  let m='';
+  pts.forEach(p=>{
+    const cx=sx(p.x), cy=sy(p.y);
+    const right = cx < W*0.72;
+    m+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6.5" fill="var(${PAL[p.k]})" fill-opacity=".9" stroke="var(--surface)" stroke-width="1.5"/>
+      <text x="${(cx+(right?11:-11)).toFixed(1)}" y="${(cy+3.5).toFixed(1)}" text-anchor="${right?'start':'end'}" font-size="11" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono,monospace">${p.k}</text>`;
+  });
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${xl} vs ${yl}">
+    <line x1="${P.l}" y1="${H-P.b}" x2="${W-P.r}" y2="${H-P.b}" stroke="var(--line-2)" stroke-width="1"/>
+    <line x1="${P.l}" y1="${P.t}" x2="${P.l}" y2="${H-P.b}" stroke="var(--line-2)" stroke-width="1"/>
+    ${g}${m}
+    <text x="${(P.l+(W-P.r))/2}" y="${H-6}" text-anchor="middle" font-size="10.5" fill="var(--ink-2)" font-family="IBM Plex Mono,monospace" letter-spacing=".06em">${xl}</text>
+    <text x="13" y="${(P.t+(H-P.b))/2}" text-anchor="middle" font-size="10.5" fill="var(--ink-2)" font-family="IBM Plex Mono,monospace" letter-spacing=".06em" transform="rotate(-90 13 ${(P.t+(H-P.b))/2})">${yl}</text>
+  </svg>`;
+}
+function renderCharts(rows){
+  scatter($('#chart1'), rows.map(({t,c})=>({k:t.k,x:c.total,y:t.rozb})),
+    'KOSZT CAŁKOWITY · TYS. ZŁ NETTO','ROZBUDOWA O 1 FUNKCJĘ · ZŁ',
+    v=>(v/1000).toFixed(0), v=>fmt(v));
+  scatter($('#chart2'), rows.map(({t,c})=>({k:t.k,x:c.hI,y:t.open})),
+    'GODZINY INŻYNIERSKIE','OTWARTOŚĆ · 1–10',
+    v=>v.toFixed(0), v=>v.toFixed(0));
+}
+
+/* ═══════════════════ QUIZ ═══════════════════ */
+const X=-99;
+const Q=[
+ {q:'Na jakim etapie jest obiekt?', a:[
+  ['Stan surowy, przed tynkami',{A:0,B:0,C:2,D:2,E:2,F:1,G:2,H:3}],
+  ['Po tynkach, przed wykończeniem',{A:2,B:2,C:-2,D:-2,E:-2,F:-2,G:0,H:-3}],
+  ['Gotowy, zamieszkany',{A:3,B:3,C:X,D:X,E:X,F:X,G:X,H:X}]]},
+ {q:'Budżet na automatykę, netto, ponad instalację standardową', a:[
+  ['do 15 tys.',{A:3,B:1,C:X,D:X,E:X,F:X,G:X,H:3}],
+  ['15–30 tys.',{A:2,B:3,C:-2,D:X,E:-1,F:-1,G:1,H:2}],
+  ['30–50 tys.',{A:-1,B:1,C:3,D:0,E:3,F:2,G:3,H:-1}],
+  ['powyżej 50 tys.',{A:-3,B:-2,C:2,D:3,E:1,F:0,G:2,H:-3}]]},
+ {q:'Horyzont — jak długo klient tu zostanie?', a:[
+  ['Kilka lat, potem sprzedaż',{A:3,B:2,C:-1,D:-1,E:-1,F:-2,G:0,H:2}],
+  ['Dom na lata',{A:-2,B:0,C:2,D:3,E:2,F:1,G:2,H:1}]]},
+ {q:'Profil klienta', a:[
+  ['Techniczny, sam lubi dłubać',{A:0,B:3,C:0,D:1,E:2,F:3,G:1,H:1}],
+  ['Nietechniczny, ma po prostu działać',{A:2,B:-1,C:3,D:2,E:-1,F:-3,G:1,H:2}],
+  ['Premium — oczekuje marki i obsługi',{A:-3,B:-2,C:3,D:3,E:-2,F:-3,G:0,H:-2}]]},
+ {q:'Zakres funkcji', a:[
+  ['Oświetlenie i rolety',{A:3,B:2,C:1,D:0,E:1,F:1,G:1,H:2}],
+  ['+ ogrzewanie strefowe',{A:0,B:1,C:3,D:2,E:3,F:2,G:2,H:0}],
+  ['+ HVAC, PV, audio, CCTV, kontrola dostępu',{A:-3,B:1,C:2,D:3,E:2,F:2,G:2,H:-2}]]},
+ {q:'Abonament serwisowy', a:[
+  ['Klient się zgadza',{A:0,B:2,C:1,D:1,E:2,F:2,G:1,H:0}],
+  ['Nie chce żadnych opłat cyklicznych',{A:2,B:-2,C:1,D:2,E:-2,F:-3,G:0,H:2}]]},
+ {q:'Niezależność od chmury i od jednego producenta', a:[
+  ['Klientowi obojętne',{A:1,B:0,C:1,D:0,E:0,F:0,G:0,H:0}],
+  ['Ważna — pytał o to sam',{A:0,B:2,C:0,D:3,E:2,F:2,G:1,H:1}]]}
+];
+const pick={};
+function renderQuiz(){
+  $('#quizForm').innerHTML=Q.map((q,i)=>`<div class="q"><p><span>${String(i+1).padStart(2,'0')}</span>${q.q}</p>
+    <div class="opts">${q.a.map((a,j)=>`<button type="button" data-q="${i}" data-a="${j}" aria-pressed="false">${a[0]}</button>`).join('')}</div></div>`).join('');
+  $$('.opts button').forEach(b=>b.addEventListener('click',()=>{
+    const qi=+b.dataset.q;
+    $$(`.opts button[data-q="${qi}"]`).forEach(o=>o.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true'); pick[qi]=+b.dataset.a; scoreQuiz();
+  }));
+}
+function scoreQuiz(){
+  const ks=Object.keys(pick);
+  if(!ks.length) return;
+  const sc={}, out={};
+  T.forEach(t=>{sc[t.k]=0; out[t.k]=false});
+  ks.forEach(qi=>{const d=Q[qi].a[pick[qi]][1];
+    Object.entries(d).forEach(([k,v])=>{ if(v===X) out[k]=true; else sc[k]+=v; })});
+  const list=T.map(t=>({k:t.k,n:t.name,s:sc[t.k],out:out[t.k]}))
+    .sort((a,b)=>(a.out-b.out)||(b.s-a.s));
+  const live=list.filter(r=>!r.out);
+  const mx=Math.max(1,...live.map(r=>r.s)), mn=Math.min(0,...live.map(r=>r.s));
+  $('#quizOut').innerHTML=list.map((r,i)=>{
+    const w=r.out?0:Math.max(2,(r.s-mn)/(mx-mn||1)*100);
+    return `<div><div class="rankrow ${i===0&&!r.out?'top':''} ${r.out?'out':''}">
+      <span class="rk">${r.k}</span><span>${r.n}</span>
+      <span class="mono" style="font-size:12px;color:var(--ink-3)">${r.out?'wykluczony':r.s>0?'+'+r.s:r.s}</span></div>
+      <div class="rbar"><span style="width:${w}%"></span></div></div>`}).join('');
+  const done=ks.length===Q.length;
+  $('#quizWhy').innerHTML = done
+    ? `Rekomendacja: <b>${live[0].k} — ${live[0].n}</b>, wariant zapasowy <b>${live[1]?live[1].k:'—'}</b>. Do oferty wstaw oba, z ceną i jednym zdaniem różnicy. ${list.some(r=>r.out)?'Wykluczone tory wynikają z etapu budowy lub budżetu — nie wspominaj o nich klientowi.':''}`
+    : `Odpowiedzi: ${ks.length} z ${Q.length}. Ranking uzupełnia się na bieżąco.`;
+}
+
+/* ═══════════════════ INIT ═══════════════════ */
+function refresh(){ const s=scope(); const rows=renderBars(s); renderCharts(rows); }
+renderTypes(); renderQuiz();
+IN.forEach(id=>$('#i_'+id).addEventListener('input',refresh));
+refresh();
+$$('.type')[7].classList.add('open');
+$$('.type')[7].querySelector('.type-hd').setAttribute('aria-expanded','true');
+// domyślny profil: dom w budowie, 15–30 tys., dom na lata
+[[0,0],[1,1],[2,1]].forEach(([q,a])=>{const b=document.querySelector(`.opts button[data-q="${q}"][data-a="${a}"]`); if(b) b.click();});
+
+(function(){
+  const b=$('#themeBtn'); if(!b) return;
+  b.addEventListener('click',()=>{
+    const r=document.documentElement;
+    const dark = r.getAttribute('data-theme')==='dark' ||
+      (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    r.setAttribute('data-theme', dark?'light':'dark');
+    const s=scope(); const rows=renderBars(s); renderCharts(rows);
+  });
+})();
+</script>
+
+</body></html>
