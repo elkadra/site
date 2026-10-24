@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>KLIO – EL'KADRA</title>
+<script>
+  // elkadra.com/klio → strona Klio (Apps Script). elkadra.com/klio?ua → wersja ukraińska.
+  var KLIO = 'https://script.google.com/a/macros/elkadra.com/s/AKfycbwQ7dnLByQ5goMT7LcCKRevXnMqJbM4uXqzweVuX-YjuDQONFTEy8vnZfzpWu4Fz0WMVA/exec';
+  var q = location.search;
+  var ua = /(^\?|&)(ua|lang=ua)(&|$)/i.test(q);
+  location.replace(KLIO + (ua ? '?lang=ua' : ''));
+</script>
+<meta http-equiv="refresh" content="0; url=https://script.google.com/a/macros/elkadra.com/s/AKfycbwQ7dnLByQ5goMT7LcCKRevXnMqJbM4uXqzweVuX-YjuDQONFTEy8vnZfzpWu4Fz0WMVA/exec">
+<style>body{font-family:sans-serif;background:#002e52;color:#fff;display:grid;place-items:center;height:100vh;margin:0}a{color:#fca311}</style>
+</head>
+<body><p>Otwieram Klio… <a href="https://script.google.com/a/macros/elkadra.com/s/AKfycbwQ7dnLByQ5goMT7LcCKRevXnMqJbM4uXqzweVuX-YjuDQONFTEy8vnZfzpWu4Fz0WMVA/exec">kliknij, jeśli nic się nie dzieje</a></p></body>
+</html>
