@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Olimp – narzędzia EL'KADRA</title>
+<link rel="icon" href="/images/faicons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/faicons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002e52;--navy2:#0b3d66;--or:#fca311;--ink:#ffffff;--mute:#9db0c2;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--navy);color:var(--ink);font:15px/1.55 "Roboto Mono",ui-monospace,monospace;
+  background-image:linear-gradient(145deg,transparent 62%,rgba(252,163,17,.08) 62%,rgba(252,163,17,.08) 70%,transparent 70%);
+  background-attachment:fixed}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:980px;margin:0 auto;padding:28px 20px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+header img{height:34px;width:auto;display:block}
+.meta{font-size:12px;color:var(--mute);text-align:right}
+.meta b{color:var(--or);font-weight:500}
+h1{font-family:Goldman,sans-serif;font-weight:700;font-size:clamp(34px,7vw,56px);line-height:1;margin:34px 0 8px;letter-spacing:.02em}
+h1 span{color:var(--or)}
+.lead{color:var(--mute);margin:0 0 30px;max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{position:relative;display:flex;flex-direction:column;gap:6px;padding:20px 20px 18px;background:var(--navy2);
+  border:1px solid var(--line);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%);
+  transition:transform .15s ease,border-color .15s ease,background .15s ease}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--or)}
+a.card:hover,a.card:focus-visible{transform:translateY(-2px);border-color:var(--or);background:#0e4775;outline:none}
+.no{font-size:12px;color:var(--mute)}
+.card h2{font-family:Goldman,sans-serif;font-size:24px;margin:2px 0 0;letter-spacing:.03em}
+.card h2::before{content:"/";color:var(--or)}
+.card p{margin:0;color:#d6dfe8;font-size:14px}
+.url{margin-top:auto;padding-top:10px;font-size:12px;color:var(--or)}
+.card.soon{opacity:.55;cursor:default}
+.card.soon::before{background:var(--mute)}
+.card.soon .url{color:var(--mute)}
+.tag{position:absolute;top:18px;right:30px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--mute);color:var(--mute);padding:1px 7px}
+footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:var(--or)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="/" aria-label="EL'KADRA – strona główna"><img src="/images/logos/elkadra_logo_pelne_biale_bez_tla_rgb.png" alt="EL'KADRA"></a>
+    <div class="meta">/narzędzia wewnętrzne<br><b>/WSZYSTKIE FAZY</b></div>
+  </header>
+
+  <h1>/OLIMP<span>.</span></h1>
+  <p class="lead">Wszystkie wewnętrzne narzędzia EL'KADRA w jednym miejscu. Zapisz tę stronę w zakładkach lub na ekranie telefonu.</p>
+
+  <nav class="grid">
+    <a class="card" href="/klio/">
+      <span class="no">§01</span>
+      <h2>KLIO</h2>
+      <p>Listy zadań, notatki i dzienny przydział brygad.</p>
+      <span class="url">elkadra.com/klio →</span>
+    </a>
+    <a class="card" href="/hermes/">
+      <span class="no">§02</span>
+      <h2>HERMES</h2>
+      <p>Flota samochodowa — serwisy, przeglądy, przebiegi.</p>
+      <span class="url">elkadra.com/hermes →</span>
+    </a>
+    <div class="card soon" aria-disabled="true">
+      <span class="tag">w budowie</span>
+      <span class="no">§03</span>
+      <h2>HEFAJSTOS</h2>
+      <p>Elektronarzędzia i sprzęt — kto ma, na jakiej budowie.</p>
+      <span class="url">elkadra.com/hefajstos</span>
+    </div>
+    <a class="card" href="/atena/">
+      <span class="no">§04</span>
+      <h2>ATENA</h2>
+      <p>Marże na projektach — budżet, sprzedaż, koszty.</p>
+      <span class="url">elkadra.com/atena →</span>
+    </a>
+    <a class="card" href="/mnemo/">
+      <span class="no">§05</span>
+      <h2>MNEMO</h2>
+      <p>Wewnętrzna encyklopedia — tabele, koronki, tarcze, patenty z budowy.</p>
+      <span class="url">elkadra.com/mnemo →</span>
+    </a>
+  </nav>
+
+  <footer>
+    <span>EL'KADRA · Olimp</span>
+    <a href="/">elkadra.com</a>
+  </footer>
+</div>
+</body>
+</html>
